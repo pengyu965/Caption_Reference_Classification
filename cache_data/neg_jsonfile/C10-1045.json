@@ -1,0 +1,1138 @@
+[
+    {
+        "Text": "\nBetter Arabic Parsing: Baselines, Evaluations, and Analysis\n\t\n\t\tIn this paper, we offer broad insight into the underperformance of Arabic constituency parsing by analyzing the interplay of linguistic phenomena, annotation choices, and model design.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "First, we identify sources of syntactic ambiguity understudied in the existing parsing literature.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Second, we show that although the Penn Arabic Treebank is similar to other tree- banks in gross statistical terms, annotation consistency remains problematic.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Third, we develop a human interpretable grammar that is competitive with a latent variable PCFG.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Fourth, we show how to build better models for three different parsers.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Finally, we show that in application settings, the absence of gold segmentation lowers parsing performance by 2\u20135% F1.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "It is well-known that constituency parsing models designed for English often do not generalize easily to other languages and treebanks.1 Explanations for this phenomenon have included the relative informativeness of lexicalization (Dubey and Keller, 2003; Arun and Keller, 2005), insensitivity to morphology (Cowan and Collins, 2005; Tsarfaty and Sima\u2019an, 2008), and the effect of variable word order (Collins et al., 1999).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Certainly these linguistic factors increase the difficulty of syntactic disambiguation.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Less frequently studied is the interplay among language, annotation choices, and parsing model design (Levy and Manning, 2003; Ku\u00a8 bler, 2005).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "1 The apparent difficulty of adapting constituency models to non-configurational languages has been one motivation for dependency representations (Hajic\u02c7 and Zema\u00b4nek, 2004; Habash and Roth, 2009).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "To investigate the influence of these factors, we analyze Modern Standard Arabic (henceforth MSA, or simply \u201cArabic\u201d) because of the unusual opportunity it presents for comparison to English parsing results.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The Penn Arabic Treebank (ATB) syntactic guidelines (Maamouri et al., 2004) were purposefully borrowed without major modification from English (Marcus et al., 1993).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Further, Maamouri and Bies (2004) argued that the English guidelines generalize well to other languages.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "But Arabic contains a variety of linguistic phenomena unseen in English.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Crucially, the conventional orthographic form of MSA text is unvocalized, a property that results in a deficient graphical representation.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "For humans, this characteristic can impede the acquisition of literacy.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "How do additional ambiguities caused by devocalization affect statistical learning?",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "How should the absence of vowels and syntactic markers influence annotation choices and grammar development?",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Motivated by these questions, we significantly raise baselines for three existing parsing models through better grammar engineering.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Our analysis begins with a description of syntactic ambiguity in unvocalized MSA text (\u00a72).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Next we show that the ATB is similar to other tree- banks in gross statistical terms, but that annotation consistency remains low relative to English (\u00a73).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "We then use linguistic and annotation insights to develop a manually annotated grammar for Arabic (\u00a74).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "To facilitate comparison with previous work, we exhaustively evaluate this grammar and two other parsing models when gold segmentation is assumed (\u00a75).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Finally, we provide a realistic eval uation in which segmentation is performed both in a pipeline and jointly with parsing (\u00a76).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "We quantify error categories in both evaluation settings.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "To our knowledge, ours is the first analysis of this kind for Arabic parsing.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Arabic is a morphologically rich language with a root-and-pattern system similar to other Semitic languages.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The basic word order is VSO, but SVO, VOS, and VO configurations are also possible.2 Nouns and verbs are created by selecting a consonantal root (usually triliteral or quadriliteral), which bears the semantic core, and adding affixes and diacritics.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Particles are uninflected.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Word Head Of Complement POS 1 '01 inna \u201cIndeed, truly\u201d VP Noun VBP 2 '01 anna \u201cThat\u201d SBAR Noun IN 3 01 in \u201cIf\u201d SBAR Verb IN 4 01 an \u201cto\u201d SBAR Verb IN                                                                                                                               \n\t\t\t                                                                                 \n\t\t\t                                                                  \n\t\t\tDiacritics can also be used to specify grammatical relations such as case and gender.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "But diacritics are not present in unvocalized text, which is the standard form of, e.g., news media documents.3 VBD she added VP PUNC S VP VBP NP ...\n\t\t\tVBD she added VP PUNC \u201c SBAR IN NP 0 NN.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Let us consider an example of ambiguity caused by devocalization.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "\u201c 0 Indeed NN Indeed Saddam                                                           \n\t\t\tWhereas Arabic linguistic theory as Saddam (a) Reference (b) Stanford signs (1) and (2) to the class of pseudo verbs 01 +i J>1\ufffd inna and her sisters since they can beinflected, the ATB conventions treat (2) as a com plementizer, which means that it must be the head of SBAR.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Because these two words have identical complements, syntax rules are typically unhelpful for distinguishing between them.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Even with vocalization, there are linguistic categories that are difficult to identify without semantic clues.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Two common cases are the attribu tive adjective and the process nominal _; maSdar, which can have a verbal reading.4 At tributive adjectives are hard because they are or- thographically identical to nominals; they are inflected for gender, number, case, and definiteness.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Moreover, they are used as substantives much 2 Unlike machine translation, constituency parsing is not significantly affected by variable word order.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "However, when grammatical relations like subject and object are evaluated, parsing performance drops considerably (Green et al., 2009).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "In particular, the decision to represent arguments in verb- initial clauses as VP internal makes VSO and VOS configurations difficult to distinguish.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Topicalization of NP subjects in SVO configurations causes confusion with VO (pro-drop).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "3 Techniques for automatic vocalization have been studied (Zitouni et al., 2006; Habash and Rambow, 2007).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "However, the data sparsity induced by vocalization makes it difficult to train statistical models on corpora of the size of the ATB, so vocalizing and then parsing may well not help performance.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "4 Traditional Arabic linguistic theory treats both of these types as subcategories of noun \ufffd '.i .",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "more frequently than is done in English.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Process nominals name the action of the transitive or ditransitive verb from which they derive.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The verbal reading arises when the maSdar has an NP argument which, in vocalized text, is marked in the accusative case.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "When the maSdar lacks a determiner, the constituent as a whole resem bles the ubiquitous annexation construct \ufffd ?f iDafa.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Gabbard and Kulick (2008) show that there is significant attachment ambiguity associated with iDafa, which occurs in 84.3% of the trees in our development set.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "All three models evaluated in this paper incorrectly analyze the constituent as iDafa; none of the models attach the attributive adjectives properly.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "For parsing, the most challenging form of ambiguity occurs at the discourse level.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "A defining characteristic of MSA is the prevalence of discourse markers to connect and subordinate words and phrases (Ryding, 2005).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Instead of offsetting new topics with punctuation, writers of MSA in sert connectives such as \ufffd wa and \ufffd fa to link new elements to both preceding clauses and the text as a whole.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Length English (WSJ) Arabic (ATB) \u2264 20 41.9% 33.7% \u2264 40 92.4% 73.2% \u2264 63 99.7% 92.6% \u2264 70 99.9% 94.9%                                                                                                    \n\t\t\tEnglish parsing evaluations usually report results on sentences up to length 40.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Arabic sentences of up to length 63 would need to be.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "evaluated to account for the same fraction of the data.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "We propose a limit of 70 words for Arabic parsing evaluations.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "ATB CTB6 Negra WSJ Trees 23449 28278 20602 43948 Word Typess 40972 45245 51272 46348 Tokens 738654 782541 355096 1046829 Tags 32 34 499 45 Phrasal Cats 22 26 325 27 Test OOV 16.8% 22.2% 30.5% 13.2% Per Sentence                                                           \n\t\t\tTest set OOV rate is computed using the following splits: ATB (Chiang et al., 2006); CTB6 (Huang and Harper, 2009); Negra (Dubey and Keller, 2003); English, sections 221 (train) and section 23 (test).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The ATB gives several different analyses to these words to indicate different types of coordination.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "A better approach would be to distin guish between these cases, possibly by drawing on the vast linguistic work on Arabic connectives (AlBatal, 1990).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "3.1 Gross Statistics.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Linguistic intuitions like those in the previous section inform language-specific annotation choices.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The resulting structural differences between tree- banks can account for relative differences in parsing performance.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": ".",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The ATB is disadvantaged by having fewer trees with longer average 5 LDC A-E catalog numbers: LDC2008E61 (ATBp1v4), LDC2008E62 (ATBp2v3), and LDC2008E22 (ATBp3v3.1).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "We map the ATB morphological analyses to the shortened \u201cBies\u201d tags for all experiments.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "yields.6 But to its great advantage, it has a high ratio of non-terminals/terminals (\u03bc Constituents / \u03bc Length).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Evalb, the standard parsing metric, is biased toward such corpora (Sampson and Babarczy, 2003).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Also surprising is the low test set OOV rate given the possibility of morphological variation in Arabic.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "In general, several gross corpus statistics favor the ATB, so other factors must contribute to parsing underperformance.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "3.2 Inter-annotator Agreement.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Annotation consistency is important in any supervised learning task.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "In the initial release of the ATB, inter-annotator agreement was inferior to other LDC treebanks (Maamouri et al., 2008).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "To improve agreement during the revision process, a dual-blind evaluation was performed in which 10% of the data was annotated by independent teams.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Maamouri et al.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "(2008) reported agreement between the teams (measured with Evalb) at 93.8% F1, the level of the CTB.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "But Rehbein and van Genabith (2007) showed that Evalb should not be used as an indication of real difference\u2014 or similarity\u2014between treebanks.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Instead, we extend the variation n-gram method of Dickinson (2005) to compare annotation error rates in the WSJ and ATB.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "For a corpus C, let M be the set of tuples \u2217n, l), where n is an n-gram with bracketing label l. If any n appears 6 Generative parsing performance is known to deteriorate with sentence length.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "As a result, Habash et al.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "(2006) developed a technique for splitting and chunking long sentences.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "In application settings, this may be a profitable strategy.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "NN \ufffd .e NP NNP NP DTNNP NN \ufffd .e NP NP NNP NP                                                                    \n\t\t\tThe samples from each corpus were independently evaluated.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The ATB has a much higher fraction of nuclei per tree, and a higher type-level error rate.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "summit Sharm (a) Al-Sheikh summit Sharm (b) DTNNP Al-Sheikh in a corpus position without a bracketing label, then we also add \u2217n, NIL) to M. We call the set of unique n-grams with multiple labels in M the variation nuclei of C. Bracketing variation can result from either annotation errors or linguistic ambiguity.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Human evaluation is one way to distinguish between the two cases.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Following Dickinson (2005), we randomly sampled 100 variation nuclei from each corpus and evaluated each sample for the presence of an annotation error.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The human evaluators were a non-native, fluent Arabic speaker (the first author) for the ATB and a native English speaker for the WSJ.7                                                                 \n\t\t\tThe 95% confidence intervals for type-level errors are (5580, 9440) for the ATB and (1400, 4610) for the WSJ.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The results clearly indicate increased variation in the ATB relative to the WSJ, but care should be taken in assessing the magnitude of the difference.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "On the one hand, the type-level error rate is not calibrated for the number of n-grams in the sample.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "At the same time, the n-gram error rate is sensitive to samples with extreme n-gram counts.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "For example, one of the ATB samples was the determiner -\"\" ; dhalik\u201cthat.\u201d The sample occurred in 1507 corpus po sitions, and we found that the annotations were consistent.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "If we remove this sample from the evaluation, then the ATB type-level error rises to only 37.4% while the n-gram error rate increases to 6.24%.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The number of ATB n-grams also falls below the WSJ sample size as the largest WSJ sample appeared in only 162 corpus positions.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "7 Unlike Dickinson (2005), we strip traces and only con-.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "We can use the preceding linguistic and annotation insights to build a manually annotated Arabic grammar in the manner of Klein and Manning (2003).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Manual annotation results in human in- terpretable grammars that can inform future tree- bank annotation decisions.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "In our grammar, features are realized as annotations to basic category labels.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "We start with noun features since written Arabic contains a very high proportion of NPs.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "genitiveMark indicates recursive NPs with a indefinite nominal left daughter and an NP right daughter.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "This is the form of recursive levels in iDafa constructs.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "We also add an annotation for one-level iDafa (oneLevelIdafa) constructs since they make up more than 75% of the iDafa NPs in the ATB (Gabbard and Kulick, 2008).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "For all other recursive NPs, we add a common annotation to the POS tag of the head (recursiveNPHead).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Base NPs are the other significant category of nominal phrases.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "markBaseNP indicates these non-recursive nominal phrases.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "This feature includes named entities, which the ATB marks with a flat NP node dominating an arbitrary number of NNP pre-terminal daughters (Figure 2).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "For verbs we add two features.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "First we mark any node that dominates (at any level) a verb sider POS tags when pre-terminals are the only intervening nodes between the nucleus and its bracketing (e.g., unaries, base NPs).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Since our objective is to compare distributions of bracketing discrepancies, we do not use heuristics to prune the set of nuclei.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "8 We use head-finding rules specified by a native speaker.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "of Arabic.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "This PCFG is incorporated into the Stanford Parser, a factored model that chooses a 1-best parse from the product of constituency and dependency parses.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "termined by the category of the word that follows it.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Because conjunctions are elevated in the parse trees when they separate recursive constituents, we choose the right sister instead of the category of the next word.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "We create equivalence classes for verb, noun, and adjective POS categories.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "phrase (markContainsVerb).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "This feature has a linguistic justification.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Historically, Arabic grammar has identified two sentences types: those that begin with a nominal (\ufffd '.i \ufffdu _..\n\t\t\t), and thosethat begin with a verb (\ufffd ub..i \ufffdu _..",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "But for eign learners are often surprised by the verbless predications that are frequently used in Arabic.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Although these are technically nominal, they have become known as \u201cequational\u201d sentences.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "mark- ContainsVerb is especially effective for distinguishing root S nodes of equational sentences.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "We also mark all nodes that dominate an SVO configuration (containsSVO).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "In MSA, SVO usually appears in non-matrix clauses.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Lexicalizing several POS tags improves performance.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "splitIN captures the verb/preposition idioms that are widespread in Arabic.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Although this feature helps, we encounter one consequence of variable word order.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Unlike the WSJ corpus which has a high frequency of rules like VP \u2192VB PP, Arabic verb phrases usually have lexi calized intervening nodes (e.g., NP subjects and direct objects).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "For example, we might have VP \u2192 VB NP PP, where the NP is the subject.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "This annotation choice weakens splitIN.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "We compare the manually annotated grammar, which we incorporate into the Stanford parser, to both the Berkeley (Petrov et al., 2006) and Bikel (Bikel, 2004) parsers.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "All experiments use ATB parts 1\u20133 divided according to the canonical split suggested by Chiang et al.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "(2006).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Preprocessing the raw trees improves parsing performance considerably.9 We first discard all trees dominated by X, which indicates errors and non-linguistic text.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "At the phrasal level, we remove all function tags and traces.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "We also collapse unary chains withidentical basic categories like NP \u2192 NP.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The pre terminal morphological analyses are mapped to the shortened \u201cBies\u201d tags provided with the tree- bank.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Finally, we add \u201cDT\u201d to the tags for definite nouns and adjectives (Kulick et al., 2006).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The orthographic normalization strategy we use is simple.10 In addition to removing all diacritics, we strip instances of taTweel J=J4.i, collapse variants of alif to bare alif,11 and map Ara bic punctuation characters to their Latin equivalents.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "We retain segmentation markers\u2014which are consistent only in the vocalized section of the treebank\u2014to differentiate between e.g.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "\ufffd \u201cthey\u201d and \ufffd + \u201ctheir.\u201d Because we use the vocalized section, we must remove null pronoun markers.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Evalb is a Java re-implementation of the standard labeled precision/recall metric.12 The ATB gives all punctuation a single tag.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "For parsing, this is a mistake, especially in the case of interrogatives.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "splitPUNC restores the convention of the WSJ.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "We also mark all tags that dominate a word with the feminine ending :: taa mar buuTa (markFeminine).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The intuition here is that the role of a discourse marker can usually be de 9 Both the corpus split and pre-processing code are avail-.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "able at http://nlp.stanford.edu/projects/arabic.shtml.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "10 Other orthographic normalization schemes have been suggested for Arabic (Habash and Sadat, 2006), but we observe negligible parsing performance differences between these and the simple scheme used in this evaluation.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "11 taTweel (-) is an elongation character used in Arabic script to justify text.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "It has no syntactic function.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Variants of alif are inconsistently used in Arabic texts.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "For alif with hamza, normalization can be seen as another level of devocalization.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "12 For English, our Evalb implementation is identical to the most recent reference (EVALB20080701).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "For Arabic we M o d e l S y s t e m L e n g t h L e a f A n c e s t o r Co rpu s Sent Exact E v a l b L P LR F1 T a g % B a s e l i n e 7 0 St an for d (v 1.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "6.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "3) all G o l d P O S 7 0 0.7 91 0.825 358 0.7 73 0.818 358 0.8 02 0.836 452 80.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "37 79.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "36 79.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "86 78.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "92 77.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "72 78.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "32 81.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "07 80.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "27 80.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "67 95.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "58 95.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "49 99.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "95 B a s e li n e ( S e lf t a g ) 70 a l l B i k e l ( v 1 .",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "2 ) B a s e l i n e ( P r e t a g ) 7 0 a l l G o l d P O S 70 0.7 70 0.801 278 0.7 52 0.794 278 0.7 71 0.804 295 0.7 52 0.796 295 0.7 75 0.808 309 77.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "92 76.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "00 76.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "95 76.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "96 75.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "01 75.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "97 78.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "35 76.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "72 77.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "52 77.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "31 75.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "64 76.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "47 78.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "83 77.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "18 77.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "99 94.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "64 94.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "63 95.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "68 95.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "68 96.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "60 ( P e tr o v, 2 0 0 9 ) all B e r k e l e y ( S e p .",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "0 9 ) B a s e l i n e 7 0 a l l G o l d P O S 70 \u2014 \u2014 \u2014 0 .",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "8 0 9 0.839 335 0 .",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "7 9\n\t\n\t\n\t\t\t0 .",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "8 3 1 0.859 496 76.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "40 75.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "30 75.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "85 82.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "32 81.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "63 81.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "97 81.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "43 80.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "73 81.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "08 84.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "37 84.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "21 84.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "29 \u2014 95.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "07 95.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "02 99.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "87                               \n\t\t\t                                             \n\t\t\t                                                                                                                                                                             \n\t\t\t                                                                                                                                        \n\t\t\t                                                                                  \n\t\t\tF1 85 Berkeley 80 Stanford.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Bikel 75 training trees 5000 10000 15000                                                                 \n\t\t\t                                                                                                        \n\t\t\tThe Leaf Ancestor metric measures the cost of transforming guess trees to the reference (Sampson and Babarczy, 2003).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "It was developed in response to the non-terminal/terminal bias of Evalb, but Clegg and Shepherd (2005) showed that it is also a valuable diagnostic tool for trees with complex deep structures such as those found in the ATB.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "For each terminal, the Leaf Ancestor metric extracts the shortest path to the root.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "It then computes a normalized Levenshtein edit distance between the extracted chain and the reference.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The range of the score is between 0 and 1 (higher is better).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "We report micro-averaged (whole corpus) and macro-averaged (per sentence) scores along add a constraint on the removal of punctuation, which has a single tag (PUNC) in the ATB.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Tokens tagged as PUNC are not discarded unless they consist entirely of punctuation.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "with the number of exactly matching guess trees.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "5.1 Parsing Models.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The Stanford parser includes both the manually annotated grammar (\u00a74) and an Arabic unknown word model with the following lexical features: 1.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Presence of the determiner J Al.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "2.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Contains digits.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "3.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Ends with the feminine affix :: p. 4.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Various verbal (e.g., \ufffd, .",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "::) and adjectival.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "suffixes (e.g., \ufffd=) Other notable parameters are second order vertical Markovization and marking of unary rules.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Modifying the Berkeley parser for Arabic is straightforward.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "After adding a ROOT node to all trees, we train a grammar using six split-and- merge cycles and no Markovization.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "We use the default inference parameters.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Because the Bikel parser has been parameter- ized for Arabic by the LDC, we do not change the default model settings.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "However, when we pre- tag the input\u2014as is recommended for English\u2014 we notice a 0.57% F1 improvement.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "We use the log-linear tagger of Toutanova et al.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "(2003), which gives 96.8% accuracy on the test set.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "5.2 Discussion.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The Berkeley parser gives state-of-the-art performance for all metrics.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Our baseline for all sentence lengths is 5.23% F1 higher than the best previous result.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The difference is due to more careful S-NOM NP NP NP VP VBG :: b NP restoring NP ADJP NN :: b NP NN NP NP ADJP DTJJ ADJP DTJJ NN :: b NP NP NP ADJP ADJP DTJJ J ..i NN :: b NP NP NP ADJP ADJP DTJJ NN _;\ufffd NP PRP DTJJ DTJJ J ..i _;\ufffd PRP J ..i NN _;\ufffd NP PRP DTJJ NN _;\ufffd NP PRP DTJJ J ..i role its constructive effective (b) Stanford (c) Berkeley (d) Bik el (a) Reference Figure 4: The constituent Restoring of its constructive and effective role parsed by the three different models (gold segmentation).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The ATB annotation distinguishes between verbal and nominal readings of maSdar process nominals.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Like verbs, maSdar takes arguments and assigns case to its objects, whereas it also demonstrates nominal characteristics by, e.g., taking determiners and heading iDafa (Fassi Fehri, 1993).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "In the ATB, :: b asta\u2019adah is tagged 48 times as a noun and 9 times as verbal noun.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Consequently, all three parsers prefer the nominal reading.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "None of the models attach the attributive adjectives correctly.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "pre-processing.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Moreover, the Stanford parser achieves the most exact Leaf Ancestor matches and tagging accuracy that is only 0.1% below the Bikel model, which uses pre-tagged input.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The errors shown are from the Berkeley parser output, but they are representative of the other two parsing models.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "6 Joint Segmentation and Parsing.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Although the segmentation requirements for Arabic are not as extreme as those for Chinese, Arabic is written with certain cliticized prepositions, pronouns, and connectives connected to adjacent words.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Since these are distinct syntactic units, they are typically segmented.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The ATB segmentation scheme is one of many alternatives.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Until now, all evaluations of Arabic parsing\u2014including the experiments in the previous section\u2014have assumed gold segmentation.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "But gold segmentation is not available in application settings, so a segmenter and parser are arranged in a pipeline.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Segmentation errors cascade into the parsing phase, placing an artificial limit on parsing performance.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Lattice parsing (Chappelier et al., 1999) is an alternative to a pipeline that prevents cascading errors by placing all segmentation options into the parse chart.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Recently, lattices have been used successfully in the parsing of Hebrew (Tsarfaty, 2006; Cohen and Smith, 2007), a Semitic language with similar properties to Arabic.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "We extend the Stanford parser to accept pre-generated lattices, where each word is represented as a finite state automaton.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "To combat the proliferation of parsing edges, we prune the lattices according to a hand-constructed lexicon of 31 clitics listed in the ATB annotation guidelines (Maamouri et al., 2009a).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Formally, for a lexicon L and segments I \u2208 L, O \u2208/ L, each word automaton accepts the language I\u2217(O + I)I\u2217.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Aside from adding a simple rule to correct alif deletion caused by the preposition J, no other language-specific processing is performed.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Our evaluation includes both weighted and un- weighted lattices.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "We weight edges using a unigram language model estimated with Good- Turing smoothing.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Despite their simplicity, uni- gram weights have been shown as an effective feature in segmentation models (Dyer, 2009).13 The joint parser/segmenter is compared to a pipeline that uses MADA (v3.0), a state-of-the-art Arabic segmenter, configured to replicate ATB segmentation (Habash and Rambow, 2005).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "MADA uses an ensemble of SVMs to first re-rank the output of a deterministic morphological analyzer.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "For each 13 Of course, this weighting makes the PCFG an improper distribution.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "However, in practice, unknown word models also make the distribution improper.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Parent Head Modif er Dir # gold F1 Label # gold F1 NP NP TAG R 946 0.54 ADJP 1216 59.45 S S S R 708 0.57 SBAR 2918 69.81 NP NP ADJ P R 803 0.64 FRAG 254 72.87 NP NP N P R 2907 0.66 VP 5507 78.83 NP NP SBA R R 1035 0.67 S 6579 78.91 NP NP P P R 2713 0.67 PP 7516 80.93 VP TAG P P R 3230 0.80 NP 34025 84.95 NP NP TAG L 805 0.85 ADVP 1093 90.64 VP TAG SBA R R 772 0.86 WHN P 787 96.00 S VP N P L 961 0.87 (a) Major phrasal categories (b) Major POS categories (c) Ten lowest scoring (Collins, 2003)-style dependencies occurring more than 700 times                                                                                                                    \n\t\t\t                                                                                                                   \n\t\t\t                                                                                                                       \n\t\t\t                                                                                                                            \n\t\t\t                                                                                                                                                                                                    \n\t\t\t                                                                                                                         \n\t\t\t                                                                                    \n\t\t\tinput token, the segmentation is then performed deterministically given the 1-best analysis.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Since guess and gold trees may now have different yields, the question of evaluation is complex.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Cohen and Smith (2007) chose a metric like SParseval (Roark et al., 2006) that first aligns the trees and then penalizes segmentation errors with an edit-distance metric.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "But we follow the more direct adaptation of Evalb suggested by Tsarfaty (2006), who viewed exact segmentation as the ultimate goal.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Therefore, we only score guess/gold pairs with identical character yields, a condition that allows us to measure parsing, tagging, and segmentation accuracy by ignoring whitespace.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "However, MADA is language-specific and relies on manually constructed dictionaries.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Conversely, the lattice parser requires no linguistic resources and produces segmentations of comparable quality.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Nonetheless, parse quality is much lower in the joint model because a lattice is effectively a long sentence.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "A cell in the bottom row of the parse chart is required for each potential whitespace boundary.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "As we have said, parse quality decreases with sentence length.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Finally, we note that simple weighting gives nearly a 2% F1 improvement, whereas Goldberg and Tsarfaty (2008) found that unweighted lattices were more effective for Hebrew.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Coverage indicates the fraction of hypotheses in which the character yield exactly matched the reference.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Each model was able to produce hypotheses for all input sentences.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "By establishing significantly higher parsing baselines, we have shown that Arabic parsing performance is not as poor as previously thought, but remains much lower than English.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "We have described grammar state splits that significantly improve parsing performance, catalogued parsing errors, and quantified the effect of segmentation errors.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "With a human evaluation we also showed that ATB inter-annotator agreement remains low relative to the WSJ corpus.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Our results suggest that current parsing models would benefit from better annotation consistency and enriched annotation in certain syntactic configurations.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Acknowledgments We thank Steven Bethard, Evan Rosen, and Karen Shiells for material contributions to this work.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "We are also grateful to Markus Dickinson, Ali Farghaly, Nizar Habash, Seth Kulick, David McCloskey, Claude Reichard, Ryan Roth, and Reut Tsarfaty for constructive discussions.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The first author is supported by a National Defense Science and Engineering Graduate (NDSEG) fellowship.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "This paper is based on work supported in part by DARPA through IBM.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The content does not necessarily reflect the views of the U.S. Government, and no official endorsement should be inferred.",
+        "Entity": "Normal"
+    }
+]

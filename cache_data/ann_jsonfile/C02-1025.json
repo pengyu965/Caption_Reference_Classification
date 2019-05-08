@@ -1,0 +1,374 @@
+[
+    {
+        "Code": "T2",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "12870",
+                "12981"
+            ]
+        ],
+        "Text": "If the token starts with a capital letter (initCaps), then an additional feature (init- Caps, zone) is set to 1",
+        "RefType": "Indirect",
+        "Num": "1",
+        "Type": "Table"
+    },
+    {
+        "Code": "T3",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "13015",
+                "13088"
+            ]
+        ],
+        "Text": "If it is made up of all capital letters, then (allCaps, zone) is set to 1",
+        "RefType": "Indirect",
+        "Num": "1",
+        "Type": "Table"
+    },
+    {
+        "Code": "T4",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "13122",
+                "13244"
+            ]
+        ],
+        "Text": "If it starts with a lower case letter, and contains both upper and lower case letters, then (mixedCaps, zone) is set to 1.",
+        "RefType": "Indirect",
+        "Num": "1",
+        "Type": "Table"
+    },
+    {
+        "Code": "T5",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "13277",
+                "13323"
+            ]
+        ],
+        "Text": "A token that is allCaps will also be initCaps.",
+        "RefType": "Indirect",
+        "Num": "1",
+        "Type": "Table"
+    },
+    {
+        "Code": "T1",
+        "Entity": "Caption",
+        "Span": [
+            [
+                "12214",
+                "12327"
+            ]
+        ],
+        "Text": "Table 1: Features based on the token string that are based on the probability of each name class during training.",
+        "Type": "Table",
+        "Num": "1"
+    },
+    {
+        "Code": "T6",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "13599",
+                "13677"
+            ]
+        ],
+        "Text": "This group consists of 10 features based on the string , as listed in Table 1.",
+        "RefType": "Direct",
+        "Type": "Table",
+        "Num": "1"
+    },
+    {
+        "Code": "T7",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "13710",
+                "13848"
+            ]
+        ],
+        "Text": "For example, if a token starts with a capital letter and ends with a period (such as Mr.), then the feature InitCapPeriod is set to 1, etc",
+        "RefType": "Indirect",
+        "Type": "Table",
+        "Num": "1"
+    },
+    {
+        "Code": "T8",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "15721",
+                "15775"
+            ]
+        ],
+        "Text": "The sources of our dictionaries are listed in Table 2.",
+        "RefType": "Direct",
+        "Type": "Table",
+        "Num": "2"
+    },
+    {
+        "Code": "T9",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "16332",
+                "16423"
+            ]
+        ],
+        "Text": "Only tokens with initCaps not found in commonWords are tested against each list in Table 2.",
+        "RefType": "Direct",
+        "Type": "Table",
+        "Num": "2"
+    },
+    {
+        "Code": "T10",
+        "Entity": "Caption",
+        "Span": [
+            [
+                "20515",
+                "20547"
+            ]
+        ],
+        "Text": "Table 2: Sources of Dictionaries",
+        "Type": "Table",
+        "Num": "2"
+    },
+    {
+        "Code": "T11",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "24886",
+                "24965"
+            ]
+        ],
+        "Text": "As we will see from Table 3, not much improvement is derived from this feature.",
+        "RefType": "Direct",
+        "Type": "Table",
+        "Num": "3"
+    },
+    {
+        "Code": "T12",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "25065",
+                "25163"
+            ]
+        ],
+        "Text": "The baseline system in Table 3 refers to the maximum entropy system that uses only local features.",
+        "RefType": "Direct",
+        "Type": "Table",
+        "Num": "3"
+    },
+    {
+        "Code": "T13",
+        "Entity": "Caption",
+        "Span": [
+            [
+                "25434",
+                "25507"
+            ]
+        ],
+        "Text": "Table 3: F-measure after successive addition of each global feature group",
+        "Type": "Table",
+        "Num": "3"
+    },
+    {
+        "Code": "T14",
+        "Entity": "Caption",
+        "Span": [
+            [
+                "25508",
+                "25547"
+            ]
+        ],
+        "Text": "Table 5: Comparison of results for MUC6",
+        "Type": "Table",
+        "Num": "5"
+    },
+    {
+        "Code": "T15",
+        "Entity": "Caption",
+        "Span": [
+            [
+                "25840",
+                "25862"
+            ]
+        ],
+        "Text": "Table 4: Training Data",
+        "Type": "Table",
+        "Num": "4"
+    },
+    {
+        "Code": "T16",
+        "Entity": "Caption",
+        "Span": [
+            [
+                "27865",
+                "27904"
+            ]
+        ],
+        "Text": "Table 6: Comparison of results for MUC7",
+        "Type": "Table",
+        "Num": "6"
+    },
+    {
+        "Code": "T17",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "25863",
+                "25882"
+            ]
+        ],
+        "Text": "MUC7 test accuracy.",
+        "RefType": "Indirect",
+        "Type": "Table",
+        "Num": "3"
+    },
+    {
+        "Code": "T18",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "25196",
+                "25295"
+            ]
+        ],
+        "Text": "As each global feature group is added to the list of features, we see improvements to both MUC6 and",
+        "RefType": "Indirect",
+        "Type": "Table",
+        "Num": "3"
+    },
+    {
+        "Code": "T19",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "25884",
+                "25965"
+            ]
+        ],
+        "Text": "For MUC6, the reduction in error due to global features is 27%, and for MUC7,14%.",
+        "RefType": "Indirect",
+        "Type": "Table",
+        "Num": "3"
+    },
+    {
+        "Code": "T20",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "26496",
+                "26597"
+            ]
+        ],
+        "Text": "As can be seen in Table 4, our training data is a lot less than those used by MENE and IdentiFinder3.",
+        "RefType": "Direct",
+        "Type": "Table",
+        "Num": "4"
+    },
+    {
+        "Code": "T21",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "26631",
+                "26818"
+            ]
+        ],
+        "Text": "In this section, we try to compare our results with those obtained by IdentiFinder ' 97 (Bikel et al., 1997), IdentiFinder ' 99 (Bikel et al., 1999), and MENE (Borthwick, 1999).",
+        "RefType": "Indirect",
+        "Type": "Table",
+        "Num": "5"
+    },
+    {
+        "Code": "T22",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "27065",
+                "27099"
+            ]
+        ],
+        "Text": "MENE has only been tested on MUC7.",
+        "RefType": "Indirect",
+        "Type": "Table",
+        "Num": "4"
+    },
+    {
+        "Code": "T23",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "27133",
+                "27228"
+            ]
+        ],
+        "Text": "For fair comparison, we have tabulated all results with the size of training data used (Table 5",
+        "RefType": "Direct",
+        "Type": "Table",
+        "Num": "5"
+    },
+    {
+        "Code": "T24",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "27229",
+                "27241"
+            ]
+        ],
+        "Text": "and Table 6)",
+        "RefType": "Direct",
+        "Type": "Table",
+        "Num": "6"
+    },
+    {
+        "Code": "T25",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "28115",
+                "28174"
+            ]
+        ],
+        "Text": "In MUC6, the best result is achieved by SRA (Krupka, 1995).",
+        "RefType": "Indirect",
+        "Type": "Table",
+        "Num": "5"
+    },
+    {
+        "Code": "T26",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "28541",
+                "28675"
+            ]
+        ],
+        "Text": "For MUC7, there are also no published results on systems trained on only the official training data of 200 aviation disaster articles.",
+        "RefType": "Indirect",
+        "Type": "Table",
+        "Num": "6"
+    },
+    {
+        "Code": "T27",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "29195",
+                "29296"
+            ]
+        ],
+        "Text": "Except our own and MENE + reference resolution, the results in Table 6 are all official MUC7 results.",
+        "RefType": "Direct",
+        "Type": "Table",
+        "Num": "6"
+    }
+]

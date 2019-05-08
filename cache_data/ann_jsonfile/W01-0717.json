@@ -1,0 +1,156 @@
+[
+    {
+        "Code": "T1",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "6529",
+                "6537"
+            ]
+        ],
+        "Text": "Figure 1",
+        "RefType": "Direct",
+        "Type": "Figure",
+        "Num": "1"
+    },
+    {
+        "Code": "T2",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "15506",
+                "15514"
+            ]
+        ],
+        "Text": "Figure 1",
+        "RefType": "Direct",
+        "Type": "Figure",
+        "Num": "1"
+    },
+    {
+        "Code": "T3",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "5459",
+                "5466"
+            ]
+        ],
+        "Text": "Table 1",
+        "RefType": "Direct",
+        "Type": "Table",
+        "Num": "1"
+    },
+    {
+        "Code": "T4",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "5842",
+                "5849"
+            ]
+        ],
+        "Text": "Table 2",
+        "RefType": "Direct",
+        "Type": "Table",
+        "Num": "2"
+    },
+    {
+        "Code": "T5",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "9873",
+                "9880"
+            ]
+        ],
+        "Text": "Table 1",
+        "RefType": "Direct",
+        "Type": "Table",
+        "Num": "1"
+    },
+    {
+        "Code": "T6",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "11173",
+                "11180"
+            ]
+        ],
+        "Text": "Table 2",
+        "RefType": "Direct",
+        "Type": "Table",
+        "Num": "2"
+    },
+    {
+        "Code": "T7",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "19576",
+                "19583"
+            ]
+        ],
+        "Text": "Table 1",
+        "RefType": "Direct",
+        "Type": "Table",
+        "Num": "1"
+    },
+    {
+        "Code": "T8",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "23951",
+                "23958"
+            ]
+        ],
+        "Text": "Table 3",
+        "RefType": "Direct",
+        "Type": "Table",
+        "Num": "3"
+    },
+    {
+        "Code": "T9",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "24695",
+                "24702"
+            ]
+        ],
+        "Text": "Table 3",
+        "RefType": "Direct",
+        "Type": "Table",
+        "Num": "3"
+    },
+    {
+        "Code": "T10",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "26862",
+                "26869"
+            ]
+        ],
+        "Text": "Table 3",
+        "RefType": "Direct",
+        "Type": "Table",
+        "Num": "3"
+    },
+    {
+        "Code": "T11",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "21588",
+                "21596"
+            ]
+        ],
+        "Text": "equation",
+        "RefType": "Direct",
+        "Type": "Equation",
+        "Num": "1"
+    }
+]

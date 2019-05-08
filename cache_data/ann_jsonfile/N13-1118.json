@@ -1,0 +1,310 @@
+[
+    {
+        "Code": "T1",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "6453",
+                "6485"
+            ]
+        ],
+        "Text": "Consider the example in Figure 1",
+        "RefType": "Direct",
+        "Type": "Figure",
+        "Num": "1"
+    },
+    {
+        "Code": "T2",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "6519",
+                "6701"
+            ]
+        ],
+        "Text": "The figure schematically shows a small portion of the graph describing the concepts of mechanism (concrete), political system and relationship (abstract) at two levels of generality.",
+        "RefType": "Indirect",
+        "Type": "Figure",
+        "Num": "1"
+    },
+    {
+        "Code": "T3",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "7725",
+                "7732"
+            ]
+        ],
+        "Text": "figure)",
+        "RefType": "Indirect",
+        "Type": "Figure",
+        "Num": "1"
+    },
+    {
+        "Code": "T4",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "9728",
+                "9961"
+            ]
+        ],
+        "Text": "Figure 1: Organisation of the hierarchical graph of concepts Following previous semantic noun classification experiments (Pantel and Lin, 2002; Bergsma et al., 2008), we use the grammatical relations (GRs) as features for clustering.",
+        "RefType": "Direct",
+        "Type": "Figure",
+        "Num": "1"
+    },
+    {
+        "Code": "T5",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "12109",
+                "12256"
+            ]
+        ],
+        "Text": "W can be encoded by an undirected graph G (Figure 2(a)), where the nouns are mapped to vertices and Wij is the edge weight between vertices i and j",
+        "RefType": "Direct",
+        "Type": "Figure",
+        "Num": "2"
+    },
+    {
+        "Code": "T6",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "12478",
+                "12572"
+            ]
+        ],
+        "Text": "For example, look ing at Figure 2(b), V on G can be grouped into three clusters u1, u2 and u3.",
+        "RefType": "Direct",
+        "Type": "Figure",
+        "Num": "2"
+    },
+    {
+        "Code": "T7",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "14129",
+                "14137"
+            ]
+        ],
+        "Text": "Figure 2",
+        "RefType": "Direct",
+        "Type": "Figure",
+        "Num": "2"
+    },
+    {
+        "Code": "T8",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "15694",
+                "15702"
+            ]
+        ],
+        "Text": "Figure 2",
+        "RefType": "Direct",
+        "Type": "Figure",
+        "Num": "2"
+    },
+    {
+        "Code": "T9",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "15876",
+                "15885"
+            ]
+        ],
+        "Text": "(Figure 2",
+        "RefType": "Direct",
+        "Type": "Figure",
+        "Num": "2"
+    },
+    {
+        "Code": "T10",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "16932",
+                "16941"
+            ]
+        ],
+        "Text": "Figure 1.",
+        "RefType": "Direct",
+        "Type": "Figure",
+        "Num": "1"
+    },
+    {
+        "Code": "T11",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "19789",
+                "19798"
+            ]
+        ],
+        "Text": "Figure 3.",
+        "RefType": "Direct",
+        "Type": "Figure",
+        "Num": "3"
+    },
+    {
+        "Code": "T12",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "19853",
+                "19859"
+            ]
+        ],
+        "Text": "Figure",
+        "RefType": "Indirect",
+        "Type": "Figure",
+        "Num": "3"
+    },
+    {
+        "Code": "T13",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "20682",
+                "20691"
+            ]
+        ],
+        "Text": "Figure 3:",
+        "RefType": "Direct",
+        "Type": "Figure",
+        "Num": "3"
+    },
+    {
+        "Code": "T14",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "21256",
+                "21264"
+            ]
+        ],
+        "Text": "Figure 4",
+        "RefType": "Direct",
+        "Type": "Figure",
+        "Num": "4"
+    },
+    {
+        "Code": "T15",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "22464",
+                "22473"
+            ]
+        ],
+        "Text": "Figure 4.",
+        "RefType": "Direct",
+        "Type": "Figure",
+        "Num": "4"
+    },
+    {
+        "Code": "T16",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "23169",
+                "23178"
+            ]
+        ],
+        "Text": "Figure 5:",
+        "RefType": "Direct",
+        "Type": "Figure",
+        "Num": "5"
+    },
+    {
+        "Code": "T17",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "27005",
+                "27014"
+            ]
+        ],
+        "Text": "Figure 5.",
+        "RefType": "Direct",
+        "Type": "Figure",
+        "Num": "5"
+    },
+    {
+        "Code": "T18",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "34665",
+                "34838"
+            ]
+        ],
+        "Text": "Figure 6: Metaphors tagged by the system (in bold) whereby the main source of disagreement was the presence of lexicalized metaphors, e.g. verbs such as impose, decline etc.",
+        "RefType": "Direct",
+        "Type": "Figure",
+        "Num": "6"
+    },
+    {
+        "Code": "T19",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "35068",
+                "35119"
+            ]
+        ],
+        "Text": "Figure 6 shows example sentences annotated by HGFC.",
+        "RefType": "Direct",
+        "Type": "Figure",
+        "Num": "6"
+    },
+    {
+        "Code": "T20",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "16679",
+                "16690"
+            ]
+        ],
+        "Text": "(equation 2",
+        "RefType": "Direct",
+        "Type": "Equation",
+        "Num": "2"
+    },
+    {
+        "Code": "T21",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "16691",
+                "16696"
+            ]
+        ],
+        "Text": "and 3",
+        "RefType": "Direct",
+        "Type": "Equation",
+        "Num": "3"
+    },
+    {
+        "Code": "T22",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "18308",
+                "18318"
+            ]
+        ],
+        "Text": "equation 4",
+        "RefType": "Direct",
+        "Type": "Equation",
+        "Num": "4"
+    }
+]

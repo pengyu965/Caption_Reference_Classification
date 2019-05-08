@@ -1,0 +1,39 @@
+T1	Reference 4073 4116	Cik Figure 1: Local graph of the word mouse
+A1	Type T1 Figure
+A2	Num T1 1
+T2	Reference 4270 4386	E.g. rat and printer are very different in meaning, but they are both closely related to different meanings of mouse
+A3	RefType T2 Indirect
+A4	Type T2 Figure
+A5	Num T2 1
+T3	Reference 4419 4643	However, if we remove the mouse-node from its local graph illustrated in figure 1, the graph decomposes into two parts, one representing the electronic device meaning of mouse and the other one representing its animal sense.
+A6	RefType T3 Direct
+A7	Type T3 Figure
+A8	Num T3 1
+T4	Reference 4849 4974	As can be seen in figure 2, wing &quot;part of a bird&quot; is closely related to tail, as is wing &quot;part of a plane&quot
+A9	RefType T4 Direct
+A10	Type T4 Figure
+A11	Num T4 2
+T5	Reference 5019 5106	even after removal of the wing-node, the two areas of meaning are still linked via tail
+A12	RefType T5 Indirect
+A13	Type T5 Figure
+A14	Num T5 2
+T6	Reference 13408 13454	An extract of the results is listed in table 1
+A15	RefType T6 Direct
+A16	Type T6 Figure
+A17	Num T6 1
+T7	Caption 13487 15357	Word Sense clusters Class-label arms knees trousers feet biceps hips elbows backs wings body part breasts shoulders thighs bones buttocks ankles legs inches wrists shoes necks horses muskets charges weapons methods firearms weapon knives explosives bombs bases mines projectiles drugs missiles uniforms jersey israel colomho guernsey luxeinhourg denmark maim European greece belgium swede, turkey gibraltar portugal ire- country land mauritius britain cyprus netherlands norway aus tralia italy japan canada kingdom spain austria zealand england france germany switzerland finland poland a merica usa iceland holland scotland uk crucifix bow apron sweater tie anorak hose bracelet garment helmet waistcoat jacket pullover equipment cap collar suit fleece tunic shirt scarf belt head voice torso back chest face abdomen side belly groin body part spine breast bill rump midhair hat collar waist tail stomach skin throat neck speculum ceo treasurer justice chancellor principal founder pres- person ident commander deputy administrator constable li brarian secretary governor captain premier executive chief curator assistant committee patron ruler oil heat coal power water gas food wood fuel steam tax object heating kerosene fire petroleum dust sand light steel telephone timber supply drainage diesel electricity acid air insurance petrol tempera gouache watercolour poster pastel collage paint acrylic lemon bread cheese [flint butter jam cream pudding yogurt foodstuff sprinkling honey jelly toast ham chocolate pie syrup milk meat beef cake yoghurt grain hazel elder holly family virgin hawthorn shrub cherry cedar larch mahogany water sycamore lime teak ash wood hornbeam oak walnut hazel pine beech alder thorn poplar birch chestnut blackthorn spruce holly yew lau rel maple elm fir hawthorn willow bacon cream honey pie grape blackcurrant cake ha- foodstuff mama
+A18	Type T7 Table
+A19	Num T7 1
+T8	Reference 15358 15399	Table 1: Output of word sense clustering.
+A20	RefType T8 Spatial-Below
+A21	Type T8 Table
+A22	Num T8 1
+A23	RefType T1 Spatial-Below
+T9	Reference 6107 6156	Figure 2: Local graph of the word wing of a graph
+A24	RefType T9 Spatial-Below
+A25	Type T9 Figure
+A26	Num T9 2
+T10	Reference 16579 16727	Preliminary observations show that the different neighbours in Table 1 can be used to indicate with great accuracy which of the senses is being used
+A27	RefType T10 Direct
+A28	Type T10 Table
+A29	Num T10 1

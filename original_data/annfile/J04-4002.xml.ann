@@ -1,0 +1,346 @@
+T1	Caption 8401 8490	Figure 1 Architecture of the translation approach based on a log-linear modeling approach
+A1	Type T1 Figure
+A2	Num T1 1
+T2	Reference 489 617	The model is described using a log-linear modeling approach, which is a generalization of the often used source channel approach
+A3	RefType T2 Spatial-Below
+A4	Type T2 Figure
+A5	Num T2 1
+T3	Reference 4664 4851	e suggest the use of a log-linear model to incorporate the various knowledge sources into an overall translation system and to perform discriminative training of the free model parameters
+A6	RefType T3 Spatial-Below
+A7	Type T3 Figure
+A8	Num T3 1
+T4	Reference 4885 5028	This approach can be seen as a generalization of the originally suggested source channel modeling framework for statistical machine translation
+A9	RefType T4 Spatial-Below
+A10	Type T4 Figure
+A11	Num T4 1
+T5	Caption 9467 9498	eI = argmax {Pr(eI | f J )} (1)
+A12	Type T5 Equation
+A13	Num T5 1
+T12	Caption 10690 10721	Pr(eI | f J ) = p M (eI | f J )
+A36	Type T12 Equation
+A37	Num T12 2
+T13	Caption 10726 10780	1 1  1 1 1 exp[ M  m hm (eI , f J )] m=1 1 1 M I J (3)
+A38	Type T13 Equation
+A39	Num T13 3
+T14	Caption 10784 10813	I exp[ m=1  m hm (e 1 , f1 )]
+A40	Type T14 Equation
+A41	Num T14 3
+A42	Continuation T14
+T15	Reference 10814 10932	This approach has been suggested by Papineni, Roukos, and Ward (1997, 1998) for a natural language understanding task.
+A43	RefType T15 Spatial-Above
+A44	Type T15 Equation
+A45	Num T15 2
+T16	Reference 11089 11163	the time-consuming renormalization in equation (3) is not needed in search
+A46	RefType T16 Direct
+A47	Type T16 Equation
+A48	Num T16 3
+T17	Reference 10965 11081	We obtain the following decision rule:  eI = argmax Pr(eI | f J ) 1 1 1 I 1 M ) = argmax  m hm (eI , f J ) 1 1 I m=1
+A49	RefType T17 Spatial-Above
+A50	Type T17 Equation
+A51	Num T17 3
+T18	Reference 11197 11283	The overall architecture of the log-linear modeling approach is summarized in Figure 1
+A52	RefType T18 Direct
+A53	Type T18 Figure
+A54	Num T18 1
+T22	Reference 11317 11420	A standard criterion on a parallel training corpus consisting of S sentence pairs {(fs , es ): s = 1, .
+A65	RefType T22 Spatial-Below
+A66	Type T22 Equation
+A67	Num T22 4
+T23	Caption 11593 11638	1 = argmax M 1 S s=1 ) log p M (es | fs ) (4)
+A68	Type T23 Equation
+A69	Num T23 4
+T24	Reference 12528 12631	Typically, the translation probability Pr(eI | f J ) is decomposed via additional hid 1 1 den variables
+A70	RefType T24 Spatial-Below
+A71	Type T24 Equation
+A72	Num T24 4
+T25	Reference 13968 14004	alignment models Pr(f J , aJ | eI ),
+A73	RefType T25 Spatial-Below
+A74	Type T25 Equation
+A75	Num T25 5
+T26	Caption 14214 14266	Pr(f J | eI ) = Pr(f J , aJ | eI ) (5) 1 1 1 1 1 J 1
+A76	RefType T26 Direct
+A77	Type T26 Equation
+A78	Num T26 5
+T27	Caption 14675 14731	Pr(f J , aJ | eI ) = p  (f J , aJ | eI ) (6) 1 1 1 1 1 1
+A79	Type T27 Equation
+A80	Num T27 6
+T29	Caption 16829 16896	igure 2 Example of a (symmetrized) word alignment (Verbmobil task).
+A83	RefType T29 Direct
+A84	Type T29 Figure
+A85	Num T29 2
+T30	Caption 20287 20429	BP(f J , eI , A) = f j+m , ei+n 1 1 j i :  (i , j )   A : j   j    j + m   i   i    i + n (9)   (i , j )   A : j   j    j + m   i   i    i + n
+A86	Type T30 Equation
+A87	Num T30 9
+T19	Reference 9370 9463	Among all possible target sentences, we will choose the sentence with the highest probability
+A55	RefType T19 Spatial-Below
+A56	Type T19 Equation
+A57	Num T19 1
+T20	Reference 9509 9627	The argmax operation denotes the search problem, that is, the generation of the output sentence in the target language
+A58	RefType T20 Spatial-Above
+A59	Type T20 Equation
+A60	Num T20 1
+T6	Reference 9741 9797	we directly model the posterior probability Pr(eI| f J )
+A14	Type T6 Equation
+A15	Num T6 2
+T7	Reference 10643 10689	The direct translation probability is given by
+A16	RefType T7 Spatial-Below
+A17	Num T7 2
+T8	Caption 10722 10725	(2)
+A18	Type T8 Equation
+A19	Num T8 2
+A20	Continuation T8
+T9	Reference 11639 11747	This corresponds to maximizing the equivocation or maximizing the likelihood of the direct-translation model
+A21	RefType T9 Spatial-Above
+A22	Type T9 Equation
+A23	Num T9 4
+T10	Reference 15463 15564	The unknown parameters   are determined by maximizing the likelihood on the parallel training corpus:
+A24	RefType T10 Spatial-Below
+A25	Num T10 7
+T11	Caption 15568 15615	= argmax   S I n s=1 a l) p  (fs , a | es ) (7)
+A26	Type T11 Equation
+A27	Num T11 7
+T21	Reference 15617 15735	his optimization can be performed using the expectation maximization (EM) algorithm (Dempster, Laird, and Rubin 1977).
+A28	Type T21 Equation
+T28	Reference 15866 15993	The alignment  aJ that has the highest probability (under a certain model) is also called the Viterbi alignment (of that model)
+A29	RefType T28 Spatial-Below
+A30	Type T28 Equation
+A31	Num T28 8
+T31	Caption 15996 16045	aJ = argmax p  (f J , aJ | eI ) (8) 1   1 1 1 J 1
+A32	Type T31 Equation
+A33	Num T31 8
+T32	Reference 17206 17258	Figure 2 shows an example of a symmetrized alignment
+A34	RefType T32 Direct
+A35	Type T32 Figure
+A61	Num T32 2
+T33	Reference 20160 20285	In the following, we describe the criterion that defines the set of phrases that is consistent with the word alignment matrix
+A62	RefType T33 Spatial-Below
+A63	Num T33 9
+T34	Reference 21446 21515	Figure 3 gives the algorithm phrase-extract that computes the phrases
+A64	RefType T34 Direct
+A81	Type T34 Figure
+A82	Num T34 3
+T35	Reference 21550 21667	The algorithm takes into account possibly unaligned words at the boundaries of the source or target language phrases.
+A88	RefType T35 Spatial-Below
+A89	Type T35 Figure
+A90	Num T35 3
+T36	Reference 21701 21855	Table 1 shows the bilingual phrases containing between two and seven words that result from the application of this algorithm to the alignment of Figure 2
+A91	RefType T36 Direct
+A92	Type T36 Table
+A93	Num T36 1
+T37	Reference 21702 21856	able 1 shows the bilingual phrases containing between two and seven words that result from the application of this algorithm to the alignment of Figure 2.
+A94	RefType T37 Direct
+A95	Type T37 Figure
+A96	Num T37 2
+T38	Caption 21894 22029	Table 1 Examples of two- to seven-word bilingual phrases obtained by applying the algorithm phrase-extract to the alignment of Figure 2
+A97	Type T38 Table
+A98	Num T38 1
+T39	Reference 23208 23304	It should be emphasized that this constraint to consecutive phrases limits the expressive power.
+A99	RefType T39 Spatial-Below
+A100	Type T39 Figure
+T40	Reference 25610 25656	Figure 4 shows examples of alignment templates
+A101	RefType T40 Direct
+A102	Type T40 Figure
+A103	Num T40 4
+T41	Reference 27945 28085	The probability of using an alignment template to translate a specific source language phrase  f is estimated by means of relative frequency
+A104	RefType T41 Spatial-Below
+A105	Type T41 Equation
+A106	Num T41 10
+T42	Caption 27643 27704	Figure 4 Examples of alignment templates obtained in training
+A107	Type T42 Figure
+A108	Num T42 4
+T43	Caption 28087 28141	p(z = (FJ  , EI  , A  ) J  f ) = 1 1 |   N(C( f )) (10
+A109	Type T43 Equation
+A110	Num T43 10
+T44	Reference 28143 28306	To reduce the memory requirement of the alignment templates, we compute these probabilities only for phrases up to a certain maximal length in the source language.
+A111	RefType T44 Spatial-Above
+A112	Type T44 Equation
+A113	Num T44 10
+T45	Caption 29557 29581	K): J k = fj k 1 +1 , ..
+A114	Type T45 Equation
+A115	Num T45 11
+T46	Caption 29615 29625	, fjk (11)
+A116	Type T46 Equation
+A117	Num T46 11
+A118	Continuation T46
+T47	Caption 29626 29659	eI K 1 =  e1 ,  ek = eik 1 +1 , .
+A119	Type T47 Equation
+A120	Num T47 12
+T48	Caption 29696 29703	eik (12
+A121	Type T48 Equation
+A122	Num T48 12
+T49	Reference 30773 30934	Figure 5 gives an example of the word alignment and phrase alignment of a German English sentence pair.We describe our model using a log-linear modeling approach
+A123	RefType T49 Direct
+A124	Type T49 Figure
+A125	Num T49 5
+T50	Reference 31296 31377	Figure 6 gives an overview of the decisions made in the alignment template model.
+A126	RefType T50 Direct
+A127	Type T50 Figure
+A128	Num T50 6
+T51	Reference 31411 31616	First, the source sentence words f J are grouped into phrases  f K . For each phrase  f an 1 1 alignment template z is chosen and the sequence of chosen alignment templates is reordered (according to  K ).
+A129	RefType T51 Spatial-Below
+A130	Type T51 Figure
+A131	Num T51 6
+T52	Reference 31650 31747	Then, every phrase  f produces its translation  e (using the corresponding alignment template z).
+A132	RefType T52 Spatial-Below
+A133	Type T52 Figure
+A134	Num T52 6
+T53	Caption 31861 31965	Figure 5 Example of segmentation of German sentence and its English translation into alignment templates
+A135	Type T53 Figure
+A136	Num T53 5
+T54	Caption 32000 32052	Figure 6 Dependencies in the alignment template mode
+A137	Type T54 Figure
+A138	Num T54 6
+T55	Reference 32349 32482	We establish a corresponding feature function by multiplying the probability of all used alignment templates and taking the logarithm
+A139	RefType T55 Spatial-Below
+A140	Type T55 Equation
+A141	Num T55 13
+T56	Caption 32484 32560	K hAT(eI , f J ,  K , zK ) = log n p(zk | f j k ) (13) 1 1 1 1 k=1 j k  1 +1
+A142	Type T56 Equation
+A143	Num T56 13
+T57	Caption 33794 33875	hWRD(eI , f J ,  K , zK ) = log n p(ei | {fj | (i, j)   A}, Ei ) (14) 1 1 1 1 i=1
+A144	Type T57 Equation
+A145	Num T57 14
+T58	Caption 34613 34695	(e | f , i, j): p(ei | fj , i 1 i  =1 [(i , j)   A], j 1 j  =1 [(i, j )   A]) (15)
+A146	Type T58 Equation
+A147	Num T58 15
+T59	Caption 35859 35923	hAL(eI , f J ,  K , zK ) = |j  1   j | (16) 1 1 1 1 k   k=1  k 1
+A148	Type T59 Equation
+A149	Num T59 16
+T60	Caption 36528 36605	I+1 hLM(eI , f J ,  K , zK ) = log n p(ei | ei 2 , e ) (17) 1 1 1 1 i=1   i 1
+A150	Type T60 Equation
+A151	Num T60 17
+T61	Caption 36663 36724	I+1 hCLM(eI , f J ,  K , zK ) = log n p(C(ei ) | C(ei 4 ), ..
+A152	Type T61 Equation
+A153	Num T61 18
+T62	Caption 36759 36790	, C(e )) (18) 1 1 1 1 i=1   i 1
+A154	Type T62 Equation
+A155	Num T62 18
+A156	Continuation T62
+T63	Reference 36791 36900	The use of the language model feature in equation (18) helps take long-range dependencies better into account
+A157	RefType T63 Direct
+A158	Type T63 Equation
+A159	Num T63 18
+T64	Caption 37636 37713	hLEX(eI , f J ,  K , zK ) = #CO-OCCURRENCES (LEX, eI , f J ) (20) 1 1 1 1 1 1
+A160	Type T64 Equation
+A161	Num T64 20
+T65	Reference 39070 39205	For the Verbmobil task, we train the model parameters  M according to the maximum class posterior probability criterion (equation (4)).
+A162	RefType T65 Direct
+A163	Type T65 Equation
+A164	Num T65 4
+T66	Reference 40345 40482	The renormalization needed in equation (3) requires a sum over manypossible sentences, for which we do not know of an efficient algorithm
+A165	RefType T66 Direct
+A166	Type T66 Equation
+A167	Num T66 3
+T67	Caption 55461 55517	Figure 7 Algorithm for breadth-first search with pruning
+A168	Type T67 Figure
+A169	Num T67 7
+T68	Reference 56283 56328	Figure 7 shows a structogram of the algorithm
+A170	RefType T68 Direct
+A171	Type T68 Figure
+A172	Num T68 7
+T69	Reference 56363 56455	As the search space increases expo nentially, it is not possible to explicitly represent it.
+A173	RefType T69 Spatial-Above
+A174	Type T69 Figure
+A175	Num T69 7
+T70	Caption 65531 65643	Figure 8 Algorithm min-jumps to compute the minimum number of needed jumps D(cJ , j) to complete the translation
+A176	Type T70 Figure
+A177	Num T70 8
+T71	Reference 67019 67093	This sum can be computed efficiently using the algorithm shown in Figure 8
+A178	RefType T71 Direct
+A179	Type T71 Figure
+A180	Num T71 8
+T72	Reference 68712 68761	able 2 shows the corpus statistics for this task.
+A181	RefType T72 Direct
+A182	Type T72 Table
+A183	Num T72 2
+T73	Reference 72833 72943	Table 3 shows the effect of constraining the maximum length of the alignment templates in the source language.
+A184	RefType T73 Direct
+A185	Type T73 Table
+A186	Num T73 3
+T74	Reference 75617 75724	Tables 4 and 5 show the effect of the pruning parameter tp with the histogram pruning parameter Np = 50,000
+A187	RefType T74 Direct
+A188	Type T74 Table
+A189	Num T74 4
+T75	Reference 75617 75725	Tables 4 and 5 show the effect of the pruning parameter tp with the histogram pruning parameter Np = 50,000.
+A190	RefType T75 Direct
+A191	Type T75 Table
+A192	Num T75 5
+T76	Reference 75759 75856	Tables 6 and 7 show the effect of the pruning pa rameter Np with the pruning parameter tp = 10 12
+A193	RefType T76 Direct
+A194	Type T76 Table
+A195	Num T76 6
+T77	Reference 75759 75856	Tables 6 and 7 show the effect of the pruning pa rameter Np with the pruning parameter tp = 10 12
+A196	RefType T77 Direct
+A197	Type T77 Table
+A198	Num T77 7
+T78	Reference 75859 76004	In all four tables, we provide theresults for using no heuristic functions and three variants of an increasingly infor mative heuristic function.
+A199	RefType T78 Indirect
+A200	Type T78 Table
+A201	Num T78 4
+T79	Reference 75859 76003	In all four tables, we provide theresults for using no heuristic functions and three variants of an increasingly infor mative heuristic function
+A202	RefType T79 Indirect
+A203	Type T79 Table
+A204	Num T79 5
+T80	Reference 75859 76004	In all four tables, we provide theresults for using no heuristic functions and three variants of an increasingly infor mative heuristic function.
+A205	RefType T80 Indirect
+A206	Type T80 Table
+A207	Num T80 6
+T81	Reference 75860 76004	n all four tables, we provide theresults for using no heuristic functions and three variants of an increasingly infor mative heuristic function.
+A208	RefType T81 Indirect
+A209	Type T81 Table
+A210	Num T81 7
+T82	Caption 76685 76804	Table 5 Effect of pruning parameter tp and heuristic function on error rate for direct-translation model (Np = 50,000).
+A211	Type T82 Table
+A212	Num T82 5
+T83	Caption 76936 77061	Table 6 Effect of pruning parameter Np and heuristic function on search efficiency for direct-translation model (tp = 10 12 )
+A213	Type T83 Table
+A214	Num T83 6
+T84	Caption 77736 77855	Table 7 Effect of pruning parameter Np and heuristic function on error rate for direct-translation model (tp = 10 12 ).
+A215	Type T84 Table
+A216	Num T84 7
+T85	Caption 78431 78552	Table 8 Effect of the length of the language model history (Unigram/Bigram/Trigram: word-based; CLM: class-based 5-gram).
+A217	Type T85 Table
+A218	Num T85 8
+T86	Reference 79017 79266	If we compare the error rates in Table 7, which correspond to about 55 search errors in Table 6, we obtain an mWER of 36.7% (53 search errors) using no heuristic function and an mWER of 32.6% (57 search errors) using the combined heuristic function.
+A219	RefType T86 Direct
+A220	Type T86 Table
+A221	Num T86 7
+T87	Reference 79017 79265	If we compare the error rates in Table 7, which correspond to about 55 search errors in Table 6, we obtain an mWER of 36.7% (53 search errors) using no heuristic function and an mWER of 32.6% (57 search errors) using the combined heuristic function
+A222	RefType T87 Direct
+A223	Type T87 Table
+A224	Num T87 6
+T88	Reference 80068 80160	Table 8 shows the effect of the length of the language model history on translation quality.
+A225	RefType T88 Direct
+A226	Type T88 Table
+A227	Num T88 8
+T89	Reference 80195 80305	We see that the language model perplexity improves from 4,781 for a unigram model to 29.9 for a trigram model.
+A228	RefType T89 Spatial-Above
+A229	Type T89 Table
+A230	Num T89 8
+T90	Reference 80340 80429	The corresponding translation quality improves from an mWER of 45.9% to an mWER of 31.8%.
+A231	RefType T90 Spatial-Above
+A232	Type T90 Table
+A233	Num T90 8
+T91	Reference 80465 80576	he largest effect seems to come from taking into account the bigram dependence, which achieves an mWER of 32.9%
+A234	RefType T91 Spatial-Above
+A235	Type T91 Table
+A236	Num T91 8
+T92	Reference 81322 81376	Table 9 shows the training and test corpus statistics.
+A237	RefType T92 Direct
+A238	Type T92 Table
+A239	Num T92 9
+T93	Reference 81411 81492	The results for French to English and for English to French are shown in Table 10
+A240	RefType T93 Direct
+A241	Type T93 Table
+A242	Num T93 10
+T94	Reference 84222 84279	Table 11 gives an overview on the training and test data.
+A243	RefType T94 Direct
+A244	Type T94 Table
+A245	Num T94 11
+T95	Caption 82776 82825	Table 10 Translation results on the Hansards task
+A246	RefType T95 Direct
+A247	Type T95 Table
+A248	Num T95 10
+T96	Caption 82292 82376	Table 9 Corpus statistics for Hansards task (Words*: words without punctuation marks
+A249	Type T96 Table
+A250	Num T96 9

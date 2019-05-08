@@ -1,0 +1,16 @@
+T1	Reference 2841 2917	Table 1 presents the wide range of cases that are used to create the morphs.
+A1	RefType T1 Direct
+A2	Type T1 Table
+A3	Num T1 1
+T2	Reference 4457 4579	Table 2 presents the distributions of some examples of morphs and their targets in English Twitter and Chinese Sina Weibo.
+A4	RefType T2 Direct
+A5	Type T2 Table
+A6	Num T2 2
+T3	Reference 4625 4680	the target  Chen Guangcheng  only appears once in Weibo
+A7	RefType T3 Indirect
+A8	Type T3 Table
+A9	Num T3 2
+T4	Reference 6290 6330	Table 2: Distributions of Morph Examples
+A10	RefType T4 Spatial-Below
+A11	Type T4 Table
+A12	Num T4 2

@@ -1,0 +1,14 @@
+T1	Reference 5364 5478	In addition to the basic regular expression operators shown in table 1, the formalism is extended in various ways.
+A1	RefType T1 Direct
+A2	Type T1 Table
+A3	Num T1 1
+T2	Reference 10568 10680	Table 2 shows a comparison with some existing toolkits that build deterministic, minimized automata/transducers.
+A4	RefType T2 Direct
+A5	Type T2 Table
+A6	Num T2 2
+T3	Caption 5043 5118	The regular expressions available in Foma from highest to lower precedence.
+A7	Type T3 Table
+A8	Num T3 1
+T4	Caption 12184 12300	A relative comparison of running a selection of regular expressions and scripts against other finite-state toolkits.
+A9	Type T4 Table
+A10	Num T4 2

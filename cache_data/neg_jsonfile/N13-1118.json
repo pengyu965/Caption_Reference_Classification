@@ -1,0 +1,998 @@
+[
+    {
+        "Text": "\n\t\n\t\tWe present a novel approach to automatic metaphor identification, that discovers both metaphorical associations and metaphorical expressions in unrestricted text.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Our system first performs hierarchical graph factorization clustering (HGFC) of nouns and then searches the resulting graph for metaphorical connections between concepts.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "It then makes use of the salient features of the metaphorically connected clusters to identify the actual metaphorical expressions.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "In contrast to previous work, our method is fully unsupervised.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Despite this fact, it operates with an encouraging precision (0.69) and recall (0.61).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Our approach is also the first one in NLP to exploit the cognitive findings on the differences in or- ganisation of abstract and concrete concepts in the human brain.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Metaphor has traditionally been viewed as a form of linguistic creativity, that gives our expression more vividness, distinction and artistism.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "While this is true on the surface, the mechanisms of metaphor have a much deeper origin in our reasoning.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Today metaphor is widely understood as a cognitive phenomenon operating at the level of mental processes, whereby one concept or domain is systematically viewed in terms of the properties of another (Lakoff and Johnson, 1980).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Consider the examples (1)  He shot down all of my arguments  and (2)  He attacked every weak point in my argument .",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "They demonstrate a metaphorical mapping of the concept of argument to that of war.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The argument, which is the target concept, is viewed in terms of a battle (or a war), the source concept.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The existence of such a link allows us to systematically describe arguments using the war terminology, thus leading to a number of metaphorical expressions.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Lakoff and Johnson call such generalisations a source target domain mapping, or conceptual metaphor.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The ubiquity of metaphor in language has been established in a number of corpus studies (Cameron, 2003; Martin, 2006; Steen et al., 2010; Shutova and Teufel, 2010) and the role it plays in human reasoning has been confirmed in psychological experiments (Thibodeau and Boroditsky, 2011).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "This makes metaphor an important research area for computational and cognitive linguistics, and its automatic processing indispensable for any semantics- oriented NLP application.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The problem of metaphor modeling is gaining interest within NLP, with a growing number of approaches exploiting statistical techniques (Mason, 2004; Gedigian et al., 2006; Shutova, 2010; Shutova et al., 2010; Turney et al., 2011; Shutova et al., 2012).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Compared to more traditional approaches based on hand-coded knowledge (Fass, 1991; Martin, 1990; Narayanan, 1997; Narayanan, 1999; Feldman and Narayanan, 2004; Barnden and Lee, 2002; Agerri et al., 2007), these more recent methods tend to have a wider coverage, as well as be more efficient, accurate and robust.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "However, even the statistical metaphor processing approaches so far often focused on a limited domain or a subset of phenomena (Gedigian et al., 2006; Krishnakumaran and Zhu, 2007), and only addressed one of the metaphor processing sub- tasks: identification of metaphorical mappings (Mason, 2004) or identification of metaphorical expressions (Shutova et al., 2010; Turney et al., 2011).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "In this paper, we present the first computational method 978 Proceedings of NAACLHLT 2013, pages 978 988, Atlanta, Georgia, 9 14 June 2013.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Qc 2013 Association for Computational Linguistics that identifies the generalisations that govern the production of metaphorical expressions, i.e.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "conceptual metaphors, and then uses these generalisations to identify metaphorical expressions in unrestricted text.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "As opposed to previous works on statistical metaphor processing that were supervised or semi-supervised, and thus required training data, our method is fully unsupervised.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "It relies on building a hierarchical graph of concepts connected by their association strength (using hierarchical clustering) and then searching for metaphorical links in this graph.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Shutova et al.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "(2010) introduced the hypothesis of  clustering by association  and claimed that in the course of distributional noun clustering, abstract concepts tend to cluster together if they are associated with the same source domain, while concrete concepts cluster by meaning similarity.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "We share this intuition, but take this idea a significant step further.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Our approach is theoretically grounded in the cognitive science findings suggesting that abstract and concrete concepts are organised differently in the human brain (Crutch and Warrington, 2005; Binder et al., 2005; WiemerHastings and Xu, 2005; Huang et al., 2010; Crutch and Warring- ton, 2010; Adorni and Proverbio, 2012).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "According to Crutch and Warrington (2005), these differences emerge from their general patterns of relation with other concepts.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "However, most NLP systems to date treat abstract and concrete concepts as identical.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "In contrast, we incorporate this distinction into our model by creating a network (or a graph) of concepts, and automatically learning the different patterns of association of abstract and concrete concepts with other concepts.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "We expect that, while concrete concepts would tend to naturally organise into a tree-like structure (with more specific terms descending from the more general terms), abstract concepts would exhibit a more complex pattern of associations.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": ".",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "One can see from this graph that if concrete concepts, such as bike or engine tend to be connected to only one concept at the higher level in the hierarchy (mechanism), abstract concepts may have multiple higher-level associates: the literal ones and the metaphorical ones.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "For ex ample, the abstract concept of democracy is literally associated with a more general concept of political system, as well as metaphorically associated with the concept of mechanism.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Such multiple associations are due to the fact that political systems are metaphorically viewed as mechanisms, they can function, break, they can be oiled etc.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "We often discuss them using mechanism terminology, and thus a corpus-based distributional learning approach would learn that they share features with political systems (from their literal uses), as well as with mechanisms (from their metaphorical uses, as shown next to the respective graph edges in the        .",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Our system discovers such association patterns within the graph and uses them to identify metaphorical connections between the concepts.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "To the best of our knowledge, our method is the first one to use a hierarchical clustering model for the metaphor processing task.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The original graph of concepts is built using hierarchical graph factorization clustering (HGFC) (Yu et al., 2006) of nouns, yielding a network of clusters with different levels of generality.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The weights on the edges of the graph indicate association between the clusters (concepts).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "HGFC has not been previously employed for noun clustering in NLP, but showed successful results in the verb clustering task (Sun and Korhonen, 2011).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "In summary, our system (1) builds a graph of concepts using HGFC, (2) traverses it to find metaphorical associations between clusters using weights on the edges of the graph, (3) generates lists of salient features for the metaphorically connected clusters and (4) searches the British National Corpus (BNC) (Burnard, 2007) for metaphorical expressions describing the target domain concepts using the verbs from the set of salient features.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "We evaluated the performance of the system with the aid of human judges in precision- and recall-oriented settings.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "In addition, we compared its performance to that of two baselines, an unsupervised baseline using agglomerative clustering (AGG) and a supervised baseline built upon WordNet (Fellbaum, 1998) (WN).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "2.1 Dataset and Feature Extraction.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Our noun dataset used for clustering contains 2000 most frequent nouns in the BNC (Burnard, 2007).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "We extracted the features from the Gigaword corpus (Graff et al., 2003), which was first parsed using the RASP parser (Briscoe et al., 2006).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The verb lemmas in VERB SUBJECT, VERB DIRECT OBJECT and VERB INDIRECT OBJECT relations with the nouns in the dataset were then extracted from the GR output of the parser.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The feature values were the relative frequencies of the features.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "2.2 Hierarchical Graph Factorization.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Clustering The most widely used method for hierarchical word clustering is AGG (Schulte im Walde and Brew, 2001; Stevenson and Joanis, 2003; Ferrer, 2004; Devereux and Costello, 2005).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The method treats each word as a singleton cluster and then successively merges two closest clusters until all the clusters have been merged into one.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The cluster similarity is measured using linkage criteria (e.g.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Ward (1963) measures the decrease in variance for the clusters being merged).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "As opposed to this, HGFC derives probabilistic bipartite graphs from the similarity matrix (Yu et al., 2006).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Since we require a graph of concepts, our task is rather different from standard hierarchical word clustering that produces a tree of concepts.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "In a tree, each word can only erarchical clustering tasks (Yu et al., 2006; Sun and Korhonen, 2011), but its hierarchical graph output is also a more suitable representation of the concept graph.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "In addition, HGFC can detect the number of levels and the number of clusters on each level of the hierarchical graph automatically.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "This is essential for our task as these settings are difficult to pre- define for a general-purpose concept graph.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Given a set of nouns, V = {vn}N , the similarity matrix for HGFC is constructed using Jensen Shannon Divergence.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": ".",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The graph G and the cluster structure can be represented by a bipartite graph K (V, U ).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "V are the vertices on G. U = {up mrepresent the hidden m clusters.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The matrix B denotes then   m adjacency matrix, with bip being the connec tion weight between the vertex vi and the cluster up.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Thus, B represents the connections between clusters at an upper and lower level of clustering.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "A flat clustering algorithm can be induced by assigning a lower level node to the parent node that has the largest connection weight.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The number of clusters at any level can be determined by only counting the number of nonempty nodes (namely the nodes that have at least one lower level node associated).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The bipartite graph K also induces a similarityhave a unique parent cluster at each level.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Our con (W t) between vi and vj : wt m bip bjp ij = 2:p=1  p = cept graph does not have this constraint: at any level a word can be associated with an arbitrary number of parent clusters.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Therefore, not only HGFC outperformed agglomerative clustering methods in hi (B  1BT )ij where   = diag( 1, ...,  m).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Therefore, B can be found by minimizing the divergence distance (  ) between the similarity matrices W and W t: v 1 u 1 2 v v v v 1 2 1 2 1 v v v v v 3 7\n\t\n\t\n\t\t\tv u v 8 v 8 5 2 9 9 v 1 v 2 u 1 v u u 3 q 1 2 v 1 4 u 5 2 v 2 6 6 6 v 3 6 v v 5 v 5 7 4 7 4 u 3 u 2 v 3 v 3 8 8 v v 9 9 (a) (b) (c) (d) (e)         : (a) An undirected graph G representing the similarity matrix; (b) The bipartite graph showing three clusters on G; (c) The induced clusters U ; (d) The new graph G1 over clusters U ; (e) The new bipartite graph over G1 n min   (W, H  H T ), s.t.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "hip = 1 (1) H,  i=1 value of m0 to 800.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "For the subsequent levels, ml is set to the number of nonempty clusters (bipartite H = B  1 ;   (X, Y ) = (xij log ij xij yij   xij + yij ) graph nodes) on the parent level.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The matrices B and   are initialized randomly.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "We found that the Yu et al.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "(2006) showed that this cost function is non-increasing under the update rule: wij actual initialization values have little impact on the final result.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The rows in B are normalized after the initialization so the values in each row add up to one.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "For a word vi, the probability of assigning it to clus h ip   hip j (H  H T )ij  p hjp s.t.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "h ip = 1 (2) i ter x(l)   X at level l is given by:   p    p wij (H  H T )ij hip hjp s.t.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "p = wij (3) p(x(l) |vi ) = ... p(x(l) |x(l 1) )...p(x(1) |vi ) j p ij p Xl 1 p x(1)  X1 The cost function can thus be optimized by updating h and   alternately.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The similarity between clusters p(up, uq ) can be induced from B, as follows: p(up , uq ) = p(up )p(up |uq ) = (BT D 1 B)pq (4) m D = diag(d1 , ..., dn ) where di = bip p=0 We can then construct a new graph G1 (        (d)) with the clusters U as vertices, and the cluster similarity p as the connection weight.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The clustering algorithm can now be applied again          (e)).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "This process can go on iteratively, leading to a hierarchical graph.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The number of levels (L) and the number of clusters (ml ) are detected automatically, using the method of Sun and Korhonen (2011).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Clustering starts with an initial setting of number of clusters (m0) for the first level.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "In our experiment, we set the = (D( 1)  1  1 1 B1 D2 B2 ...Dl Bl )ip (5) Due to the random walk property of the graph, ml is non-increasing for higher levels (Sun and Korhonen, 2011).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The algorithm can thus terminate when all nouns are assigned to one cluster.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "We run 1000 iterations of updates of h and                    ) for each two adjacent levels.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The resulting graph is composed of a set of bipartite graphs defined by Bl , Bl 1, ..., B1.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "A bipartite graph has a similar structure as in          \n\t\t\tFor a given noun, we can rank the clusters at any level according to the soft assignment probability (eq.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "5).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The clusters that have no member noun were hidden from the ranking since they do not explicitly represent any concept.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "However, these clusters are still part of the organisation of conceptual space within the model and they contribute to the probability for the clusters on upper levels (eq.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "5).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "We call the view of the hierarchical graph where these empty clusters are hidden an explicit graph.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The whole algorithm can be summarized as follows: SOURCE: fire TARGET 1: sense hatred emotion passion enthusiasm sentiment hope interest feeling resentment optimism Require: N nouns V , initial number of clusters m1 Compute the similarity matrix W0 from V Build the graph G0 from W0 , l   1 while ml > 1 do Factorize Gl 1 to obtain bipartite graph Kl with the adjacency matrix Bl (eq.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "1, 2 and 3) Build a graph Gl with similarity matrix Wl = hostility excitement anger TARGET 2: coup violence fight resistance clash rebellion battle drive fighting riot revolt war confrontation volcano row revolution struggle TARGET 3: alien immigrant TARGET 4: prisoner hostage inmate BT  1 l Dl Bl according to            l   l + 1 ; ml   No.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "nonempty clusters (eq.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "5) end while return Bl , Bl 1 ...B1 2.3 Identification of Metaphorical Associations.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Once we obtained the explicit graph of concepts, we can now identify metaphorical associations based on the weights connecting the clusters at different levels (eq.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "5).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Taking a single noun (e.g.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "fire) as input, the system computes the probability of its cluster membership for each cluster at each level, using these weights.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "We expect the cluster membership probabilities to indicate the level of association of the input noun with the clusters.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The system can then rank the clusters at each level based on these probabilities.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "We chose level 3 as the optimal level of generality for our experiments, based on our qualitative analysis of the graph.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The system selects 6 top- ranked clusters from this level (we expect an average source concept to have no more than 5 typical target associates) and excludes the literal cluster containing the input concept (e.g.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "fire flame blaze ).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The remaining clusters represent the target concepts associated with the input source concept.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Example output for the input concepts of fire and disease is shown in          \n\t\t\tOne can see from the        that each of the noun-to-cluster mappings represents a new conceptual metaphor, e.g.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "EMOTION is FIRE, VIOLENCE is FIRE, CRIME is a DISEASE etc.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "These mappings are exemplified in language by a number of metaphorical expressions (e.g.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "His anger will burn him ,  violence flared again ,  it s time they found a cure for corruption ).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "2.4 Identification of Salient Features and.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Metaphorical Expressions After extracting the source target domain mappings, we now move on to the identification of the cor SOURCE: disease TARGET 1: fraud outbreak offense connection leak count crime violation abuse conspiracy corruption terrorism suicide TARGET 2: opponent critic rival TARGET 3: execution destruction signing TARGET 4: refusal absence fact failure lack delay           Discovered metaphorical associations rage-ncsubj engulf -ncsubj erupt-ncsubj burn-ncsubj light-dobj consume-ncsubj flare-ncsubj sweep-ncsubj spark-dobj battle-dobj gut-idobj smolder-ncsubj ignite-dobj destroy-idobj spread-ncsubj damage-idobj light-ncsubj ravage-ncsubj crackle-ncsubj open-dobj fuel-dobj spray-idobj roar-ncsubj perish-idobj destroy- ncsubj wound-idobj start-dobj ignite-ncsubj injure- idobj fight-dobj rock-ncsubj retaliate-idobj devastate- idobj blaze-ncsubj ravage-idobj rip-ncsubj burn-idobj spark-ncsubj warm-idobj suppress-dobj rekindle-dobj         : Salient features for fire and the violence cluster responding metaphorical expressions.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The system does this by harvesting the salient features that lead to the input noun being strongly associated with the extracted clusters.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The salient features are selected by ranking the features according to the joint probability of the feature (f ) occurring both with the input noun (w) and the cluster (c).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Under a simplified independence assumption, p(w, c|f ) = p(w|f )  p(c|f ).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "p(w|f ) and p(c|f ) are calculated as the ra tio of the frequency of the feature f to the total frequency of the input noun and the cluster respectively.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The features ranked higher are expected to represent the source domain vocabulary that can be used to metaphorically describe the target concepts.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "We selected the top 50 features from the ranked list.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Example features (verbs and their grammatical relations) extracted for the source domain noun fire and the violence cluster are shown in          \n\t\t\tWe then refined the lists of features by means of selectional preference (SP) filtering.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "We use SPs to FEELING IS FIRE hope lit (Subj), anger blazed (Subj), optimism raged (Subj), enthusiasm engulfed them (Subj), hatred flared (Subj), passion flared (Subj), interest lit (Subj), fuel resentment (Dobj), anger crackled (Subj), feelings roared (Subj), hostility blazed (Subj), light with hope (Iobj) CRIME IS A DISEASE cure crime (Dobj), abuse transmitted (Subj), eradicate terrorism (Dobj), suffer from corruption (Iobj), diagnose abuse (Dobj), combat fraud (Dobj), cope with crime (Iobj), cure abuse (Dobj), eradicate corruption           Identified metaphorical expressions for the mappings FEELING IS FIRE and CRIME IS A DISEASE quantify how well the extracted features describe the source domain (e.g.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "fire).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "We extracted nominal argument distributions of the verbs in our feature lists for VERB SUBJECT, VERB DIRECT OBJECT and VERB INDIRECT OBJECT relations.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "We used the algorithm of Sun and Korhonen (2009) to create SP classes and the measure of Resnik (1993) to quantify how well a particular argument class fits the verb.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Resnik measures selectional preference strength SR(v) of a predicate as a KullbackLeibler distance between two distributions: the prior probability of the noun class P (c) and the posterior probability of the noun class given the verb P (c|v).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "SR(v) = P (c|v) 3 Evaluation and Discussion.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "3.1 Baselines.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "AGG: the agglomerative clustering baseline is constructed using SciPy implementation (Oliphant, 2007) of Ward s linkage method (Ward, 1963).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The output tree is cut according to the number of levels and the number of clusters of the explicit graph detected by HGFC.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The resulting tree is converted into a graph by adding connections from each cluster to all the clusters one level above.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The connection weight (the cluster distance) is measured using JensenShannon Divergence between the cluster centroids.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "This graph is used in place of the HGFC graph in the metaphor identification experiments.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "WN: in the WN baseline, the WordNet hierarchy is used as the underlying graph of concepts, to which the metaphor extraction method is applied.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Given a source concept, the system extracts all its sense 1 hypernyms two levels above and subsequently all of their sister terms.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The hypernyms themselves are considered to represent the literal sense of the source noun and are, therefore, removed.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The sister terms are kept as potential target domains.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "3.2 Evaluation of Metaphorical Associations.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "To create our dataset, we extracted 10 common D(P (c|v)||P (c)) = 2:c P (c|v) log P (c) .",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "In order source concepts that map to multiple targets from to quantify how well a particular argument class fits the verb, Resnik defines selectional association as AR(v, c) = 1 P (c|v) log P (c|v) .",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "We rank the the Master Metaphor List (Lakoff et al., 1991) and linguistic analyses of metaphor (Lakoff and Johnson, 1980; Shutova and Teufel, 2010).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "These SR (v) P (c) nominal arguments of the verbs in our feature lists using their selectional association with the verb, and then only retain the features whose top 5 arguments contain the source concept.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "For example, the verb start, that is a common feature for both fire and the violence cluster (e.g.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "start a war ,  start a fire ), would be filtered out in this way, whereas the verbs flare or blaze would be retained as descriptive source domain vocabulary.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "We then search the RASP-parsed BNC for grammatical relations, in which the nouns from the target domain cluster appear with the verbs from the source domain vocabulary (e.g.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "war blazed  (subj),  to fuel violence  (dobj) for the mapping VIOLENCE is FIRE).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The system thus annotates metaphorical expressions in text, as well as the corresponding conceptual metaphors, as shown in          \n\t\t\tincluded FIRE, CHILD, SPEED, WAR, DISEASE, BREAKDOWN, CONSTRUCTION, VEHICLE, SYSTEM, BUSINESS.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Each of the three systems identified 50 source target domain mappings for the given source domains, resulting in a set of 150 conceptual metaphors (each representing a number of submappings since all the target concepts are clusters or synsets).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "These were then evaluated against human judgements in two different experimental settings.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Setting 1: The judges were presented with a set of conceptual metaphors identified by the three systems, randomized.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "They were asked to annotate the mappings they considered valid.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "In all our experiments, the judges were encouraged to rely on their own intuition of metaphor, but they also reviewed the metaphor annotation guidelines of Shutova and Teufel (2010).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Two independent judges, both na tive speakers of English, participated in this experiment.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Their agreement on the task was   = 0.60 (n = 2, N = 150, k = 2) (Siegel and Castellan, 1988).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The main differences in the annotators  judgements stem from the fact that some metaphorical associations are less obvious and common than others, and thus need more context (or imaginative effort) to establish.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Such examples, where the judges disagreed included metaphorical mappings such as INTENSITY is SPEED, GOAL is a CHILD, COLLECTION is a SYSTEM, ILLNESS is a BREAKDOWN.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The system performance was then evaluated against these judgements in terms of precision (P ), i.e.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "the proportion of the valid metaphorical mappings among those identified.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "We calculated system precision (in all experiments) as an average over both annotations.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "HGFC operates with a precision of P = 0.69, whereas the baselines attain P = 0.36 (AGG) and P = 0.29 (WN).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The precision of an- notator judgements against each other (the human ceiling) is P = 0.80, suggesting that this is a challenging task.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Setting 2: To measure recall, R, of the systems we asked two annotators (both native speakers with a background in metaphor, different from Setting 1) to write down up to 5 target concepts they strongly associated with each of the 10 source concepts.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Their annotations were then aggregated into a single metaphor association gold standard, consisting of 63 mappings in total.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The recall of the systems was measured against this gold standard, resulting in HGFC R = 0.61, AGG R = 0.11 and WN R = 0.03.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "As expected, HGFC outperforms both AGG and WN baselines in both settings.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "AGG has been previously shown to be less accurate than HGFC in the verb clustering task (Sun and Korhonen, 2011).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Our analysis of the noun clusters indicated that HGFC tends to produce more pure and complete clusters than AGG.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Another important reason AGG fails is that it by definition organises all concepts into tree and optimises its solution locally, taking into account a small number of clusters at a time.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "However, being able to discover connections between more distant domains and optimising globally over all concepts is crucial for metaphor identification.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "This makes AGG less suitable for the task, as demonstrated by our results.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "However, AGG identified a number of interesting mappings missed by HGFC, e.g.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "CAREER IS A CHILD, LANGUAGE IS A SYSTEM, CORRUPTION IS A VEHICLE, EMPIRE IS A CONSTRUCTION, as well as a number of mappings in common with HGFC, e.g.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "DEBATE IS A WAR, DESTRUCTION IS A DISEASE.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The WN system also identified a few interesting metaphorical mappings (e.g.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "COGNITION IS FIRE, EDUCATION IS CONSTRUCTION), but its output is largely dominated by the concepts similar to the source noun and contains some unrelated concepts.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The comparison of HGFC to WN shows that HGFC identifies meaningful properties and relations of abstract concepts that can not be captured in a tree-like classification (even an accurate, manually created one).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The latter is more appropriate for concrete concepts, and a more flexible representation is needed to model abstract concepts.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The fact that both baselines identified some valid metaphorical associations, relying on less suitable conceptual graphs, suggests that our way of traversing the graph is a viable approach in principle.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "HGFC identifies valid metaphorical associations for a range of source concepts.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "On of them (CRIME IS A VIRUS) happened to have been already validated in psychological experiments (Thibodeau and Boroditsky, 2011).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The most frequent type of error of HGFC is the presence of target clusters similar or closely related to the source noun (e.g.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "the parent cluster for child).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The clusters from the same domain can, however, be filtered out if their nouns frequently occur in the same documents with the source noun (in a large corpus), i.e.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "by topical similarity.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The latter is less likely for the metaphorically connected nouns.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "We intend to implement this improvement in the future version of the system.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "3.3 Evaluation of Metaphorical Expressions.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "For each of the identified conceptual metaphors, the three systems extracted a number of metaphorical expressions from the corpus (average of 430 for HGFC, 148 for AGG, and 855 for WN).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The expressions were also evaluated against human judgements.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The judges were presented with a set of randomly sampled sentences containing metaphorical expressions as annotated by the system and by the baselines (200 each), randomized.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "They were asked to mark the tagged expressions that were metaphorical in their judgement as correct.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Their agreement on the task was   = 0.56 (n = 2, N = 600, k = 2), HLJ 26 [..]\n\t\t\t effective action  was needed to eradicate terrorism, drug-trafficking and corruption.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "EG0 275 In the 1930s the words  means test  was a curse, fuelling the resistance against it both among the unemployed and some of its administrators.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "CRX 1054 [..]\n\t\t\tif the rehabilitative approach were demonstrably successful in curing crime.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "HL3 1206 [..]\n\t\t\the would strive to accelerate progress towards the economic integration of the Caribbean.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "HXJ 121 [..]\n\t\t\tit is likely that some industries will flourish in certain countries as the market widens.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The system performance against these annotations is P = 0.65 (HGFC), P = 0.47 (AGG) and P = 0.12 (WN).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The human ceiling for this task was measured at P = 0.79.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The performance of our unsupervised approach is close to the previous supervised systems of Mason (2004) (accuracy of 0.73) and Shutova et al.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "(2010) (precision of 0.79), however, the results are not directly comparable due to different experimental settings.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The system errors in this task stem from multiple word senses of the salient features or the source and target sharing some physical properties (e.g.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "one can  die from crime  and  die from a disease ).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Some identified expressions invoke a chain of mappings (e.g.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "ABUSE IS A DISEASE, DISEASE IS AN ENEMY for  combat abuse ), however, such chains are not yet incorporated into the system.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The performance of AGG is higher than in the mappings identification task, since it outputs only few expressions for the incorrect mappings.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "In contrast, WN tagged a large number of literal expressions due to the incorrect prior identification of the underlying associations.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Since there is no large metaphor-annotated corpus available, it was impossible for us to reliably evaluate the recall of metaphorical expressions.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "However, we estimated it as a recall of salient features.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "We manually compiled sets of typical features for the 10 source domains, and measured their recall among the top 50 HGFC features at R = 0.70.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "However, in practice the coverage in this task would directly depend on that of the metaphorical associations.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "One of the first attempts to identify and interpret metaphorical expressions in text is the met* system of Fass (1991), that utilizes hand-coded knowledge and detects non-literalness via selectional preference violation.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "In case of a violation, the respective phrase is first tested for being metonymic using hand-coded patterns (e.g.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "CONTAINER-FOR- CONTENT).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "If this fails, the system searches the knowledge base for a relevant analogy in order to discriminate metaphorical relations from anomalous ones.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The system of Krishnakumaran and Zhu (2007) uses WordNet (the hyponymy relation) and word bigram counts to predict verbal, nominal and adjectival metaphors at the sentence level.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The authors discriminate between conventional metaphors (included in WordNet) and novel metaphors.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Birke and Sarkar (2006) present a sentence clustering approach that employs a set of seed sentences annotated for literalness and computes similarity between the new input sentence and all of the seed sentences.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The system then tags the sentence as literal or metaphorical according to the annotation in the most similar seeds, attaining an f-score of 53.8%.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The first system to discover source target domain mappings automatically is CorMet (Mason, 2004).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "It does this by searching for systematic variations in domain-specific verb selectional preferences.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "For example, pour is a characteristic verb in both LAB and FINANCE domains.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "In the LAB domain it has a strong preference for liquids and in the FINANCE domain for money.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "From this the system infers the domain mapping FINANCE   LAB and the concept mapping money   liquid.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Gedigian et al.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "(2006) trained a maximum entropy classifier to discriminate between literal and metaphorical use.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "They annotated the sentences from PropBank (Kingsbury and Palmer, 2002) containing the verbs of MOTION and CURE for metaphoricity.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "They used PropBank annotation (arguments and their semantic types) as features for classification and report an accuracy of 95.12% (however, against a majority baseline of 92.90%).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The metaphor identification system of Shutova et al.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "(2010) starts from a small seed set of metaphorical expressions, learns the analogies involved in their production and extends the set of analogies by means of verb and noun clustering.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "As a result, the system can recognize new metaphorical expressions in unrestricted text (e.g.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "from the seed  stir excitement  it infers that  swallow anger  is also a metaphor), achieving a precision of 79%.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Turney et al.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "(2011) classify verbs and adjectives as literal or metaphorical based on their level of concreteness or abstractness in relation to a noun they appear with.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "They learn concreteness rankings for words automatically (starting from a set of examples) and then search for expressions where a concrete adjective or verb is used with an abstract noun (e.g.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "dark humour  is tagged as a metaphor and  dark hair  is not).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "They report an accuracy of 73%.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Previous research on metaphor addressed a number of different aspects of the phenomenon, and has shown that these aspects can be successfully modeled using statistical techniques.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "However, the methods often focused on a limited domain and needed manually-labeled training data.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "This made them difficult to apply in a real-world setting with the goal of improving semantic interpretation in NLP at large.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Our method takes a step towards this direction.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "It is fully unsupervised, and thus more robust, and can perform accurate metaphor identification in unrestricted text.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "It identifies metaphor with a precision of 69% and a recall of 61%, which is a very encouraging result for an unsupervised method.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "We believe that this work has important implications for computational and cognitive modeling of metaphor, but is also applicable to a range of other semantic tasks within NLP.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Integrating different representations of abstract and concrete concepts into NLP systems may improve their performance, as well as make the models more cognitively plausible.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "One of our key future research objectives is to investigate the use and adaptation of the created conceptual graph to perform metaphor interpretation.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "In addition, we plan to extend this work to cover nominal and adjectival metaphors, by harvesting salient nominal and adjectival features.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "This work was funded by the MetaNet project (grant number W911NF12-C-0022) and the Dorothy Hodgkin Postgraduate Award.",
+        "Entity": "Normal"
+    }
+]

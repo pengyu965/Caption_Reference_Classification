@@ -1,0 +1,170 @@
+[
+    {
+        "Code": "T1",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "33190",
+                "33271"
+            ]
+        ],
+        "Text": "Table 1: Performance of the mention detection system using lexical features only.",
+        "RefType": "Direct",
+        "Type": "Table",
+        "Num": "1"
+    },
+    {
+        "Code": "T2",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "34314",
+                "34476"
+            ]
+        ],
+        "Text": "Table 1 reports experimental results using lexical features only; we observe that the stemming n-gram features boost the performance by one point (64.7 vs. 65.8).",
+        "RefType": "Direct",
+        "Type": "Table",
+        "Num": "1"
+    },
+    {
+        "Code": "T3",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "35530",
+                "35612"
+            ]
+        ],
+        "Text": "Table 3: Performance of the mention detection system including all ACE 04 subtasks",
+        "RefType": "Direct",
+        "Type": "Table",
+        "Num": "3"
+    },
+    {
+        "Code": "T4",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "35613",
+                "35842"
+            ]
+        ],
+        "Text": "Table 2: Performance of the mention detection system using lexical, syntactic, gazetteer features as well as features obtained by running other named-entity classifiers named-entity classifiers (with different semantic tag sets).",
+        "RefType": "Direct",
+        "Type": "Table",
+        "Num": "2"
+    },
+    {
+        "Code": "T5",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "36111",
+                "36193"
+            ]
+        ],
+        "Text": "Table 2 shows the experimental results with and without the stem n-grams features.",
+        "RefType": "Direct",
+        "Type": "Table",
+        "Num": "2"
+    },
+    {
+        "Code": "T6",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "36227",
+                "36346"
+            ]
+        ],
+        "Text": "Again, Table 2 shows that using stem n-grams features gave a small boost to the whole main-type classification system4.",
+        "RefType": "Direct",
+        "Type": "Table",
+        "Num": "2"
+    },
+    {
+        "Code": "T7",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "37259",
+                "37358"
+            ]
+        ],
+        "Text": "Table 3 presents the performance in terms of precision, recall, and F- measure of the whole system.",
+        "RefType": "Direct",
+        "Type": "Table",
+        "Num": "3"
+    },
+    {
+        "Code": "T8",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "38537",
+                "38726"
+            ]
+        ],
+        "Text": "The result is shown in Table 4: the baseline numbers without stem features are listed under Base, and the results of the coreference system with stem features are listed under Base+Stem.",
+        "RefType": "Direct",
+        "Type": "Table",
+        "Num": "4"
+    },
+    {
+        "Code": "T9",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "40167",
+                "40237"
+            ]
+        ],
+        "Text": "Table 4: Effect of Arabic stemming features on coreference resolution.",
+        "RefType": "Direct",
+        "Type": "Table",
+        "Num": "4"
+    },
+    {
+        "Code": "T10",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "14250",
+                "14386"
+            ]
+        ],
+        "Text": "The first machine, illustrated in Figure 1 encodes the prefix and suffix expansion rules, producing a lattice of possible segmentations.",
+        "RefType": "Direct",
+        "Type": "Figure",
+        "Num": "1"
+    },
+    {
+        "Code": "T11",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "14891",
+                "14990"
+            ]
+        ],
+        "Text": "Figure 1: Illustration of dictionary based segmenta tion finite state transducer 3.1 Bootstrapping.",
+        "RefType": "Direct",
+        "Type": "Figure",
+        "Num": "1"
+    },
+    {
+        "Code": "T12",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "26388",
+                "26635"
+            ]
+        ],
+        "Text": "equation 2) says that the prob ability of starting a new entity, given the current mention m and the previous entities e1, e2, , et, is simply 1 minus the maximum link probability between the current mention and one of the previous entities.",
+        "RefType": "Direct",
+        "Type": "Equation",
+        "Num": "2"
+    }
+]

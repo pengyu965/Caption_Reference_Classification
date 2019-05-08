@@ -1,0 +1,16 @@
+[
+    {
+        "Code": "T1",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "52938",
+                "53289"
+            ]
+        ],
+        "Text": "An abridged version of the grammatical representation produced by the implemented grammar for this sentence is presented in Figure 1, where the feature structures below the tree correspond to partial grammatical representations of the constituents 16 See Kamp and Reyle (1993) for a comprehensive rendering of DRT, and Branco (2000, Chapter 5) for an.",
+        "RefType": "Direct",
+        "Type": "Figure",
+        "Num": "1"
+    }
+]

@@ -1,0 +1,4 @@
+T1	Reference 52938 53289	An abridged version of the grammatical representation produced by the implemented grammar for this sentence is presented in Figure 1, where the feature structures below the tree correspond to partial grammatical representations of the constituents 16 See Kamp and Reyle (1993) for a comprehensive rendering of DRT, and Branco (2000, Chapter 5) for an.
+A1	RefType T1 Direct
+A2	Type T1 Figure
+A3	Num T1 1

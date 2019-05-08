@@ -1,0 +1,140 @@
+[
+    {
+        "Code": "T1",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "4073",
+                "4116"
+            ]
+        ],
+        "Text": "Cik Figure 1: Local graph of the word mouse",
+        "Type": "Figure",
+        "Num": "1"
+    },
+    {
+        "Code": "T2",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "4270",
+                "4386"
+            ]
+        ],
+        "Text": "E.g. rat and printer are very different in meaning, but they are both closely related to different meanings of mouse",
+        "RefType": "Indirect",
+        "Type": "Figure",
+        "Num": "1"
+    },
+    {
+        "Code": "T3",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "4419",
+                "4643"
+            ]
+        ],
+        "Text": "However, if we remove the mouse-node from its local graph illustrated in figure 1, the graph decomposes into two parts, one representing the electronic device meaning of mouse and the other one representing its animal sense.",
+        "RefType": "Direct",
+        "Type": "Figure",
+        "Num": "1"
+    },
+    {
+        "Code": "T4",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "4849",
+                "4974"
+            ]
+        ],
+        "Text": "As can be seen in figure 2, wing \"part of a bird\" is closely related to tail, as is wing \"part of a plane\"",
+        "RefType": "Direct",
+        "Type": "Figure",
+        "Num": "2"
+    },
+    {
+        "Code": "T5",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "5019",
+                "5106"
+            ]
+        ],
+        "Text": "even after removal of the wing-node, the two areas of meaning are still linked via tail",
+        "RefType": "Indirect",
+        "Type": "Figure",
+        "Num": "2"
+    },
+    {
+        "Code": "T6",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "13408",
+                "13454"
+            ]
+        ],
+        "Text": "An extract of the results is listed in table 1",
+        "RefType": "Direct",
+        "Type": "Figure",
+        "Num": "1"
+    },
+    {
+        "Code": "T7",
+        "Entity": "Caption",
+        "Span": [
+            [
+                "13487",
+                "15357"
+            ]
+        ],
+        "Text": "Word Sense clusters Class-label arms knees trousers feet biceps hips elbows backs wings body part breasts shoulders thighs bones buttocks ankles legs inches wrists shoes necks horses muskets charges weapons methods firearms weapon knives explosives bombs bases mines projectiles drugs missiles uniforms jersey israel colomho guernsey luxeinhourg denmark maim European greece belgium swede, turkey gibraltar portugal ire- country land mauritius britain cyprus netherlands norway aus tralia italy japan canada kingdom spain austria zealand england france germany switzerland finland poland a merica usa iceland holland scotland uk crucifix bow apron sweater tie anorak hose bracelet garment helmet waistcoat jacket pullover equipment cap collar suit fleece tunic shirt scarf belt head voice torso back chest face abdomen side belly groin body part spine breast bill rump midhair hat collar waist tail stomach skin throat neck speculum ceo treasurer justice chancellor principal founder pres- person ident commander deputy administrator constable li brarian secretary governor captain premier executive chief curator assistant committee patron ruler oil heat coal power water gas food wood fuel steam tax object heating kerosene fire petroleum dust sand light steel telephone timber supply drainage diesel electricity acid air insurance petrol tempera gouache watercolour poster pastel collage paint acrylic lemon bread cheese [flint butter jam cream pudding yogurt foodstuff sprinkling honey jelly toast ham chocolate pie syrup milk meat beef cake yoghurt grain hazel elder holly family virgin hawthorn shrub cherry cedar larch mahogany water sycamore lime teak ash wood hornbeam oak walnut hazel pine beech alder thorn poplar birch chestnut blackthorn spruce holly yew lau rel maple elm fir hawthorn willow bacon cream honey pie grape blackcurrant cake ha- foodstuff mama",
+        "Type": "Table",
+        "Num": "1"
+    },
+    {
+        "Code": "T8",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "15358",
+                "15399"
+            ]
+        ],
+        "Text": "Table 1: Output of word sense clustering.",
+        "RefType": "Spatial-Below",
+        "Type": "Table",
+        "Num": "1"
+    },
+    {
+        "Code": "T9",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "6107",
+                "6156"
+            ]
+        ],
+        "Text": "Figure 2: Local graph of the word wing of a graph",
+        "RefType": "Spatial-Below",
+        "Type": "Figure",
+        "Num": "2"
+    },
+    {
+        "Code": "T10",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "16579",
+                "16727"
+            ]
+        ],
+        "Text": "Preliminary observations show that the different neighbours in Table 1 can be used to indicate with great accuracy which of the senses is being used",
+        "RefType": "Direct",
+        "Type": "Table",
+        "Num": "1"
+    }
+]

@@ -1,0 +1,198 @@
+[
+    {
+        "Code": "T1",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "6726",
+                "6809"
+            ]
+        ],
+        "Text": "Figure 2 shows the labeled dependency graph of example (2), taken from Talbanken05.",
+        "RefType": "Direct",
+        "Type": "Figure",
+        "Num": "2"
+    },
+    {
+        "Code": "T2",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "7400",
+                "7665"
+            ]
+        ],
+        "Text": "(2004) makes use of a coding manual designed for a project studying genitive modification (Garretson et al., 2004) and presents an explicit annotation scheme for an _ Samma _ PO _ KP erfarenhet NN _ gjorde VV PT engelsmannen NN DD|HH imacy, illustrated by figure 1.",
+        "RefType": "Direct",
+        "Type": "Figure",
+        "Num": "1"
+    },
+    {
+        "Code": "T3",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "8675",
+                "8743"
+            ]
+        ],
+        "Text": "Figure 2: Dependency representation of example (2) from Talbanken05.",
+        "RefType": "Direct",
+        "Type": "Figure",
+        "Num": "2"
+    },
+    {
+        "Code": "T4",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "9046",
+                "9528"
+            ]
+        ],
+        "Text": "The annotation manual (Teleman, 1974) states that a markable should be tagged as human (H H) if it may be replaced by the interrogative pronoun vem who and be referred to by the personal pronouns han he or hon she .There are clear similarities between the anno tation for human reference found in Talbanken05 and the annotation scheme for animacy discussed HUM Other animate Inanimate ORG ANIM CONC NCONC TIME PLACE Figure 1: Animacy classification scheme (Zaenen et al., 2004)",
+        "RefType": "Direct",
+        "Type": "Figure",
+        "Num": "1"
+    },
+    {
+        "Code": "T5",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "26353",
+                "26372"
+            ]
+        ],
+        "Text": "(2004) in figure 1.",
+        "RefType": "Direct",
+        "Type": "Figure",
+        "Num": "1"
+    },
+    {
+        "Code": "T6",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "34218",
+                "34355"
+            ]
+        ],
+        "Text": "We see from Table 5, that the improvement in overall parse results is mainly in terms of dependency labeling, reflected in the LAS score.",
+        "RefType": "Direct",
+        "Type": "Table",
+        "Num": "5"
+    },
+    {
+        "Code": "T7",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "32792",
+                "33096"
+            ]
+        ],
+        "Text": "14http://www.cis.upenn.edu/ dbikel/software.html Gold standard Automatic UAS LAS UAS LAS Baseline 89.87 84.92 89.87 84.92 Anim 89.81 84.94 89.87 84.99 Table 5: Overall results in experiments with automatic features compared to gold standard features, expressed as unlabeled and labeled attachment scores.",
+        "RefType": "Direct",
+        "Type": "Table",
+        "Num": "5"
+    },
+    {
+        "Code": "T8",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "30073",
+                "30391"
+            ]
+        ],
+        "Text": "As column 5 (SVM) in table 2 shows, the classification results are very similar to the results obtained with MBL.12 We furthermore find a very similar set of errors, and in particular, we find that 51.0 % of the errors for the inanimate class are nouns with the gradient animacy properties presented in (9)-(13) above.",
+        "RefType": "Direct",
+        "Type": "Table",
+        "Num": "2"
+    },
+    {
+        "Code": "T9",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "26799",
+                "26868"
+            ]
+        ],
+        "Text": "Table 4 shows a confusion matrix for the classification of the nouns.",
+        "RefType": "Direct",
+        "Type": "Table",
+        "Num": "4"
+    },
+    {
+        "Code": "T10",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "25846",
+                "26058"
+            ]
+        ],
+        "Text": ">10 nouns (a) (b) classified as 222 125 (a) class animate 49 3390 (b) class inanimate Table 4: Confusion matrix for the MBLclassifier with a general feature space on the >10 data set on Talbanken05 nouns.",
+        "RefType": "Direct",
+        "Type": "Table",
+        "Num": "4"
+    },
+    {
+        "Code": "T11",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "24277",
+                "24462"
+            ]
+        ],
+        "Text": "With an absolute frequency threshold of 10, we obtain an accuracy of 95.4%, which constitutes a 50% reduction of error rate.Table 3 presents the experimental results rela tive to class.",
+        "RefType": "Direct",
+        "Type": "Table",
+        "Num": "3"
+    },
+    {
+        "Code": "T12",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "23477",
+                "23581"
+            ]
+        ],
+        "Text": "Column four (MBL) in table 2 shows the accuracy obtained with all features in the general feature space.",
+        "RefType": "Direct",
+        "Type": "Table",
+        "Num": "2"
+    },
+    {
+        "Code": "T13",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "22961",
+                "23078"
+            ]
+        ],
+        "Text": "Table 2: Accuracy for MBL and SVM classifiers on Talbanken05 nouns in accumulated frequency bins by Parole frequency.",
+        "RefType": "Direct",
+        "Type": "Table",
+        "Num": "2"
+    },
+    {
+        "Code": "T14",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "17147",
+                "17405"
+            ]
+        ],
+        "Text": "Table 1 presents an overview of the animacy data Clas s Ani mat e Type s Tok 6 4 4 ens cover ed 6 0 1 0 Inan imat e 691 0 3 4 8 2 2 Tota l 755 4 4 0 8 3 2 Table 1: The animacy data set from Talbanken05; number of noun lemmas (Types) and tokens in each class.",
+        "RefType": "Direct",
+        "Type": "Table",
+        "Num": "1"
+    }
+]

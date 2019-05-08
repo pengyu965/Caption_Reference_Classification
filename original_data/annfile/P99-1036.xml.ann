@@ -1,0 +1,180 @@
+T3	Reference 8465 8758	The probabilities P( &lt;U-t&gt;lwi_I) can be esti  mated from the relative frequencies in the training corpus whose infrequent words are replaced with their corresponding unknown word tags based on their part of speeches 2   Table 1 shows examples of word bigrams including unknown word tags.
+A7	RefType T3 Direct
+A8	Type T3 Table
+A9	Num T3 1
+T4	Reference 14559 14634	Table 2: Character type configuration of infrequent words in the EDR corpus
+A10	RefType T4 Direct
+A11	Type T4 Table
+A12	Num T4 2
+T5	Reference 14635 15042	Table 3: Examples of common character bigrams for each part of speech in the infrequent words pa rt of sp ee ch ch ar ac ter bi gr a m fre qu en cy no un nu m be r a dj e ct iv al v er b v er b ad je cti ve ad ve rb &lt; e o w &gt; &lt;b o w &gt; 1 S &quot; J &lt; e o w &gt; I t &lt; e o w &gt; L &lt; e o w &gt; &lt; e o w &gt; 13 43 4 8 4 3 2 7 2 1 3 69 63 resented all unknown words by one length model.
+A13	RefType T5 Direct
+A14	Type T5 Table
+A15	Num T5 3
+T6	Reference 16866 16980	Table 2 shows the distribution of character type sequences that constitute the infrequent words in the EDR corpus.
+A16	RefType T6 Direct
+A17	Type T6 Table
+A18	Num T6 2
+T7	Reference 15075 15209	Figure 2 shows the word length distribution of words consists of only kanji characters and words consists of only katakana characters.
+A19	RefType T7 Direct
+A20	Type T7 Figure
+A21	Num T7 2
+T8	Reference 15455 15519	Figure 1 is, in fact, a weighted sum of these two distributions.
+A22	RefType T8 Direct
+A23	Type T8 Figure
+A24	Num T8 1
+T9	Reference 18483 18604	Table 3 shows examples of common char  acter bigrams for each part of speech in the infre  quent words of the EDR corpus.
+A25	RefType T9 Direct
+A26	Type T9 Table
+A27	Num T9 3
+T10	Reference 18638 18732	The first example in Table 3 shows that words ending in &apos; -&apos; are likely to be nouns.
+A28	RefType T10 Direct
+A29	Type T10 Table
+A30	Num T10 3
+T11	Reference 24605 24696	Table 4 shows the number of sentences, words, and characters of the training and test sets.
+A31	RefType T11 Direct
+A32	Type T11 Table
+A33	Num T11 4
+T12	Reference 26424 26520	Table 5 shows the cross entropy per word and char  acter perplexity of three unknown word model.
+A34	RefType T12 Direct
+A35	Type T12 Table
+A36	Num T12 5
+T13	Reference 27403 27525	Table 5 shows that by changing the word spelling model from zerogram to bigram, character perplex  ity is greatly reduced.
+A37	RefType T13 Direct
+A38	Type T13 Table
+A39	Num T13 5
+T14	Reference 27948 28046	Figure 3 shows the part of speech prediction accu  racy of two unknown word model without context.
+A40	RefType T14 Direct
+A41	Type T14 Figure
+A42	Num T14 3
+T15	Reference 29261 29349	As Figure 3 shows, word type information improves the prediction accuracy significantly.
+A43	RefType T15 Direct
+A44	Type T15 Figure
+A45	Num T15 3
+T16	Reference 31032 31121	Table 6 shows the word segmentation accuracy of four unknown word models over test set-2.
+A46	RefType T16 Direct
+A47	Type T16 Table
+A48	Num T16 6
+T17	Reference 31697 31723	Table 7 shows the results.
+A49	RefType T17 Direct
+A50	Type T17 Table
+A51	Num T17 7
+T18	Reference 32405 32457	Table 8 shows the tagging accuracy of unknown words.
+A52	RefType T18 Direct
+A53	Type T18 Table
+A54	Num T18 8
+T19	Reference 32919 33074	Table 8 shows that by using word type and part of speech information, recall is improved from 28.1% to 40.6% and precision is improved from 57.3% to 64.1%.
+A55	RefType T19 Direct
+A56	Type T19 Table
+A57	Num T19 8
+T20	Reference 33483 33554	Table 8 shows that tagging precision is im  proved from 88.2% to 96.6%.
+A58	RefType T20 Direct
+A59	Type T20 Table
+A60	Num T20 8
+T21	Reference 36281 36456	Table 8: Part of speech tagging accuracy of unknown words (the last column represents the percentage of correctly tagged unknown words in the correctly segmented unknown words
+A61	RefType T21 Direct
+A62	Type T21 Table
+A63	Num T21 8
+T22	Reference 13998 14217	Figure 1shows the word length distribution of in  frequent words in the EDR corpus, and the estimate of word length distribution by Equation (6) whose parameter (.A = 4.8) is the average word length of infrequent words.
+A64	RefType T22 Direct
+A65	Type T22 Figure
+A66	Num T22 1
+T23	Reference 13780 13965	Figure 2: Word length distribution of kanji words and katakana words length model does not reflect the variation of the word length distribution resulting from the Japanese orthography.
+A67	RefType T23 Direct
+A68	Type T23 Figure
+A69	Num T23 2
+T24	Reference 11908 12000	Figure 1: Word length distribution of unknown words and its estimate by Poisson distribution
+A70	RefType T24 Direct
+A71	Type T24 Figure
+A72	Num T24 1
+T25	Reference 11146 11239	This is because the lefthand side of Equation (7) represents the probability of the string c1
+A73	RefType T25 Direct
+A74	Type T25 Equation
+A75	Num T25 7
+T26	Reference 11001 11113	Probabilities We find that Equation (7) assigns too little proba  bilities to long words (5 or more characters).
+A76	RefType T26 Direct
+A77	Type T26 Equation
+A78	Num T26 7
+T1	Reference 4646 4717	Table 1: Examples of word bigrams including un  known word tags example
+A1	RefType T1 Direct
+A2	Type T1 Table
+A3	Num T1 1
+T2	Reference 4929 4988	As Table 1 shows, word bigrams whose infrequent word bigram
+A4	RefType T2 Direct
+A5	Type T2 Table
+A6	Num T2 1
+T27	Reference 21074 21167	The second factor of Equation (13) is estimated from the Poisson distribution whose parameter
+A79	RefType T27 Direct
+A80	Type T27 Equation
+A81	Num T27 13
+T28	Reference 21648 21801	To compute the third factor of Equation (13), we have to estimate the character bigram probabilities that are classified by word type and part of speech.
+A82	RefType T28 Direct
+A83	Type T28 Equation
+A84	Num T28 13
+T29	Reference 26554 26661	The first model is Equation (5), which is the combina . tion of Poisson distribution and character zerogram
+A85	RefType T29 Direct
+A86	Type T29 Equation
+A87	Num T29 5
+T30	Reference 26883 26996	The third model is Equation (11), which is a set of word models trained for each word type (WT +Poisson+ bigram).
+A88	RefType T30 Direct
+A89	Type T30 Equation
+A90	Num T30 11
+T31	Reference 26717 26812	The second model is the combination of Poisson distribution (Equation (6)) and character bigram
+A91	RefType T31 Direct
+A92	Type T31 Equation
+A93	Num T31 6
+T32	Reference 26813 26849	(Equation (7)) (Poisson + hi  gram).
+A94	RefType T32 Direct
+A95	Type T32 Equation
+A96	Num T32 7
+T33	Reference 28186 28288	Equation (12), which is a set of word models trained for each part of speech (POS + Poisson + bigram).
+A97	RefType T33 Direct
+A98	Type T33 Equation
+A99	Num T33 12
+T34	Reference 28323 28401	The second model is Equa  tion (13), which is a set of word models trained for
+A100	RefType T34 Direct
+A101	Type T34 Equation
+A102	Num T34 13
+T35	Reference 35436 35569	However, the spelling model, especially the character bigrams in Equation (17) are hard to es  timate because of the data sparseness.
+A103	RefType T35 Direct
+A104	Type T35 Equation
+A105	Num T35 17
+T36	Reference 33186 33204	(prec2 in Table 8)
+A106	RefType T36 Direct
+A107	Type T36 Table
+A108	Num T36 8
+T37	Reference 20227 20423	Table 4: The amount of training and test sets The first factor in the righthand side of Equa  tion (13) is estimated from the relative frequency of the corresponding events in the training corpus.
+A109	RefType T37 Direct
+A110	Type T37 Table
+A111	Num T37 4
+T38	Reference 25261 25523	As for the unknown word model, word-based char  acter bigrams are computed from the words with Table 5: Cross entropy (CE) per word and character perplexity (PP) of each unknown word model Part of Speech Estimation Accuracy 0.95 0.9 frequency one (49,653 words).
+A112	RefType T38 Direct
+A113	Type T38 Table
+A114	Num T38 5
+T39	Reference 30245 30499	We set Table 6: Word segmentation accuracy of all words r e c pr ec F Po iss on +b igr a m W T +P oi ss on +b igr a m P O S + Po iss on +b igr a m P O S + W T + Po iss on + bi gr a m 94 .5 94 .4 94 .4 94 .6 93 .1 93 .8 93 .6 93 .7 93 .8 94 .1 94 .0 94 .1
+A115	RefType T39 Direct
+A116	Type T39 Table
+A117	Num T39 6
+T40	Reference 30500 30716	Table 7: Word segmentation accuracy of unknown words r e c pr ec F Po iss on + bi gr a m W T + P oi ss o n + b i g r a m P O S + P o is s o n + b i g r a m P O S + W T + P o is s o n + bi g ra m 31 .8 45 .5 39 .7 42.
+A118	RefType T40 Direct
+A119	Type T40 Table
+A120	Num T40 7
+T41	Reference 28485 28597	Figure 3: Accuracy of part of speech estimation each part of speech and word type (POS + WT + Poisson + bigram).
+A121	RefType T41 Direct
+A122	Type T41 Figure
+A123	Num T41 3
+T42	Reference 13148 13238	Throughout in this paper, we used Equation (9) to compute the word spelling probabilities.
+A124	RefType T42 Direct
+A125	Type T42 Equation
+A126	Num T42 9
+T43	Reference 13337 13486	Length Distribution In word segmentation, one of the major problems of the word length model of Equation (6) is the decom  position of unknown words.
+A127	RefType T43 Direct
+A128	Type T43 Equation
+A129	Num T43 6
+T44	Reference 19146 19488	By introducing the distinction of word type to the model of Equation(12),we can derive a more sophis  ticated unknown word model that reflects both word 3 When a Chinese character is used to represent a seman  tically equivalent Japanese verb, its root is written in the Chinese character and its inflectional suffix is written in hi  ragana.
+A130	RefType T44 Direct
+A131	Type T44 Equation
+A132	Num T44 12
+T45	Reference 20321 20423	tion (13) is estimated from the relative frequency of the corresponding events in the training corpus.
+A133	RefType T45 Direct
+A134	Type T45 Equation
+A135	Num T45 13

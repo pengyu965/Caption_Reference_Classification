@@ -1,0 +1,16 @@
+T1	Reference 8359 8451	Figure 1 Architecture of the statistical translation approach based on Bayes  decision rule.
+A1	RefType T1 Direct
+A2	Type T1 Figure
+A3	Num T1 1
+T2	Reference 9738 9870	In general, as shown in this figure, there may be additional transformations to make the translation task simpler for the algorithm.
+A4	RefType T2 Direct
+A5	Type T2 Figure
+A6	Num T2 1
+T3	Reference 9614 9705	The overall architecture of the statistical translation approach is summarized in Figure 1.
+A7	RefType T3 Direct
+A8	Type T3 Figure
+A9	Num T3 1
+T4	Reference 19318 19326	Figure 2
+A10	RefType T4 Direct
+A11	Type T4 Figure
+A12	Num T4 2

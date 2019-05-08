@@ -1,0 +1,818 @@
+[
+    {
+        "Text": "\n\t\n\t\tAt present, adapting an Information Extraction system to new topics is an expensive and slow process, requiring some knowledge engineering for each new topic.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "We propose a new paradigm of Information Extraction which operates 'on demand' in response to a user's query.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "On-demand Information Extraction (ODIE) aims to completely eliminate the customization effort.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Given a user s query, the system will automatically create patterns to extract salient relations in the text of the topic, and build tables from the extracted information using paraphrase discovery technology.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "It relies on recent advances in pattern discovery, paraphrase discovery, and extended named entity tagging.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "We report on experimental results in which the system created useful tables for many topics, demonstrating the feasibility of this approach.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Most of the world s information is recorded, passed down, and transmitted between people in text form.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Implicit in most types of text are regularities of information structure - events which are reported many times, about different individuals, in different forms, such as layoffs or mergers and acquisitions in news articles.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The goal of information extraction (IE) is to extract such information: to make these regular structures explicit, in forms such as tabular databases.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Once the information structures are explicit, they can be processed in many ways: to mine information, to search for specific information, to generate graphical displays and other summaries.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "However, at present, a great deal of knowledge for automatic Information Extraction must be coded by hand to move a system to a new topic.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "For example, at the later MUC evaluations, system developers spent one month for the knowledge engineering to customize the system to the given test topic.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Research over the last decade has shown how some of this knowledge can be obtained from annotated corpora, but this still requires a large amount of annotation in preparation for a new task.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Improving portability - being able to adapt to a new topic with minimal effort   is necessary to make Information Extraction technology useful for real users and, we be lieve, lead to a breakthrough for the application of the technology.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "We propose  On-demand information extraction (ODIE) : a system which automatically identifies the most salient structures and extracts the information on the topic the user demands.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "This new IE paradigm becomes feasible due to recent developments in machine learning for NLP, in particular unsupervised learning methods, and it is created on top of a range of basic language analysis tools, including POS taggers, dependency analyzers, and extended Named Entity taggers.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The basic functionality of the system is the following.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The user types a query / topic description in keywords (for example,  merge  or  merger ).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Then tables will be created automatically in several minutes, rather than in a month of human labor.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "These tables are expected to show information about the salient relations for the topic.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "There are six major compo nents in the system.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "We will briefly describe each component and how the data is processed; then, in the next section, four important components will be described in more detail.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "731 Proceedings of the COLING/ACL 2006 Main Conference Poster Sessions, pages 731 738, Sydney, July 2006.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Qc 2006 Association for Computational Linguistics Description of task (query) 1) Relevant documents IR system 6) Extended NE tagger 5) Language Analyzer Patterns 2) Pattern discovery 3) Paraphrase discovery Pattern sets 4) Table construction P a r a p h r a s e Know ledge base Table          \n\t\t\tSystem overview 1) IR system: Based on the query given by the user, it retrieves relevant documents from the document database.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "We used a simple TF/IDF IR system we developed.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "2) Pattern discovery: First, the texts in the retrieved documents are analyzed using a POS tagger, a dependency analyzer and an Extended NE (Named Entity) tagger, which will be described later.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Then this component extracts sub-trees of dependency trees which are relatively frequent in the retrieved documents compared to the entire corpus.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "It counts the frequencies in the retrieved texts of all sub- trees with more than a certain number of nodes and uses TF/IDF methods to score them.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The top-ranking sub-trees which contain NEs will be called patterns, which are expected to indicate salient relationships of the topic and will be used in the later components.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "3) Paraphrase discovery: In order to find semantic relationships between patterns, i.e.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "to find patterns which should be used to build the same table, we use paraphrase discovery techniques.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The paraphrase discovery was conducted off- line and created a paraphrase knowledge base.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "4) Table construction: In this component, the patterns created in (2) are linked based on the paraphrase knowledge base created by (3), producing sets of patterns which are semantically equivalent.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Once the sets of patterns are created, these patterns are applied to the documents retrieved by the IR system (1).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The matched patterns pull out the entity instances and these entities are aligned to build the final tables.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "5) Language analyzers: We use a POS tagger and a dependency analyzer to analyze the text.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The analyzed texts are used in pattern discovery and paraphrase discovery.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "6) Extended NE tagger: Most of the participants in events are likely to be Named Entities.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "However, the traditional NE categories are not sufficient to cover most participants of various events.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "For example, the standard MUC s 7 NE categories (i.e.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "person, location, organization, percent, money, time and date) miss product names (e.g.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Windows XP, Boeing 747),event names (Olympics, World War II), nu merical expressions other than monetary expressions, etc.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "We used the Extended NE categories with 140 categories and a tagger based on the categories.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "In this section, four important components will be described in detail.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Prior work related to each component is explained and the techniques used in our system are presented.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "3.1 Pattern Discovery.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The pattern discovery component is responsible for discovering salient patterns for the topic.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The patterns will be extracted from the documents relevant to the topic which are gathered by an IR system.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Several unsupervised pattern discovery techniques have been proposed, e.g.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "(Riloff 96), (Agichtein and Gravano 00) and (Yangarber et al.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "00).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Most recently we (Sudo et al.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "03) proposed a method which is triggered by a user query to discover important patterns fully automatically.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "In this work, three different representation models for IE patterns were compared, and the sub-tree model was found more effective compared to the predicate-argument model and the chain model.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "In the sub-tree model, any connected part of a dependency tree for a sentence can be considered as a pattern.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "As it counts all possible sub-trees from all sentences in the retrieved documents, the computation is very expensive.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "This problem was solved by requiring that the sub-trees contain a predicate (verb) and restricting the number of nodes.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "It was implemented using the sub-tree counting algorithm proposed by (Abe et al.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "02).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The patterns are scored based on the relative frequency of the pattern in the retrieved documents (fr) and in the entire corpus (fall).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The formula uses the TF/IDF idea (Formula 1).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The system ignores very frequent patterns, as those patterns are so common that they are not likely to be important to any particular topic, and also very rare patterns, as most of those patterns are noise.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "case words.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "(COM means  company  and MNY means  money ) <COM1> <agree to buy> <COM2> <for MNY> <COM1> <will acquire> <COM2> <for MNY> <a MNY merger> <of COM1> <and COM2>          \n\t\t\tPattern examples 3.2 Paraphrase Discovery.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The role of the paraphrase discovery component is to link the patterns which mean the same thing for the task.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Recently there has been a growing amount of research on automatic paraphrase discovery.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "For example, (Barzilay 01) proposed a method to extract paraphrases from parallel translations derived from one original document.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "We proposed to find paraphrases from multiple newspapers reporting the same event, using shared Named Entities to align the phrases (Shinyama et al.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "02).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "We also proposed a method to find paraphrases in the context of two Named Entity instances in a large un-annotated corpus (Sekine 05).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The phrases connecting two NEs are grouped based on two types of evidence.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "One is the identity of the NE instance pairs, as multiple instances of the same NE pair (e.g.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Yahoo!",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "and Overture) are likely to refer to the same relationship (e.g.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "acquisition).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The other type of evidence is the keywords in the phrase.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "If we gather a lot of phrases connecting NE's of the same two NE types (e.g.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "company and company), we can cluster score(t : subtree) = f r (t) log( f all (t) + c) (1) these phrases and find some typical expressions (e.g.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "merge, acquisition, buy).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The phrases are clustered based on these two types of evidence The scoring function sorts all patterns which contain at least one extended NE and the top 100 patterns are selected for later processing.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Chunks are shown in brackets and extended NEs are shown in upper and sets of paraphrases are created.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Basically, we used the paraphrases found by the approach mentioned above.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Note that there is an alternative method of paraphrase discovery, using a hand crafted synonym dictionary like WordNet (WordNet Home page).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "However, we found that the coverage of WordNet for a particular topic is not sufficient.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": ".",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Furthermore, even if these words are found as synonyms, there is the additional task of linking expressions.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "For example, if one of the expressions is  reject the merger , it shouldn t be a paraphrase of  acquire .",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "3.3 Extended NE tagging.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Named Entities (NE) were first introduced by the MUC evaluations (Grishman and Sundheim 96).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "As the MUCs concentrated on business and mili set using discovered paraphrase knowledge.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Once the pattern sets are built, a table is created for each pattern set.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "We gather all NE instances matched by one of the patterns in the set.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "These instances are put in the same column of the table for the pattern set.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "When creating tables, we impose some restrictions in order to reduce the number of meaningless tables and to gather the same relations in one table.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "We require columns to have at least three filled instances and delete tables with fewer than three rows.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "These thresholds are empirically determined using training data.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Newspaper Pattern Set ANrtiecwle1s Paper * COM1 agree to buy tary topics, the important entity types were limited to a few classes of names and numerical expressions.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "However, along with the development of Information Extraction and Question Answering technologies, people realized that there should be more and finer categories for NE.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "We proposed one of those extended NE sets (Sekine 02).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "It includes 140 hierarchical categories.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "For example, ABC agreed to buy CDE for $1M  .",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Article 2 a $20M merger of FGH and IJK Constructed table COM2 for MNY * COM1 will acquire COM2 for MNY * a MNY merger of COM1 and COM2 the categories include Company, Company group, Military, Government, Political party, and International Organization as subcategories of Organization.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Also, new categories are introduced such as Vehicle, Food, Award, Religion, Language, Offense, Art and so on as subcategories of Product, as well as Event, Natural Object, Vocation, Unit, Weight, Temperature, Number of people and so on.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "We used a rule-based tagger developed to tag the 140 categories for this experiment.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Note that, in the proposed method, the slots of the final table will be filled in only with instances of these extended Named Entities.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Most common nouns, verbs or sentences can t be entries in the table.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "This is obviously a limitation of the proposed method; however, as the categories are designed to provide good coverage for a factoid type QA system, most interesting types of entities are covered by the categories.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "3.4 Table Construction.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Basically the table construction is done by applying the discovered patterns to the original corpus.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The discovered patterns are grouped into pattern Article Company Money 1 ABC, CDE $1M.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "2 FGH, IJK $20M.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Table Construction\n\t\n\t\n\t\t\t4.1 Data and Processing.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "We conducted the experiments using the 1995 New York Times as the corpus.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The queries used for system development and threshold tuning were created by the authors, while queries based on the set of event types in the ACE extraction evaluations were used for testing.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "A total of 31 test queries were used; we discarded several queries which were ambiguous or uncertain.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The test queries were derived from the example sentences for each event type in the ACE guidelines.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Examples of queries are shown in the Appendix.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "At the moment, the whole process takes about 15 minutes on average for each query on a Pentium 2.80GHz processor running Linux.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The corpus was analyzed in advance by a POS tagger, NE tagger and dependency analyzer.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The processing and counting of sub-trees takes the majority (more than 90%) of the time.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "We believe we can easily make it faster by programming techniques, for example, using distributed computing.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "4.2 Result and Evaluation.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Out of 31 queries, the system is unable to build any tables for 11 queries.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The major reason is that the IR component can t find enough newspaper articles on the topic.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "It retrieved only a few articles for topics like  born ,  divorce  or  injure  from The New York Times.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "For the moment, we will focus on the 20 queries for which tables were built.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The Appendix shows some examples of queries and the generated tables.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "In total, 127 tables are created for the 20 topics, with one to thirteen tables for each topic.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The number of columns in a table ranges from 2 to 10, including the document ID column, and the average number of columns is 3.0.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The number of rows in a table range from 3 to 125, and the average number of rows is 16.9.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The created tables are usually not fully filled; the average rate is 20.0%.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "In order to measure the potential and the usefulness of the proposed method, we evaluate the result based on three measures: usefulness, argument role coverage, and correctness.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "For the usefulness evaluation, we manually reviewed the tables to determine whether a useful table is included or not.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "This is inevitably subjective, as the user does not specify in advance what table rows and columns are expected.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "We asked a subject to judge usefulness in three grades; A) very useful   for the query, many people might want to use this table for the further investigation of the topic, B) useful   at least, for some purpose, some people might want to use this table for further investigation and C) not useful   no one will be interested in using this table for further investigation.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The argument role coverage measures the percentage of the roles specified for each ACE event type which appeared as a column in one or more of the created tables for that event type.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The correctness was measured based on whether a row of a table reflects the correct information.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "As it is impossible to evaluate all the data, the evaluation data are selected randomly.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Out of 20 topics, two topics are judged very useful and twelve are judged useful.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The very useful top ics are  fine  (Q4 in the appendix) and  acquit  (not shown in the appendix).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Compared to the results in the  useful  category, the tables for these two topics have more slots filled and the NE types of the fillers have fewer mistakes.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The topics in the  not useful  category are  appeal ,  execute ,  fired ,  pardon ,  release  and  trial .",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "These are again topics with very few relevant articles.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "By increasing the corpus size or improving the IR component, we may be able to improve the performance for these topics.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The majority category,  useful , has 12 topics.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Five of them can be found in the appendix (all those besides Q4).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "For these topics, the number of relevant articles in the corpus is relatively high and interesting relations are found.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The examples in the appendix are selected from larger tables with many columns.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Although there are columns that cannot be filled for every event instance, we found that the more columns that are filled in, the more useful and interesting the information is.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Usefulness evaluation result Ev al ua tio n N u m b e r o f t o p i c s Ve ry us ef ul 2 Us ef ul 1 2 N ot us ef ul 6 For the 14  very useful  and  useful  topics, the role coverage was measured.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Some of the roles in the ACE task can be filled by different types of Named Entities, for example, the  defendant  of a  sentence  event can be a Person, Organization or GPE.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "However, the system creates tables based on NE types; e.g.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "for the  sentence  event, a Person column is created, in which most of the fillers are defendants.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "In such cases, we regard the column as covering the role.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Out of 63 roles for the 14 event types, 38 are found in the created tables, for a role coverage of 60.3%.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Note that, by lowering the thresholds, the coverage can be increased to as much as 90% (some roles can t be found because of Extended NE limitations or the rare appearance of roles) but with some sacrifice of precision.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "We randomly select 100 table rows among the topics which were judged  very useful  or  useful , and determine the correctness of the information by reading the newspaper articles the information was extracted from.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Out of 100 rows, 84 rows have correct information in all slots.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "4 rows have some incorrect information in some of the columns, and 12 contain wrong information.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Most errors are due to NE tagging errors (11 NE errors out of 16 errors).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "These errors include instances of people which are tagged as other categories, and so on.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Also, by looking at the actual articles, we found that co-reference resolution could help to fill in more information.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Because the important information is repeatedly mentioned in newspaper articles, referential expressions are often used.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "For example, in a sentence  In 1968 he was elected mayor of Indianapolis.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": ", we could not extract  he  at the moment.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "We plan to add coreference resolution in the near future.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Other sources of error include:   The role of the entity is confused, i.e.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "victim and murderer   Different kinds of events are found in one table, e.g., the victory of Jack Nicklaus was found in first proposed by (Aone and RamosSantacruz 00) and the ACE evaluations of event detection follow this line (ACE Home Page).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "An unsupervised learning method has been applied to a more restricted IE task, Relation Discovery.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "(Hasegawa et al.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "2004) used large corpora and an Extended Named Entity tagger to find novel relations and their participants.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "However, the results are limited to a pair of participants and because of the nature of the procedure, the discovered relations are static relations like a country and its presidents rather than events.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Topic-oriented summarization, currently pursued by the DUC evaluations (DUC Home Page), is also closely related.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The systems are trying to create summaries based on the specified topic for a manually prepared set of documents.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "In this case, if the result is suitable to present in table format, it can be handled by ODIE.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Our previous study (Se the political election use terms like  win ) query (as both of them kine and Nobata 03) found that about one third of randomly constructed similar newspaper article   An unrelated but often collocate entity was included.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "For example, Year period expressions are found in  fine  events, as there are many expressions like  He was sentenced 3 years and fined $1,000 .",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Correctness evaluation result Ev al ua tio n N u m b e r o f r o w s Co rre ct 8 4 Pa rti all y co rre ct 4 In co rre ct 1 2\n\t\n\t\n\t\t\tAs far as the authors know, there is no system similar to ODIE.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Several methods have been proposed to produce IE patterns automatically to facilitate IE knowledge creation, as is described in Section 3.1.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "But those are not targeting the fully automatic creation of a complete IE system for a new topic.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "There exists another strategy to extend the range of IE systems.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "It involves trying to cover a wide variety of topics with a large inventory of relations and events.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "It is not certain if there are only a limited number of topics in the world, but there are a limited number of high-interest topics, so this may be a reasonable solution from an engineering point of view.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "This line of research was clusters are well-suited to be presented in table format, and another one third of the clusters can be acceptably expressed in table format.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "This suggests there is a big potential where an ODIE-type system can be beneficial.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "We demonstrated a new paradigm of Information Extraction technology and showed the potential of this method.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "However, there are problems to be solved to advance the technology.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "One of them is the coverage of the extracted information.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Although we have created useful tables for some topics, there are event instances which are not found.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "This problem is mostly due to the inadequate performance of the language analyzers (information retrieval component, dependency analyzer or Extended NE tagger) and the lack of a coreference analyzer.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Even though there are possible applications with limited coverage, it will be essential to enhance these components and add coreference in order to increase coverage.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Also, there are basic domain limitations.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "We made the system  on-demand  for any topic, but currently only within regular news domains.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "As configured, the system would not work on other domains such as a medical, legal, or patent domain, mainly due to the design of the extended NE hierarchy.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "While specific hierarchies could be incorporated for new domains, it will also be desirable to integrate bootstrapping techniques for rapid incremental additions to the hierarchy.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Also at the moment, table column labels are simply Extended NE categories, and do not indicate the role.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "We would like to investigate this problem in the future.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "In this paper, we proposed  On-demand Information Extraction (ODIE) .",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "It is a system which automatically identifies the most salient structures and extracts the information on whatever topic the user demands.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "It relies on recent advances in NLP technologies; unsupervised learning and several advanced NLP analyzers.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Although it is at a preliminary stage, we developed a prototype system which has created useful tables for many topics and demonstrates the feasibility of this approach.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "This research was supported in part by the Defense Advanced Research Projects Agency under Contract HR001106-C-0023 and by the National Science Foundation under Grant IIS0325657.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "This paper does not necessarily reflect the position of the U.S. Government.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "We would like to thank Prof. Ralph Grishman, Dr. Kiyoshi Sudo, Dr. Chikashi Nobata, Mr. Takaaki Hasegawa, Mr. Koji Murakami and Mr. Yusuke Shinyama for useful comments, discussion.",
+        "Entity": "Normal"
+    }
+]

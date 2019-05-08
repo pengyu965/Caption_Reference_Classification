@@ -1,0 +1,126 @@
+[
+    {
+        "Code": "T1",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "12234",
+                "12266"
+            ]
+        ],
+        "Text": "Table 1: Scores for CityU corpus",
+        "RefType": "Direct",
+        "Type": "Table",
+        "Num": "1"
+    },
+    {
+        "Code": "T2",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "12267",
+                "12298"
+            ]
+        ],
+        "Text": "Table 2: Scores for MSRA corpus",
+        "RefType": "Direct",
+        "Type": "Table",
+        "Num": "2"
+    },
+    {
+        "Code": "T3",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "12299",
+                "12499"
+            ]
+        ],
+        "Text": "Table 3: Scores for UPUC corpusFrom those tables, we can see that a simple ma jority voting algorithm produces accuracy that is higher than each individual system and reasonably high F-scores overall.",
+        "RefType": "Direct",
+        "Type": "Table",
+        "Num": "3"
+    },
+    {
+        "Code": "T4",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "12093",
+                "12100"
+            ]
+        ],
+        "Text": "Table 1",
+        "RefType": "Direct",
+        "Type": "Table",
+        "Num": "1"
+    },
+    {
+        "Code": "T5",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "12101",
+                "12102",
+                "2"
+            ],
+            [
+                "12101",
+                "12102",
+                "2"
+            ]
+        ],
+        "Text": "2",
+        "RefType": "Direct",
+        "Type": "Table",
+        "Num": "2"
+    },
+    {
+        "Code": "T6",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "12103",
+                "12104",
+                "3"
+            ],
+            [
+                "12103",
+                "12104",
+                "3"
+            ]
+        ],
+        "Text": "3",
+        "RefType": "Direct",
+        "Type": "Table",
+        "Num": "3"
+    },
+    {
+        "Code": "T7",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "2228",
+                "2429"
+            ]
+        ],
+        "Text": "In our segmentation system, a hybrid strategy is applied (Figure 1): First, forward maximum matching (Chen and Liu, 1992), which is a dictionary-based method, is used to generate a segmentation result.",
+        "RefType": "Direct",
+        "Type": "Figure",
+        "Num": "1"
+    },
+    {
+        "Code": "T8",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "2461",
+                "2742"
+            ]
+        ],
+        "Text": "Also, the CRF model using maximum subword-based tagging (Zhang et al., 2006) and the CRF model using minimum subword-based tagging, both of which are statistical methods, are used individually to solve the Figure 1: Outline of the segmentation process 2.1 Forward Maximum Matching.",
+        "RefType": "Direct",
+        "Type": "Figure",
+        "Num": "1"
+    }
+]

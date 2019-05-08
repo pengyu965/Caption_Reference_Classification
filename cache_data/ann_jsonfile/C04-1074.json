@@ -1,0 +1,156 @@
+[
+    {
+        "Code": "T1",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "7207",
+                "7394"
+            ]
+        ],
+        "Text": "Table 1 lists both the success rate maximally achievable (broken down according to different types of pronouns) and the average number of antecedents remaining after applying each factor.",
+        "RefType": "Direct",
+        "Type": "Table",
+        "Num": "1"
+    },
+    {
+        "Code": "T2",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "8484",
+                "8508"
+            ]
+        ],
+        "Text": "See Table 1 for details.",
+        "RefType": "Direct",
+        "Type": "Table",
+        "Num": "1"
+    },
+    {
+        "Code": "T3",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "9206",
+                "9215"
+            ]
+        ],
+        "Text": "Table 1).",
+        "RefType": "Direct",
+        "Type": "Table",
+        "Num": "1"
+    },
+    {
+        "Code": "T4",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "12812",
+                "12973"
+            ]
+        ],
+        "Text": "Table 1: Effect of Factors antecedent is found in the previous context, subsequent sentences are inspected (cataphora), also ordered by proximity to the pronoun.",
+        "RefType": "Direct",
+        "Type": "Table",
+        "Num": "1"
+    },
+    {
+        "Code": "T5",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "13874",
+                "14095"
+            ]
+        ],
+        "Text": "Strube (1998) s centeri ng appro ach (whos e senten ce orderi ng is designate d as SR2 in Table 2) also deals with and even prefer s intrase ntenti al anaph ora, which raises the upper limit to a more accept able 80.2% .",
+        "RefType": "Direct",
+        "Type": "Table",
+        "Num": "2"
+    },
+    {
+        "Code": "T6",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "14322",
+                "14468"
+            ]
+        ],
+        "Text": "Figure 1 shows the absolute frequencies of sen tence recency values when only the most recent antecedent (in the order just stated) is considered.",
+        "RefType": "Direct",
+        "Type": "Figure",
+        "Num": "1"
+    },
+    {
+        "Code": "T7",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "14834",
+                "14978"
+            ]
+        ],
+        "Text": "Table 1 underscores the virtues of Sentence Recency: In the most recent sentence with antecedents satisfying the filters, there are on aver ble.",
+        "RefType": "Direct",
+        "Type": "Table",
+        "Num": "1"
+    },
+    {
+        "Code": "T8",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "16335",
+                "16401"
+            ]
+        ],
+        "Text": "Table 1 shows the effect of the role-based preference on our data.",
+        "RefType": "Direct",
+        "Type": "Table",
+        "Num": "1"
+    },
+    {
+        "Code": "T9",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "19466",
+                "19585"
+            ]
+        ],
+        "Text": "A comparison of the lines for grammatical roles and for surface order in Table 1 shows that the same is true in German.",
+        "RefType": "Direct",
+        "Type": "Table",
+        "Num": "1"
+    },
+    {
+        "Code": "T10",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "25192",
+                "25233"
+            ]
+        ],
+        "Text": "Evaluation results are listed in Table 2.",
+        "RefType": "Direct",
+        "Type": "Table",
+        "Num": "2"
+    },
+    {
+        "Code": "T11",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "30110",
+                "30179"
+            ]
+        ],
+        "Text": "Table 2: Performance of Algorithms switch under different input data.",
+        "RefType": "Direct",
+        "Type": "Table",
+        "Num": "2"
+    }
+]

@@ -1,0 +1,108 @@
+T1	Reference 35806 35888	These semantic features Figure 8: Examples of the MT outputs with and without SRFs
+A1	RefType T1 Direct
+A2	Type T1 Figure
+A3	Num T1 8
+T2	Reference 35332 35456	To illustrate how SRF impacts the translation results, Figure 8 gives 3 examples of the MT outputs with and without the SRFs
+A4	RefType T2 Direct
+A5	Type T2 Figure
+A6	Num T2 8
+T3	Reference 35146 35298	Table 2 shows the manual evaluation results based on the entire test set, and the improvement from SRF is significant at p &lt; 0.005 based on a t-test.
+A7	RefType T3 Direct
+A8	Type T3 Table
+A9	Num T3 2
+T4	Reference 31604 31657	The performance of these systems is shown in Table 1.
+A10	RefType T4 Direct
+A11	Type T4 Table
+A12	Num T4 1
+T5	Reference 30400 30547	The model 1 The total 74,597 sentence pairs used in experiments are those in the FBIS corpus whose English part can be parsed using Charniak (2000)
+A13	RefType T5 Direct
+A14	Type T5 Other
+A15	Num T5 5
+T6	Reference 23572 23679	Figure 6: EM Algorithm For Estimating TTS Templates and Semantic Features framework (May and Knight, 2007).
+A16	RefType T6 Direct
+A17	Type T6 Figure
+A18	Num T6 6
+T7	Reference 21185 21282	Figure 4 shows an example of calculating the target side SRS based on a complicated TTS template.
+A19	RefType T7 Direct
+A20	Type T7 Figure
+A21	Num T7 4
+T8	Reference 18906 18932	See Figure 3 for examples.
+A22	RefType T8 Direct
+A23	Type T8 Figure
+A24	Num T8 3
+T9	Reference 19202 19302	where N is role features when combining two children states, and ex amples can be found in Figure 3.
+A25	RefType T9 Direct
+A26	Type T9 Figure
+A27	Num T9 3
+T10	Reference 17574 17705	Figure 4: An example showing how to compute the target side position of a semantic role by using the median of its aligning points.
+A28	RefType T10 Direct
+A29	Type T10 Figure
+A30	Num T10 4
+T11	Reference 18021 18090	Figure 5 shows the decoding algorithm incorporating the SRR features.
+A31	RefType T11 Direct
+A32	Type T11 Figure
+A33	Num T11 5
+T12	Reference 15872 15962	Figure 3: An example showing the combination of the semantic role sequences of the states.
+A34	RefType T12 Direct
+A35	Type T12 Figure
+A36	Num T12 3
+T13	Reference 15332 15460	To simplify the description, we assume in Figure 2 that a bigram language model is used and all the TTS templates are binarized.
+A37	RefType T13 Direct
+A38	Type T13 Figure
+A39	Num T13 2
+T14	Reference 12042 12166	Figure 1: Examples of the semantic role features assuming that the semantic roles have been tagged for the source sentences.
+A40	RefType T14 Direct
+A41	Type T14 Figure
+A42	Num T14 1
+T15	Reference 11427 11486	Examples of the deletion features can be found in Figure 1.
+A43	RefType T15 Direct
+A44	Type T15 Figure
+A45	Num T15 1
+T16	Reference 10730 10773	Figure 1 shows examples of the feature SRR.
+A46	RefType T16 Direct
+A47	Type T16 Figure
+A48	Num T16 1
+T17	Reference 33284 33516	Table 2: Distribution of the sentences where the semantic role features give no/positive/negative impact to the sentence fluency in terms of the completeness and ordering of the semantic roles.classes in VerbNet (Dang et al., 1998).
+A49	RefType T17 Direct
+A50	Type T17 Table
+A51	Num T17 2
+T18	Reference 32963 33283	Table 1: BLEU4 scores of different systems Source Launching1 New2 Diplomatic3 Offensive4 SRF On   1   2   3   4 SRF Off   2   3   4 It1 is2 therefore3 necessary4 to5 speed6 up7 the8 equal better worse With SRF vs. W/O SRF 72% 20.2% 7.8% Source transformation9 of10 traditional11 industries12 with13 high14 technologies15
+A52	RefType T18 Direct
+A53	Type T18 Table
+A54	Num T18 1
+T19	Reference 14455 14527	Figure 2: Decoding algorithm for the standard Tree-to-String transducer.
+A55	RefType T19 Direct
+A56	Type T19 Figure
+A57	Num T19 2
+T20	Reference 14950 15030	The bottom-up decoding algorithm for the TTS transducer is sketched in Figure 2.
+A58	RefType T20 Direct
+A59	Type T20 Figure
+A60	Num T20 2
+T21	Reference 18966 19075	Thetheoretical upper bound of the decoding complex Figure 5: Decoding algorithm using semantic role features.
+A61	RefType T21 Direct
+A62	Type T21 Figure
+A63	Num T21 5
+T22	Reference 20217 20443	The reordering of the semantic roles from source to target is computed for each TTS template as part of the template extraction process, using the word-level alignments between the LHS/RHS of the TTS template (e.g., Figure 3).
+A64	RefType T22 Direct
+A65	Type T22 Figure
+A66	Num T22 3
+T23	Reference 20477 20681	This is usually straightforward, with the exception of the case where the words that are aligned to a particular role s span in the source side are not continuous in the target side, as shown in Figure 4.
+A67	RefType T23 Direct
+A68	Type T23 Figure
+A69	Num T23 4
+T24	Reference 23923 24007	Figure 7: Computing the partition function of the conditional probability P r(S|T ).
+A70	RefType T24 Direct
+A71	Type T24 Figure
+A72	Num T24 7
+T25	Reference 28436 28815	where ECD|S,T (fi), the expected count of a feature over all derivations given a pair of tree and string, can be computed using the modified inside- outside algorithm described in Section 3.2, and ECS |T (fi), the expected count of a feature over all possible target strings given the source tree, can be computed in a similar way to the partition function described in Figure 7.
+A73	RefType T25 Direct
+A74	Type T25 Figure
+A75	Num T25 7
+T26	Reference 26915 27198	Considering that the way the semantic where all(T ) denotes all the possible target strings which can be generated from the source tree T . Given a set of TTS templates, the new partition function can be efficiently computed using the dynamic programming algorithm shown in Figure 7.
+A76	RefType T26 Direct
+A77	Type T26 Figure
+A78	Num T26 7
+T27	Reference 24365 25010	If we directly translate the EM algorithm into the log- linear model, the problem becomes maximizing 0 X P r(S, T , D) = X @ Y P r(t) Y 1 P r(f )A the data likelihood represented by feature weights instead of feature probabilities: D D t D f  F (S,T .role,D) Though the above formulation, which makes the P r(S, T ) = D exp i  i fi (S, T , D) total probability of all the pairs of trees and strings P P exp P   f (S , T , D ) St ,T t Dt i i i less than 1, is not a strict generative model, we can still use the EM algorithm (Dempster et al., 1977) to estimate the probability of the TTS templates and the semantic features, as shown in Figure 6.
+A79	RefType T27 Direct
+A80	Type T27 Figure
+A81	Num T27 6

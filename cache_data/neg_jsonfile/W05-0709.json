@@ -1,0 +1,1194 @@
+[
+    {
+        "Text": "\n\t\n\t\tArabic presents an interesting challenge to natural language processing, being a highly inflected and agglutinative language.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "In particular, this paper presents an in-depth investigation of the entity detection and recognition (EDR) task for Arabic.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "We start by highlighting why segmentation is a necessary prerequisite for EDR, continue by presenting a finite-state statistical segmenter, and then examine how the resulting segments can be better included into a mention detection system and an entity recognition system; both systems are statistical, build around the maximum entropy principle.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Experiments on a clearly stated partition of the ACE 2004 data show that stem-based features can significantly improve the performance of the EDT system by 2 absolute F-measure points.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The system presented here had a competitive performance in the ACE 2004 evaluation.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Information extraction is a crucial step toward understanding and processing language.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "One goal of information extraction tasks is to identify important conceptual information in a discourse.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "These tasks have applications in summarization, information retrieval (one can get all hits for Washington/person and not the ones for Washington/state or Washington/city), data mining, question answering, language understanding, etc.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "In this paper we focus on the Entity Detection and Recognition task (EDR) for Arabic as described in ACE 2004 framework (ACE, 2004).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The EDR has close ties to the named entity recognition (NER) and coreference resolution tasks, which have been the fo cus of several recent investigations (Bikel et al., 1997; Miller et al., 1998; Borthwick, 1999; Mikheev et al., 1999; Soon et al., 2001; Ng and Cardie, 2002; Florian et al., 2004), and have been at the center of evaluations such as: MUC6, MUC7, and the CoNLL 02 and CoNLL 03 shared tasks.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Usually, in computational linguistics literature, a named entity is an instance of a location, a person, or an organization, and the NER task consists of identifying each of these occurrences.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Instead, we will adopt the nomenclature of the Automatic Content Extraction program (NIST, 2004): we will call the instances of textual references to objects/abstractions mentions, which can be either named (e.g.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "John Mayor), nominal (the president) or pronominal (she, it).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "An entity is the aggregate of all the mentions (of any level) which refer to one conceptual entity.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "For instance, in the sentence President John Smith said he has no comments there are two mentions (named and pronomial) but only one entity, formed by the set {John Smith, he}.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "We separate the EDR task into two parts: a mention detection step, which identifies and classifies all the mentions in a text   and a coreference resolution step, which combinines the detected mentions into groups that refer to the same object.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "In its entirety, the EDR task is arguably harder than traditional named entity recognition, because of the additional complexity involved in extracting non-named mentions (nominal and pronominal) and the requirement of grouping mentions into entities.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "This is particularly true for Arabic where nominals and pronouns are also attached to the word they modify.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "In fact, most Arabic words are morphologically derived from a list of base forms or stems, to which prefixes and suffixes can be attached to form Arabic surface forms (blank-delimited words).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "In addition to the different forms of the Arabic word that result from the 63 Proceedings of the ACL Workshop on Computational Approaches to Semitic Languages, pages 63 70, Ann Arbor, June 2005.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Qc 2005 Association for Computational Linguistics derivational and inflectional process, most prepositions, conjunctions, pronouns, and possessive forms are attached to the Arabic surface word.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "It is these orthographic variations and complex morphological structure that make Arabic language processing challenging (Xu et al., 2001; Xu et al., 2002).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Both tasks are performed with a statistical framework: the mention detection system is similar to the one presented in (Florian et al., 2004) and the coreference resolution system is similar to the one described in (Luo et al., 2004).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Both systems are built around from the maximum-entropy technique (Berger et al., 1996).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "We formulate the mention detection task as a sequence classification problem.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "While this approach is language independent, it must be modified to accomodate the particulars of the Arabic language.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The Arabic words may be composed of zero or more prefixes, followed by a stem and zero or more suffixes.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "We begin with a segmentation of the written text before starting the classification.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "form Arabic words.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The Arabic alphabet consists of 28 letters that can be extended to ninety by additional shapes, marks, and vowels (Tayli and AlSalamah, 1990).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Unlike Latin-based alphabets, the orientation of writing in Arabic is from right to left.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "In written Arabic, short vowels are often omitted.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Also, because variety in expression is appreciated as part of a good writing style, the synonyms are widespread.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Arabic nouns encode information about gender, number, and grammatical cases.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "There are two genders (masculine and feminine), three numbers (singular, dual, and plural), and three grammatical cases (nominative, genitive, and accusative).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "A noun has a nominative case when it is a subject, accusative case when it is the object of a verb, and genitive case when it is the object of a preposition.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The form of an Arabic noun is consequently determined by its gender, number, and grammatical case.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The definitive nouns are formed by attaching the Arabic article J to the immediate front of the This segmentation process consists of separating the nouns, such as in the word A s'_ '- (the company).normal whitespace delimited words into (hypothe Also, prepositions such as   (by), and J (to) can be sized) prefixes, stems, and suffixes, which become the attached as a prefix as in A s'_ '-l (to the company).subject of analysis (tokens).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The resulting granular ity of breaking words into prefixes and suffixes allows different mention type labels beyond the stem label A noun may carry a possessive pronoun as a suffix, such as in tt  s'_ '\" (their company).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "For the EDR task, in this previous example, the Arabic blank-delimited (for instance, in the case of nominal and pronominal word tt  s'_ '\" should be split into two tokens: A s'_ '\" and mentions).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Additionally, because the prefixes and t...",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The first token A s'_ '\" is a mention that refers tosuffixes are quite frequent, directly processing unseg mented words results in significant data sparseness.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "We present in Section 2 the relevant particularities of the Arabic language for natural language processing, especially for the EDR task.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "We then describe the segmentation system we employed for this task in Section 3.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Section 4 briefly describes our mention detection system, explaining the different feature types we use.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "We focus in particular on the stem n-gram, prefix n-gram, and suffix n-gram features that are an organization, whereas the second token t..\n\t\t\tis also a mention, but one that may refer to a person.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Also, the prepositions (i.e.,   and J) not be considered a part of the mention.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Arabic has two kinds of plurals: broken plurals and sound plurals (Wightwick and Gaafar, 1998; Chen and Gey, 2002).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The formation of broken plurals is common, more complex and often irregular.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "As an example, the plural form of the noun J< _ (man) is J <_ (men), which is formed by inserting the infix s' (book) is __ s' specific to a morphologically rich language such as .",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The plural form of the noun   Arabic.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "We describe in Section 5 our coreferenceresolution system where we also describe the advan (books), which is formed by deleting the infix .",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Theplural form and the sing ,ular form may also be com tage of using stem based features.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Section 6 shows pletely different (e.g.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "_., for woman, but   - \" for and discusses the different experimental results and Section 7 concludes the paper.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "women).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The sound plurals are formed by adding plural suffixes to singular nouns (e.g., __' > , meaning researcher): the plural suffix is for feminine nouns in grammatical cases (e.g.,   '> , ), 0 _ for masculine Extraction difficult?",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "nouns in the nominative case (e.g., 0 _' > , ), and u , The Arabic language, which is the mother tongue of for masculine nouns in the genitive and accusative cases (e.g., u ' ' > , ).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The dual suffix is 0 for the nom more than 300 million people (Center, 2000), present inative case ' > (e.g., 0 , ), and u, for the genitive orsignificant challenges to many natural language pro cessing applications.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Arabic is a highly inflected and accusative (e.g., u ' ' > , ).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "derived language.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "In Arabic morphology, most morphemes are comprised of a basic word form (the root or stem), to which many affixes can be attached toBecause we consider pronouns and nominals as men tions, it is essential to segment Arabic words into these subword tokens.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "We also believe that the in formation denoted by these affixes can help with the coreference resolution task1.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Arabic verbs have perfect and imperfect tenses (Abbou and McCarus, 1983).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Perfect tense denotes completed actions, while imperfect denotes ongoing actions.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Arabic verbs in the perfect tense consist of a stem followed by a subject marker, denoted as a suf fix.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The subject marker indicates the person, gender, known words based upon a character unigram model, although this model is dominated by an empirically chosen unknown word penalty.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Using 0.5M words from the combined Arabic Treebanks 1V2, 2V2 and 3V1, the dictionary based segmenter achieves a exact word match 97.8% correct segmentation.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "and number of the subject.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "As an example, the verb J,   (to meet) has a perfect tense __l,   for the thirdperson feminine singular, and _ ,   for the third per /epsilon a/epsilon a/A# epsilon/# b/AB# b/epsilon b/B UNK/epsilon c/C epsilon/epsilon c/BC d/epsilon e/+E epsilon/+ e/+DE l son masculine plural.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "We notice also that a verb with a/epsilon b/A#B# b/epsilon c/epsilon d/BCD d/epsilon e/+D+E a subject marker and a pronoun suffix can be by itself a complete sentence, such us in the word tt l,  : it has a third-person feminine singular subject-marker   (she) and a pronoun suffix t..\n\t\t\t(them).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "It is also a complete sentence meaning  she met them.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The subject markers are often suffixes, but we may find a subject marker as a combination of a prefix and a suffix as in t+l, A., (she meets them).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "In this example, the EDR system should be able to separate t+l, A.,, to create two mentions (   and t..).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Because the two mentions belong to different entities, the EDR system should not chain them together.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "An Arabic word can potentially have a large number of variants, and some of the variants can be quite complex.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "As an example, consider the word t '> _ (and to her researchers) which contains two prefixes and one suffix ( ..\n\t\t\t+ u''> , + J + _).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Segmentation Lee et al.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "(2003) demonstrates a technique for segmenting Arabic text and uses it as a morphological processing step in machine translation.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "A trigram language model was used to score and select among hypothesized segmentations determined by a set of prefix and suffix expansion rules.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "In our latest implementation of this algorithm, we have recast this segmentation strategy as the composition of three distinct finite state machines.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The second machine is a dictionary that accepts characters and produces identifiers corresponding to dictionary entries.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The final machine is a trigram language model, specifically a KneserNey (Chen and Goodman, 1998) based back- off language model.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Differing from (Lee et al., 2003), we have also introduced an explicit model for un 1 As an example, we do not chain mentions with different gender, number, etc.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "In addition to the model based upon a dictionary of stems and words, we also experimented with models based upon character n-grams, similar to those used for Chinese segmentation (Sproat et al., 1996).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "For these models, both arabic characters and spaces, and the inserted prefix and suffix markers appear on the arcs of the finite state machine.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Here, the language model is conditioned to insert prefix and suffix markers based upon the frequency of their appearance in n-gram character contexts that appear in the training data.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The character based model alone achieves a 94.5% exact match segmentation accuracy, considerably less accurate then the dictionary based model.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "However, an analysis of the errors indicated that the character based model is more effective at segmenting words that do not appear in the training data.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "We seeked to exploit this ability to generalize to improve the dictionary based model.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "As in (Lee et al., 2003), we used unsupervised training data which is automatically segmented to discover previously unseen stems.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "In our case, the character n-gram model is used to segment a portion of the Arabic Giga- word corpus.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "From this, we create a vocabulary of stems and affixes by requiring that tokens appear more than twice in the supervised training data or more than ten times in the unsupervised, segmented corpus.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The resulting vocabulary, predominately of word stems, is 53K words, or about six times the vocabulary observed in the supervised training data.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "This represents about only 18% of the total number of unique tokens observed in the aggregate training data.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "With the addition of the automatically acquired vocabulary, the segmentation accuracy achieves 98.1% exact match.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "3.2 Preprocessing of Arabic Treebank Data.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Because the Arabic treebank and the gigaword corpora are based upon news data, we apply some small amount of regular expression based preprocessing.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Arabic specific processing include removal ofthe characters tatweel (-), and vowels.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Also, the fol lowing characters are treated as an equivalence class during all lookups and processing: (1) ...\n\t\t\t, ..., and , _ .",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "We define a token and introduce whites-.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "pace boundaries between every span of one or more alphabetic or numeric characters.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Each punctuation symbol is considered a separate token.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Character classes, such as punctuation, are defined according to the Unicode Standard (Aliprand et al., 2004).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The mention detection task we investigate identifies, for each mention, four pieces of information: 1.\n\t\t\tthe mention type: person (PER), organization (ORG), location (LOC), geopolitical entity (GPE), facility (FAC), vehicle (VEH), and weapon (WEA) 2.\n\t\t\tthe mention level (named, nominal, pronominal, or premodifier) 3.\n\t\t\tthe mention class (generic, specific, negatively quantified, etc.)",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "4.\n\t\t\tthe mention sub-type, which is a sub-category of the mention type (ACE, 2004) (e.g.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "OrgGovernmental, FacilityPath, etc.).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "4.1 System Description.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "We formulate the mention detection problem as a classification problem, which takes as input segmented Arabic text.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "We assign to each token in the text a label indicating whether it starts a specific mention, is inside a specific mention, or is outside any mentions.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "We use a maximum entropy Markov model (MEMM) classifier.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The principle of maximum entropy states that when one searches among probability distributions that model the observed data (evidence), the preferred one is the one that maximizes the entropy (a measure of the uncertainty different second-stage classifiers to predict the sub- type, the mention level, and the mention class.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "After the first stage, when the boundary (starting, inside, or outside a mention) has been determined, the other classifiers can use this information to analyze a larger context, capturing the patterns around the entire mentions, rather than words.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "As an example, the token sequence that refers to a mention will become a single recognized unit and, consequently, lexical and syntactic features occuring inside or outside of the entire mention span can be used in prediction.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "In the first stage (entity type detection and classification), Arabic blank-delimited words, after segmenting, become a series of tokens representing prefixes, stems, and suffixes (cf.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "section 2).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "We allow any contiguous sequence of tokens can represent a mention.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Thus, prefixes and suffixes can be, and often are, labeled with a different mention type than the stem of the word that contains them as constituents.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "4.2 Stem n-gram Features.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "We use a large set of features to improve the prediction of mentions.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "This set can be partitioned into 4 categories: lexical, syntactic, gazetteer-based, and those obtained by running other named-entity classifiers (with different tag sets).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "We use features such as the shallow parsing information associated with the tokens in a window of 3 tokens, POS, etc.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The context of a current token ti is clearly one of the most important features in predicting whether ti is a mention or not (Florian et al., 2004).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "We denote these features as backward token tri-grams and forward token tri-grams for the previous and next context of ti respectively.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "For a token ti , the backward token n-gram feature will contains the previous n   1 tokens in the history (ti n+1 , .",
+        "Entity": "Normal"
+    },
+    {
+        "Text": ".",
+        "Entity": "Normal"
+    },
+    {
+        "Text": ".",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "ti 1 ) and the forward token n-gram feature will contains the next n   1 tokens (ti+1 , .",
+        "Entity": "Normal"
+    },
+    {
+        "Text": ".",
+        "Entity": "Normal"
+    },
+    {
+        "Text": ".",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "ti+n 1 ).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Because we are segmenting arabic words into multiple tokens, there is some concern that tri- gram contexts will no longer convey as much contextual information.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Consider the following sentence extracted from the development set:of the model) (Berger et al., 1996).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "One big advan _ l u'\" __ l_A.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "J' ..\n\t\t\t(transla tage of this approach is that it can combine arbitrary and diverse types of information in making a classification decision.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Our mention detection system predicts the four labels types associated with a mention through a cascade approach.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "It first predicts the boundary and the main entity type for each mention.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Then, it uses the information regarding the type and boundary in tion  This represents the location for Political Party Office ).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The  Political Party Office  is tagged as an organization and, as a word-for-word translation, is expressed as  to the Office of the political to the party .",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "It is clear in this example that the word _A..\n\t\t\t(location for) contains crucial information in distinguishing between a location and an organization when tagging the token __ .",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "(office).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "After segmentation, the sentence becomes: where mk is one mention in entity e, and the basic + __ .",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "+ J + J + _A..\n\t\t\t+ J + J'.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "model building block P (L = 1|e, mk , m) is an ex  _> + J + J + u'\"   + J ponential or maximum entropy model (Berger et al., 1996).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "When predicting if the token __ .",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "(office) is the For the start model, we use the following approxima beginning of an organization or not, backward and forward token n-gram features contain only J + J (for the) and u'\"   + J (the political).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "This is most likely not enough context, and addressing the tion: PS (S = 1|e1, e2,       , et, m)   1   max PL (L = 1|ei, m) (2) 1 i t problem by increasing the size of the n-gram context quickly leads to a data sparseness problem.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "We propose in this paper the stem n-gram features as additional features to the lexical set.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "If the current token ti is a stem, the backward stem n-gram feature contains the previous n   1 stems and the forward stem n-gram feature will contain the following n   1 stems.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "We proceed similarly for prefixes and suffixes: if ti is a prefix (or suffix, respectively) we take the previous and following prefixes (or suffixes)2.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "In the sentence shown above, when the system is predict ing if the token __ .",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "(office) is the beginning of an organization or not, the backward and forward stem n-gram features contain _A..\n\t\t\tJ'.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "(represent location of ) and  _> u'\"   (political office).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The stem features contain enough information in this example to make a decision that __ .",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "(office) is the beginning of an organization.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "In our experiments, n is 3, therefore we use stem trigram features.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Coreference resolution (or entity recognition) is defined as grouping together mentions referring to the same object or entity.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "For example, in the following text, (I)  John believes Mary to be the best student  three mentions  John ,  Mary ,  student  are underlined.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Mary  and  student  are in the same entity since both refer to the same person.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The coreference system system is similar to the Bell tree algorithm as described by (Luo et al., 2004).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "In our implementation, the link model between a candidate entity e and the current mention m is comThe start model (cf.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The maximum-entropy model provides us with a flexible framework to encode features into the the system.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Our Arabic entity recognition system uses many language-indepedent features such as strict and partial string match, and distance features (Luo et al., 2004).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "In this paper, however, we focus on the addition of Arabic stem-based features.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "5.1 Arabic Stem Match Feature.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Features using the word context (left and right tokens) have been shown to be very helpful in coreference resolution (Luo et al., 2004).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "For Arabic, since words are morphologically derived from a list of roots (stems), we expected that a feature based on the right and left stems would lead to improvement in system accuracy.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Let m1 and m2 be two candidate mentions where a mention is a string of tokens (prefixes, stems, and suffixes) extracted from the segmented text.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "In order to make a decision in either linking the two mentions or not we use additional features such as: do the stems in m1 and m2 match, do stems in m1 match all stems in m2, do stems in m1 partially match stems in m2.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "We proceed similarly for prefixes and suffixes.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Since prefixes and suffixes can belong to different mention types, we build a parse tree on the segmented text and we can explore features dealing with the gender and number of the token.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "In the following example, between parentheses we make a word-for-word translations in order to better explain our stemming feature.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Let us puted astake the two mentions  _ l u'\" __ l PL (L = 1|e, m)   max P  (L = 1|e, mk, m), (1) (to-the-office the-politic to-the-party) and mk  e u'_\"\" __ .",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "(office the party s) segmented as 2 Thus, the difference to token n-grams is that the tokens of different type are removed from the streams, be  _> + J + J + u'\"   + J + __ .",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "+ J + J fore the features are created.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "and ...\n\t\t\t+  _> + J + __ .",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "respectively.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "In our development corpus, these two mentions are chained to the same entity.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The stemming match feature in this case will contain information such us all stems of m2 match, which is a strong indicator that these mentions should be chained together.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Features based on the words alone would not help this specific example, because the two strings m1 and m2 do not match.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "6.1 Data.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The system is trained on the Arabic ACE 2003 and part of the 2004 data.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "We introduce here a clearly defined and replicable split of the ACE 2004 data, so that future investigations can accurately and correctly compare against the results presented here.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "There are 689 Arabic documents in LDC s 2004 release (version 1.4) of ACE data from three sources: the Arabic Treebank, a subset of the broadcast (bnews) and newswire (nwire) TDT4 documents.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The 178-document devtest is created by taking the last (in chronological order) 25% of documents in each of three sources: 38 Arabic tree- bank documents dating from  20000715  (i.e., July 15, 2000) to  20000815,  76 bnews documents from  20001205.1100.0489  (i.e., Dec. 05 of 2000 from 11:00pm to 04:89am) to  20001230.1100.1216,  and 64 nwire documents from  20001206.1000.0050  to  20001230.0700.0061.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The time span of the test set is intentionally non-overlapping with that of the training set within each data source, as this models how the system will perform in the real world.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "6.2 Mention Detection.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "We want to investigate the usefulness of stem n- gram features in the mention detection system.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "As stated before, the experiments are run in the ACE 04 framework (NIST, 2004) where the system will identify mentions and will label them (cf.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Section 4) with a type (person, organization, etc), a sub-type (OrgCommercial, OrgGovernmental, etc), a mention level (named, nominal, etc), and a class (specific, generic, etc).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Detecting the mention boundaries (set of consecutive tokens) and their main type is one of the important steps of our mention detection system.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The score that the ACE community uses (ACE value) attributes a higher importance (outlined by its weight) to the main type compared to other sub- tasks, such as the mention level and the class.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Hence, to build our mention detection system we spent a lot of effort in improving the first step: detecting the mention boundary and their main type.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "In this paper, we report the results in terms of precision, recall, and F-measure3.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Lexical features Pr ec isi on ( % ) Re cal l ( % )F m ea su re ( % ) To tal 7 3 .",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "3 5 8.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "0 6 4 .",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "7 FA C G P E L O C O R G P E R V E H W E A 7 6 .",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "0 7 9 .",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "4 5 7 .",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "7 6 3 .",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "1 7 3 .",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "2 8 3 .",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "5 7 7 .",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "3 2 4.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "0 6 5.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "6 2 9.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "9 4 6.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "6 6 3.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "5 2 9.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "7 2 5.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "4 3 6 .",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "5 7 1 .",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "8 3 9 .",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "4 5 3 .",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "6 6 8 .",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "0 4 3 .",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "8 3 8 .",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "2 Lexical features + Stem Pr ec isi on ( % ) Re cal l ( % )F m ea su re ( % ) To tal 7 3 .",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "6 5 9.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "4 6 5 .",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "8 F A C G P E L O C O R G P E R V E H W E A 7 2 .",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "7 7 9 .",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "9 5 8 .",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "6 6 2 .",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "6 7 3 .",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "8 8 1 .",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "7 7 8 .",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "4 2 9.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "0 6 7.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "2 3 1.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "9 4 7.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "2 6 4.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "6 3 5.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "9 2 9.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "9 4 1 .",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "4 7 3 .",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "0 4 1 .",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "4 5 3 .",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "8 6 8 .",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "9 4 9 .",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "9 4 3 .",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "2                                                                                  \n\t\t\tTo assess the impact of stemming n-gram features on the system under different conditions, we consider two cases: one where the system only has access to lexical features (the tokens and direct derivatives including standard n-gram features), and one where the system has access to a richer set of information, including lexical features, POS tags, text chunks, parse tree, and gazetteer information.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The former framework has the advantage of being fast (making it more appropriate for deployment in commercial systems).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The number of parameters to optimize in the MaxEnt framework we use when only lexical features are explored is around 280K parameters.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "This number increases to 443K approximately when all information is used except the stemming feature.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The number of parameters introduced by the use of stemming is around 130K parameters.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "It is important to notice the stemming n-gram features improved the performance of each category of the main type.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "In the second case, the systems have access to a large amount of feature types, including lexical, syntactic, gazetteer, and those obtained by running other 3 The ACE value is an important factor for us, but its relative complexity, due to different weights associated with the subparts, makes for a hard comparison, while the F-measure is relatively easy to interpret.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "interesting improvement in terms of ACE value to the hole EDR system as showed in section 6.3.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Pr ec isi on ( % ) Re cal l ( % )F m ea su re ( % ) All Fe atu res All Fe atu res +S te m 6 4 .",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "2 6 4 .",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "4 5 5.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "3 5 5.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "7 5 9 .",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "4 5 9 .",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "7 Le xic al Le xic al+ St em 6 4 .",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "4 6 4 .",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "6 5 0.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "8 5 2.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "0 5 6 .",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "8 5 7 .",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "6                                                                                                                                                                                                                                                                                                                         \n\t\t\tFeatures are also extracted from the shallow parsing information associated with the tokens in window of 3, POS, etc.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The All-features system incorporates all the features except for the stem n- grams.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "This is true for all types.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "It is interesting to note that the increase in performance in both cases (Tables 1 and 2) is obtained from increased recall, with little change in precision.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "When the prefix and suffix n-gram features are removed from the feature set, we notice in both cases (Tables 1 and 2) a insignificant decrease of the overall performance, which is expected: what should a feature of preceeding (or following) prepositions or finite articles captures?",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "As stated in Section 4.1, the mention detection system uses a cascade approach.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "However, we were curious to see if the gain we obtained at the first level was successfully transfered into the overall performance of the mention detection system.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Despite the fact that the improvement was small in terms of F-measure (59.4 vs. 59.7), the stemming n-gram features gave 4 The difference in performance is not statistically significant 6.3 Coreference Resolution.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "In this section, we present the coreference results on the devtest defined earlier.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "First, to see the effect of stem matching features, we compare two coreference systems: one with the stem features, the other without.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "We test the two systems on both  true  and system mentions of the devtest set.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "True  mentions mean that input to the coreference system are mentions marked by human, while system mentions are output from the mention detection system.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "We report results with two metrics: ECM-F and ACE- Value.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "ECM-F is an entity-constrained mention F- measure (cf.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "(Luo et al., 2004) for how ECM-F is computed), and ACE-Value is the official ACE evaluation metric.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "On true mention, the stem matching features improve ECM-F from 77.7% to 80.0%, and ACE-value from 86.9% to 88.2%.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The similar improvement is also observed on system mentions.The overall ECM- F improves from 62.3% to 64.2% and the ACE value improves from 61.9 to 63.1%.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Note that the increase on the ACE value is smaller than ECM-F.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "This is because ACE-value is a weighted metric which emphasizes on NAME mentions and heavily discounts PRONOUN mentions.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Overall the stem features give rise to consistent gain to the coreference system.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "In this paper, we present a fully fledged Entity Detection and Tracking system for Arabic.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "At its base, the system fundamentally depends on a finite state segmenter and makes good use of the relationships that occur between word stems, by introducing features which take into account the type of each segment.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "In mention detection, the features are represented as stem n-grams, while in coreference resolution they are captured through stem-tailored match features.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "B a s e B a s e + S t e m ECM F ACEVal ECM F ACEVal Tr ut h Sy ste m 7 7 .",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "7 86.9 6 2 .",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "3 61.9 8 0 .",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "0 88.2 6 4 .",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "2 63.1                                                                       \n\t\t\tThe row marked with  Truth  represents the results with  true  mentions while the row marked with  System  represents that mentions are detected by the system.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Numbers under  ECM- F  are Entity-Constrained-Mention F-measure and numbers under  ACE-Val  are ACE-values.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "These types of features result in an improvement in both the mention detection and coreference resolution performance, as shown through experiments on the ACE 2004 Arabic data.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The experiments are performed on a clearly specified partition of the data, so comparisons against the presented work can be correctly and accurately made in the future.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "In addition, we also report results on the official test data.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The presented system has obtained competitive results in the ACE 2004 evaluation, being ranked amongst the top competitors.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "This work was partially supported by the Defense Advanced Research Pro jects Agency and monitored by SPAWAR under contract No.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "N6600199-28916.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The views and findings contained in this material are those of the authors and do not necessarily reflect the position of policy of the U.S. government and no official endorsement should be inferred.",
+        "Entity": "Normal"
+    }
+]

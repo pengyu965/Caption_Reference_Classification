@@ -1,0 +1,65 @@
+T1	Reference 30409 30484	Table 1, Figure 1, and Figure 2 shows the AER results for different models.
+A1	RefType T1 Direct
+A2	Type T1 Table
+A3	Num T1 1
+T2	Reference 30409 30484	Table 1, Figure 1, and Figure 2 shows the AER results for different models.
+A4	RefType T2 Direct
+A5	Type T2 Figure
+A6	Num T2 1
+T3	Reference 30409 30484	Table 1, Figure 1, and Figure 2 shows the AER results for different models.
+A7	RefType T3 Direct
+A8	Type T3 Figure
+A9	Num T3 2
+T4	Reference 30809 30862	Figure 3 show the training time for different models.
+A10	RefType T4 Direct
+A11	Type T4 Figure
+A12	Num T4 3
+T5	Reference 31868 31975	Results are shown in Table 2; we see that better word alignment results do not lead to better translations.
+A13	RefType T5 Direct
+A14	Type T5 Table
+A15	Num T5 2
+T6	Reference 17717 17900	In the last two lines of Equation 3, φǫ and each P (f |e) = &quot;£s c (f |e; f (s), e(s)) (4) φi are not free variables, but are determined by f s c(f |e; f (s), e(s))the alignments.
+A16	RefType T6 Direct
+A17	Type T6 Equation
+A18	Num T6 3
+T7	Reference 21249 21369	We scan through the corpus many times until we are satisfied with the parameters we learned using Equations 4, 5, and 6.
+A19	RefType T7 Direct
+A20	Type T7 Equation
+A21	Num T7 4
+T8	Reference 21249 21369	We scan through the corpus many times until we are satisfied with the parameters we learned using Equations 4, 5, and 6.
+A22	RefType T8 Direct
+A23	Type T8 Equation
+A24	Num T8 5
+T9	Reference 21249 21369	We scan through the corpus many times until we are satisfied with the parameters we learned using Equations 4, 5, and 6.
+A25	RefType T9 Direct
+A26	Type T9 Equation
+A27	Num T9 6
+T10	Reference 23959 24221	On the contrary, in the above training stage, although the samples are not accurate enough to represent the distribution defined by Equation 7 for each alignment aj , it is accurate enough for computing the expected counts, which are defined at the corpus level.
+A28	RefType T10 Direct
+A29	Type T10 Equation
+A30	Num T10 7
+T14	Caption 26311 26336	Training time comparison.
+A37	Type T14 Figure
+A38	Num T14 3
+T16	Reference 25738 25809	IBM1F refers to the fertility IBM1 and HMMF refers to the fertility HMM
+A42	RefType T16 Spatial-Below
+A43	Type T16 Table
+A44	Num T16 1
+A45	Continuation T16
+T17	Reference 25844 25892	We choose t = 1, 5, and 30 for the fertility HMM
+A46	RefType T17 Spatial-Below
+A47	Type T17 Table
+A48	Num T17 1
+A49	Continuation T17
+T12	Caption 26035 26067	Figure 1: AER comparison (en→cn)
+A33	Type T12 Figure
+A34	Num T12 1
+T13	Caption 26176 26209	Figure 2: AER comparison (cn →en)
+A35	Type T13 Figure
+A36	Num T13 2
+T15	Caption 32054 32075	Table 2: BLEU results
+A39	Type T15 Table
+A40	Num T15 2
+T11	Caption 25683 25703	Table 1: AER results
+A31	Type T11 Table
+A32	Num T11 1

@@ -1,0 +1,304 @@
+[
+    {
+        "Code": "T1",
+        "Entity": "Caption",
+        "Span": [
+            [
+                "2404",
+                "2542"
+            ]
+        ],
+        "Text": "The joint probability of the two sequences is defined as the product of context probabilities and lexical probabilities over all POS tags:",
+        "Type": "Equation",
+        "Num": "1"
+    },
+    {
+        "Code": "T2",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "2604",
+                "2655"
+            ]
+        ],
+        "Text": "This sentence should be tagged as shown in table 1.",
+        "RefType": "Direct",
+        "Type": "Table",
+        "Num": "1"
+    },
+    {
+        "Code": "T3",
+        "Entity": "Caption",
+        "Span": [
+            [
+                "3341",
+                "3427"
+            ]
+        ],
+        "Text": "Table 1: Correct POS tags for the German sentence Das zu versteuernde Einkommen sinkt.",
+        "Type": "Table",
+        "Num": "1"
+    },
+    {
+        "Code": "T4",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "7995",
+                "8115"
+            ]
+        ],
+        "Text": "Figure 1 shows a probability estimation tree for the prediction of the probability of the nominative attribute of nouns.",
+        "RefType": "Direct",
+        "Type": "Figure",
+        "Num": "1"
+    },
+    {
+        "Code": "T5",
+        "Entity": "Caption",
+        "Span": [
+            [
+                "9683",
+                "9755"
+            ]
+        ],
+        "Text": "Figure 1: Probability estimation tree for the nomi native case of nouns.",
+        "Type": "Figure",
+        "Num": "1"
+    },
+    {
+        "Code": "T6",
+        "Entity": "Caption",
+        "Span": [
+            [
+                "9788",
+                "9860"
+            ]
+        ],
+        "Text": "The test 1:ART.Nom checks if the preceding word is a nominative article.",
+        "Type": "Figure",
+        "Num": "1"
+    },
+    {
+        "Code": "T7",
+        "Entity": "Caption",
+        "Span": [
+            [
+                "25585",
+                "25644"
+            ]
+        ],
+        "Text": "Table 2: Tagging accuracies on development data in percent.",
+        "Type": "Table",
+        "Num": "2"
+    },
+    {
+        "Code": "T8",
+        "Entity": "Caption",
+        "Span": [
+            [
+                "25678",
+                "25761"
+            ]
+        ],
+        "Text": "Results for 2 and for 10 preceding POS tags as context are reported for our tagger.",
+        "Type": "Table",
+        "Num": "2"
+    },
+    {
+        "Code": "T9",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "25842",
+                "25916"
+            ]
+        ],
+        "Text": "Table 3 shows the results of an evaluation based on the plain STTS tagset.",
+        "RefType": "Direct",
+        "Type": "Table",
+        "Num": "3"
+    },
+    {
+        "Code": "T10",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "26345",
+                "26444"
+            ]
+        ],
+        "Text": "Table 2 summarizes the results obtained with different taggers and tagsets on the development data.",
+        "RefType": "Direct",
+        "Type": "Table",
+        "Num": "2"
+    },
+    {
+        "Code": "T11",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "26478",
+                "26696"
+            ]
+        ],
+        "Text": "The accuracy of a baseline tagger which chooses the most probable tag9 ignoring the context is 67.3% without and 69.4% with the supple 92.3 92.2 92.1 92 91.9 91.8 91.7 91.6 91.5 91.4 2 3 4 5 6 7 8 9 10 mentary lexicon.",
+        "RefType": "Indirect",
+        "Type": "Table",
+        "Num": "2"
+    },
+    {
+        "Code": "T12",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "26730",
+                "26791"
+            ]
+        ],
+        "Text": "The TnT tagger achieves 86.3% accuracy on the default tagset.",
+        "RefType": "Indirect",
+        "Type": "Table",
+        "Num": "2"
+    },
+    {
+        "Code": "T13",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "26917",
+                "27018"
+            ]
+        ],
+        "Text": "The tagset refinement increases the accuracy by about 0.6%, and the external lexicon by another 3.5%.",
+        "RefType": "Indirect",
+        "Type": "Table",
+        "Num": "2"
+    },
+    {
+        "Code": "T14",
+        "Entity": "Caption",
+        "Span": [
+            [
+                "27991",
+                "28149"
+            ]
+        ],
+        "Text": "Table 3: STTS accuracies of the TnT tagger trained on the STTS tagset, the TnT tagger trained on the Tiger tagset, and our tagger trained on the Tiger tagset.",
+        "Type": "Table",
+        "Num": "3"
+    },
+    {
+        "Code": "T15",
+        "Entity": "Caption",
+        "Span": [
+            [
+                "28537",
+                "28609"
+            ]
+        ],
+        "Text": "Figure 2: Tagging accuracy on development data depending on context size",
+        "Type": "Figure",
+        "Num": "2"
+    },
+    {
+        "Code": "T16",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "28610",
+                "28691"
+            ]
+        ],
+        "Text": "Figure 2 shows that the tagging accuracy tends to increase with the context size.",
+        "RefType": "Direct",
+        "Type": "Figure",
+        "Num": "2"
+    },
+    {
+        "Code": "T17",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "29267",
+                "29314"
+            ]
+        ],
+        "Text": "Table 4 shows the performance on the test data.",
+        "RefType": "Direct",
+        "Type": "Table",
+        "Num": "4"
+    },
+    {
+        "Code": "T18",
+        "Entity": "Caption",
+        "Span": [
+            [
+                "30204",
+                "30245"
+            ]
+        ],
+        "Text": "Table 4: Tagging accuracies on test data.",
+        "Type": "Table",
+        "Num": "4"
+    },
+    {
+        "Code": "T19",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "30279",
+                "30370"
+            ]
+        ],
+        "Text": "By far the most frequent tagging error was the confusion of nominative and accusative case.",
+        "RefType": "Indirect",
+        "Type": "Table",
+        "Num": "4"
+    },
+    {
+        "Code": "T20",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "30644",
+                "30744"
+            ]
+        ],
+        "Text": "this error is not counted, the tagging accuracy on the development data rises from 92.17% to 94.27%.",
+        "RefType": "Indirect",
+        "Type": "Table",
+        "Num": "4"
+    },
+    {
+        "Code": "T21",
+        "Entity": "Caption",
+        "Span": [
+            [
+                "32871",
+                "32936"
+            ]
+        ],
+        "Text": "Figure 3: Accuracy on development data depend ing on context size",
+        "Type": "Figure",
+        "Num": "3"
+    },
+    {
+        "Code": "T22",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "33198",
+                "33250"
+            ],
+            [
+                "33254",
+                "33334"
+            ]
+        ],
+        "Text": "The corresponding figures for the test data are. 89.53% for our tagger and 88.88% for the TnT tag- ger.",
+        "RefType": "Indirect",
+        "Type": "Figure",
+        "Num": "3"
+    }
+]

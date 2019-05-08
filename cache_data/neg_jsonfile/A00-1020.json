@@ -1,0 +1,934 @@
+[
+    {
+        "Text": "\n\t\n\t\tIn this paper we present a new, multi  lingual data-driven method for coreference resolution as implemented in the SWIZZLE system.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The results obtained after training this system on a bilingual corpus of English and Romanian tagged texts, outperformed coreference resolution in each of the indi  vidual languages.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The recent availability of large bilingual corpora has spawned interest in several areas of multilingual text processing.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Most of the research has focused on bilingual terminology identification, either as par  allel multiwords forms (e.g.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "the Champollion sys  tem (Smadja et al.1996)), technical terminology (e.g.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "the Termight system (Dagan and Church, 1994) or broad-coverage translation lexicons (e.g.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "the SABLE system (Resnik and Melamed, 1997)).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "In addition, the Multilingual Entity Task (MET) from the TIP  STER program1 (http://wwwnlpir.nist.govjrelated  projectsjtipsterjmet.htm) challenged the partici  pants in the Message Understanding Conference (MUC) to extract named entities across several for  eign language corpora, such as Chinese, Japanese and Spanish.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "In this paper we present a new application of aligned multilingual texts.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Since coreference reso  lution is a pervasive discourse phenomenon causing performance impediments in current IE systems, we considered a corpus of aligned English and Roma  nian texts to identify coreferring expressions.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Our task focused on the same kind of coreference as considered in the past MUC competitions, namely 1The TIPSTER Text Program was a DARPA-led government effort to advance the state of the art in text processing technologies.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Steven J. Maiorano IPO Washington, D.C. 20505 maiorano cais.com the identity coreference.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Identity coreference links nouns, pronouns and noun phrases (including proper names) to their corresponding antecedents.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "We created our bilingual collection by translating the MUC6 and MUC7 coreference training texts into Romanian using native speakers.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The train  ing data set for Romanian coreference used, wher  ever possible, the same coreference identifiers as the English data and incorporated additional tags as needed.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Our claim is that by adding the wealth of coreferential features provided by multilingual data, new powerful heuristics for coreference resolu  tion can be developed that outperform monolingual coreference resolution systems.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "For both languages, we resolved coreference by using SWIZZLE, our implementation of a bilingual coreference resolver.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "SWIZZLE is a multilingual en  hancement of COCKTAIL (Harabagiu and Maiorano, 1999), a coreference resolution system that operates on a mixture of heuristics that combine semantic and textual cohesive information2   When COCKTAIL was applied separately on the English and the Ro  manian texts, coreferring links were identified for each English and Romanian document respectively.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "When aligned referential expressions corefer with nonaligned anaphors, SWIZZLE derived new heuris  tics for coreference.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Our experiments show that SWIZZLE outperformed COCKTAIL on both English and Romanian test documents.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The rest of the paper is organized as follows.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Sec  tion 2 presents COCKTAIL, a monolingual coreference resolution system used separately on both the En  glish and Romanian texts.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Section 3 details the data-driven approach used in SWIZZLE and presents some of its resources.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Section 4 reports and discusses the experimental results.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Section 5 summarizes the 2 The name of COCKTAIL is a pun on CogNIAC be  cause COCKTAIL combines a larger number of heuristics than those reported in (Baldwin, 1997).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "SWIZZLE, more  over, adds new heuristics, discovered from the bilingual aligned corpus.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "conclusions.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Currently, some of the best-performing and most robust coreference resolution systems employ knowledge-based techniques.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Traditionally, these techniques have combined extensive syntactic, se  mantic, and discourse knowledge.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The acquisition of such knowledge is time-consuming, difficult, and error-prone.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Nevertheless, recent results show that knowledge-poor methods perform with amazing ac  curacy (cf.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "(Mitkov, 1998), (Kennedy and Boguraev, 1996) (Kameyama, 1997)).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "For example, CogNIAC (Baldwin, 1997), a system based on seven ordered heuristics, generates high-precision resolution (over 90%) for some cases of pronominal reference.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "For this research, we used a coreference resolution sys  tem ((Harabagiu and Maiorano, 1999)) that imple  ments different sets of heuristics corresponding to various forms of coreference.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "This system, called COCKTAIL, resolves coreference by exploiting several textual cohesion constraints (e.g.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "term repetition) combined with lexical and textual coherence cues (e.g.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "subjects of communication verbs are more likely to refer to the last person mentioned in the text).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "These constraints are implemented as a set of heuristics ordered by their priority.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Moreover, the COCKTAIL framework uniformly addresses the prob  lem of interaction between different forms of coref  erence, thus making the extension to multilingual coreference very natural.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "2.1 Data-Driven Coreference Resolution.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "In general, we define a data-driven methodology as a sequence of actions that captures the data pat  terns capable of resolving a problem with both a high degree of precision and recall.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Our data-driven methodology reported here generated sets of heuris  tics for the coreference resolution problem.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Precision is the number of correct references out of the total number of coreferences resolved, whereas the recall measures the number of resolved references out of the total number of keys, i.e., the annotated coref  erence data.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The data-driven methodology used in COCKTAIL is centered around the notion of a coreference chain.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Due to the transitivity of coreference relations, k coreference relations having at least one common ar  gument generate k + 1 core/erring expressions.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The text position induces an order among coreferring ex  pressions.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "A coreference structure is created when a set of coreferring expressions are connected in an oriented graph such that each node is related only to one of its preceding nodes.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "In turn, a corefer ence chain is the coreference structure in which ev  ery node is connected to its immediately preceding node.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Clearly, multiple coreference structures for the same set of coreferring expressions can be mapped to a single coreference chain.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "As an example, both coreference structures illustrated in         (a) and (c) are cast into the coreference chain illustrated in         (b).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "TEXT TEXT TEXT         : Three coreference structures.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Given a corpus annotated with coreference data, the data-driven methodology first generates all coreference chains in the data set and then con  siders all possible combinations of coreference re  lations that would generate the same coreference chains.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "For a coreference chain of length l with nodes n1, n2, ... nl+1 , each node nk (1 k l) can be connected to any of the l - k nodes preceding it.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "From this observation, we find that a number of 1 x 2 x ... x (l - k)... x l = l!",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "coreference struc  tures can generate the same coreference chain.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "This result is very important, since it allows for the auto  matic generation of coreference data.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "For each coref  erence relation n from an annotated corpus we cre  ated a median of (l- 1)!",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "new coreference relations, where l is the length of the coreference chain contain  ing relation n. This observation gave us the possi  bility of expanding the test data provided by the coreference keys available in the MUC6 and MUC 7 competitions (MUC6 1996), (MUC7 1998).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The MUC6 coreference annotated corpus contains 1626 coreference relations, while the MUC7 corpus has 2245 relations.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The average length of a coreference chain is 7.21 for the MUC6 data, and 8.57 for the MUC7 data.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "We were able to expand the number of annotated coreference relations to 6,095,142 for the MUC6 corpus and to 8,269,403 relations for the MUC7 corpus; this represents an expansion factor of 3,710.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "We are not aware of any other automated way of creating coreference annotated data, and we believe that much of the COCKTAIL's impressive per  formance is due to the plethora of data provided by this method.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "He uri sti cs for 3r d pe rs on pr on ou ns He uri sti cs for no mi na l ref er en ce oH eu ris tic 1 Pr on ou n( Hl Pr on ) Se ar ch in the sa me se nte nc e for the sa m e 3 r d p e r s o n p r o n o u n P r o n ' i f ( P r o n ' b e l o n g s t o c o r e f e r e n c e c h a i n C C ) a n d t h e r e i s a n e l e m e n t f r o m C C w h i c h i s c l o s e s t t o P r o n i n T e x t , P i c k t h a t e l e m e n t .",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "e l s e P i c k P r o n ' .",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "oH eur isti c 2 Pr on ou n( H2 Pr on ) Se ar ch for PN , the clo ses t pr op er na me fro m Pr on if (P N agr ees in nu mb er an d ge nd er wit h Pr on ) i f ( P N b e l o n g s t o c o r e f e r e n c e c h a i n C C ) t h e n P i c k t h e e l e m e n t f r o m C C w h i c h i s c l o s e s t t o P r o n i n T e x t .",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "e l s e P i c k P N .",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "o He uri sti c 3 Pr on ou n( H3 Pr on ) Se arc h for No un, the clo ses t no un fro m Pr on if (N ou n agr ees in nu mb er an d ge nd er wit h Pr on) i f ( N o u n b e l o n g s t o c o r e f e r e n c e c h a i n C C ) a n d t h e r e i s a n e l e m e n t f r o m C C w h i c h i s c l o s e s t t o P r o n i n T e x t , P i c k t h a t e l e m e n t .",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "e l s e P i c k N o u n oH eu ris tic 1 No mi na lC Hl No m) if (N ou n is the he ad of an ap po siti ve ) t h e n P i c k t h e p r e c e d i n g N P .",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "o He uri sti c 2 No mi nal (H 2N o m) if (N ou n bel on gs to an NP , Se ar ch for N P' s u c h t h a t N o u n ' = s a m e _ n a m e ( h e a d ( N P ) , h e a d ( N P ' ) ) o r N o u n ' = s a m e _ n a m e ( a d j u n c t ( N P ) , a d j u n c t ( N P ' ) ) ) t h e n i f ( N o u n ' b e l o n g s t o c o r e f e r e n c e c h a i n C C ) t h e n P i c k t h e e l e m e n t f r o m C C w h i c h i s c l o s e s t t o N o u n i n T e x t .",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "e l s e P i c k N o u n ' .",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "oH eu ris tic 3 No mi na l( H3 No m) if No un is the he ad of an N P t h e n S e a r c h f o r p r o p e r n a m e P N s u c h t h a t h e a d ( P N ) = N o u n i f ( P N b e l o n g s t o c o r e f e r e n c e c h a i n C C ) a n d t h e r e i s a n e l e m e n t f r o m C C w h i c h i s c l o s e s t t o N o u n i n T e x t , P i c k t h a t e l e m e n t .",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "e l s e P i c k P N .",
+        "Entity": "Normal"
+    },
+    {
+        "Text": ": Best performing heuristics implemented in COCKTAIL 2.2 Knowledge-Poor Coreference.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Resolution The result of our data-driven methodology is the set of heuristics implemented in COCKTAIL which cover both nominal and pronoun coreference.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Each heuristic represents a pattern of coreference that was mined from the large set of coreference data.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "COCKTAIL uses knowledge-poor methods because (a) it is based only on a limited number of heuristics and (b) text processing is limited to part-of-speech tagging, named-entity recognition, and approximate phrasal parsing.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The heuristics from COCKTAIL can be classified along two directions.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "First of all, they can be grouped according to the type of corefer  ence they resolve, e.g., heuristics that resolve the anaphors of reflexive pronouns operate differently than those resolving bare nominals.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Currently, in COCKTAIL there are heuristics that resolve five types of pronouns (personal, possessive, reflexive, demon  strative and relative) and three forms of nominals (definite, bare and indefinite).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Secondly, for each type of coreference, there are three classes of heuristics categorized according to their suitability to resolve coreference.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The first class is comprised of strong indicators of coreference.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "This class resulted from the analysis of the distribu  tion of the antecedents in the MUC annotated data.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "For example, repetitions of named entities and ap  positives account for the majority of the nominal coreferences, and, therefore, represent anchors for the first class of heuristics.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The second class of coreference covers cases in which the arguments are recognized to be seman  tically consistent.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "COCKTAIL's test of semantic con  sistency blends together information available from WordNet and statistics gathered from Treebank.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Different consistency checks are modeled for each of the heuristics.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Ex a m pl e of th e ap pli ca tio n of he ur ist ic H 2 Pr on M r. A da m s 1 , 69 ye ar s ol d, is th e re tir ed ch ai r m an o f C a n a d ia n b a s e d E m c o L t d ., a m a k e r o f p l u m b i n g a n d p et r o le u m e q u i p m e n t; h e 1 h a s s e r v e d o n t h e W o o l w o rt h b o a r d si n c e 1 9 8 1.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Ex a m pl e of th e ap pli ca tio n of he ur ist ic H 3 Pr on \" W e ha ve go t to st op po in ti ng ou r fi ng er s at th es e k i d s 2 w h o h a v e n o f u t u r e , \" h e s a i d , \" a n d r e a c h o u r h a n d s o u t t o t h e m 2 .",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Ex a m pl e of th e ap pli ca tio n of he ur ist ic H 2 N o m T he ch air m an an d th e ch ief ex ec uti ve of fi ce r3 o f W o o l w o r t h C o r p .",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "h a v e t e m p o r a r i l y r e l i n q u i s h e d t h e i r p o s t s w h i l e t h e r e t a i l e r c o n d u c t s i t s i n v e s t i g a t i o n i n t o a l l e g e d a c c o u n t i n g i r r e g u l a r i t i e s 4 .",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "W o o l w o rt h' s b o a r d n a m e d J o h n W .",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "A d a m s, a n o u ts i d e r, t o s e r v e a s i n t e ri m c h a ir m a n a n d e x e c u ti v e o ff i c e r 3 , w h il e a s p e c i a l c o m m it t e e, a p p o i n t e d b y t h e b o a r d l a st w e e k a n d l e d b y M r. A d a m s, i n v e st i g a t e s t h e al le g e d ir r e g u l a ri ti e s 4 .",
+        "Entity": "Normal"
+    },
+    {
+        "Text": ": Examples of coreference resolution.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The same annotated index indicates coreference.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The third class of heuristics resolves coreference by coercing nominals.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Sometimes coercions involve only derivational morphology - linking verbs with their nominalizations.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "On other occasions, coercions are obtained as paths of meronyms (e.g.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "is-part re  lations) and hypernyms (e.g.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "is-a relations).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Con sistency checks implemented for this class of coref  erence are conservative: either the adjuncts must be identical or the adjunct of the referent must be less specific than the antecedent.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "lists the top performing heuristics of COCKTAIL for pronominal and nominal coreference.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Examples of the heuristics operation on the MUC data are presented presented in         \n\t\t\tDetails of the top performing heuris  tics of COCKTAIL were reported in (Harabagiu and Maiorano, 1999).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "2.3 Bootstrapping for Coreference.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Resolution One of the major drawbacks of existing corefer  ence resolution systems is their inability to recog  nize many forms of coreference displayed by many real-world texts.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Recall measures of current systems range between 36% and 59% for both knowledge  based and statistical techniques.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Knowledge based  systems would perform better if more coreference constraints were available whereas statistical meth  ods would be improved if more annotated data were available.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Since knowledge-based techniques out  perform inductive methods, we used high-precision coreference heuristics as knowledge seeds for ma  chine learning techniques that operate on large amounts of unlabeled data.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "One such technique is bootstrapping, which was recently presented in (Riloff and Jones 1999), (Jones et al.1999) as an ideal framework for text learning tasks that have knowledge seeds.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The method does not require large training sets.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "We extended COCKTAIL by using meta  bootstrapping of both new heuristics and clusters of nouns that display semantic consistency for corefer  ence.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The coreference heuristics are the seeds of our bootstrapping framework for coreference resolution.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "When applied to large collections of texts, the heuristics determine classes of coreferring expres  sions.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "By generating coreference chains out of all these coreferring expressions, often new heuristics are uncovered.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "For example,          illustrates the application of three heuristics and the generation of data for a new heuristic rule.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "In COCKTAIL, after a heuristic is applied, a new coreference chain is cal  culated.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "For the example illustrated in         , if the reference of expression A is sought, heuristic Hl the FOIL-Gain measure, as introduced by the FOIL inductive algorithm (CameronJones and Quinlan 1993).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Let H0 be the new heuristic and H1 a heuris  tic that is already in the seed set.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Let Po be the num  ber of positive coreference examples of Hnew (i.e.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "the number of coreference relations produced by the heuristic that can be found in the test data) and n0 the number of negative examples of Hnew (i.e.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "the number of relations generated by the heuristic which cannot be found in the test data).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Similarly, P1 and n1 are the positive and negative examples of H1   The new heuristics are scored by their FOJL_Gain distance to the existing set of heuristics, and the best scoring one is added to the COCKTAIL system.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The FOILGain formula is: FOILGain(H1,Ho) = k(log2 Pl log2 Po ) P1 + n1 Po+ no where k is the number of positive examples cov  ered by both H1 and Ho.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Heuristic Ho is added to the seed set if there is no other heuristic providing larger FOILGain to any of the seed heuristics.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Since in COCKTAIL, semantic consistency of core  ferring expressions is checked by comparing the sim  ilarity of noun classes, each new heuristic deter  mines the adjustment of the similarity threshold of all known coreferring noun classes.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The steps of the bootstrapping algorithm that learns both new heuristics and adjusts the similarity threshold of coreferential expressions is: MUTUAL BOOTSTRAPPING LOOP 1.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Score all candidate heuristics with FOIL-.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Gain 2.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "BesLh=closest candidate to.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "heuristics(COCKTAIL)\n\t\n\t\n\t\t\theuristics(COCKTAIL)\n\t\n\t\n\t\t\tsemantic consistency of core/erring nouns\n\t\n\t\n\t\t\tnot degrade under minimal performance.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "indicates expression B to be the antecedent.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "When the coreference chain is built, expression A is di  rectly linked to expression D, thus uncovering a new heuristic HO.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "As a rule of thumb, we do not consider a new heuristic unless there is massive evidence of its cov  erage in the data.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "To measure the coverage we use (Riloff and Jones 1999) note that the bootstrap  ping algorithm works well but its performance can deteriorate rapidly when non coreferring data enter as candidate heuristics.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "To make the algorithm more robust, a second level of bootstrapping can be intro  duced.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The outer bootstrapping mechanism, called metabootstrapping compiles the results of the inner (mutual) bootstrapping process and identifies the k most reliable heuristics, where k is a number de  termined experimentally.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "These k heuristics are re  tained and the rest of them are discarded.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "3 SWIZZLE.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "3.1 Multilingual Coreference Data.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "To study the performance of a data-driven multi  lingual coreference resolution system, we prepared a corpus of Romanian texts by translating the MUC6 and MUC7 coreference training texts.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The transla  tions were performed by a group of four Romanian native speakers, and were checked for style by a cer  tified translator from Romania.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "In addition, the Ro  manian texts were annotated with coreference keys.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Two rules were followed when the annotations were done: o1: Whenever an expression ER represents a trans  lation of an expression EE from the corresponding English text, if EE is tagged as a coreference key with identification number ID, then the Romanian expression ER is also tagged with the same ID num  ber.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "This rule allows for translations in which the textual position of the referent and the antecedent have been swapped.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "o2: Since the translations often introduce new coreferring expressions in the same chain, the new expressions are given new, unused ID numbers.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "For example,         lists corresponding English and Romanian fragments of coreference chains from the original MUC6 Wall Street Journal document DOCNO: 9307290143.\n\t\t\t        also shows the original MUC coreference SGML annotations.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Whenever present, the REF tag indicates the ID of the antecedent, whereas the MIN tag indicates the minimal reference expression.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "3.2 Lexical Resources.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The multilingual coreference resolution method im  plemented in SWIZZLE incorporates the heuristics de  rived from COKCTAIL's monolingual coreference res  olution processing in both languages.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "To this end, COCKTAIL required both sets of texts to be tagged for part-of-speech and to recognize the noun phrases.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The English texts were parsed with Brill's part-of  speech tagger (Brill1992) and the noun phrases were identified by the grammar rules implemented in the phrasal parser of FASTUS (Appelt et al., 1993).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Cor  responding resources are not available in Romanian.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "To minimize COCKTAIL's configuration for process  ing Romanian texts, we implemented a Romanian part-of-speech rule-based tagger that used the same Economic adviser Gene Sperling described <COREF ID=\"29\" TYPE=\"IDENT\" REF=\"30\"> it< /COREF> as \"a true full-court press\" to pass <COREF ID=\"31\" TYPE=\"IDENT\" REF=\"26\" MIN=\"bill\">the <COREF ID=\"32\" TYPE=\"IDENT\" REF=\"lO\" MIN=\"reduction\"> <COREF ID=\"33\" TYPE=\"IDENT\" REF=\"12\"> deficit< /COREF>-reduction< /COREF> bill, the final version of which is now being hammered out by <COREF ID=\"43\">House < /COREF> and <COREF ID=\"41\" >Senate < JCOREF>negotiators< /COREF>.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "<COREF ID=\"34\" TYPE=\"IDENT\" REF=\"2\"> The executives< /COREF>' backing- however tepid - gives the administration a way to counter <COREF ID=\"35\" TYPE=\"IDENT\" REF=\"36\"> business< /COREF> critics of <COREF ID=\"500\" TYPE=\"IDENT\" REF=\"31\" MIN=\"package\" STATUS=\"OPT\">the overall package < JCOREF>,...\n\t\t\tConsilierul cu probleme economice Gene Sperling a descris-<COREF ID=\"29\" TYPE=\"IDENT\" REF=\"30\">o< /COREF> cape un efort de avengura menit sa promoveze <COREF ID=\"1125\" TYPE=\"IDENT\" REF=\"26\" MIN=\"legea\">legea < JCOREF> pentru <COREF TYPE=\"IDENT\" REF=\"10\" MIN=\"reducerea\" > reducerea < /COREF><COREF ID=\"33\" TYPE=\"IDENT\" REF=\"12\"> deficitului in bugetul SUA< /COREF>.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Versiunea finala a acestei <COREF ID=\"1126\" TYPE=\"IDENT\" REF=\"1125\" MIN=\"legi\">legi < JCOREF> este desfiin ata chiar in aceste zile in cadrul dezbaterilor ce au loc in <COREF ID=\"43\" >Camera Reprezentativilor < /COREF>  i in <COREF ID=\" 41\" > Senat< /COREF>< /COREF>.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Sprijinirea <COREF ID=\"127\" TYPE=\"IDENT\" REF=\"ll26\" MIN=\"legii\">legii> /COREF> de catre speciali ti ineconomiede i in maniera moderataofera administratiei o modalitate de a contrabalansa criticile aduse <COREF ID=\"500\" TYPE=\"IDENT\" REF=\"31\" MIN=\"legii\" STATUS=\"OPT\">legii< /COREF> de catre companiile americane,...\n\t\t\t       : Example of parallel English and Romanian text annotated for coreference.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The elements from a coreference chain in the respective texts are under  lined.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The English text has only two elements in the coreference chain, whereas the Romanian text con  tains four different elements.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The two additional ele  ments of the Romanian coreference chain are derived due to (1) the need to translate the relative clause from the English fragment into a separate sentence in Romanian; and (2) the reordering of words in the second sentence.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "146 tags as generated by the Brill tagger.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "In addition, we implemented rules that identify noun phrases in Romanian.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "To take advantage of the aligned corpus, SWIZZLE also relied on bilingual lexical resources that help translate the referential expressions.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "For this purpose, we used a core Romanian WordNet (Harabagiu, 1999) which encoded, wherever possi  ble, links between the English synsets and their Ro  manian counterparts.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "This resource also incorpo  rated knowledge derived from several bilingual dic  tionaries (e.g.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "(Banta , 1969)).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Having the parallel coreference annotations, we can easily identify their translations because they have the same identification coreference key.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Look  ing at the example given in        , the expres  sion \"legii\", with ID=500 is the translation of the implemented, several other principles were applied.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "In our experiment, we were satisfied with the qual  ity of the translations recognized by following only these two principles.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "3.3 Multilingual Coreference.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Resolution The SWIZZLE system was run on a corpus of 2335 referential expressions in English (927 from MUC 6 and 1408 from MUC7) and 2851 Romanian ex  pressions (1219 from MUC6 and 1632 from MUC 7).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Initially, the heuristics implemented in COCKTAIL were applied separately to the two textual collec  tions.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Several special cases arose.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "English Text Romanian Text expression \"package\", having the same ID in the English text.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "However, in the test set, the REF fields are intentionally voided, entrusting COCKTAIL to identify the antecedents.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The bilingual corefer  Reference ' '  - f onre Translation ence resolution performed in SWIZZLE, however, re  quires the translations of the English and Romanian antecedents.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The principles guiding the translations of the English and Romanian antecedents (AE-R and ARE, respectively) are:   Circularity: Given an English antecedent, due to semantic ambiguity, it can belong to several English WordNet sysnsets.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "For each such sysnset Sf we con  sider the Romanian corresponding sysnet(s) Sf.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "We filter out all Sf that do not contain AE-R.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "If only one Romanian sysnset is left, then we identified a translation.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Otherwise, we start from the Roma  nian antecedent, find all synsets Sf!",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "to which it be  longs, and obtain the corresponding English sysnets Sf.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Similarly, all English synsets not containing the English antecedent are filtered out.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "If only one synset remains, we have again identified a transla  tion.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Finally, in the last case, the intersection of the multiple synsets in either language generates a legal translation.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "For example, the English synset sE ={bill, measure} translates into the Romanian synset sR ={lege}.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "First, none of the dictionary translations of bill into Romanian (e.g.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "politif., hac  nota, afi ) translate back into any of the elements of sE.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "However the translation of measure into the Romanian lege translates back into bill, its synonym.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Semantic density: Given an English and a Roma  nian antecedent, to establish whether they are trans  lations of one another, we disambiguate them by first collapsing all sysnsets that have common elements.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Then we apply the circularity principle, relying on the semantic alignment encoded in the Romanian WordNet.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "When this core lexical database was first         : Case 1 of multilingual coreference Case 1, which is the ideal case, is shown in Fig  ure 3.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "It occurs when two referential expressions have antecedents that are translations of one an  other.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "This situation occurred in 63.3% of the refer  ential expressions from MUC6 and in 58.7% of the MUC7 references.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Over 50% of these are pronouns or named entities.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "However, all the non-ideal cases are more interesting for SWIZZLE, since they port knowledge that enhances system performance.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "RA H4 R R Translation ER: English reference RR: Romanian reference EA: English antecedent RA: Romanian antecedent ET: English translation RT: Romanian translation of Romanian antecedent of English antecedent         : Case 2 of multilingual coreference Case 2 occurs when the antecedents are not trans  lations, but belong to or corefer with elements of some coreference chains that were already estab  lished.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Moreover, one of the antecedents is textually 147 closer to its referent.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "illustrates the case when the English antecedent is closer to the referent than the Romanian one.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "SWIZZLE Solutions: (1) If the heuristic H(E) used to resolve the reference in the English text has higher priority than H(R), which was used to resolve the reference from the Romanian text, then we first search for RT, the Romanian translation of EA, the English antecedent.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "In the next step, we add heuris  tic Hl that resolves RR into RT, and give it a higher priority than H(R).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Finally, we also add heuristic H2 that links RT to RA when there is at least one trans  lation between the elements of the coreference chains containing EA and ET respectively.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "(2) If H(R) has higher priority than H(E), heuris  tic H3 is added while H(E) is removed.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "We also add H4 that relates ER to ET, the English translation of RA.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Case 3 occurs when at least one of the antecedents starts a new coreference chain (i.e., no coreferring antecedent can be found in the current chains).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "SWIZZLE Solution: If one of the antecedents corefers with an element from a coreference chain, then the antecedent in the opposite language is its translation.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Otherwise, SWIZZLE chooses the an  tecedent returned by the heuristic with highest pri  ority.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "4 Results.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The foremost contribution of SWIZZLE was that it improved coreference resolution over both English and Romanian texts when compared to monolingual coreference resolution performance in terms of preci  sion and recall.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Also relevant was the contribution of SWIZZLE to the process of understanding the cultural differences expressed in language and the way these differences influence coreference resolution.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Because we do not have sufficient space to discuss this issue in detail here, let us state, in short, that English is more economical than Romanian in terms of referen  tial expressions.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "However the referential expressions in Romanian contribute to the resolution of some of the most difficult forms of coreference in English.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "4.1 Precision and Recall.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "summarizes the precision results for both English and Romanian coreference.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The results in  dicate that the English coreference is more pre  cise than the Romanian coreference, but SWIZZLE improves coreference resolution in both languages.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "There were 64% cases when the English coreference was resolved by a heuristic with higher priority than the corresponding heuristic for the Romanian coun terpart.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "This result explains why there is better pre  cision enhancement for the English coreference.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "N o mi na l Pr on om ina l To tal E ng lis h 7 3 % 8 9 % 84 % R o m an ia n 6 6 % 7 8 % 72 % S W IZ Z L E on E ng lis h 7 6 % 9 3 % 87 % S W IZ Z L E on R o m an ia n 7 1 % 8 2 % 76 %        : Coreference precision N o mi na l Pr on o mi nal To tal E ng lis h 6 9 % 8 9 78 % R o m an ia n 6 3 % 8 3 % 72 % S W IZ Z L E on E ng lis h 6 6 % 8 7 % 77 % S W IZ Z L E on R o m an ia n 6 1 % 8 0 % 70 %        : Coreference recall         also illustrates the recall results.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The advantage of the data-driven coreference resolution over other methods is based on its better recall per  formance.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "This is explained by the fact that this method captures a larger variety of coreference pat  terns.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Even though other coreference resolution sys  tems perform better for some specific forms of refer  ence, their recall results are surpassed by the data  driven approach.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Multilingual coreference in turn improves more the precision than the recall of the monolingual data-driven coreference systems.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "In addition,         shows that the English coref  erence results in better recall than Romanian coref  erence.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "However, the recall shows a decrease for both languages for SWIZZLE because imprecise coreference links are deleted.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "As is usually the case, deleting data lowers the recall.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "All results were obtained by using the automatic scorer program developed for the MUC evaluations.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "5 Conclusions.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "We have introduced a new data-driven method for multilingual coreference resolution, implemented in the SWIZZLE system.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The results of this method are encouraging since they show clear improvements over monolingual coreference resolution.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Currently, we are also considering the effects of a bootstrap  ping algorithm for multilingual coreference resolu  tion.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Through this procedure we would learn con  currently semantic consistency knowledge and bet  ter performing heuristic rules.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "To be able to de  velop such a learning approach, we must first develop a method for automatic recognition of multilingual referential expressions.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "148 We also believe that a better performance evalu  ation of SWIZZLE can be achieved by measuring its impact on several complex applications.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "We intend to analyze the performance of SWIZZLE when it is used as a module in an IE system, and separately in a Question/ Answering system.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Acknowledgements This paper is dedicated to the memory of our friend Megumi Kameyama, who in  spired this work.",
+        "Entity": "Normal"
+    }
+]

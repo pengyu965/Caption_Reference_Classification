@@ -1,0 +1,874 @@
+[
+    {
+        "Text": "\nEstimation of Conditional ProbabilitiesWith Decision Trees and an Application to Fine-Grained POS Tagging\n\t\n\t\tWe present a HMM part-of-speech tagging method which is particularly suited for POS tagsets with a large number of fine-grained tags.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "It is based on three ideas: (1) splitting of the POS tags into attribute vectors and decomposition of the contextual POS probabilities of the HMM into a product of attribute probabilities, (2) estimation of the contextual probabilities with decision trees, and (3) use of high-order HMMs.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "In experiments on German and Czech data, our tagger outperformed state- of-the-art POS taggers.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "A Hidden-Markov-Model part-of-speech tagger (Brants, 2000, e.g.)",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "computes the most probable POS tag sequence t\u02c6N = t\u02c61, ..., t\u02c6N for a given word sequence wN .",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "POS taggers are usually trained on corpora with between 50 and 150 different POS tags.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Tagsets of this size contain little or no information about number, gender, case and similar morphosyntac- tic features.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "For languages with a rich morphology such as German or Czech, more fine-grained tagsets are often considered more appropriate.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The additional information may also help to disambiguate the (base) part of speech.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Without gender information, for instance, it is difficult for a tagger to correctly disambiguate the German sentence Ist das Realita\u00a8 t?",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "(Is that reality?).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The word das is ambiguous between an article and a demonstrative.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Because of the lack of gender agreement between das (neuter) and the noun Realita\u00a8 t (feminine), the article reading must be wrong.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The German Tiger treebank (Brants et al., 2002) is an example of a corpus with a more fine-grained tagset (over 700 tags overall).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Large tagsets aggravate sparse data problems.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "As an example, take the German sentence Das zu versteuernde Einkommen sinkt (\u201cThe to be taxed income decreases\u201d; The t\u02c6N N N 1 = arg max p(t1 , w1 ) 1                                                                                                                                            N taxable income decreases).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Das ART.Def.Nom.Sg.Neut zu PART.Zu versteuernde ADJA.Pos.Nom.Sg.Neut Einkommen N.Reg.Nom.Sg.Neut p(tN , wN ) = n 1 1 i=1 p(ti|ti\u22121 ) i\u2212k p(wi|ti) le .",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "(1) context prob.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "xical prob HMM taggers are fast and were successfully applied to a wide range of languages and training corpora.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Qc 2008.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Licensed under the Creative Commons Attribution-Noncommercial-Share Alike 3.0 Unported license (http://creativecommons.org/licenses/by-nc-sa/3.0/).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Some rights reserved.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Unfortunately, the POS trigram consisting of the tags of the first three words does not occur in the Tiger corpus.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "(Neither does the pair consisting of the first two tags.)",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The unsmoothed 777 Proceedings of the 22nd International Conference on Computational Linguistics (Coling 2008), pages 777\u2013784 Manchester, August 2008 context probability of the third POS tag is therefore 0.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "If the probability is smoothed with the backoff distribution p(\u2022|P ART .Z u), the most probable tag is ADJA.Pos.Acc.Sg.Fem rather than ADJA.Pos.Nom.Sg.Neut.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Thus, the agreement between the article and the adjective is not checked anymore.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "A closer inspection of the Tiger corpus reveals that it actually contains all the information needed to completely disambiguate each component of the POS tag ADJA.Pos.Nom.Sg.Neut: \u2022 All words appearing after an article (ART) and the infinitive particle zu (PART.zu) are attributive adjectives (ADJA) (10 of 10 cases).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "\u2022 All adjectives appearing after an article and a particle (PART) have the degree positive (Pos) (39 of 39 cases).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "\u2022 All adjectives appearing after a nominative article and a particle have nominative case (11 of 11 cases).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "\u2022 All adjectives appearing after a singular article and a particle are singular (32 of 32 cases).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "\u2022 All adjectives appearing after a neuter article and a particle are neuter (4 of 4 cases).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "By (1) decomposing the context probability of ADJA.Pos.Nom.Sg.Neut into a product of attribute probabilities p(ADJA | 2:ART, 2:ART.Def, 2:ART.Nom, 2:ART.Sg, 2:ART.Neut, 1:PART, 1:PART.Zu) \u2217 p(Pos| 2:ART, 2:ART.Def, 2:ART.Nom, 2:ART.Sg, 2:ART.Neut, 1:PART, 1:PART.Zu, 0:ADJA) \u2217 p(Nom | 2:ART, 2:ART.Def, 2:ART.Nom, 2:ART.Sg, 2:ART.Neut, 1:PART, 1:PART.Zu, 0:ADJA, 0:ADJA.Pos) \u2217 p(Sg | 2:ART, 2:ART.Def, 2:ART.Nom, 2:ART.Sg, 2:ART.Neut, 1:PART, 1:PART.Zu, 0:ADJA, 0:ADJA.Pos, 0:ADJA.Nom) \u2217 p(Neut | 2:ART, 2:ART.Def, 2:ART.Nom, 2:ART.Sg, 2:ART.Neut, 1:PART, 1:PART.Zu, 0:ADJA, 0:ADJA.Pos, 0:ADJA.Nom, 0:ADJA.Sg) and (2) selecting the relevant context attributes for the prediction of each attribute, we obtain the \u2217 p(Sg | 2:ART.Sg, 1:PART.Zu, 0:ADJA) \u2217 p(Neut | 2:ART.Neut, 1:PART.Zu, 0:ADJA) The conditional probability of each attribute is 1.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Hence the context probability of the whole tag is.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "also 1.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Without having observed the given context, it is possible to deduce that the observed POS tag is the only possible tag in this context.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "These considerations motivate an HMM tagging approach which decomposes the POS tags into a set of simple attributes, and uses decision trees to estimate the probability of each attribute.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Decision trees are ideal for this task because the identification of relevant attribute combinations is at the heart of this method.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The backoff smoothing methods of traditional n-gram POS taggers require an ordering of the reduced contexts which is not available, here.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Discriminatively trained taggers, on the other hand, have difficulties to handle the huge number of features which are active at the same time if any possible combination of context attributes defines a separate feature.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Decision trees (Breiman et al., 1984; Quinlan, 1993) are normally used as classifiers, i.e.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "they assign classes to objects which are represented as attribute vectors.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The non-terminal nodes are labeled with attribute tests, the edges with the possible outcomes of a test, and the terminal nodes are labeled with classes.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "An object is classified by evaluating the test of the top node on the object, following the respective edge to a daughter node, evaluating the test of the daughter node, and so on until a terminal node is reached whose class is assigned to the object.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Decision Trees are turned into probability estimation trees by storing a probability for each possible class at the terminal nodes instead of a single result class.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "2.1 Induction of Decision Trees.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Decision trees are incrementally built by first selecting the test which splits the manually annotated training sample into the most homogeneous subsets with respect to the class.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "This test, which maximizes the information gain1 wrt.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "the class, is following expression for the context probability: 1 The information gain measures how much the test de-.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "p(ADJA | ART, PART.Zu) \u2217 p(Pos | 2:ART, 1:PART, 0:ADJA) \u2217 p(Nom | 2:ART.Nom, 1:PART.Zu, 0:ADJA) creases the uncertainty about the class.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "It is the difference between the entropy of the empirical distribution of the class variable in the training set and the weighted average entropy yes 0:N.Name yes no 1:ART.Nom no 1:ADJA.Nom yes no which returns a probability of 0.3.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The third tree for neuter has one non terminal and two terminal nodes returning a probability of 0.3 and 0.5, respectively.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The sum of probabilities is therefore either 0.9 or 1.1, but never exactly 1.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "This problem 2:N.Reg p=0.999 0:N.Name 0:N.Name yes no p=0.571 p=0.938 yes no p=0.948 p=0.998 .... is solved by renormalizing the probabilities.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The probability of an attribute (such as \u201cNom\u201d) is always conditioned on the respective base POS (such as \u201cN\u201d) (unless the predicted attribute is the                                                                        \n\t\t\t                                                                        \n\t\t\tassigned to the top node.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The tree is recursively expanded by selecting the best test for each subset and so on, until all objects of the current subset belong to the same class.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "In a second step, the decision tree may be pruned in order to avoid overfit- ting to the training data.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Our tagger generates a predictor for each feature (such as base POS, number, gender etc.)",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Instead of using a single tree for the prediction of all possible values of a feature (such as noun, article, etc.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "for base POS), the tagger builds a separate decision tree for each value.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The motivation was that a tree which predicts a single value (say verb) does not fragment the data with tests which are only relevant for the distinction of two other values (e.g.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "article and possessive pronoun).2 Furthermore, we observed that such two-class decision trees require no optimization of the pruning threshold (see also section 2.2.)",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The tree induction algorithm only considers binary tests, which check whether some particular attribute is present or not.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The best test for each node is selected with the standard information gain criterion.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The recursive tree building process terminates if the information gain is 0.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The decision tree is pruned with the pruning criterion described below.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Since the tagger creates a separate tree for each attribute, the probabilities of a set of competing attributes such as masculine, feminine, and neuter will not exactly sum up to 1.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "To understand why, assume that there are three trees for the gender attributes.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Two of them (say the trees for masculine and feminine) consist of a single terminal node base POS) in order to make sure that the probability of an attribute is 0 if it never appeared with the respective base POS.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "All context attributes other than the base POS are always used in combination with the base POS.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "A typical context attribute is \u201c1:ART.Nom\u201d which states that the preceding tag is an article with the attribute \u201cNom\u201d.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "\u201c1:ART\u201d is also a valid attribute specification, but \u201c1:Nom\u201d is not.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The tagger further restricts the set of possible test attributes by requiring that some attribute of the POS tag at position i-k (i=position of the predicted POS tag, k \u2265 1) must have been used be fore an attribute of the POS tag at position i-(k+1) may be examined.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "This restriction improved the tagging accuracy for large contexts.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "2.2 Pruning Criterion.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The tagger applies3 the critical-value pruning strategy proposed by (Mingers, 1989).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "A node is pruned if the information gain of the best test multiplied by the size of the data subsample is below a given threshold.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "To illustrate the pruning, assume that D is the data of the current node with 50 positive and 25 negative elements, and that D1 (with 20 positive and 20 negative elements) and D2 (with 30 positive and 5 negative elements) are the two subsets induced by the best test.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The entropy of D is \u22122/3 log22/3 \u2212 1/3 log21/3 = 0.92, the entropy of D1 is \u22121/2 log21/2\u22121/2 log21/2 = 1, and the entropy of D2 is \u22126/7 log26/7 \u2212 1/7 log21/7 = 0.59.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The information gain is therefore 0.92 \u2212 (8/15 \u2217 1 \u2212 7/15 \u2217 0.59) = 0.11.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The resulting score is 75 \u2217 0.11 = 8.25.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Given a threshold of 6, the node is therefore not pruned.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "We experimented with pre-pruning (where a node is always pruned if the gain is below the in the two subsets.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The weight of each subset is proportional to its size.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "2 We did not directly compare the two alternatives (two- valued vs. multi-valued tests), because the implementational effort required would have been too large.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "3 We also experimented with a pruning criterion based on binomial tests, which returned smaller trees with a slightly lower accuracy, although the difference in accuracy was never larger than 0.1% for any context size.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Thus, the simpler pruning strategy presented here was chosen.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "threshold) as well as post-pruning (where a node is only pruned if its sub-nodes are terminal nodes or pruned nodes).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The performance of pre-pruning was slightly better and it was less dependent on the choice of the pruning threshold.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "A threshold of 6 consistently produced optimal or near optimal results for pre-pruning.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Thus, pre-pruning with a threshold of 6 was used in the experiments.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The tagger treats dots in POS tag labels as attribute separators.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The first attribute of a POS tag is the main category.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The number of additional attributes is fixed for each main category.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The additional attributes are category-specific.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The singular attribute of a noun and an adjective POS tag are therefore two different attributes.4 Each position in the POS tags of a given category corresponds to a feature.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The attributes occurring at a certain position constitute the value set of the feature.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Our tagger is a HMM tagger which decomposes the context probabilities into a product of attribute probabilities.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The probability of an attribute given the attributes of the preceding POS tags as well asand that the context probability p(ti|ti\u22121 ) is internally computed as a product of attribute probabili ties.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "In order to increase the speed, the tagger also applies a beam-search strategy which prunes all search paths whose probability is below the probability of the best path times a threshold.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "With athreshold of 10\u22123 or lower, the influence of prun ing on the tagging accuracy was negligible.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "4.1 Supplementary Lexicon.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The tagger may use an external lexicon which supplies entries for additional words which are not found in the training corpus, and additional tags for words which did occur in the training data.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "If an external lexicon is provided, the lexical probabilities are smoothed as follows: The tagger computes the average tag probabilities of all words with the same set of possible POS tags.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The Witten-Bell method is then applied to smooth the lexical probabilities with the average probabilities.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "If the word w was observed with N different tags, and f (w, t) is the joint frequency of w and POS tag t, and p(t|[w]) is the average probability of t among words with the same set of possible tags as w, then the smoothed probability of t given w is defined as follows: f (w, t) + N p(t|[w]) the preceding attributes of the predicted POS tag is estimated with a decision tree as described be p(t|w) = f (w) + N fore.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The probabilities at the terminal nodes of the decision trees are smoothed with the parent node probabilities (which themselves were smoothed in the same way).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The smoothing is implemented by adding the weighted class probabilities pp(c) of the parent node to the frequencies f (c) before normalizing them to probabilities: p(c) = f (c) + \u03b1pp(c) \u03b1 + \ufffdc f (c) The weight \u03b1 was fixed to 1 after a few experiments on development data.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "This smoothing strategy is closely related to Witten-Bell smoothing.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The probabilities are normalized by dividing them by the total probability of all attribute values of the respective feature (see section 2.1).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The best tag sequence is computed with the Viterbi algorithm.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The main differences of our tag- ger to a standard trigram tagger are that the order of the Markov model (the k in equation 1) is not fixed 4 This is the reason why the attribute tests in figure 1 used complex attributes such as ART.Nom rather than Nom.The smoothed estimates of p(tag|word) are di vided by the prior probability p(tag) of the tag and used instead of p(word|tag).5 4.2 Unknown Words.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The lexical probabilities of unknown words are obtained as follows: The unknown words are divided into four disjoint classes6 with numeric expressions, words starting with an uppercase letter, words starting with a lowercase letter, and a fourth class for the other words.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The tagger builds a suffix trie for each class of unknown words using the known word types from that class.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The maximal length of the suffixes is 7.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The suffix tries are pruned until (i) all suffixes have a frequency of at least 5 and (ii) the information gain multiplied by the suffix frequency and di 5 p(word|tag) is equal to p(tag|word)p(word)/p(tag) and p(word) is a constant if the tokenization is unambiguous.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Therefore dropping the factor p(word) has no influence on the ranking of the different tag sequences.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "6 In earlier experiments, we had used a much larger number of word classes.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Decreasing their number to 4 turned out to be better.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "a threshold of 1.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "More precisely, if T\u03b1 is the set of POS tags that occurred with suffix \u03b1, |T | is the size of the set T , f\u03b1 is the frequency of suffix \u03b1, and p\u03b1(t) is the probability of POS tag t among the words with suffix \u03b1, then the following condition must hold: tion between definite and indefinite articles, and the distinction between hyphens, slashes, left and right parentheses, quotation marks, and other symbols which the Tiger treebank annotates with \u201c$(\u201d.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "A supplementary lexicon was created by analyzing a word list which included all words from the fa\u03b1 pa\u03b1 (t) log pa\u03b1(t) < 1 training, development, and test data with a German computationa l morphology.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The analyses gener |Ta\u03b1| t\u2208Ta\u03b1 p\u03b1(t) ated by the morphology were mapped to the Tiger The POS probabilities are recursively smoothed with the POS probabilities of shorter suffixes using Witten-Bell smoothing.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Our tagger was first evaluated on data from the German Tiger treebank.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The results were compared to those obtained with the TnT tagger (Brants, 2000) and the SVMTool (Gime\u00b4nez and Ma`rquez, 2004), which is based on support vector machines.7 The training of the SVMTool took more than a day.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Therefore it was not possible to optimize the parameters systematically.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "We took standard features from a 5 word window and M4LRL training without optimization of the regular- ization parameter C. In a second experiment, our tagger was also evaluated on the Czech Academic corpus 1.0 (Hladka\u00b4 et al., 2007) and compared to the TnT tag- ger.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "5.1 Tiger Corpus.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The German Tiger treebank (Brants et al., 2002) contains over 888,000 tokens.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "It is annotated with POS tags from the coarse-grained STTS tagset and with additional features encoding information about number, gender, case, person, degree, tense, and mood.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "After deleting problematic sentences (e.g.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "with an incomplete annotation) and automatically correcting some easily detectable errors, 885,707 tokens were left.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The first 80% were used as training data, the first half of the rest as development data, and the last 10% as test data.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Some of the 54 STTS labels were mapped to new labels with dots, which reduced the number of main categories to 23.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Examples are the nominal POS tags NN and NE which were mapped to N.Reg and N.Name.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Some lexically decidable distinctions missing in the Tiger corpus have been tagset.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Note that only the words, but not the POS tags from the test and development data were used, here.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Therefore, it is always possible to create a supplementary lexicon for the corpus to be processed.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "In case of the TnT tagger, the entries of the supplementary lexicon were added to the regular lexicon with a default frequency of 1 if the word/tag- pair was unknown, and with a frequency proportional to the prior probability of the tag if the word was unknown.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "This strategy returned the best results on the development data.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "In case of the SVM- Tool, we were not able to successfully integrate the supplementary lexicon.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "5.1.1 Refined Tagset Prepositions are not annotated with case in the Tiger treebank, although this information is important for the disambiguation of the case of the next noun phrase.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "In order to provide the tagger with some information about the case of prepositions, a second training corpus was created in which prepositions which always select the same case, such as durch (through), were annotated with this case (APPR.Acc).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Prepositions which select genitive case, but also occur with dative case8, were tagged with APPR.Gen.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The more frequent ones of the remaining prepositions, such as in (in), were lexicalized (APPR.in).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The refined tagset also distinguished between the auxiliaries sein, haben, and werden, and used lexicalized tags for the coordinating conjunctions aber, doch, denn, wie, bis, noch, and als whose distribution differs from the distribution of prototypical coordinating conjunctions such as und (and) or oder (or).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "For evaluation purposes, the refined tags are mapped back to the original tags.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "This mapping is unambiguous.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "7 It was planned to include also the Stanford tagger.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "(Toutanova et al., 2003) in this comparison, but it was not possible to train it on the Tiger data.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "8 In German, the genitive case of arguments is more and.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "more replaced by the dative.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "much smaller.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The first result was obtained with TnT trained on Tiger data which was mapped to STTS before.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The second row contains the results for the TnT tagger when it is trained on the Tiger data and the output is mapped to STTS.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The third row gives the corresponding figures for our tagger.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "5.1.2 Results                                                                                                    \n\t\t\t                                                                                                                                                                                                                          \n\t\t\t                                                             \n\t\t\tA tag is considered correct if all attributes are correct.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The SVMTool is slightly better than the TnT tagger on the default tagset, but shows little improvement from the tagset refinement.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Apparently, the lexical features used by the SVMTool encode most of the information of the tagset refinement.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "With a context of two preceding POS tags (similar to the trigram tagger TnT), our tagger outperforms TnT by 0.7% on the default tagset, by 1% on the refined tagset, and by 1.1% on the refined tagset plus the additional lexicon.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "A larger context of up to 10 preceding POS tags further increased the accuracy by 0.6, 0.6, and 0.7%, respectively.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "de fa ult refined ref.+lexicon T n T S T T S T n T Ti g e r 1 0 t a g s 9 7.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "2 8 9 7.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "1 7 97.26 97.51 9 7.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "3 9 97.57 97.97                                                                                                                                                               \n\t\t\tThese figures are considerably lower than e.g.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "the 96.7% accuracy reported in Brants (2000) for the Negra treebank which is annotated with STTS tags without agreement features.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "This is to 9 Unknown words are tagged by choosing the most frequent tag of words with the same capitalization.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The best results are obtained with a context size of 10.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "What type of information is relevant across a distance of ten words?",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "A good example is the decision tree for the attribute first person of finite verbs, which looks for a first person pronoun at positions -1 through -10 (relative to the position of the current word) in this order.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Since German is a verb-final language, these tests clearly make sense.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Our tagger was used with a context size of 10.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The suffix length parameter of the TnT tagger was set to 6 without lexicon and to 3 with lexicon.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "These values were optimal on the development data.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The accuracy of our tagger is lower than on the development data.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "This could be due to the higher rate of unknown words (10.0% vs. 7.7%).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Relative to the TnT tagger, however, the accuracy is quite similar for test and development data.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The differences between the two taggers are significant.10 ta gg er de fa ult refined ref.+lexicon Tn T ou r ta gg er 8 3.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "4 5 84.11 89.14 8 5.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "0 0 85.92 91.07                                          \n\t\t\t                                                                                           \n\t\t\tIf 10 726 sentences were better tagged by TnT (i.e.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "with few errors), 1450 sentences were better tagged by our tagger.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The resulting score of a binomial test is below 0.001.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Our tagger is quite fast, although not as fast as the TnT tagger.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "With a context size of 3 (10), it annotates 7000 (2000) tokens per second on a computer with an Athlon X2 4600 CPU.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The training with a context size of 10 took about 4 minutes.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "5.2 Czech Academic Corpus.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "We also evaluated our tagger on the Czech Academic corpus (Hladka\u00b4 et al., 2007) which contains 652.131 tokens and about 1200 different POS tags.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The data was divided into 80% training data, 10% development data and 10% test data.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "89 88.9 88.8 Provost & Domingos (2003) noted that well- known decision tree induction algorithms such as C4.5 (Quinlan, 1993) or CART (Breiman et al., 1984) fail to produce accurate probability estimates.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "They proposed to grow the decision trees to their maximal size without pruning, and to smooth the probability estimates with add-1 smoothing (also known as the Laplace correction).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Ferri et al.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "(2003) describe a more complex backoff smoothing method.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Contrary to them, we applied pruning and found that some pruning (threshold=6) gives better results than no pruning (threshold=0).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Another difference is that we used N two- class trees with normalization to predict the probabilities of N classes.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "These two-class trees can be pruned with a fixed pruning threshold.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Hence there is no need to put aside training data for parameter tuning.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "88.7 88.6 88.5 \u2019 c o n t e x t d a t a 2 \u2019 2 3 4 5 6 7 8 9 10 A n ope n que stio n is wh eth er the SV MT ool (or oth er dis cri min ativ ely trai ned tag ger s) cou ld out - perf orm the pre sen ted tag ger if the sa me dec om positi on of PO S tag s and the sa me con text size was                                                                  The best accuracy of our tagger on the development set was 88.9% obtained with a context of 4 preceding POS tags.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The best accuracy of the TnT tagger was 88.2% with a maximal suffix length of 5.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The difference is significant.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Our tagger combines two ideas, the decomposition of the probability of complex POS tags into a product of feature probabilities, and the estimation of the conditional probabilities with decision trees.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "A similar idea was previously presented in Kempe (1994), but apparently never applied again.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The tagging accuracy reported by Kempe was below that of a traditional trigram tagger.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Unlike him, we found that our tagging method outperformed state-of-the-art POS taggers on fine-grained POS tagging even if only a trigram context was used.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Schmid (1994) and Ma`rquez (1999) used decision trees for the estimation of contextual tag probabilities, but without a decomposition of the tag probability.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Magerman (1994) applied probabilistic decision trees to parsing, but not with a generative model.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "used.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "We think that this might be the case if the SVM features are restricted to the set of relevant attribute combinations discovered by the decision tree, but we doubt that it is possible to train the SVMTool (or other discriminatively trained tag- gers) without such a restriction given the difficulties to train it with the standard context size.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Czech POS tagging has been extensively studied in the past (Hajic\u02c7 and Vidova\u00b4-Hladka\u00b4, 1998; Hajic\u02c7 et al., 2001; Votrubec, 2006).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Spoustov et al.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "(2007) compared several POS taggers including an n-gram tagger and a discriminatively trained tagger (Morc\u02c7e), and evaluated them on the Prague Dependency Treebank (PDT 2.0).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Morc\u02c7e\u2019s tagging accuracy was 95.12%, 0.3% better than the n-gram tagger.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "A hybrid system based on four different tagging methods reached an accuracy of 95.68%.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Because of the different corpora used and the different amounts of lexical information available, a direct comparison to our results is difficult.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Furthermore, our tagger uses no corpus-specific heuristics, whereas Morc\u02c7e e.g.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "is optimized for Czech POS tagging.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The German tagging results are, to the best of our knowledge, the first published results for fine- grained POS tagging with the Tiger tagset.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "We presented a HMM POS tagger for fine-grained tagsets which splits the POS tags into attribute vectors and estimates the conditional probabilities of the attributes with decision trees.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "In experiments with German and Czech corpora, this method achieved a higher tagging accuracy than two state-of-the-art general-purpose POS taggers (TnT and SVMTool).",
+        "Entity": "Normal"
+    }
+]

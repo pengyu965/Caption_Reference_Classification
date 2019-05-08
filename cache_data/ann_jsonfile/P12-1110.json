@@ -1,0 +1,254 @@
+[
+    {
+        "Code": "T1",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "17674",
+                "17873"
+            ]
+        ],
+        "Text": "The list of the features used in our joint model is presented in Table 1, where S01 S05, W01 W21, and T01 05 are taken from Zhang and Clark (2010), and P01 P28 are taken from Huang and Sagae (2010).",
+        "RefType": "Direct",
+        "Type": "Table",
+        "Num": "1"
+    },
+    {
+        "Code": "T2",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "21992",
+                "22024"
+            ]
+        ],
+        "Text": "Table 2: Statistics of datasets.",
+        "RefType": "Direct",
+        "Type": "Table",
+        "Num": "2"
+    },
+    {
+        "Code": "T3",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "25426",
+                "25478"
+            ]
+        ],
+        "Text": "Table 1: Feature templates for the full joint model.",
+        "RefType": "Direct",
+        "Type": "Table",
+        "Num": "1"
+    },
+    {
+        "Code": "T4",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "27358",
+                "27413"
+            ]
+        ],
+        "Text": "The statistics of 96 these splits are shown in Table 2.",
+        "RefType": "Direct",
+        "Type": "Table",
+        "Num": "2"
+    },
+    {
+        "Code": "T5",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "28963",
+                "29059"
+            ]
+        ],
+        "Text": "Table 5 shows that this reimplementation almost reproduces the accuracy of their implementation.",
+        "RefType": "Direct",
+        "Type": "Table",
+        "Num": "5"
+    },
+    {
+        "Code": "T6",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "32271",
+                "32398"
+            ]
+        ],
+        "Text": "Table 3 shows the performance and speed of the full joint model (with no dictionaries) on CTB5c1 with respect to the beam size.",
+        "RefType": "Direct",
+        "Type": "Table",
+        "Num": "3"
+    },
+    {
+        "Code": "T7",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "32649",
+                "32814"
+            ]
+        ],
+        "Text": "Based on this experiment, we set the beam size of SegTagDep to 64 throughout the exper 64 96.28 92.37 74.96 0.48 Table 3: F1 scores and speed (in sentences per sec.)",
+        "RefType": "Direct",
+        "Type": "Table",
+        "Num": "3"
+    },
+    {
+        "Code": "T8",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "33202",
+                "33435"
+            ]
+        ],
+        "Text": "Ta SegTag 97.66 93.61 SegTagDep 97.73 94.46 SegTag(d) 98.18 94.08 SegTagDep(d) 98.26 94.64 Table 5: Final results on CTB5j 76 75 74 ble 4 shows the segmentation, POS tagging, and dependency parsing F1 scores of these models on CTB5c.",
+        "RefType": "Direct",
+        "Type": "Table",
+        "Num": "5"
+    },
+    {
+        "Code": "T9",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "38468",
+                "38587"
+            ]
+        ],
+        "Text": "Table 4: Segmentation, POS tagging, and (unlabeled attachment) dependency F1 scores averaged over five trials on CTB5c.",
+        "RefType": "Direct",
+        "Type": "Table",
+        "Num": "4"
+    },
+    {
+        "Code": "T10",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "38968",
+                "38975"
+            ]
+        ],
+        "Text": "Table 5",
+        "RefType": "Direct",
+        "Type": "Table",
+        "Num": "5"
+    },
+    {
+        "Code": "T11",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "38976",
+                "39088"
+            ]
+        ],
+        "Text": "and Table 6 show a comparison of the segmentation and POS tagging accuracies with other state-of-the-art models.",
+        "RefType": "Direct",
+        "Type": "Table",
+        "Num": "6"
+    },
+    {
+        "Code": "T12",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "41349",
+                "41542"
+            ]
+        ],
+        "Text": "Table 6: Final results on CTB6 and CTB7 accuracies of POS tagging and dependency parsing were remarkably improved by 0.6% and 2.4%, respectively corresponding to 8.3% and 10.2% error reduction.",
+        "RefType": "Direct",
+        "Type": "Table",
+        "Num": "6"
+    },
+    {
+        "Code": "T13",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "15166",
+                "15319"
+            ]
+        ],
+        "Text": "Figure 1 portrays how the states are aligned using the proposed scheme, where a subtree is denoted as a rectangle with its partial index shown inside it.",
+        "RefType": "Direct",
+        "Type": "Figure",
+        "Num": "1"
+    },
+    {
+        "Code": "T14",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "16451",
+                "16598"
+            ]
+        ],
+        "Text": "We also propose to use the features U01 U03, which we found are effective to adjust the character Figure 1: Illustration of the alignment of steps.",
+        "RefType": "Direct",
+        "Type": "Figure",
+        "Num": "1"
+    },
+    {
+        "Code": "T15",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "30418",
+                "30673"
+            ]
+        ],
+        "Text": "(2011), we confirmed that omission of the look-ahead features results in a 0.26% decrease in the parsing accuracy on CTB5d (dev).Figure 2: F1 scores (in %) of SegTagDep on CTB 5c1 w.r.t. the training epoch (x-axis) and parsing feature weights (in legend).",
+        "RefType": "Direct",
+        "Type": "Figure",
+        "Num": "2"
+    },
+    {
+        "Code": "T16",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "31404",
+                "31673"
+            ]
+        ],
+        "Text": "Figure 2 shows the F1 scores of the proposed model (SegTagDep) on CTB5c1 with respect to the training epoch and different parsing feature weights, where Seg , Tag , and Dep respectively denote the F1 scores of word segmentation, POS tagging, and dependency parsing.",
+        "RefType": "Direct",
+        "Type": "Figure",
+        "Num": "2"
+    },
+    {
+        "Code": "T17",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "35584",
+                "35679"
+            ]
+        ],
+        "Text": "Figure 3: Performance of baseline and joint models w.r.t. the average processing time (in sec.)",
+        "RefType": "Direct",
+        "Type": "Figure",
+        "Num": "3"
+    },
+    {
+        "Code": "T18",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "36602",
+                "36705"
+            ]
+        ],
+        "Text": "Figure 3 shows the performance and processing time comparison of various models and their combinations.",
+        "RefType": "Direct",
+        "Type": "Figure",
+        "Num": "3"
+    }
+]

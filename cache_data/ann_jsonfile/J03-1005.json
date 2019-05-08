@@ -1,0 +1,58 @@
+[
+    {
+        "Code": "T1",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "8359",
+                "8451"
+            ]
+        ],
+        "Text": "Figure 1 Architecture of the statistical translation approach based on Bayes decision rule.",
+        "RefType": "Direct",
+        "Type": "Figure",
+        "Num": "1"
+    },
+    {
+        "Code": "T2",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "9738",
+                "9870"
+            ]
+        ],
+        "Text": "In general, as shown in this figure, there may be additional transformations to make the translation task simpler for the algorithm.",
+        "RefType": "Direct",
+        "Type": "Figure",
+        "Num": "1"
+    },
+    {
+        "Code": "T3",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "9614",
+                "9705"
+            ]
+        ],
+        "Text": "The overall architecture of the statistical translation approach is summarized in Figure 1.",
+        "RefType": "Direct",
+        "Type": "Figure",
+        "Num": "1"
+    },
+    {
+        "Code": "T4",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "19318",
+                "19326"
+            ]
+        ],
+        "Text": "Figure 2",
+        "RefType": "Direct",
+        "Type": "Figure",
+        "Num": "2"
+    }
+]

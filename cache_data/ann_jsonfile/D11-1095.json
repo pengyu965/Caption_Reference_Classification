@@ -1,0 +1,268 @@
+[
+    {
+        "Code": "T1",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "28757",
+                "28987"
+            ]
+        ],
+        "Text": "Nc Nl HGFC uncons trained A G G N MI F N M I F 13 0 13 3 57 .3 1 36 .6 5 54 .2 2 32 .6 2 11 4 11 7 54 .6 7 37 .9 6 51 .3 5 32 .4 4 50 51 37 .7 5 40 .0 0 32 .6 1 32 .7 8 Table 2: Performance on T2 using a predefined tree structure.",
+        "RefType": "Direct",
+        "Type": "Table",
+        "Num": "2"
+    },
+    {
+        "Code": "T2",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "29021",
+                "29117"
+            ]
+        ],
+        "Text": "Table 1: Comparison against Stevenson and Joanis (2003) s result on T1 (using similar features).",
+        "RefType": "Direct",
+        "Type": "Table",
+        "Num": "1"
+    },
+    {
+        "Code": "T3",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "29151",
+                "29285"
+            ]
+        ],
+        "Text": "Table 1 shows our results and the results of Stevenson and Joanis (2003) on T1 when employing AGG using Ward as the linkage criterion.",
+        "RefType": "Direct",
+        "Type": "Table",
+        "Num": "1"
+    },
+    {
+        "Code": "T4",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "31259",
+                "31320"
+            ]
+        ],
+        "Text": "Table 3: Performance on T3 using a predefined tree structure.",
+        "RefType": "Direct",
+        "Type": "Table",
+        "Num": "3"
+    },
+    {
+        "Code": "T5",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "30979",
+                "30984"
+            ]
+        ],
+        "Text": "and 3",
+        "RefType": "Indirect",
+        "Type": "Table",
+        "Num": "3"
+    },
+    {
+        "Code": "T6",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "30970",
+                "30978"
+            ]
+        ],
+        "Text": "tables 2",
+        "RefType": "Direct",
+        "Type": "Table",
+        "Num": "2"
+    },
+    {
+        "Code": "T7",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "31354",
+                "31468"
+            ]
+        ],
+        "Text": "Table 2 compares the results of the unconstrained version of HGFC against those of AGG on our largest test set T2.",
+        "RefType": "Direct",
+        "Type": "Table",
+        "Num": "2"
+    },
+    {
+        "Code": "T8",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "31877",
+                "32085"
+            ]
+        ],
+        "Text": "Table 3 shows the results of both unconstrained and constrained versions of HGFC and those of AGG on the test set T3 (where singular classes are removed to enable proper evaluation of the constrained method).",
+        "RefType": "Direct",
+        "Type": "Table",
+        "Num": "3"
+    },
+    {
+        "Code": "T9",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "33409",
+                "33496"
+            ]
+        ],
+        "Text": "Table 4: NMI of unconstrained HGFC when trees for T2 and T3 are inferred automatically.",
+        "RefType": "Direct",
+        "Type": "Table",
+        "Num": "4"
+    },
+    {
+        "Code": "T10",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "33530",
+                "33708"
+            ]
+        ],
+        "Text": "Finally, Table 4 shows the results for the unconstrained HGFC on T2 and and T3 when the tree structure is not predefined but inferred automatically as described in section 3.2.3.",
+        "RefType": "Direct",
+        "Type": "Table",
+        "Num": "4"
+    },
+    {
+        "Code": "T11",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "34191",
+                "34346"
+            ]
+        ],
+        "Text": "In the table, Nc indicates the number of clusters in the inferred tree, while Nl indicates the closest match to the number of classes in the gold standard.",
+        "RefType": "Indirect",
+        "Type": "Table",
+        "Num": "4"
+    },
+    {
+        "Code": "T12",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "35067",
+                "35170"
+            ]
+        ],
+        "Text": "see table 3) as the impact of soft constraints is the weakest for the constrained method at this level.",
+        "RefType": "Direct",
+        "Type": "Table",
+        "Num": "3"
+    },
+    {
+        "Code": "T13",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "16780",
+                "16932"
+            ]
+        ],
+        "Text": "W can be encoded by a undi rected graph G (Figure 1(a)), where the verbs are mapped to vertices and the Wij is the edge weight between vertices i and j.",
+        "RefType": "Direct",
+        "Type": "Figure",
+        "Num": "1"
+    },
+    {
+        "Code": "T14",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "17421",
+                "17522"
+            ]
+        ],
+        "Text": "U = {up}m represent the hidden m struct a new graph G1 (Figure 1(d)) with the clusters U as vertices.",
+        "RefType": "Direct",
+        "Type": "Figure",
+        "Num": "1"
+    },
+    {
+        "Code": "T15",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "17636",
+                "17729"
+            ]
+        ],
+        "Text": "For example, looking at Figure 1(b), V on G can be grouped into three clusters u1, u2 and u3.",
+        "RefType": "Direct",
+        "Type": "Figure",
+        "Num": "1"
+    },
+    {
+        "Code": "T16",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "18111",
+                "18178"
+            ]
+        ],
+        "Text": "The bipartite graph K also induces a similarityagain (Figure 1(e)).",
+        "RefType": "Direct",
+        "Type": "Figure",
+        "Num": "1"
+    },
+    {
+        "Code": "T17",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "19782",
+                "20029"
+            ]
+        ],
+        "Text": "Figure 1: (a) An undirected graph G representing the similarity matrix; (b) The bipartite graph showing three clusters on G; (c) The induced clusters U ; (d) The new graph G1 over clusters U ; (e) The new bipartite graph over G1 p |vi ) = Vl 1 ...",
+        "RefType": "Direct",
+        "Type": "Figure",
+        "Num": "1"
+    },
+    {
+        "Code": "T18",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "21380",
+                "21500"
+            ]
+        ],
+        "Text": "As shown in figure 1, a similarity matrix W models one-hop transitions that follow the links from vertices to neighbors.",
+        "RefType": "Direct",
+        "Type": "Figure",
+        "Num": "1"
+    },
+    {
+        "Code": "T19",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "19028",
+                "19297"
+            ]
+        ],
+        "Text": "The coupling between B and is removed by setting H = B 1: n min (W, H H T ), s.t. hip = 1 (1) H, i=1 BT Dl Bl according to equation 4 l end for return BL , BL 1 ...B1 Additional steps need to be performed in order to extract a tree from the hierarchical graph.",
+        "RefType": "Direct",
+        "Type": "Equation",
+        "Num": "4"
+    }
+]

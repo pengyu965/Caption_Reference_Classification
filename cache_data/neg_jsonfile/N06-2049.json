@@ -1,0 +1,650 @@
+[
+    {
+        "Text": "\nSubword-based Tagging by Conditional Random Fields for Chinese Word Segmentation\n\t\n\t\tWe proposed two approaches to improve Chinese word segmentation: a subword-based tagging and a confidence measure approach.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "We found the former achieved better performance than the existing character-based tagging, and the latter improved segmentation further by combining the former with a dictionary-based segmentation.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "In addition, the latter can be used to balance out-of-vocabulary rates and in-vocabulary rates.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "By these techniques we achieved higher F-scores in CITYU, PKU and MSR corpora than the best results from Sighan Bakeoff 2005.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The character-based  IOB  tagging approach has been widely used in Chinese word segmentation recently (Xue and Shen, 2003; Peng and McCallum, 2004; Tseng et al., 2005).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Under the scheme, each character of a word is labeled as  B  if it is the first character of a multiple-character word, or  O  if the character functions as an independent word, or  I  otherwise.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "For example,   (whole) (Beijing city)  is labeled as   (whole)/O (north)/B (capital)/I (city)/I .",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "We found that so far all the existing implementations were using character-based IOB tagging.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "In this work we propose a subword-based IOB tagging, which assigns tags to a predefined lexicon subset consisting of the most frequent multiple-character words in addition to single Chinese characters.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "If only Chinese characters are used, the subword-based IOB tagging is downgraded into a character-based one.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Taking the same example mentioned above,   (whole) (Beijing city)  is labeled as   (whole)/O (Beijing)/B (city)/I  in the subword-based tagging, where   (Beijing)/B  is labeled as one unit.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "We will give a detailed description of this approach in Section 2.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Now the second author is affiliated with NTT.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "In addition, we found a clear weakness with the IOB tagging approach: It yields a very low in-vocabulary (IV) rate (R-iv) in return for a higher out-of-vocabulary (OOV) rate (R-oov).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "In the results of the closed test in Bakeoff 2005 (Emerson, 2005), the work of (Tseng et al., 2005), using conditional random fields (CRF) for the IOB tagging, yielded very high R-oovs in all of the four corpora used, but the R-iv rates were lower.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "While OOV recognition is very important in word segmentation, a higher IV rate is also desired.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "In this work we propose a confidence measure approach to lessen the weakness.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "By this approach we can change R-oovs and R-ivs and find an optimal tradeoff.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "This approach will be described in Section 2.2.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "In the followings, we illustrate our word segmentation process in Section 2, where the subword-based tagging is implemented by the CRFs method.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Section 3 presents our experimental results.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Section 4 describes current state- of-the-art methods for Chinese word segmentation, with which our results were compared.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Section 5 provides the concluding remarks.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Our word segmentation process is illustrated in Fig.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "1.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "It is composed of three parts: a dictionary-based N-gram word segmentation for segmenting IV words, a subword- based tagging by the CRF for recognizing OOVs, and a confidence-dependent word segmentation used for merging the results of both the dictionary-based and the IOB tagging.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "An example exhibiting each step s results is also given in the        \n\t\t\tSince the dictionary-based approach is a well-known method, we skip its technical descriptions.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "However, keep in mind that the dictionary-based approach can produce a higher R-iv rate.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "We will use this advantage in the confidence measure approach.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "2.1 Subword-based IOB tagging using CRFs.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "There are several steps to train a subword-based IOB tag- ger.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "First, we extracted a word list from the training data sorted in decreasing order by their counts in the training 193 Proceedings of the Human Language Technology Conference of the North American Chapter of the ACL, pages 193 196, New York, June 2006.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Qc 2006 Association for Computational Linguistics input          +XDQJ<LQJ&KXQ OLYHV LQ %HLMLQJFLW\\ Dictionary-based word segmentation               +XDQJ <LQJ &KXQ OLYHV LQ %HLMLQJFLW\\ Subword-based IOB tagging  /%  /,  /,  /2  /2   /%  /, +XDQJ/% <LQJ/, &KXQ/, OLYHV/2 LQ/2 %HLMLQJ/% FLW\\/, Confidence-based segmentation  /%  /,  /,  /2  /2   /%  /, +XDQJ/% <LQJ/, &KXQ/, OLYHV/2 LQ/2 %HLMLQJ/% FLW\\/, output             +XDQJ<LQJ&KXQ OLYHV LQ %HLMLQJFLW\\         : Outline of word segmentation process data.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "We chose all the single characters and the top multi- character words as a lexicon subset for the IOB tagging.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "If the subset consists of Chinese characters only, it is a character-based IOB tagger.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "We regard the words in the subset as the subwords for the IOB tagging.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Second, we re-segmented the words in the training data into subwords belonging to the subset, and assigned IOB tags to them.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "For a character-based IOB tagger, there is only one possibility of re-segmentation.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "However, there are multiple choices for a subword-based IOB tagger.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "For example,   (Beijing-city)  can be segmented as   (Beijing-city)/O,  or   (Beijing)/B (city)/I,  or   (north)/B (capital)/I (city)/I.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "In this work we used forward maximal match (FMM) for disambiguation.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Of course, backward maximal match (BMM) or other approaches are also applicable.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "We did not conduct comparative experiments because trivial differences of these approaches may not result in significant consequences to the subword-based ap proach.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "In the third step, we used the CRFs approach to train the IOB tagger (Lafferty et al., 2001) on the training data.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "We downloaded and used the package  CRF++  from the site  http://www.chasen.org/ taku/software.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "According to the CRFs, the probability of an IOB tag sequence, T = t0 t1       tM , given the word sequence, W = w0 w1       wM , is defined by p(T |W ) = and current observation ti simultaneously; gk (ti , W ), the unigram feature functions because they trigger only current observation ti .",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "k and  k are the model parameters corresponding to feature functions fk and gk respectively.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The model parameters were trained by maximizing the log-likelihood of the training data using L-BFGS gradient descent optimization method.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "In order to overcome overfitting, a gaussian prior was imposed in the training.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The types of unigram features used in our experiments included the following types: w0 , w 1 , w1 , w 2 , w2 , w0 w 1 , w0 w1 , w 1 w1 , w 2 w 1 , w2 w0 where w stands for word.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The subscripts are position indicators.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "0 means the current word;  1,  2, the first or second word to the left; 1, 2, the first or second word to the right.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "For the bigram features, we only used the previous and the current observations, t 1 t0 .",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "As to feature selection, we simply used absolute counts for each feature in the training data.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "We defined a cutoff value for each feature type and selected the features with occurrence counts over the cutoff.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "A forward-backward algorithm was used in the training and viterbi algorithm was used in the decoding.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "2.2 Confidence-dependent word segmentation.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Before moving to this step in         , we produced two segmentation results: the one by the dictionary-based approach and the one by the IOB tagging.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "However, neither was perfect.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The dictionary-based segmentation produced results with higher R-ivs but lower R-oovs while the IOB tagging yielded the contrary results.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "In this section we introduce a confidence measure approach to combine the two results.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "We define a confidence measure, C M(tiob |w), to measure the confidence of the results produced by the IOB tagging by using the results from the dictionary-based segmentation.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The confidence measure comes from two sources: IOB tagging and dictionary- based word segmentation.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Its calculation is defined as: C M(tiob |w) =  C Miob (tiob |w) + (1    ) (tw , tiob )ng (2) where tiob is the word w s IOB tag assigned by the IOB tagging; tw , a prior IOB tag determined by the results of the dictionary-based segmentation.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "After the dictionary- based word segmentation, the words are re-segmented into subwords by FMM before being fed to IOB tagging.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Each subword is given a prior IOB tag, tw .",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "C Miob (t|w), a   M     confidence probability derived in the process of IOB tag exp  )'  )'  k fk (ti 1 , ti , W ) + )'  k gk (ti , W )   /Z,    i=1    k k       (1) ging, is defined as Z = )' T =t0 t1    tM p(T |W ) C Miob (t|w ) = L,T =t0 t1    tM ,ti =t P(T |W, wi ) T =t 0 t1     tM P ( T | W ) where we call fk (ti 1 , ti , W ) bigram feature functions because the features trigger the previous observation ti 1 where the numerator is a sum of all the observation sequences with word wi labeled as t.  (tw , tiob )ng denotes the contribution of the dictionary- based segmentation.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "It is a Kronecker delta function defined as  (tw , tiob )ng = { 1 if tw = tiob 0 otherwise In Eq.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "2,   is a weighting between the IOB tagging and the dictionary-based word segmentation.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "We found the value 0.7 for  , empirically.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "By Eq.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "2 the results of IOB tagging were reevaluated.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "A confidence measure threshold, t, was defined for making a decision based on the value.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "If the value was lower than t, the IOB tag was rejected and the dictionary-based segmentation was used; otherwise, the IOB tagging segmentation was used.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "A new OOV was thus created.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "For the two extreme cases, t = 0 is the case of the IOB tagging while t = 1 is that of the dictionary-based approach.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "In a real application, a satisfactory tradeoff between R- ivs and R-oovs could find through tuning the confidence threshold.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "In Section 3.2 we will present the experimental segmentation results of the confidence measure approach.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "We used the data provided by Sighan Bakeoff 2005 to test our approaches described in the previous sections.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The data contain four corpora from different sources: Academia Sinica (AS), City University of Hong Kong (CITYU), Peking University (PKU) and Microsoft Research in Beijing (MSR).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Since this work was to evaluate the proposed subword-based IOB tagging, we carried out the closed test only.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Five metrics were used to evaluate segmentation results: recall(R), precision(P), F-score(F), OOV rate(R-oov) and IV rate(R-iv).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "For detailed info.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "of the corpora and these scores, refer to (Emerson, 2005).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "For the dictionary-based approach, we extracted a word list from the training data as the vocabulary.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Tri- gram LMs were generated using the SRI LM toolkit for disambiguation.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "shows the performance of the dictionary-based segmentation.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Since there were some single-character words present in the test data but not in the training data, the R-oov rates were not zero in this experiment.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "In fact, there were no OOV recognition.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Hence, this approach produced lower F-scores.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "However, the R-ivs were very high.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "3.1 Effects of the Character-based and the.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "subword-based tagger The main difference between the character-based and the word-based is the contents of the lexicon subset used for re-segmentation.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "For the character-based tagging, we used all the Chinese characters.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "For the subword-based tagging, we added another 2000 most frequent multiple- character words to the lexicons for tagging.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The segmentation results of the dictionary-based were re-segmented        : Our segmentation results by the dictionary- based approach for the closed test of Bakeoff 2005, very low R-oov rates due to no OOV recognition applied.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "R P FR oo vR iv A S 0.9 51 0.9 53 0.9 42 0.9 40 0.9 47 0.9 47 0.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "67 8 0.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "64 7 0.9 64 0.9 67 CI TY U 0.9 39 0.9 50 0.9 43 0.9 42 0.9 41 0.9 46 0.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "70 0 0.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "73 6 0.9 58 0.9 67 P K U 0.9 40 0.9 43 0.9 50 0.9 46 0.9 45 0.9 45 0.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "78 3 0.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "75 4 0.9 49 0.9 55 M S R 0.9 57 0.9 65 0.9 60 0.9 63 0.9 59 0.9 64 0.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "71 0 0.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "71 6 0.9 64 0.9 72        : Segmentation results by a pure subword-based IOB tagging.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The upper numbers are of the character- based and the lower ones, the subword-based.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "using the FMM, and then labeled with  IOB  tags by the CRFs.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The segmentation results using CRF tagging are shown in        , where the upper numbers of each slot were produced by the character-based approach while the lower numbers were of the subword-based.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "We found that the proposed subword-based approaches were effective in CITYU and MSR corpora, raising the F-scores from 0.941 to 0.946 for CITYU corpus, 0.959 to 0.964 for MSR corpus.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "There were no F-score changes for AS and PKU corpora, but the recall rates were improved.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Comparing              , we found the CRF-modeled IOB tagging yielded better segmentation than the dictionary- based approach.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "However, the R-iv rates were getting worse in return for higher R-oov rates.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "We will tackle this problem by the confidence measure approach.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "3.2 Effect of the confidence measure.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "In section 2.2, we proposed a confidence measure approach to reevaluate the results of IOB tagging by combinations of the results of the dictionary-based segmentation.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The effect of the confidence measure is shown in        , where we used   = 0.7 and confidence threshold t = 0.8.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "In each slot, the numbers on the top were of the character-based approach while the numbers on the bottom were the subword-based.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "We found the results in         were better than those in         and        , which prove that using confidence measure approach achieved the best performance over the dictionary-based segmentation and the IOB tagging approach.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The act of confidence measure made a tradeoff between R-ivs and R- oovs, yielding higher R-oovs than         and higher R R P FR oo vR iv A S 0.9 53 0.9 56 0.9 44 0.9 47 0.9 48 0.9 51 0.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "60 7 0.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "64 9 0.9 69 0.9 69 CI TY U 0.9 43 0.9 52 0.9 48 0.9 49 0.9 46 0.9 51 0.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "68 2 0.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "74 1 0.9 64 0.9 69 P K U 0.9 42 0.9 47 0.9 57 0.9 55 0.9 49 0.9 51 0.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "77 5 0.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "74 8 0.9 52 0.9 59 M S R 0.9 60 0.9 72 0.9 66 0.9 69 0.9 63 0.9 71 0.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "67 4 0.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "71 2 0.9 67 0.9 76        : Effects of combination using the confidence measure.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The upper numbers and the lower numbers are of the character-based and the subword-based, respectively A S CI T Y U M SR P K U Ba ke off be st 0.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "95 2 0.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "9 4 3 0.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "96 4 0.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "95 0 O u r s 0.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "95 1 0.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "9 5 1 0.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "97 1 0.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "95 1        : Comparison our results with the best ones from Sighan Bakeoff 2005 in terms of F-score ivs than        .",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Even with the use of confidence measure, the word- based IOB tagging still outperformed the character-based IOB tagging.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "It proves the proposed word-based IOB tagging was very effective.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The IOB tagging approach adopted in this work is not a new idea.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "It was first used in Chinese word segmentation by (Xue and Shen, 2003), where maximum entropy methods were used.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Later, this approach was implemented by the CRF-based method (Peng and McCallum, 2004), which was proved to achieve better results than the maximum entropy approach because it can solve the label bias problem (Lafferty et al., 2001).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Our main contribution is to extend the IOB tagging approach from being a character-based to a subword-based.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "We proved the new approach enhanced the word segmentation significantly.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Our results are listed together with the best results from Bakeoff 2005 in         in terms of F-scores.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "We achieved the highest F-scores in CITYU, PKU and MSR corpora.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "We think our proposed subword- based tagging played an important role for the good results.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Since it was a closed test, some information such as Arabic and Chinese number and alphabetical letters cannot be used.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "We could yield a better results than those shown in         using such information.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "For example, inconsistent errors of foreign names can be fixed if alphabetical characters are known.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "For AS corpus,  Adam Smith  are two words in the training but become a one- word in the test,  AdamSmith .",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Our approaches produced wrong segmentations for labeling inconsistency.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Another advantage of the word-based IOB tagging over the character-based is its speed.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The subword-based approach is faster because fewer words than characters were labeled.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "We found a speed up both in training and test.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The idea of using the confidence measure has appeared in (Peng and McCallum, 2004), where it was used to recognize the OOVs.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "In this work we used it more delicately.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "By way of the confidence measure we combined results from the dictionary-based and the IOB-tagging-based and as a result, we could achieve the optimal performance.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "In this work, we proposed a subword-based IOB tagging method for Chinese word segmentation.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Using the CRFs approaches, we prove that it outperformed the character- based method using the CRF approaches.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "We also successfully employed the confidence measure to make a confidence-dependent word segmentation.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "This approach is effective for performing desired segmentation based on users  requirements to R-oov and R-iv.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The authors appreciate the reviewers  effort and good advice for improving the paper.",
+        "Entity": "Normal"
+    }
+]

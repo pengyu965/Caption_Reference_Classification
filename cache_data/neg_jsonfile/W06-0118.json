@@ -1,0 +1,390 @@
+[
+    {
+        "Text": "\n\t\n\t\tThis paper describes a Chinese word segmentation system that is based on majority voting among three models: a forward maximum matching model, a conditional random field (CRF) model using maximum subword-based tagging, and a CRF model using minimum subword- based tagging.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "In addition, it contains a post-processing component to deal with inconsistencies.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Testing on the closed track of CityU, MSRA and UPUC corpora problem.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "In the next step, the solutions from these three methods are combined via the hanzi- level majority voting algorithm.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Then, a post- processing procedure is applied in order to to get the final output.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "This procedure merges adjoining words to match the dictionary entries and then splits words which are inconsistent with entries in the training corpus.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Input Sentence in the third SIGHAN Chinese Word Segmentation Bakeoff, the system achieves a F-score of 0.961, 0.953 and 0.919, respectively.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Tokenizing input text into words is the first step of any text analysis task.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "In Chinese, a sentence is written as a string of characters, to which we shall refer by their traditional name of hanzi, without separations between words.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "As a result, before any text analysis on Chinese, word segmentation task Forward Maximum Matching CRF with Maximum Subword based Tagging Majority Voting Post processing Result CRF with Minimum Subword based Tagging has to be completed so that each word is  isolated  by the word-boundary information.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Participating in the third SIGHAN Chinese Word Segmentation Bakeoff in 2006, our system is tested on the closed track of CityU, MSRA and UPUC corpora.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The sections below provide a detailed description of the system and our experimental results.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The maximum matching algorithm is a greedy segmentation approach.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "It proceeds through the sentence, mapping the longest word at each point with an entry in the dictionary.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "In our system, the well-known forward maximum matching algorithm (Chen and Liu, 1992) is implemented.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The maximum matching approach is simple and efficient, and it results in high in-vocabulary accuracy; However, the small size of the dictionary, which is obtained only from the training data, is a major bottleneck for this approach to be applied by itself.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "126 Proceedings of the Fifth SIGHAN Workshop on Chinese Language Processing, pages 126 129, Sydney, July 2006.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Qc 2006 Association for Computational Linguistics 2.2 CRF Model with Maximum.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Subword-based Tagging Conditional random fields (CRF), a statistical sequence modeling approach (Lafferty et al., 2001), has been widely applied in various sequence learning tasks including Chinese word segmentation.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "In this approach, most existing methods use the character-based IOB tagging.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "For example,  ;g(all) 3'::KJ!!",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "(extremely important)  is labeled as  ;g(all)/O 3'(until)/B ::K(close)/I J!!",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "(heavy)/I  (demand)/I .",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Recently (Zhang et al., 2006) proposed a maximum subword-based IOB tagger for Chinese word segmentation, and our system applies their approach which obtains a very high accuracy on the shared task data from previous SIGHAN competitions.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "In this method, all single-hanzi words and the top frequently occurring multihanzi words are extracted from the training corpus to form the lexicon subset.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Then, each word in the training corpus is segmented for IOB tagging, with the forward maximum matching algorithm, using the formed lexicon subset as the dictionary.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "In the above example, the tagging labels become  ;g(all)/O3'(until)/B ::K(close)/I J!!",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "(important)/I , assuming that  J!!",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "(important)  is the longest sub word in this word, and it is one of the top frequently occurring words in the training corpus.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "After tagging the training corpus, we use the package CRF++1 to train the CRF model.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Suppose w0 represents the current word, w 1 is the first word to the left, w 2 is the second word to the left, w1 is the first word to the right, and w2 is the second word to the right, then in our experiments, the types of unigram features used include w0, w 1, w1, w 2, w2, w0w 1, w0w1, w 1w1, w 2w 1, and w2w0.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "In addition, only combinations of previous observation and current observation are exploited as bigram features.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "2.3 CRF Model with Minimum.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Subword-based Tagging In our third model, we applies a similar approach as in the previous section.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "However, instead of finding the maximum subwords, we explore the minimum subwords.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "At the beginning, we build the dictionary using the whole training corpus.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Then, for each word in the training data, a forward shortest matching is used to get the sequence of minimum-length subwords, and this sequence is 1 available from http://www/chasen.org/ taku/software tagged in the same IOB format as before.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Suppose  a ,  ac ,  de  and  acde  are the only entries in the dictionary.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Then, for the word  acde , the sequence of subwords is  a ,  c  and  de , and the tags assigned to  acde  are  a/B c/I de/I .",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "After tagging the training data set, CRF++ package is executed again to train this type of model, using the identical unigram and bigram feature sets that are used in the previous model.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Meanwhile, the unsegmented test data is segmented by the forward shortest matching algorithm.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "After this initial segmentation process, the result is fed into the trained CRF model for re- segmentation by assigning IOB tags.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "2.4 Majority Voting.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Having the segmentation results from the above three models in hand, in this next step, we adopt the hanzi-level majority voting algorithm.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "First, for each hanzi in a segmented sentence, we tag it either as  B  if it is the first hanzi of a word or a single-hanzi word, or as  I  otherwise.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Then, for a given hanzi in the results from those three models, if at least two of the models provide the identical tag, it will be assigned that tag.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "For instance, suppose  a c de  is the segmentation result via forward maximum matching, and it is also the result from CRF model with maximum subword- based tagging, and  ac d e  is the result from the third model.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Then, for  a , since all of them assign  B  to it,  a  is given the  B  tag; for  c , because two of segmentations tag it as  B ,  c  is given the  B  tag as well.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Similarly, the tag for each remaining hanzi is determined by this majority voting process, and we get  a c de  as the result for this example.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "To test the performance of each of the three models and that of the majority voting, we divide the MSRA corpus into training set and held- out set.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Throughout all the experiments we conducted, we discover that those two CRF models perform much better than the pure hanzi-based CRF method, and that the voting process improves the performance further.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "2.5 Post-processing.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "While analyzing errors with the segmentation result from the held-out set, we find two inconsistency problems: First, the inconsistency between the dictionary and the result: that is, certain words that appear in the dictionary are separated into consecutive words in the test result; Second, the inconsistency among words in the dictionary; For instance, both  t'\"ltlil'Jl (scientific research) and  t'\"lt(science) lil'Jl(research)  appear in the training corpus.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "To deal with the first phenomena, for the segmented result, we try to merge adjoining words to match the dictionary entries.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Suppose  a b c de  are the original voting result, and  ab ,  abc  and  cd  form the dictionary.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Then, we merge  a ,  b  and  c  together to get the longest match with the dictionary.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Therefore, the output is  abc de .",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "For the second problem, we introduce the split procedure.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "In our system, we only consider two consecutive words.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "First, all bigrams are extracted from the training corpus, and their frequencies are counted.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "After that, for example, if  a b  appears more often than  ab , then whenever in the test result we encounter  ab , we split it into  a b .",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The post-processing steps detailed above attempt to maximize the value of known words in the training data as well as attempting to deal with the word segmentation inconsistencies in the training data.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The third International Chinese Language Processing Bakeoff includes four different corpora, Academia Sinica (CKIP), City University of Hong Kong (CityU), Microsoft Research (MSRA), and University of Pennsylvania and University of Colorado, Boulder (UPUC), for the word segmentation task.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "In this bakeoff, we test our system in CityU, MSRA and UPUC corpora, and follow the closed track.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "That is, we only use training material from the training data for the particular corpus we are testing on.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "No other material or any type of external knowledge is used, including part-of-speech information, externally generated word-frequency counts, Arabic and Chinese numbers, feature characters for place names and common Chinese surnames.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "3.1 Results on SIGHAN Bakeoff 2006.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "To observe the result of majority voting and the contribution of the post-processing step, the experiment is ran for each corpus by first producing the outcome of majority voting and then producing the output from the post-processing.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "In each experiment, the precision (P ), recall (R), F-measure (F ), Out-of-Vocabulary rate (OOV ), OOV recall rate (ROOV ), and In-Vocabulary rate (RI V ) are recorded.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": ", ,  show the scores for the CityU corpus, for the MSRA corpus, and for the UPUC corpus, respectively.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "In addition, the post- processing step indeed helps to improve the performance.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "3.2 Error analysis.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The errors that occur in our system are mainly due to the following three factors: First, there is inconsistency between the gold segmentation and the training corpus.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Although the inconsistency problem within the training corpus is intended to be tackled in the post-processing step, we cannot conclude that the segmentation for certain words in the gold test set always follows the convention in the training data set.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "For example, in the MSRA training corpus,    00 ll&JM (Chinese government) is usually considered as a single word; while in the gold test set, it is separated as two words   00 (Chinese) and  ll& JM (government).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "This inconsistency issue lowers the system performance.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "This problem, of course, affects all competing systems.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Second, we don t have specific steps to deal with words with postfixes such as    (person).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Compared to our system, (Zhang, 2005) proposed a segmentation system that contains morphologically derived word recognition post-processing component to solve this problem.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Lacking of such a step prevents us from identifying certain types of words such as   }J  (worker) to be a single word.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "In addition, the unknown words are still troublesome because of the limited size of the training corpora.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "In the class of unknown words, we encounter person names, numbers, dates, organization names and words translated from languages other than Chinese.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "For example, in the produced CityU test result, the translated person name  *  ft1l  (Mihajlovic) is incorrectly separatedas  *   ft 1  and  l   .",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Moreover, in cer tain cases, person names can also create ambiguity.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Take the name  Of d /J (Qiu, Beifang) in UPUC test set for example, without understanding the meaning of the whole sentence, it is difficult even for human to determine whether it is a person name or it represents  Of (autumn),  d /J (north), with the meaning of  the autumn in the north .",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "In designing the voting procedure, we also attempt to develop and use a segmentation lattice, which proceeds using a similar underlying principle as the one applied in (Xu et al., 2005).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "In our approach, for an input sentence, the segmentation result using each of our three models is transformed into an individual lattice.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Also, each edge in the lattice is assigned a particular weight, according to certain features such as whether or not the output word from that edge is in the dictionary.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "After building the three lattices, one for each model, we merge them together.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Then, the shortest path, referring to the path that has the minimum weight, is extracted from the merged lattice, and therefore, the segmentation result is determined by this shortest path.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "However, in the time we had to run our experiments on the test data, we were unable to optimize the edge weights to obtain high accuracy on some held-out set from the training corpora.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "So instead, we tried a simple method for finding edge weights by uniformly distributing the weight for each feature; Nevertheless, by testing on the shared task data from the 2005 SIGHAN bakeoff, the performance is not competitive, compared to our simple majority voting method described above.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "As a result, we decide to abandon this approach for this year s SIGHAN bakeoff.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Our Chinese word segmentation system is based on majority voting among the initial outputs from forward maximum matching, from a CRF model with maximum subword-based tagging, and from a CRF model with minimum subword-based tagging.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "In addition, we experimented with various steps in post-processing which effectively boosted the overall performance.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "In future research, we shall explore more sophisticated ways of voting, including the continuing investigation on the segmentation lattice approach.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Also, more powerful methods on how to accurately deal with unknown words, including person and place names, without external knowledge, will be studied as well.",
+        "Entity": "Normal"
+    }
+]

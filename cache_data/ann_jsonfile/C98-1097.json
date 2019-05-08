@@ -1,0 +1,149 @@
+[
+    {
+        "Code": "T1",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "7900",
+                "8093"
+            ]
+        ],
+        "Text": "Collocation: Collocations were extracted from a seven million word sample of the Longman English Language Corpus using the association ratio (Church and Hanks, 1990) and outputted to a lexicon.",
+        "RefType": "Indirect",
+        "Type": "Figure",
+        "Num": "1"
+    },
+    {
+        "Code": "T2",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "8125",
+                "8219"
+            ]
+        ],
+        "Text": "Collocations were automatically located in a text by looking up pairwise words in this lexicon",
+        "RefType": "Indirect",
+        "Type": "Figure",
+        "Num": "1"
+    },
+    {
+        "Code": "T3",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "8253",
+                "8329"
+            ]
+        ],
+        "Text": "Figure 1 shows the record for the headword orange followed by its collocates",
+        "RefType": "Direct",
+        "Type": "Figure",
+        "Num": "1"
+    },
+    {
+        "Code": "T4",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "8363",
+                "8430"
+            ]
+        ],
+        "Text": "For example, the pairwise words orange and peel form a collocation.",
+        "RefType": "Indirect",
+        "Type": "Figure",
+        "Num": "1"
+    },
+    {
+        "Code": "T5",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "8464",
+                "8508"
+            ]
+        ],
+        "Text": "range free green lemon peel red state yellow",
+        "RefType": "Indirect",
+        "Type": "Figure",
+        "Num": "1"
+    },
+    {
+        "Code": "T6",
+        "Entity": "Caption",
+        "Span": [
+            [
+                "8509",
+                "8518"
+            ]
+        ],
+        "Text": "Figure 1."
+    },
+    {
+        "Code": "T7",
+        "Entity": "Caption",
+        "Span": [
+            [
+                "8551",
+                "8587"
+            ]
+        ],
+        "Text": "Excerpt from the collocation lexicon"
+    },
+    {
+        "Code": "T8",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "12543",
+                "12684"
+            ]
+        ],
+        "Text": "Results: Table I gives the results for the comparison of the troughs placed by the segmentation algorithm to the known subject change points.",
+        "RefType": "Direct",
+        "Type": "Table",
+        "Num": "1"
+    },
+    {
+        "Code": "T9",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "12749",
+                "12758"
+            ]
+        ],
+        "Text": "Table 1.<",
+        "Type": "Table",
+        "Num": "1"
+    },
+    {
+        "Code": "T10",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "12790",
+                "12863"
+            ]
+        ],
+        "Text": "Comparison of segmentation algorithm using different linguistic features.",
+        "RefType": "Spatial",
+        "Type": "Table",
+        "Num": "1"
+    },
+    {
+        "Code": "T11",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "16271",
+                "16444"
+            ]
+        ],
+        "Text": "Table 2 gives the mean values for the comparison of troughs placed by the segmentation algorithm to the segmentation points identified by the test subjects for all the texts",
+        "RefType": "Direct",
+        "Type": "Table",
+        "Num": "2"
+    }
+]

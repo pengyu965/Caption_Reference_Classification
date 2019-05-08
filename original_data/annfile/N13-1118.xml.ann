@@ -1,0 +1,88 @@
+T1	Reference 6453 6485	Consider the example in Figure 1
+A1	RefType T1 Direct
+A2	Type T1 Figure
+A3	Num T1 1
+T2	Reference 6519 6701	The figure schematically shows a small portion of the graph describing the concepts of mechanism (concrete), political system and relationship (abstract) at two levels of generality.
+A4	RefType T2 Indirect
+A5	Type T2 Figure
+A6	Num T2 1
+T3	Reference 7725 7732	figure)
+A7	RefType T3 Indirect
+A8	Type T3 Figure
+A9	Num T3 1
+T4	Reference 9728 9961	Figure 1: Organisation of the hierarchical graph of concepts Following previous semantic noun classification experiments (Pantel and Lin, 2002; Bergsma et al., 2008), we use the grammatical relations (GRs) as features for clustering.
+A10	RefType T4 Direct
+A11	Type T4 Figure
+A12	Num T4 1
+T5	Reference 12109 12256	W can be encoded by an undirected graph G (Figure 2(a)), where the nouns are mapped to vertices and Wij is the edge weight between vertices i and j
+A13	RefType T5 Direct
+A14	Type T5 Figure
+A15	Num T5 2
+T6	Reference 12478 12572	For example, look ing at Figure 2(b), V on G can be grouped into three clusters u1, u2 and u3.
+A16	RefType T6 Direct
+A17	Type T6 Figure
+A18	Num T6 2
+T7	Reference 14129 14137	Figure 2
+A19	RefType T7 Direct
+A20	Type T7 Figure
+A21	Num T7 2
+T8	Reference 15694 15702	Figure 2
+A22	RefType T8 Direct
+A23	Type T8 Figure
+A24	Num T8 2
+T9	Reference 15876 15885	(Figure 2
+A25	RefType T9 Direct
+A26	Type T9 Figure
+A27	Num T9 2
+T10	Reference 16932 16941	Figure 1.
+A28	RefType T10 Direct
+A29	Type T10 Figure
+A30	Num T10 1
+T11	Reference 19789 19798	Figure 3.
+A31	RefType T11 Direct
+A32	Type T11 Figure
+A33	Num T11 3
+T12	Reference 19853 19859	Figure
+A34	RefType T12 Indirect
+A35	Type T12 Figure
+A36	Num T12 3
+T13	Reference 20682 20691	Figure 3:
+A37	RefType T13 Direct
+A38	Type T13 Figure
+A39	Num T13 3
+T14	Reference 21256 21264	Figure 4
+A40	RefType T14 Direct
+A41	Type T14 Figure
+A42	Num T14 4
+T15	Reference 22464 22473	Figure 4.
+A43	RefType T15 Direct
+A44	Type T15 Figure
+A45	Num T15 4
+T16	Reference 23169 23178	Figure 5:
+A46	RefType T16 Direct
+A47	Type T16 Figure
+A48	Num T16 5
+T17	Reference 27005 27014	Figure 5.
+A49	RefType T17 Direct
+A50	Type T17 Figure
+A51	Num T17 5
+T18	Reference 34665 34838	Figure 6: Metaphors tagged by the system (in bold) whereby the main source of disagreement was the presence of lexicalized metaphors, e.g. verbs such as impose, decline etc.
+A52	RefType T18 Direct
+A53	Type T18 Figure
+A54	Num T18 6
+T19	Reference 35068 35119	Figure 6 shows example sentences annotated by HGFC.
+A55	RefType T19 Direct
+A56	Type T19 Figure
+A57	Num T19 6
+T20	Reference 16679 16690	(equation 2
+A58	RefType T20 Direct
+A59	Type T20 Equation
+A60	Num T20 2
+T21	Reference 16691 16696	and 3
+A61	RefType T21 Direct
+A62	Type T21 Equation
+A63	Num T21 3
+T22	Reference 18308 18318	equation 4
+A64	RefType T22 Direct
+A65	Type T22 Equation
+A66	Num T22 4

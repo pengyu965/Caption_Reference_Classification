@@ -1,0 +1,1357 @@
+[
+    {
+        "Code": "T1",
+        "Entity": "Caption",
+        "Span": [
+            [
+                "8401",
+                "8490"
+            ]
+        ],
+        "Text": "Figure 1 Architecture of the translation approach based on a log-linear modeling approach",
+        "Type": "Figure",
+        "Num": "1"
+    },
+    {
+        "Code": "T2",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "489",
+                "617"
+            ]
+        ],
+        "Text": "The model is described using a log-linear modeling approach, which is a generalization of the often used source channel approach",
+        "RefType": "Spatial-Below",
+        "Type": "Figure",
+        "Num": "1"
+    },
+    {
+        "Code": "T3",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "4664",
+                "4851"
+            ]
+        ],
+        "Text": "e suggest the use of a log-linear model to incorporate the various knowledge sources into an overall translation system and to perform discriminative training of the free model parameters",
+        "RefType": "Spatial-Below",
+        "Type": "Figure",
+        "Num": "1"
+    },
+    {
+        "Code": "T4",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "4885",
+                "5028"
+            ]
+        ],
+        "Text": "This approach can be seen as a generalization of the originally suggested source channel modeling framework for statistical machine translation",
+        "RefType": "Spatial-Below",
+        "Type": "Figure",
+        "Num": "1"
+    },
+    {
+        "Code": "T5",
+        "Entity": "Caption",
+        "Span": [
+            [
+                "9467",
+                "9498"
+            ]
+        ],
+        "Text": "eI = argmax {Pr(eI | f J )} (1)",
+        "Type": "Equation",
+        "Num": "1"
+    },
+    {
+        "Code": "T12",
+        "Entity": "Caption",
+        "Span": [
+            [
+                "10690",
+                "10721"
+            ]
+        ],
+        "Text": "Pr(eI | f J ) = p M (eI | f J )",
+        "Type": "Equation",
+        "Num": "2"
+    },
+    {
+        "Code": "T13",
+        "Entity": "Caption",
+        "Span": [
+            [
+                "10726",
+                "10780",
+                "1",
+                "1",
+                "1",
+                "1",
+                "1"
+            ],
+            [
+                "10726",
+                "10780",
+                "1",
+                "1",
+                "1",
+                "1",
+                "1"
+            ],
+            [
+                "10726",
+                "10780",
+                "1",
+                "1",
+                "1",
+                "1",
+                "1"
+            ],
+            [
+                "10726",
+                "10780",
+                "1",
+                "1",
+                "1",
+                "1",
+                "1"
+            ],
+            [
+                "10726",
+                "10780",
+                "1",
+                "1",
+                "1",
+                "1",
+                "1"
+            ],
+            [
+                "10726",
+                "10780",
+                "1",
+                "1",
+                "1",
+                "1",
+                "1"
+            ]
+        ],
+        "Text": "exp[ M m hm (eI , f J )] m=1 1 1 M I J (3)",
+        "Type": "Equation",
+        "Num": "3"
+    },
+    {
+        "Code": "T14",
+        "Entity": "Caption",
+        "Span": [
+            [
+                "10784",
+                "10813"
+            ]
+        ],
+        "Text": "I exp[ m=1 m hm (e 1 , f1 )]",
+        "Type": "Equation",
+        "Num": "3"
+    },
+    {
+        "Code": "T15",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "10814",
+                "10932"
+            ]
+        ],
+        "Text": "This approach has been suggested by Papineni, Roukos, and Ward (1997, 1998) for a natural language understanding task.",
+        "RefType": "Spatial-Above",
+        "Type": "Equation",
+        "Num": "2"
+    },
+    {
+        "Code": "T16",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "11089",
+                "11163"
+            ]
+        ],
+        "Text": "the time-consuming renormalization in equation (3) is not needed in search",
+        "RefType": "Direct",
+        "Type": "Equation",
+        "Num": "3"
+    },
+    {
+        "Code": "T17",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "10965",
+                "11081"
+            ]
+        ],
+        "Text": "We obtain the following decision rule: eI = argmax Pr(eI | f J ) 1 1 1 I 1 M ) = argmax m hm (eI , f J ) 1 1 I m=1",
+        "RefType": "Spatial-Above",
+        "Type": "Equation",
+        "Num": "3"
+    },
+    {
+        "Code": "T18",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "11197",
+                "11283"
+            ]
+        ],
+        "Text": "The overall architecture of the log-linear modeling approach is summarized in Figure 1",
+        "RefType": "Direct",
+        "Type": "Figure",
+        "Num": "1"
+    },
+    {
+        "Code": "T22",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "11317",
+                "11420"
+            ]
+        ],
+        "Text": "A standard criterion on a parallel training corpus consisting of S sentence pairs {(fs , es ): s = 1, .",
+        "RefType": "Spatial-Below",
+        "Type": "Equation",
+        "Num": "4"
+    },
+    {
+        "Code": "T23",
+        "Entity": "Caption",
+        "Span": [
+            [
+                "11593",
+                "11638",
+                "1"
+            ],
+            [
+                "11593",
+                "11638",
+                "1"
+            ]
+        ],
+        "Text": "= argmax M 1 S s=1 ) log p M (es | fs ) (4)",
+        "Type": "Equation",
+        "Num": "4"
+    },
+    {
+        "Code": "T24",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "12528",
+                "12631"
+            ]
+        ],
+        "Text": "Typically, the translation probability Pr(eI | f J ) is decomposed via additional hid 1 1 den variables",
+        "RefType": "Spatial-Below",
+        "Type": "Equation",
+        "Num": "4"
+    },
+    {
+        "Code": "T25",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "13968",
+                "14004"
+            ]
+        ],
+        "Text": "alignment models Pr(f J , aJ | eI ),",
+        "RefType": "Spatial-Below",
+        "Type": "Equation",
+        "Num": "5"
+    },
+    {
+        "Code": "T26",
+        "Entity": "Caption",
+        "Span": [
+            [
+                "14214",
+                "14266"
+            ]
+        ],
+        "Text": "Pr(f J | eI ) = Pr(f J , aJ | eI ) (5) 1 1 1 1 1 J 1",
+        "Type": "Equation",
+        "Num": "5"
+    },
+    {
+        "Code": "T27",
+        "Entity": "Caption",
+        "Span": [
+            [
+                "14675",
+                "14731"
+            ]
+        ],
+        "Text": "Pr(f J , aJ | eI ) = p (f J , aJ | eI ) (6) 1 1 1 1 1 1",
+        "Type": "Equation",
+        "Num": "6"
+    },
+    {
+        "Code": "T29",
+        "Entity": "Caption",
+        "Span": [
+            [
+                "16829",
+                "16896"
+            ]
+        ],
+        "Text": "igure 2 Example of a (symmetrized) word alignment (Verbmobil task).",
+        "Type": "Figure",
+        "Num": "2"
+    },
+    {
+        "Code": "T30",
+        "Entity": "Caption",
+        "Span": [
+            [
+                "20287",
+                "20429"
+            ]
+        ],
+        "Text": "BP(f J , eI , A) = f j+m , ei+n 1 1 j i : (i , j ) A : j j j + m i i i + n (9) (i , j ) A : j j j + m i i i + n",
+        "Type": "Equation",
+        "Num": "9"
+    },
+    {
+        "Code": "T19",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "9370",
+                "9463"
+            ]
+        ],
+        "Text": "Among all possible target sentences, we will choose the sentence with the highest probability",
+        "RefType": "Spatial-Below",
+        "Type": "Equation",
+        "Num": "1"
+    },
+    {
+        "Code": "T20",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "9509",
+                "9627"
+            ]
+        ],
+        "Text": "The argmax operation denotes the search problem, that is, the generation of the output sentence in the target language",
+        "RefType": "Spatial-Above",
+        "Type": "Equation",
+        "Num": "1"
+    },
+    {
+        "Code": "T6",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "9741",
+                "9797"
+            ]
+        ],
+        "Text": "we directly model the posterior probability Pr(eI| f J )",
+        "Type": "Equation",
+        "Num": "2"
+    },
+    {
+        "Code": "T7",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "10643",
+                "10689"
+            ]
+        ],
+        "Text": "The direct translation probability is given by",
+        "RefType": "Spatial-Below",
+        "Num": "2"
+    },
+    {
+        "Code": "T8",
+        "Entity": "Caption",
+        "Span": [
+            [
+                "10722",
+                "10725"
+            ]
+        ],
+        "Text": "(2)",
+        "Type": "Equation",
+        "Num": "2"
+    },
+    {
+        "Code": "T9",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "11639",
+                "11747"
+            ]
+        ],
+        "Text": "This corresponds to maximizing the equivocation or maximizing the likelihood of the direct-translation model",
+        "RefType": "Spatial-Above",
+        "Type": "Equation",
+        "Num": "4"
+    },
+    {
+        "Code": "T10",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "15463",
+                "15564"
+            ]
+        ],
+        "Text": "The unknown parameters are determined by maximizing the likelihood on the parallel training corpus:",
+        "RefType": "Spatial-Below",
+        "Num": "7"
+    },
+    {
+        "Code": "T11",
+        "Entity": "Caption",
+        "Span": [
+            [
+                "15568",
+                "15615"
+            ]
+        ],
+        "Text": "= argmax S I n s=1 a l) p (fs , a | es ) (7)",
+        "Type": "Equation",
+        "Num": "7"
+    },
+    {
+        "Code": "T21",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "15617",
+                "15735"
+            ]
+        ],
+        "Text": "his optimization can be performed using the expectation maximization (EM) algorithm (Dempster, Laird, and Rubin 1977).",
+        "Type": "Equation"
+    },
+    {
+        "Code": "T28",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "15866",
+                "15993"
+            ]
+        ],
+        "Text": "The alignment aJ that has the highest probability (under a certain model) is also called the Viterbi alignment (of that model)",
+        "RefType": "Spatial-Below",
+        "Type": "Equation",
+        "Num": "8"
+    },
+    {
+        "Code": "T31",
+        "Entity": "Caption",
+        "Span": [
+            [
+                "15996",
+                "16045"
+            ]
+        ],
+        "Text": "aJ = argmax p (f J , aJ | eI ) (8) 1 1 1 1 J 1",
+        "Type": "Equation",
+        "Num": "8"
+    },
+    {
+        "Code": "T32",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "17206",
+                "17258"
+            ]
+        ],
+        "Text": "Figure 2 shows an example of a symmetrized alignment",
+        "RefType": "Direct",
+        "Type": "Figure",
+        "Num": "2"
+    },
+    {
+        "Code": "T33",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "20160",
+                "20285"
+            ]
+        ],
+        "Text": "In the following, we describe the criterion that defines the set of phrases that is consistent with the word alignment matrix",
+        "RefType": "Spatial-Below",
+        "Num": "9"
+    },
+    {
+        "Code": "T34",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "21446",
+                "21515"
+            ]
+        ],
+        "Text": "Figure 3 gives the algorithm phrase-extract that computes the phrases",
+        "RefType": "Direct",
+        "Type": "Figure",
+        "Num": "3"
+    },
+    {
+        "Code": "T35",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "21550",
+                "21667"
+            ]
+        ],
+        "Text": "The algorithm takes into account possibly unaligned words at the boundaries of the source or target language phrases.",
+        "RefType": "Spatial-Below",
+        "Type": "Figure",
+        "Num": "3"
+    },
+    {
+        "Code": "T36",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "21701",
+                "21855"
+            ]
+        ],
+        "Text": "Table 1 shows the bilingual phrases containing between two and seven words that result from the application of this algorithm to the alignment of Figure 2",
+        "RefType": "Direct",
+        "Type": "Table",
+        "Num": "1"
+    },
+    {
+        "Code": "T37",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "21702",
+                "21856"
+            ]
+        ],
+        "Text": "able 1 shows the bilingual phrases containing between two and seven words that result from the application of this algorithm to the alignment of Figure 2.",
+        "RefType": "Direct",
+        "Type": "Figure",
+        "Num": "2"
+    },
+    {
+        "Code": "T38",
+        "Entity": "Caption",
+        "Span": [
+            [
+                "21894",
+                "22029"
+            ]
+        ],
+        "Text": "Table 1 Examples of two- to seven-word bilingual phrases obtained by applying the algorithm phrase-extract to the alignment of Figure 2",
+        "Type": "Table",
+        "Num": "1"
+    },
+    {
+        "Code": "T39",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "23208",
+                "23304"
+            ]
+        ],
+        "Text": "It should be emphasized that this constraint to consecutive phrases limits the expressive power.",
+        "RefType": "Spatial-Below",
+        "Type": "Figure"
+    },
+    {
+        "Code": "T40",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "25610",
+                "25656"
+            ]
+        ],
+        "Text": "Figure 4 shows examples of alignment templates",
+        "RefType": "Direct",
+        "Type": "Figure",
+        "Num": "4"
+    },
+    {
+        "Code": "T41",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "27945",
+                "28085"
+            ]
+        ],
+        "Text": "The probability of using an alignment template to translate a specific source language phrase f is estimated by means of relative frequency",
+        "RefType": "Spatial-Below",
+        "Type": "Equation",
+        "Num": "10"
+    },
+    {
+        "Code": "T42",
+        "Entity": "Caption",
+        "Span": [
+            [
+                "27643",
+                "27704"
+            ]
+        ],
+        "Text": "Figure 4 Examples of alignment templates obtained in training",
+        "Type": "Figure",
+        "Num": "4"
+    },
+    {
+        "Code": "T43",
+        "Entity": "Caption",
+        "Span": [
+            [
+                "28087",
+                "28141"
+            ]
+        ],
+        "Text": "p(z = (FJ , EI , A ) J f ) = 1 1 | N(C( f )) (10",
+        "Type": "Equation",
+        "Num": "10"
+    },
+    {
+        "Code": "T44",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "28143",
+                "28306"
+            ]
+        ],
+        "Text": "To reduce the memory requirement of the alignment templates, we compute these probabilities only for phrases up to a certain maximal length in the source language.",
+        "RefType": "Spatial-Above",
+        "Type": "Equation",
+        "Num": "10"
+    },
+    {
+        "Code": "T45",
+        "Entity": "Caption",
+        "Span": [
+            [
+                "29557",
+                "29581"
+            ]
+        ],
+        "Text": "K): J k = fj k 1 +1 , ..",
+        "Type": "Equation",
+        "Num": "11"
+    },
+    {
+        "Code": "T46",
+        "Entity": "Caption",
+        "Span": [
+            [
+                "29615",
+                "29625"
+            ]
+        ],
+        "Text": ", fjk (11)",
+        "Type": "Equation",
+        "Num": "11"
+    },
+    {
+        "Code": "T47",
+        "Entity": "Caption",
+        "Span": [
+            [
+                "29626",
+                "29659"
+            ]
+        ],
+        "Text": "eI K 1 = e1 , ek = eik 1 +1 , .",
+        "Type": "Equation",
+        "Num": "12"
+    },
+    {
+        "Code": "T48",
+        "Entity": "Caption",
+        "Span": [
+            [
+                "29696",
+                "29703"
+            ]
+        ],
+        "Text": "eik (12",
+        "Type": "Equation",
+        "Num": "12"
+    },
+    {
+        "Code": "T49",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "30773",
+                "30934"
+            ]
+        ],
+        "Text": "Figure 5 gives an example of the word alignment and phrase alignment of a German English sentence pair.We describe our model using a log-linear modeling approach",
+        "RefType": "Direct",
+        "Type": "Figure",
+        "Num": "5"
+    },
+    {
+        "Code": "T50",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "31296",
+                "31377"
+            ]
+        ],
+        "Text": "Figure 6 gives an overview of the decisions made in the alignment template model.",
+        "RefType": "Direct",
+        "Type": "Figure",
+        "Num": "6"
+    },
+    {
+        "Code": "T51",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "31411",
+                "31616"
+            ]
+        ],
+        "Text": "First, the source sentence words f J are grouped into phrases f K . For each phrase f an 1 1 alignment template z is chosen and the sequence of chosen alignment templates is reordered (according to K ).",
+        "RefType": "Spatial-Below",
+        "Type": "Figure",
+        "Num": "6"
+    },
+    {
+        "Code": "T52",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "31650",
+                "31747"
+            ]
+        ],
+        "Text": "Then, every phrase f produces its translation e (using the corresponding alignment template z).",
+        "RefType": "Spatial-Below",
+        "Type": "Figure",
+        "Num": "6"
+    },
+    {
+        "Code": "T53",
+        "Entity": "Caption",
+        "Span": [
+            [
+                "31861",
+                "31965"
+            ]
+        ],
+        "Text": "Figure 5 Example of segmentation of German sentence and its English translation into alignment templates",
+        "Type": "Figure",
+        "Num": "5"
+    },
+    {
+        "Code": "T54",
+        "Entity": "Caption",
+        "Span": [
+            [
+                "32000",
+                "32052"
+            ]
+        ],
+        "Text": "Figure 6 Dependencies in the alignment template mode",
+        "Type": "Figure",
+        "Num": "6"
+    },
+    {
+        "Code": "T55",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "32349",
+                "32482"
+            ]
+        ],
+        "Text": "We establish a corresponding feature function by multiplying the probability of all used alignment templates and taking the logarithm",
+        "RefType": "Spatial-Below",
+        "Type": "Equation",
+        "Num": "13"
+    },
+    {
+        "Code": "T56",
+        "Entity": "Caption",
+        "Span": [
+            [
+                "32484",
+                "32560"
+            ]
+        ],
+        "Text": "K hAT(eI , f J , K , zK ) = log n p(zk | f j k ) (13) 1 1 1 1 k=1 j k 1 +1",
+        "Type": "Equation",
+        "Num": "13"
+    },
+    {
+        "Code": "T57",
+        "Entity": "Caption",
+        "Span": [
+            [
+                "33794",
+                "33875"
+            ]
+        ],
+        "Text": "hWRD(eI , f J , K , zK ) = log n p(ei | {fj | (i, j) A}, Ei ) (14) 1 1 1 1 i=1",
+        "Type": "Equation",
+        "Num": "14"
+    },
+    {
+        "Code": "T58",
+        "Entity": "Caption",
+        "Span": [
+            [
+                "34613",
+                "34695"
+            ]
+        ],
+        "Text": "(e | f , i, j): p(ei | fj , i 1 i =1 [(i , j) A], j 1 j =1 [(i, j ) A]) (15)",
+        "Type": "Equation",
+        "Num": "15"
+    },
+    {
+        "Code": "T59",
+        "Entity": "Caption",
+        "Span": [
+            [
+                "35859",
+                "35923"
+            ]
+        ],
+        "Text": "hAL(eI , f J , K , zK ) = |j 1 j | (16) 1 1 1 1 k k=1 k 1",
+        "Type": "Equation",
+        "Num": "16"
+    },
+    {
+        "Code": "T60",
+        "Entity": "Caption",
+        "Span": [
+            [
+                "36528",
+                "36605"
+            ]
+        ],
+        "Text": "I+1 hLM(eI , f J , K , zK ) = log n p(ei | ei 2 , e ) (17) 1 1 1 1 i=1 i 1",
+        "Type": "Equation",
+        "Num": "17"
+    },
+    {
+        "Code": "T61",
+        "Entity": "Caption",
+        "Span": [
+            [
+                "36663",
+                "36724"
+            ]
+        ],
+        "Text": "I+1 hCLM(eI , f J , K , zK ) = log n p(C(ei ) | C(ei 4 ), ..",
+        "Type": "Equation",
+        "Num": "18"
+    },
+    {
+        "Code": "T62",
+        "Entity": "Caption",
+        "Span": [
+            [
+                "36759",
+                "36790"
+            ]
+        ],
+        "Text": ", C(e )) (18) 1 1 1 1 i=1 i 1",
+        "Type": "Equation",
+        "Num": "18"
+    },
+    {
+        "Code": "T63",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "36791",
+                "36900"
+            ]
+        ],
+        "Text": "The use of the language model feature in equation (18) helps take long-range dependencies better into account",
+        "RefType": "Direct",
+        "Type": "Equation",
+        "Num": "18"
+    },
+    {
+        "Code": "T64",
+        "Entity": "Caption",
+        "Span": [
+            [
+                "37636",
+                "37713"
+            ]
+        ],
+        "Text": "hLEX(eI , f J , K , zK ) = #CO-OCCURRENCES (LEX, eI , f J ) (20) 1 1 1 1 1 1",
+        "Type": "Equation",
+        "Num": "20"
+    },
+    {
+        "Code": "T65",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "39070",
+                "39205"
+            ]
+        ],
+        "Text": "For the Verbmobil task, we train the model parameters M according to the maximum class posterior probability criterion (equation (4)).",
+        "RefType": "Direct",
+        "Type": "Equation",
+        "Num": "4"
+    },
+    {
+        "Code": "T66",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "40345",
+                "40482"
+            ]
+        ],
+        "Text": "The renormalization needed in equation (3) requires a sum over manypossible sentences, for which we do not know of an efficient algorithm",
+        "RefType": "Direct",
+        "Type": "Equation",
+        "Num": "3"
+    },
+    {
+        "Code": "T67",
+        "Entity": "Caption",
+        "Span": [
+            [
+                "55461",
+                "55517"
+            ]
+        ],
+        "Text": "Figure 7 Algorithm for breadth-first search with pruning",
+        "Type": "Figure",
+        "Num": "7"
+    },
+    {
+        "Code": "T68",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "56283",
+                "56328"
+            ]
+        ],
+        "Text": "Figure 7 shows a structogram of the algorithm",
+        "RefType": "Direct",
+        "Type": "Figure",
+        "Num": "7"
+    },
+    {
+        "Code": "T69",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "56363",
+                "56455"
+            ]
+        ],
+        "Text": "As the search space increases expo nentially, it is not possible to explicitly represent it.",
+        "RefType": "Spatial-Above",
+        "Type": "Figure",
+        "Num": "7"
+    },
+    {
+        "Code": "T70",
+        "Entity": "Caption",
+        "Span": [
+            [
+                "65531",
+                "65643"
+            ]
+        ],
+        "Text": "Figure 8 Algorithm min-jumps to compute the minimum number of needed jumps D(cJ , j) to complete the translation",
+        "Type": "Figure",
+        "Num": "8"
+    },
+    {
+        "Code": "T71",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "67019",
+                "67093"
+            ]
+        ],
+        "Text": "This sum can be computed efficiently using the algorithm shown in Figure 8",
+        "RefType": "Direct",
+        "Type": "Figure",
+        "Num": "8"
+    },
+    {
+        "Code": "T72",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "68712",
+                "68761"
+            ]
+        ],
+        "Text": "able 2 shows the corpus statistics for this task.",
+        "RefType": "Direct",
+        "Type": "Table",
+        "Num": "2"
+    },
+    {
+        "Code": "T73",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "72833",
+                "72943"
+            ]
+        ],
+        "Text": "Table 3 shows the effect of constraining the maximum length of the alignment templates in the source language.",
+        "RefType": "Direct",
+        "Type": "Table",
+        "Num": "3"
+    },
+    {
+        "Code": "T74",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "75617",
+                "75724"
+            ]
+        ],
+        "Text": "Tables 4 and 5 show the effect of the pruning parameter tp with the histogram pruning parameter Np = 50,000",
+        "RefType": "Direct",
+        "Type": "Table",
+        "Num": "4"
+    },
+    {
+        "Code": "T75",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "75617",
+                "75725"
+            ]
+        ],
+        "Text": "Tables 4 and 5 show the effect of the pruning parameter tp with the histogram pruning parameter Np = 50,000.",
+        "RefType": "Direct",
+        "Type": "Table",
+        "Num": "5"
+    },
+    {
+        "Code": "T76",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "75759",
+                "75856"
+            ]
+        ],
+        "Text": "Tables 6 and 7 show the effect of the pruning pa rameter Np with the pruning parameter tp = 10 12",
+        "RefType": "Direct",
+        "Type": "Table",
+        "Num": "6"
+    },
+    {
+        "Code": "T77",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "75759",
+                "75856"
+            ]
+        ],
+        "Text": "Tables 6 and 7 show the effect of the pruning pa rameter Np with the pruning parameter tp = 10 12",
+        "RefType": "Direct",
+        "Type": "Table",
+        "Num": "7"
+    },
+    {
+        "Code": "T78",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "75859",
+                "76004"
+            ]
+        ],
+        "Text": "In all four tables, we provide theresults for using no heuristic functions and three variants of an increasingly infor mative heuristic function.",
+        "RefType": "Indirect",
+        "Type": "Table",
+        "Num": "4"
+    },
+    {
+        "Code": "T79",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "75859",
+                "76003"
+            ]
+        ],
+        "Text": "In all four tables, we provide theresults for using no heuristic functions and three variants of an increasingly infor mative heuristic function",
+        "RefType": "Indirect",
+        "Type": "Table",
+        "Num": "5"
+    },
+    {
+        "Code": "T80",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "75859",
+                "76004"
+            ]
+        ],
+        "Text": "In all four tables, we provide theresults for using no heuristic functions and three variants of an increasingly infor mative heuristic function.",
+        "RefType": "Indirect",
+        "Type": "Table",
+        "Num": "6"
+    },
+    {
+        "Code": "T81",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "75860",
+                "76004"
+            ]
+        ],
+        "Text": "n all four tables, we provide theresults for using no heuristic functions and three variants of an increasingly infor mative heuristic function.",
+        "RefType": "Indirect",
+        "Type": "Table",
+        "Num": "7"
+    },
+    {
+        "Code": "T82",
+        "Entity": "Caption",
+        "Span": [
+            [
+                "76685",
+                "76804"
+            ]
+        ],
+        "Text": "Table 5 Effect of pruning parameter tp and heuristic function on error rate for direct-translation model (Np = 50,000).",
+        "Type": "Table",
+        "Num": "5"
+    },
+    {
+        "Code": "T83",
+        "Entity": "Caption",
+        "Span": [
+            [
+                "76936",
+                "77061"
+            ]
+        ],
+        "Text": "Table 6 Effect of pruning parameter Np and heuristic function on search efficiency for direct-translation model (tp = 10 12 )",
+        "Type": "Table",
+        "Num": "6"
+    },
+    {
+        "Code": "T84",
+        "Entity": "Caption",
+        "Span": [
+            [
+                "77736",
+                "77855"
+            ]
+        ],
+        "Text": "Table 7 Effect of pruning parameter Np and heuristic function on error rate for direct-translation model (tp = 10 12 ).",
+        "Type": "Table",
+        "Num": "7"
+    },
+    {
+        "Code": "T85",
+        "Entity": "Caption",
+        "Span": [
+            [
+                "78431",
+                "78552"
+            ]
+        ],
+        "Text": "Table 8 Effect of the length of the language model history (Unigram/Bigram/Trigram: word-based; CLM: class-based 5-gram).",
+        "Type": "Table",
+        "Num": "8"
+    },
+    {
+        "Code": "T86",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "79017",
+                "79266"
+            ]
+        ],
+        "Text": "If we compare the error rates in Table 7, which correspond to about 55 search errors in Table 6, we obtain an mWER of 36.7% (53 search errors) using no heuristic function and an mWER of 32.6% (57 search errors) using the combined heuristic function.",
+        "RefType": "Direct",
+        "Type": "Table",
+        "Num": "7"
+    },
+    {
+        "Code": "T87",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "79017",
+                "79265"
+            ]
+        ],
+        "Text": "If we compare the error rates in Table 7, which correspond to about 55 search errors in Table 6, we obtain an mWER of 36.7% (53 search errors) using no heuristic function and an mWER of 32.6% (57 search errors) using the combined heuristic function",
+        "RefType": "Direct",
+        "Type": "Table",
+        "Num": "6"
+    },
+    {
+        "Code": "T88",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "80068",
+                "80160"
+            ]
+        ],
+        "Text": "Table 8 shows the effect of the length of the language model history on translation quality.",
+        "RefType": "Direct",
+        "Type": "Table",
+        "Num": "8"
+    },
+    {
+        "Code": "T89",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "80195",
+                "80305"
+            ]
+        ],
+        "Text": "We see that the language model perplexity improves from 4,781 for a unigram model to 29.9 for a trigram model.",
+        "RefType": "Spatial-Above",
+        "Type": "Table",
+        "Num": "8"
+    },
+    {
+        "Code": "T90",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "80340",
+                "80429"
+            ]
+        ],
+        "Text": "The corresponding translation quality improves from an mWER of 45.9% to an mWER of 31.8%.",
+        "RefType": "Spatial-Above",
+        "Type": "Table",
+        "Num": "8"
+    },
+    {
+        "Code": "T91",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "80465",
+                "80576"
+            ]
+        ],
+        "Text": "he largest effect seems to come from taking into account the bigram dependence, which achieves an mWER of 32.9%",
+        "RefType": "Spatial-Above",
+        "Type": "Table",
+        "Num": "8"
+    },
+    {
+        "Code": "T92",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "81322",
+                "81376"
+            ]
+        ],
+        "Text": "Table 9 shows the training and test corpus statistics.",
+        "RefType": "Direct",
+        "Type": "Table",
+        "Num": "9"
+    },
+    {
+        "Code": "T93",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "81411",
+                "81492"
+            ]
+        ],
+        "Text": "The results for French to English and for English to French are shown in Table 10",
+        "RefType": "Direct",
+        "Type": "Table",
+        "Num": "10"
+    },
+    {
+        "Code": "T94",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "84222",
+                "84279"
+            ]
+        ],
+        "Text": "Table 11 gives an overview on the training and test data.",
+        "RefType": "Direct",
+        "Type": "Table",
+        "Num": "11"
+    },
+    {
+        "Code": "T95",
+        "Entity": "Caption",
+        "Span": [
+            [
+                "82776",
+                "82825"
+            ]
+        ],
+        "Text": "Table 10 Translation results on the Hansards task",
+        "Type": "Table",
+        "Num": "10"
+    },
+    {
+        "Code": "T96",
+        "Entity": "Caption",
+        "Span": [
+            [
+                "82292",
+                "82376"
+            ]
+        ],
+        "Text": "Table 9 Corpus statistics for Hansards task (Words*: words without punctuation marks",
+        "Type": "Table",
+        "Num": "9"
+    }
+]

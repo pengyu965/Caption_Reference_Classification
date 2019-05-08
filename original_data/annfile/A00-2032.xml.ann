@@ -1,0 +1,80 @@
+T1	Reference 2090 2177	Figure 1: Statistics from 1993 Japanese newswire (NIKKEI), 79,326,406 characters total.
+A1	RefType T1 Direct
+A2	Type T1 Figure
+A3	Num T1 1
+T2	Reference 3319 3451	Although kanji sequences are difficult to seg  ment, they can comprise a significant portion of Japanese text, as shown in Figure 1.
+A4	RefType T2 Direct
+A5	Type T2 Figure
+A6	Num T2 1
+T3	Reference 4883 5035	Figure 2: Collecting evidence for a word boundary - are the non-straddling n-grams 8 1 and 82 more frequent than the straddling n-grams t 1, t2, and t3?
+A7	RefType T3 Direct
+A8	Type T3 Figure
+A9	Num T3 2
+T4	Reference 5610 5720	We illustrate its use with an example (see Then, we average the contributions of each n-gram order: Figure 2).
+A10	RefType T4 Direct
+A11	Type T4 Figure
+A12	Num T4 2
+T5	Reference 7356 7441	The second condition is necessary to allow for single-character words (see Figure 3).
+A13	RefType T5 Direct
+A14	Type T5 Figure
+A15	Num T5 3
+T6	Reference 8408 8684	At the morp heme level, stems are divid ed from their affixe s. For exam ple, altho ugh both naga no (Naga no) and shi (city) can appea r as indivi dual words , nagano shi (Nag ano city) is brack eted as [[naga no][s hi]], since here shi Figure 3: Determining word boundaries.
+A16	RefType T6 Direct
+A17	Type T6 Figure
+A18	Num T6 3
+T7	Reference 9530 9620	Our experimental data was drawn from 150 megabytes of 1993 Nikkei newswire (see Figure I).
+A19	RefType T7 Direct
+A20	Type T7 Figure
+A21	Num T7 1
+T8	Reference 13564 13759	5http://cactus.aistnara.ac.jp/lab/nltlchasen.html 6http://pine.kuee.kyoto-u.ac.jp/nl-resource/juman-e.html Word accuracy 90 CHASEN JUMAN opllnizt oplnuo recall opiJTozt F Figure 4: Word accuracy.
+A22	RefType T8 Direct
+A23	Type T8 Figure
+A24	Num T8 4
+T9	Reference 17763 17808	Figure 5 shows our morpheme accuracy results.
+A25	RefType T9 Direct
+A26	Type T9 Figure
+A27	Num T9 5
+T10	Reference 19106 19174	Figure 6: Examples of word, morpheme, and compatible-bracket errors.
+A28	RefType T10 Direct
+A29	Type T10 Figure
+A30	Num T10 6
+T11	Reference 22500 22595	Figure 7: Compatible brackets and all-compatible bracket rates when word accuracy is optimized.
+A31	RefType T11 Direct
+A32	Type T11 Figure
+A33	Num T11 7
+T12	Reference 22787 22855	Figure 8: Relative word accuracy as a function of training set size.
+A34	RefType T12 Direct
+A35	Type T12 Figure
+A36	Num T12 8
+T13	Reference 24551 24651	As shown in Figure 8, relative word performance was not degraded and sometimes even slightly better.
+A37	RefType T13 Direct
+A38	Type T13 Figure
+A39	Num T13 8
+T14	Reference 24685 24906	In fact, from the last column of Figure 8 we see that even if our algorithm has access to only five anno  tated sequences when Juman has access to ten times as many, we still achieve better precision and better F measure.
+A40	RefType T14 Direct
+A41	Type T14 Figure
+A42	Num T14 8
+T15	Reference 25443 25519	Figure 9 shows that in fact both contribute to producing good segmentations.
+A43	RefType T15 Direct
+A44	Type T15 Figure
+A45	Num T15 9
+T16	Reference 25928 26068	Figure 9: Entries indicate whether best performance is achieved using the local maximum condition (M), the threshold condition (T), or both.
+A46	RefType T16 Direct
+A47	Type T16 Figure
+A48	Num T16 9
+T17	Reference 21015 21048	See Fig  ure 6 for some examples.
+A49	RefType T17 Direct
+A50	Type T17 Figure
+A51	Num T17 6
+T18	Reference 20064 20146	Fi gure 7 depic ts the comp atible brack ets and all  comp atible brack ets rates.
+A52	RefType T18 Direct
+A53	Type T18 Figure
+A54	Num T18 7
+T19	Reference 16982 16991	Figures 4
+A55	RefType T19 Direct
+A56	Type T19 Figure
+A57	Num T19 4
+T20	Reference 16992 17132	and 8 show word accuracy for Chasen, Juman, and our algorithm for parameter settings optimizing word precision, recall, and F-measure rates.
+A58	RefType T20 Direct
+A59	Type T20 Figure
+A60	Num T20 8

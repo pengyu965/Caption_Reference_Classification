@@ -1,0 +1,650 @@
+[
+    {
+        "Text": "\nMining New Word Translations from Comparable Corpora\n\t\n\t\tNew words such as names, technical terms, etc appear frequently.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "As such, the bilingual lexicon of a machine translation system has to be constantly updated with these new word translations.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Comparable corpora such as news documents of the same period from different news agencies are readily available.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "In this paper, we present a new approach to mining new word translations from comparable corpora, by using context information to complement transliteration information.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "We evaluated our approach on six months of Chinese and English Gigaword corpora, with encouraging results.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "New words such as person names, organization names, technical terms, etc.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "appear frequently.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "In order for a machine translation system to translate these new words correctly, its bilingual lexicon needs to be constantly updated with new word translations.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Much research has been done on using parallel corpora to learn bilingual lexicons (Melamed, 1997; Moore, 2003).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "But parallel corpora are scarce resources, especially for uncommon lan guage pairs.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Comparable corpora refer to texts that are not direct translation but are about the same topic.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "For example, various news agencies report major world events in different languages, and such news documents form a readily available source of comparable corpora.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Being more readily available, comparable corpora are thus more suitable than parallel corpora for the task of acquiring new word translations, although relatively less research has been done in the past on comparable corpora.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Previous research efforts on acquiring translations from comparable corpora include (Fung and Yee, 1998; Rapp, 1995; Rapp, 1999).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "When translating a word w, two sources of information can be used to determine its translation: the word w itself and the surrounding words in the neighborhood (i.e., the context) of w. Most previous research only considers one of the two sources of information, but not both.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "For example, the work of (AlOnaizan and Knight, 2002a; AlOnaizan and Knight, 2002b; Knight and Graehl, 1998) used the pronunciation of w in translation.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "On the other hand, the work of (Cao and Li, 2002; Fung and Yee, 1998; Koehn and Knight, 2002; Rapp, 1995; Rapp, 1999) used the context of w to locate its translation in a second language.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "In this paper, we propose a new approach for the task of mining new word translations from comparable corpora, by combining both context and transliteration information.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Since both sources of information are complementary, the accuracy of our combined approach is better than the accuracy of using just context or transliteration information alone.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "We fully implemented our method and tested it on ChineseEnglish comparable corpora.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "We translated Chinese words into English.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "That is, Chinese is the source language and English is the target language.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "We achieved encouraging results.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "While we have only tested our method on Chinese-English comparable corpora, our method is general and applicable to other language pairs.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The work of (Fung and Yee, 1998; Rapp, 1995; Rapp, 1999) noted that if an English word e is the translation of a Chinese word c , then the contexts of the two words are similar.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "We could view this as a document retrieval problem.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The context (i.e., the surrounding words) of c is viewed as a query.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The context of each candidate translation e' is viewed as a document.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Since the context of the correct translation e is similar to e , is considered as a document in IR.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "If an English word e is the translation of a Chinese word c , they will have similar contexts.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "So we use the the context of c , we are likely to retrieve the context of e when we use the context of c as query C(c) to retrieve a document C (e* ) that * the query and try to retrieve the most similar best matches the query.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The English word e document.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "We employ the language modeling approach (Ng, 2000; Ponte and Croft, 1998) for corresponding to that document translation of c .",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "C (e* ) is the this retrieval problem.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "More details are given in Section 3.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "On the other hand, when we only look at the word w itself, we can rely on the pronunciation of w to locate its translation.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "We use a variant of Within IR, there is a new approach to document retrieval called the language modeling approach (Ponte & Croft, 98).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "In this approach, a language model is derived from each document D .",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Then the probability of generating the query the machine transliteration method proposed by Q according to that language model, P(Q | D) , (Knight and Graehl, 1998).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "More details are is estimated.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The document with the highest given in Section 4.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Each of the two individual methods provides a P(Q | D) is the one that best matches the query.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "ranked list of candidate words, associating with each candidate a score estimated by the particular method.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "If a word e in English is indeed the translation of a word c in Chinese, then we would expect e to be ranked very high in both lists in general.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Specifically, our combination method is as follows: we examine the top M The language modeling approach to IR has been shown to give superior retrieval performance (Ponte & Croft, 98; Ng, 2000), compared with traditional vector space model, and we adopt this approach in our current work.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "To estimate P(Q | D) , we use the approach of (Ng, 2000).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "We view the document D as a multinomial distribution of terms and assume that words in both lists and finde1 , e2 ,..., ek that ap query Q is generated by this model: pear in top M positions in both lists.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "We then n!",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "rank these words e1 , e2 ,..., ek according to the P (Q | D ) = \u220f P (t | D ) c t average of their rank positions in the two lists.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "\u220f t c t !",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "t The candidate ei that is ranked the highest according to the average rank is taken to be the cor where t is a term in the corpus, ct is the number rect translation and is output.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "If no words appear within the top M positions in both lists, then no translation is output.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Since we are using comparable corpora, it is possible that the translation of a new word does not exist in the target corpus.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "In particular, our experiment was conducted on comparable corpora that are not very closely related and as such, most of the Chinese words have no translations of times term t occurs in the query Q , n = \u2211t ct is the total number of terms in query Q .",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "For ranking purpose, the first fraction n!",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "/ \u220ft ct !",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "can be omitted as this part depends on the query only and thus is the same for all the documents.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "in the English target corpus.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "In our translation problem, C(c) is viewed as the query and C(e) is viewed as a document.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "So\n\t\n\t\n\t\t\tour task is to compute P(C (c) | C (e)) for each In a typical information retrieval (IR) problem, a query is given and a ranked list of documents English word e and find the e that gives the highest P(C (c) | C (e)) , estimated as: most relevant to the query is returned from a document collection.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "\u220f P(tc tc\u2208C ( c ) | T (C (e)))q (tc ) For our task, the query is C (c) , the context Term tc is a Chinese word.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "q(tc ) is the number (i.e., the surrounding words) of a Chinese word c .",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Each C (e) , the context of an English word of occurrenc es of tc in C (c) .",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Tc (C (e)) is the bag of Chinese words obtained by translating the First, each Chinese character in a Chinese English words in C(e) , as determined by a bi word c is converted to pinyin form.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Then we sum lingual dictionary.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "If an English word is ambiguous and has K translated Chinese words listed in the bilingual dictionary, then each of the K trans over all the alignments that this pinyin form of c can map to an English word e. For each possible alignment, we calculate the probability by taking lated Chinese words is counted as occurring 1/K times in Tc (C (e)) for the purpose of probability the product of each mapping.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "ble of pinyin, api is the ith sylla li is the English letter sequence estimation.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "We use backoff and linear interpolation for probability estimation: P(tc | Tc (C (e))) = \u03b1 \u22c5 Pml (tc | Tc (C (e))) + (1 \u2212\u03b1 ) \u22c5 Pml (tc ) that the ith pinyin syllable maps to in the particular alignment a.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Since most Chinese characters have only one pronunciation and hence one pinyin form, we assume that Chinese character-to-pinyin mapping is one-to-one to simplify the problem.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "We use the Pml (tc | Tc (C (e))) = dT (C (e )) (tc ) \u2211dT (C ( e )) (t ) expect ation maxi mizati on (EM) algorit hm to genera te mappi ng proba bilitie s from pinyin syl c t\u2208Tc (C ( e )) lables to English letter sequences.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "To reduce the search space, we limit the number of English letters that each pinyin syllable can map to as 0, where Pml (\u2022) are the maximu m likelihood esti 1, or 2.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Also.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "we do not allow cross mappin gs.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "mates, dT (C ( e)) (tc ) is the number of occurre nces That is, if an English letter sequenc e e1 precede s of the term tc in Tc (C(e)) , andPml (tc ) is esti another English letter sequence e2 in an English mated similarly by counting the occurrences of word, then the pinyin syllable mapped to e1 tc in the Chinese translation of the whole English corpus.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "\u03b1 is set to 0.6 in our experiments.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "must precede the pinyin syllable mapped to e2 .",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Our method differs from (Knight and Graehl, 1998) and (AlOnaizan and Knight, 2002b) in that our method does not generate candidates but For the transliteration model, we use a modified only estimatesP(e | c) for candidates e appearmodel of (Knight and Graehl, 1998) and (Al ing in the English corpus.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Another difference is Onaizan and Knight, 2002b).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Knight and Graehl (1998) proposed a probabilistic model for machine transliteration.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "In this model, a word in the target language (i.e., English in our task) is written and pronounced.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "This pronunciation is converted to source language pronunciation and then to source language word that our method estimates stead of P(c | e) and P(e) .",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "5.1 Resources.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "P(e | c)directly, in (i.e., Chinese in our task).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "AlOnaizan and Knight (2002b) suggested that pronunciation can be skipped and the target language letters can be mapped directly to source language letters.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Pinyin is the standard Romanization system of Chinese characters.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "It is phonetic-based.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "For transliteration, we estimate P(e | c) as follows: P(e | c) = P(e | pinyin) = \u2211 P(e, a | pinyin) a For the Chinese corpus, we used the Linguistic Data Consortium (LDC) Chinese Gigaword Corpus from Jan 1995 to Dec 1995.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The corpus of the period Jul to Dec 1995 was used to come up with new Chinese words c for translation into English.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The corpus of the period Jan to Jun 1995 was just used to determine if a Chinese word c from Jul to Dec 1995 was new, i.e., not occurring from Jan to Jun 1995.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Chinese Giga- word corpus consists of news from two agencies: = \u2211\u220f P(l a a i | pi ) Xinhua News Agency and Central News Agency.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "As for English corpus, we used the LDC English Gigaword Corpus from Jul to Dec 1995.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The English Gigaword corpus consists of news from four newswire services: Agence France Press English Service, Associated Press Worldstream English Service, New York Times Newswire Service, and Xinhua News Agency English Service.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "To avoid accidentally using parallel texts, we did not use the texts of Xinhua News Agency them English translation candidate words.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "For a Chinese source word occurring within a half- month period p, we looked for its English translation candidate words occurring in news documents in the same period p. 5.3 Translation candidates.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "English Service.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The size of the English corpus from Jul to Dec The context C(c)of a Chinese word c was col 1995 was about 730M bytes, and the size of the Chinese corpus from Jul to Dec 1995 was about 120M bytes.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "We used a ChineseEnglish dictionary which contained about 10,000 entries for translating the words in the context.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "For the training of transliteration probability, we required a ChineseEnglish name list.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "We used a list of 1,580 ChineseEnglish name pairs as training data for the EM algorithm.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "lected as follows: For each occurrence of c, we set a window of size 50 characters centered at c. We discarded all the Chinese words in the context that were not in the dictionary we used.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The contexts of all occurrences of a word c were then concatenated together to form C(c) .",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The context of an English translation candidate word e, C (e) , was similarly collected.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The window size of English context was 100 words.After all the counts were collected, we esti mated P(C (c) | C (e)) as described in Section 3, 5.2 Preprocessing.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Unlike English, Chinese text is composed of Chinese characters with no demarcation for words.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "So we first segmented Chinese text with a Chinese word segmenter that was based on maximum entropy modeling (Ng and Low, 2004).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "for each pair of Chinese source word and English translation candidate word.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "For each Chinese source word, we ranked all its English translation candidate words according to the estimated P(C (c) | C (e)) .",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "For each Chinese source word c and an English translation candidate word e , we also calcu We then divided the Chinese corpus from Jul to Dec 1995 into 12 periods, each containing text lated the probability P(e | c) (as described in from a half-month period.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Then we determined the new Chinese words in each half-month period p. By new Chinese words, we refer to those words that appeared in this period p but not from Jan to Jun 1995 or any other periods that preceded p. Among all these new words, we selected those occurring at least 5 times.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "These words made up our test set.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "We call these words Chinese source words.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "They were the words that we were supposed to find translations from the English corpus.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "For the English corpus, we performed sentence segmentation and converted each word to its morphological root form and to lower case.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "We also divided the English corpus into 12 periods, each containing text from a half-month period.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "For each period, we selected those English words occurring at least 10 times and were not present in the 10,000-word ChineseEnglish dictionary we used and were not stop words.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "We considered these English words as potential translations of the Chinese source words.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "We call Section 4), which was used to rank the English candidate words based on transliteration.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Finally, the English candidate word with the smallest average rank position and that appears within the top M positions of both ranked lists is the chosen English translation (as described in Section 2).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "If no words appear within the top M positions in both ranked lists, then no translation is output.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Note that for many Chinese words, only one English word e appeared within the top M positions for both lists.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "And among those cases where more than one English words appeared within the top M positions for both lists, many were multiple translations of a Chinese word.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "This happened for example when a Chinese word was a non-English person name.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The name could have multiple translations in English.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "For example, \u7c73 \u6d1b\u897f\u5a1c was a Russian name.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Mirochina and Miroshina both appeared in top 10 positions of both lists.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Both were correct.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "5.4 Evaluation.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "We evaluated our method on each of the 12 half- month periods.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": ".",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The correctness of the English translations was manually checked.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "We attempted to estimate recall by manually finding the English translations for all the Chinese source words for the two periods Dec 01 \u2013 Dec 15 and Dec 16 \u2013 Dec 31 in the English part of the corpus.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "During the whole December period, we only managed to find English translations which were present in the English side of the comparable corpora for 43 Chinese words.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Precision and recall for different values of M The past research of (Fung and Yee, 1998; Rapp, 1995; Rapp, 1999) utilized context information alone and was evaluated on different corpora from ours, so it is difficult to directly compare our current results with theirs.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Similarly, AlOnaizan and Knight (2002a; 2002b) only made use of transliteration information alone and so was not directly comparable.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "To investigate the effect of the two individual sources of information (context and transliteration), we checked how many translations could be found using only one source of information (i.e., context alone or transliteration alone), on those Chinese words that have translations in the English part of the comparable corpus.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "As mentioned earlier, for the month of Dec 1995, there are altogether 43 Chinese words that have their translations in the English part of the corpus.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Since our method currently only considers unigram English words, we are not able to find translations for these words.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "But it is not difficult to extend our method to handle this problem.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "We can first use a named entity recognizer and noun phrase chunker to extract English names and noun phrases.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Our method is not able to find 43 (329 + 205) \u00d7 4499 = 362words in all 12 pe these translations.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "But this is due to search space riods.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "And our program finds correct translations for 115 words.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "So we estimate that recall (for M = 10) is approximately 115 / 362 = 31.8% .",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "pruning.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "If we are willing to spend more time on searching, then in principle we can find these translations.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "And using just transliteration information alone, 9 Chinese words have their correct English translations at rank one position.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Hence, our method of using both sources of information outperforms using either information source alone.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "As pointed out earlier, most previous research only considers either transliteration or context information in determining the translation of a source language word w, but not both sources of information.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "For example, the work of (AlOnaizan and Knight, 2002a; AlOnaizan and Knight, 2002b; Knight and Graehl, 1998) used only the pronunciation or spelling of w in translation.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "On the other hand, the work of (Cao and Li, 2002; Fung and Yee, 1998; Rapp, 1995; Rapp, 1999) used only the context of w to locate its translation in a second language.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "In contrast, our current work attempts to combine both complementary sources of information, yielding higher accuracy than using either source of information alone.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Koehn and Knight (2002) attempted to combine multiple clues, including similar context and spelling.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "But their similar spelling clue uses the longest common subsequence ratio and works only for cognates (words with a very similar spelling).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The work that is most similar to ours is the recent research of (Huang et al., 2004).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "They attempted to improve named entity translation by combining phonetic and semantic information.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Their contextual semantic similarity model is different from our language modeling approach to measuring context similarity.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "It also made use of part-of-speech tag information, whereas our method is simpler and does not require part-of- speech tagging.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "They combined the two sources of information by weighting the two individual scores, whereas we made use of the average rank for combination.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "In this paper, we proposed a new method to mine new word translations from comparable corpora, by combining context and transliteration information, which are complementary sources of information.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "We evaluated our approach on six months of Chinese and English Gigaword corpora, with encouraging results.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "We thank Jia Li for implementing the EM algorithm to train transliteration probabilities.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "This research is partially supported by a research grant R252000-125112 from National University of Singapore Academic Research Fund.",
+        "Entity": "Normal"
+    }
+]

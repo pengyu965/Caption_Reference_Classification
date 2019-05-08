@@ -1,0 +1,80 @@
+T1	Reference 5094 5444	Table 1; capital letters designate sets and small letters elements of sets).2 For a lemma l like lamb, we want to knowhow well a meta alternation (such as ANIMAL FOOD) explains a pair of its senses (such as the animal and food senses of lamb).3 This is formalized through the function score, which maps a meta alternation and two senses onto a score.
+A1	RefType T1 Direct
+A2	Type T1 Table
+A3	Num T1 1
+T2	Reference 6488 6959	L set of lemmas IL set of (lemma-wise) instances SL set of (lemma-wise) senses inst : L    (IL ) mapping lemma   instances sns : L    (SL ) mapping lemma   senses M set of meta senses meta : SL   M mapping senses   meta senses A   M   M set of meta alternations (MAs) A set of MA representations score : A   S2   R scoring function for MAs repA : A   A MA representation function comp : A  S2   R compatibility function Table 1: Notation and signatures for our framework.
+A4	RefType T2 Direct
+A5	Type T2 Table
+A6	Num T2 1
+T3	Reference 9230 9651	vecI : IL   Rk instance vector computation C : Rk m   Rk centroid computation vecL : L   Rk lemma (type) vector computation repM : M   Rk meta sense representation Table 3: Additional notation and signatures for CAM explicit sense disambiguation, CAM represents lemmas by their type vectors, i.e., the centroid of their instances, and compares their vectors (attributes) to those of the meta alternation   hence the name.
+A7	RefType T3 Direct
+A8	Type T3 Table
+A9	Num T3 3
+T4	Reference 10120 10249	CoreLex defines a layer of abstraction above WordNet consisting of 39 basic types, coarse- grained ontological classes (Table 2).
+A10	RefType T4 Direct
+A11	Type T4 Table
+A12	Num T4 2
+T5	Reference 11073 11160	Table 1), i.e., the degree to which a sense pair (s1, s2) matches a meta alternation a.
+A13	RefType T5 Direct
+A14	Type T5 Table
+A15	Num T5 1
+T6	Reference 12279 12363	Table 3 lists new conceptsthat CAM introduces to manipulate vector represen tations.
+A16	RefType T6 Direct
+A17	Type T6 Table
+A18	Num T6 3
+T7	Reference 14859 14931	Table 2: CoreLex s basic types with their corresponding WordNet anchors.
+A19	RefType T7 Direct
+A20	Type T7 Table
+A21	Num T7 2
+T8	Reference 15320 15337	Table (1) and Eq.
+A22	RefType T8 Direct
+A23	Type T8 Table
+A24	Num T8 1
+T9	Reference 15975 16034	This leaves us with 60 meta alternations, shown in Table 5.
+A25	RefType T9 Direct
+A26	Type T9 Table
+A27	Num T9 5
+T10	Reference 19992 20062	Table 4: Sample of experimental items for the meta alternation anmfod.
+A28	RefType T10 Direct
+A29	Type T10 Table
+A30	Num T10 4
+T11	Reference 20096 20134	(Abbreviations are listed in Table 2.)
+A31	RefType T11 Direct
+A32	Type T11 Table
+A33	Num T11 2
+T12	Reference 25617 25695	Table 5 breaks down the performance of the best CAM model by meta alternation.
+A34	RefType T12 Direct
+A35	Type T12 Table
+A36	Num T12 5
+T13	Reference 24235 24287	Figure 1 shows the influence of the four parameters.
+A37	RefType T13 Direct
+A38	Type T13 Figure
+A39	Num T13 1
+T14	Reference 26042 26094	Figure 1: Effect of model parameters on performance.
+A40	RefType T14 Direct
+A41	Type T14 Figure
+A42	Num T14 1
+T15	Reference 28999 29048	Figure 2 plots AP by   for all meta alternations.
+A43	RefType T15 Direct
+A44	Type T15 Figure
+A45	Num T15 2
+T16	Reference 31536 31611	Table 5: Meta alternations and their average precision values for the task.
+A46	RefType T16 Direct
+A47	Type T16 Table
+A48	Num T16 5
+T17	Reference 32267 32351	Table 6: Sample targets for meta alternations with high AP and mid-coherence values.
+A49	RefType T17 Direct
+A50	Type T17 Table
+A51	Num T17 6
+T18	Reference 33180 33254	Table 6 lists a sample of targets for the five meta alternations involved.
+A52	RefType T18 Direct
+A53	Type T18 Table
+A54	Num T18 6
+T19	Reference 34293 34365	Figure 2: Average Precision and Coherence ( ) for each meta alternation.
+A55	RefType T19 Direct
+A56	Type T19 Figure
+A57	Num T19 2
+T20	Reference 24860 25025	Figure 1 suggests that the best setup is dependent on the specific meta sense or meta alternation being MACRO MICRO repM gram gramlex lex space type MACRO MICRO repA
+A58	RefType T20 Direct
+A59	Type T20 Figure
+A60	Num T20 1

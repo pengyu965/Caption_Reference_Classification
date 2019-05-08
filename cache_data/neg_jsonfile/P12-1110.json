@@ -1,0 +1,958 @@
+[
+    {
+        "Text": "\n\t\n\t\tWe propose the first joint model for word segmentation, POS tagging, and dependency parsing for Chinese.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Based on an extension of the incremental joint model for POS tagging and dependency parsing (Hatori et al., 2011), we propose an efficient character-based decoding method that can combine features from state-of-the-art segmentation, POS tagging, and dependency parsing models.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "We also describe our method to align comparable states in the beam, and how we can combine features of different characteristics in our incremental framework.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "In experiments using the Chinese Treebank (CTB), we show that the accuracies of the three tasks can be improved significantly over the baseline models, particularly by 0.6% for POS tagging and 2.4% for dependency parsing.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "We also perform comparison experiments with the partially joint models.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "In processing natural languages that do not include delimiters (e.g.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "spaces) between words, word segmentation is the crucial first step that is necessary to perform virtually all NLP tasks.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Furthermore, the word-level information is often augmented with the POS tags, which, along with segmentation, form the basic foundation of statistical NLP.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Because the tasks of word segmentation and POS tagging have strong interactions, many studies have been devoted to the task of joint word segmentation and POS tagging for languages such as Chinese (e.g.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Kruengkrai et al.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "(2009)).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "This is because some of the segmentation ambiguities cannot be resolved without considering the surrounding grammatical constructions encoded in a sequence of POS tags.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The joint approach to word segmentation and POS tagging has been reported to improve word segmentation and POS tagging accuracies by more than 1% in Chinese (Zhang and Clark, 2008).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "In addition, some researchers recently proposed a joint approach to Chinese POS tagging and dependency parsing (Li et al., 2011; Hatori et al., 2011); particularly, Ha- tori et al.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "(2011) proposed an incremental approach to this joint task, and showed that the joint approach improves the accuracies of these two tasks.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "In this context, it is natural to consider further a question regarding the joint framework: how strongly do the tasks of word segmentation and dependency parsing interact?",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "In the following Chinese sentences:               current peace-prize and peace operation related The current peace prize and peace operations are related.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "current peace award peace operation related group The current peace is awarded to peace-operation-related groups.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "the only difference is the existence of the last word  ; however, whether or not this word existschanges the whole syntactic structure and segmen tation of the sentence.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "This is an example in which word segmentation cannot be handled properly without considering long-range syntactic information.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Syntactic information is also considered beneficial to improve the segmentation of out of- vocabulary (OOV) words.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Unlike languages such as Japanese that use a distinct character set (i.e.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "katakana) for foreign words, the transliterated words in Chinese, many of which are OOV words, frequently include characters that are also used as common or function words.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "In the current systems, the existence of these characters causes numerous over- segmentation errors for OOV words.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Based on these observations, we aim at building a joint model that simultaneously processes word segmentation, POS tagging, and dependency parsing, trying to capture global interaction among 1045 Proceedings of the 50th Annual Meeting of the Association for Computational Linguistics, pages 1045 1053, Jeju, Republic of Korea, 814 July 2012.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Qc 2012 Association for Computational Linguistics these three tasks.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "To handle the increased computational complexity, we adopt the incremental parsing framework with dynamic programming (Huang and Sagae, 2010), and propose an efficient method of character-based decoding over candidate structures.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Two major challenges exist in formalizing the joint segmentation and dependency parsing task in the character-based incremental framework.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "First, we must address the problem of how to align comparable states effectively in the beam.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Because the number of dependency arcs varies depending on how words are segmented, we devise a step alignment scheme using the number of character-based arcs, which enables effective joint decoding for the three tasks.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Second, although the feature set is fundamentally a combination of those used in previous works (Zhang and Clark, 2010; Huang and Sagae, 2010), to integrate them in a single incremental framework is not straightforward.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Because we must perform decisions of three kinds (segmentation, tagging, and parsing) in an incremental framework, we must adjust which features are to be activated when, and how they are combined with which action labels.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "We have also found that we must balance the learning rate between features for segmentation and tagging decisions, and those for dependency parsing.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "We perform experiments using the Chinese Tree- bank (CTB) corpora, demonstrating that the accuracies of the three tasks can be improved significantly over the pipeline combination of the state-of-the-art joint segmentation and POS tagging model, and the dependency parser.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "We also perform comparison experiments with partially joint models, and investigate the tradeoff between the running speed and the model performance.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "In Chinese, Luo (2003) proposed a joint constituency parser that performs segmentation, POS tagging, and parsing within a single character-based framework.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "They reported that the POS tags contribute to segmentation accuracies by more than 1%, but the syntactic information has no substantial effect on the segmentation accuracies.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "In contrast, we built a joint model based on a dependency-based framework, with a rich set of structural features.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Using it, we show the first positive result in Chinese that the segmentation accuracies can be improved using the syntactic information.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Another line of work exists on lattice-based parsing for Semitic languages (Cohen and Smith, 2007; Goldberg and Tsarfaty, 2008).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "These methods first convert an input sentence into a lattice encoding the morphological ambiguities, and then conduct joint morphological segmentation and PCFG parsing.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "However, the segmentation possibilities considered in those studies are limited to those output by an existing morphological analyzer.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "In addition, the lattice does not include word segmentation ambiguities crossing boundaries of space-delimited tokens.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "In contrast, because the Chinese language does not have spaces between words, we fundamentally need to consider the lattice structure of the whole sentence.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Therefore, we place no restriction on the segmentation possibilities to consider, and we assess the full potential of the joint segmentation and dependency parsing model.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Among the many recent works on joint segmentation and POS tagging for Chinese, the linear-time incremental models by Zhang and Clark (2008) and Zhang and Clark (2010) largely inspired our model.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Zhang and Clark (2008) proposed an incremental joint segmentation and POS tagging model, with an effective feature set for Chinese.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "However, it requires to computationally expensive multiple beams to compare words of different lengths using beam search.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "More recently, Zhang and Clark (2010) proposed an efficient character-based decoder for their word-based model.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "In their new model, a single beam suffices for decoding; hence, they reported that their model is practically ten times as fast as their original model.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "To incorporate the word-level features into the character-based decoder, the features are decomposed into substring-level features, which are effective for incomplete words to have comparable scores to complete words in the beam.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Because we found that even an incremental approach with beam search is intractable if we perform the word- based decoding, we take a character-based approach to produce our joint model.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The incremental framework of our model is based on the joint POS tagging and dependency parsing model for Chinese (Hatori et al., 2011), which is an extension of the shift-reduce dependency parser with dynamic programming (Huang and Sagae, 2010).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "They specifically modified the shift action so that it assigns the POS tag when a word is shifted onto the stack.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "However, because they regarded word segmentation as given, their model did not consider the interaction between segmentation and POS tagging.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "3.1 Incremental Joint Segmentation, POS.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Tagging, and Dependency Parsing Based on the joint POS tagging and dependency parsing model by Hatori et al.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "(2011), we build our joint model to solve word segmentation, POS tagging, and dependency parsing within a single framework.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Particularly, we change the role of the shift action and additionally use the append action, inspired by the character-based actions used in the joint segmentation and POS tagging model by Zhang and Clark (2010).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The list of actions used is the following:   A: append the first character in the queue to the word on top of the stack.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "SH(t): shift the first character in the input queue as a new word onto the stack, with POS tag t.   RL/RR: reduce the top two trees on the stack, (s0, s1), into a subtree s0s1 / s s1, respectively.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "We can first think of using the number of shifted characters as the step index, as Zhang and Clark (2010) does.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "However, because RL/RR actions can be performed without incrementing the step index, the decoder tends to prefer states with more dependency arcs, resulting more likely in premature choice of  reduce  actions or oversegmentation of words.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Alternatively, we can consider using the number of actions that have been applied as the step index, as Hatori et al.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "(2011) does.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "However, this results in inconsistent numbers of actions to reach the terminal states: some states that segment words into larger chunks reach a terminal state earlier than other states with smaller chunks.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "For these reasons, we have found that both approaches yield poor models that are not at all competitive with the baseline (pipeline) models1.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "To address this issue, we propose an indexing scheme using the number of character-based arcs.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "We presume that in addition to the word-to-word dependency arcs, each word (of length M ) implicitly has M   1 inter-character arcs, as in: A B C , 0 0 Although SH(t) is similar to the one used in Hatori A B C , and A BC (each rectangle de et al.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "(2011), now it shifts the first character in the queue as a new word, instead of shifting a word.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Following Zhang and Clark (2010), the POS tag is assigned to the word when its first character is shifted, and the word tag pairs observed in the training data and the closed-set tags (Xia, 2000) are used to prune unlikely derivations.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Because 33 tags are defined in the CTB tag set (Xia, 2000), our model exploits a total of 36 actions.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "To train the model, we use the averaged perceptron with the early update (Collins and Roark, 2004).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "In our joint model, the early update is invoked by mistakes in any of word segmentation, POS tagging, or dependency parsing.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "3.2 Alignment of States.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "When dependency parsing is integrated into the task of joint word segmentation and POS tagging, it is not straightforward to define a scheme to align (synchronize) the states in the beam.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "In beam search, we use the step index that is associated with each state: the parser states in process are aligned according to the index, and the beam search pruning is applied to those states with the same index.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Consequently, for the beam search to function effectively, all states with the same index must be comparable, and all terminal states should have the same step index.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "notes a word).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Then we can define the step index as the sum of the number of shifted characters and the total number of (inter-word and intra-word) dependency arcs, which thereby meets all the following conditions: (1) All subtrees spanning M consecutive characters have the same index 2M   1.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "(2) All terminal states have the same step index 2N (including the root arc), where N is the number of characters in the sentence.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "(3) Every action increases the index.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Note that the number of shifted characters is also necessary to meet condition (3).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Otherwise, it allows an unlimited number of SH(t) actions without incrementing the step index.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "In our framework, because an action increases the step index by 1 (for SH(t) or RL/RR) or 2 (for A), we need to use two beams to store new states at each step.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The computational complexity of the entire process is O(B(T + 3)   2N ), where B is the beam 1 For example, in our preliminary experiment on CTB5, the step indexing according to the number of actions underperforms the baseline model by 0.2 0.3% in segmentation accuracy.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "step 1 step 2 1 1 1 step 3 1 1 1 3 step 5 denote the  reduce  actions that determine the word boundary2, whereas RL1/RR1 denote those  reduce  actions that are applied when the word boundary has already been fixed.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "In addition, to capture the shared step 6 step 7 step 8 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 nature of boundary determination actions (SH(t), 3 1 1 1 3 1 1 1 1 3 1 1 1 1 1 RL0/RR0), we use a generalized action label SH  to 3 3 3 3 1 5 1 5 1 1 7 3 3 1 1 5 1 1 1 5 3 7 1 represent any of them when combined with W01  W21.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "size, T is the number of POS tags (= 33), and N is the number of characters in the sentence.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Theoretically, the computational time is greater than that with the character-based joint segmentation and tagging model by Zhang and Clark (2010) by a factor of T +3 2N T +1   N ,..\n\t\t\t2.1, when the same beam size is used.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "3.3 Features.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The feature set of our model is fundamentally a combination of the features used in the state-of-the-art joint segmentation and POS tagging model (Zhang and Clark, 2010) and dependency parser (Huang and Sagae, 2010), both of which are used as baseline models in our experiment.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "However, we must carefully adjust which features are to be activated and when, and how they are combined with which action labels, depending on the type of the features because we intend to perform three tasks in a single incremental framework.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Note that not all features are always considered: each feature is only considered if the action to be performed is included in the list of actions in the  When to apply  column.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Because S01  S05 are used to represent the likelihood score of substring sequences, they are only used for A and SH(t) without being combined with any action label.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Because T01 T05 are used to determine the POS tag of the word being shifted, they are only applied for SH(t).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Because W01 W21 are used to determine whether to segment at the current position or not, they are only used for those actions involved in boundary determination decisions (A, SH(t), RL0, and RR0).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The action labels RL0/RR0 are used to level and substring-level scores.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Regarding the parsing features P01 P28, because we found that P01 P17 are also useful for segmentation decisions, these features are applied to all actions including A, with an explicit distinction of action labels RL0/RR0 from RL1/RR1.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "On the other hand, P18 P28 are only used when one of the parser actions (SH(t), RL, or RR) is applied.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Note that P07  P09 and P18 P21 (look-ahead features) require the look-ahead information of the next word form and POS tags, which cannot be incorporated straightforwardly in an incremental framework.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Although we have found that these features can be incorporated using the delayed features proposed by Hatori et al.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "(2011), we did not use them in our current model because it results in the significant increase of computational time.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "3.3.1 Dictionary features Because segmentation using a dictionary alone can serve as a strong baseline in Chinese word segmentation (Sproat et al., 1996), the use of dictionaries is expected to make our joint model more robust and enables us to investigate the contribution of the syntactic dependency in a more realistic setting.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Therefore, we optionally use four features D01 D04 associated with external dictionaries.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "These features distinguish each dictionary source, reflecting the fact that different dictionaries have different characteristics.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "These features will also be used in our reimplementation of the model by Zhang and Clark (2010).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "3.4 Adjusting the Learning Rate of Features.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "In formulating the three tasks in the incremental framework, we found that adjusting the update rate depending on the type of the features (segmentation/tagging vs. parsing) crucially impacts the final performance of the model.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "To investigate this point, we define the feature vector    and score   of the 2 A reduce action has an additional effect of fixing the boundary of the top word on the stack if the last action was A or SH(t).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Id Feature template Label When to apply U01 q 1 .e   q 1 .t   A, SH(t) Training Development Test #snt #wrd #snt #wrd #oov #snt #wrd #oov U02,03 q 1 .e q 1 .e   q 1 .t as-is any S01 q 1 .e   c0   A S02 q 1 .t   c0   A, SH(t) S03 q 1 .t   q 1 .b   c0   A S04 q 1 .t   c0   C(q 1 .b)   A S05 q 1 .t   c0   c1   A D01 len(q 1 .w)   i A,SH  A, SH(t), RR/RL0 D02 len(q 1 .w)   q 1 .t   i A,SH  A, SH(t), RR/RL0 D03 len(q 1 .w)   i A,SH  A, SH(t), RR/RL0 D04 len(q 1 .w)   q 1 .t   i A,SH  A, SH(t), RR/RL0 (D01,02: if q 1 .w   Di ; D03,04: if q 1 .w  / Di ) W01,02 q 1 .w q 2 .w   q 1 .w A,SH  A, SH(t), RR/RL0 W03 q 1 .w (for single-char word) A,SH  A, SH(t), RR/RL0 W04 q 1 .b   len(q 1 .w) A,SH  A, SH(t), RR/RL0 CTB5d 16k 438k 804 21k 1.2k 1.9k 50k 3.1k CTB5j 18k 494k 352 6.8k 553 348 8.0k 278 CTB5c 15k 423k - - - - - - CTB6 23k 641k 2.1k 60k 3.3k 2.8k 82k 4.6k CTB7 31k 718k 10k 237k 13k 10k 245k 13k                                 \n\t\t\taction a being applied to the state   as W05 q 1 .e   len(q 1 .w) A,SH  A, SH(t), RR/RL0     W06,07 q 1 .e   c0 q 1 .b   q 1 .e A,SH  A, SH(t), RR/RL0 W08,09 q 1 .w   c0 q 2 .e   q 1 .w A,SH  A, SH(t), RR/RL0  ( , a) =        ( , a) =       st( , a) +  p p( , a) , W10,11 q 1 .b   c0 q 2 .e   q 1 .e A,SH  A, SH(t), RR/RL0 W12 q 2 .w   len(q 1 .w) A,SH  A, SH(t), RR/RL0 W13 len(q 2 .w)   q 1 .w A,SH  A, SH(t), RR/RL0 W14 q 1 .w   q 1 .t A,SH  A, SH(t), RR/RL0 W15 q 2 .t   q 1 .w A,SH  A, SH(t), RR/RL0 W16 q 1 .t   q 1 .w   q 2 .e A,SH  A, SH(t), RR/RL0 W17 q 1 .t   q 1 .w   c0 A,SH  A, SH(t), RR/RL0 W18 q 2 .e   q 1 .w   c0   q1 .t A,SH  A, SH(t), RR/RL0 W19 q 1 .t   q 1 .e A,SH  A, SH(t), RR/RL0 W20 q 1 .t   q 1 .e   c A,SH  A, SH(t), RR/RL0where   st corresponds to the segmentation and tag ging features (those starting with  U ,  S ,  T , or D ), and   p is the set of the parsing features (start ing with  P ).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Then, if we set  p to a number smaller than 1, perceptron updates for the parsing features will be kept small at the early stage of training because the update is proportional to the values of the W21 q 1 .t   c   cat(q 1 .e) A,SH  A, SH(t), RR/RL0 (W20, W21: c   q 1 .w\\e) feature vector.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "However, even if  p is initially small, T01,02 q 1 .t q 2 .t   q 1 .t SH(t) SH(t) T03,04 q 1 .w c0 SH(t) SH(t) T05 c0   q 1 .t   q 1 .e SH(t) SH(t) P01,02 s0 .w s0 .t A, SH(t), RR/RL0/1 any P03,04 s0 .w   s0 .t s1 .w A, SH(t), RR/RL0/1 any P05,06 s1 .t s1 .w   s1 .t A, SH(t), RR/RL0/1 any P07,08 q0 .w q0 .t A, SH(t), RR/RL0/1 any P09,10 q0 .w   q0 .t s0 .w   s1 .w A, SH(t), RR/RL0/1 any P11,12 s0 .t   s1 .t s0 .t   q0 .t A, SH(t), RR/RL0/1 any P13 s0 .w   s0 .t   s1 .t A, SH(t), RR/RL0/1 any P14 s0 .t   s1 .w   s1 .t A, SH(t), RR/RL0/1 any P15 s0 .w   s1 .w   s1 .t A, SH(t), RR/RL0/1 any P16 s0 .w   s0 .t   s1 .w A, SH(t), RR/RL0/1 any P17 s0 .w   s0 .t   s1 .w   s1 .t A, SH(t), RR/RL0/1 any P18 s0 .t   q0 .t   q1 .t as-is SH(t), RR, RL P19 s1 .t   s0 .t   q0 .t as-is SH(t), RR, RL P20 s0 .w   q0 .t   q1 .t as-is SH(t), RR, RL P21 s1 .t   s0 .w   q0 .t as-is SH(t), RR, RL P22 s1 .t   s1 .rc.t   s0 .t as-is SH(t), RR, RL P23 s1 .t   s1 .lc.t   s0 .t as-is SH(t), RR, RL P24 s1 .t   s1 .rc.t   s0 .w as-is SH(t), RR, RL P25 s1 .t   s1 .lc.t   s0 .w as-is SH(t), RR, RL P26 s1 .t   s0 .t   s0 .rc.t as-is SH(t), RR, RL P27 s1 .t   s0 .w   s0 .lc.t as-is SH(t), RR, RL P28 s2 .t   s1 .t   s0 .t as-is SH(t), RR, RL * q 1 and q 2 respectively denote the last-shifted word and the word shifted before q 1 .",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "q.w and q.t respectively denote the (root) word form and POS tag of a subtree (word) q, and q.b and q.e the beginning and ending characters of q.w.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "c0 and c1 are the first and second characters in the queue.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "q.w\\e denotes the set of characters excluding the ending character of q.w.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "len( )denotes the length of the word, capped at 16 if longer.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "cat( ) de notes the category of the character, which is the set of POS tags observed in the training data.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Di is a dictionary, a set of words.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The action label   means that the feature is not combined with any label;  as-is  denotes the use of the default action set  A, SH(t), and RR/RL  as is.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "the global weights for the parsing features will in crease as needed and compensate for the small  p as the training proceeds.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "In this way, we can control the contribution of syntactic dependencies at the early stage of training.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Section 4.3 shows that the best setting we found is  p = 0.5: this result suggests that we probably should resolve remaining errors by preferentially using the local n-gram based features at the early stage of training.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Otherwise, the premature incorporation of the non-local syntactic dependencies might engender overfitting to the training data.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "4 Experiment 4.1 Experimental.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Settings We use the Chinese Penn Treebank ver.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "5.1, 6.0, and 7.0 (hereinafter CTB5, CTB6, and CTB7) for evaluation.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "These corpora are split into training, development, and test sets, according to previous works.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "For CTB5, we refer to the split by Duan et al.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "(2007) as CTB 5d, and to the split by Jiang et al.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "(2008) as CTB5j.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "We also prepare a dataset for cross validation: the dataset CTB5c consists of sentences from CTB5 excluding the development and test sets of CTB5d and CTB5j.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "We split CTB 5c into five sets (CTB5c-n), and alternatively use four of these as the training set and the rest as the test set.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "CTB6 is split according to the official split described in the documentation, and CTB7 is split according to Wang et al.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "(2011).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "As external dic94 tionaries, we use the HowNet Word List3, consist ing of 91,015 words, and page names from the Chi- 92 nese Wikipedia4 as of Oct 26, 2011, consisting of 709,352 words.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "These dictionaries only consist of 90 word forms with no frequency or POS information.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "88We use standard measures of word-level preci 76 74 72 70 68 66 Seg ( _p=0.1) Seg ( _p=0.2) Seg ( _p=0.5) 64 Seg ( _p=1.0) Tag ( _p=0.1) Tag ( _p=0.2) 62 Tag ( _p=0.5) Dep ( _p=0.1) Dep ( _p=0.2) Dep ( _p=0.5) sion, recall, and F1 score, for evaluating each task.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The output of dependencies cannot be correct unless Tag ( _p=1.0) 86 60 0 10 20 30 40 50 60 70 80 Dep ( _p=1.0) 0 10 20 30 40 50 60 70 80 the syntactic head and dependent of the dependency relation are both segmented correctly.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Following the standard setting in dependency parsing works, we evaluate the task of dependency parsing with the unlabeled attachment scores excluding punctuations.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Statistical significance is tested by McNemar s test (  : p < 0.05,   : p < 0.01).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "4.2 Baseline and Proposed Models.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "We use the following baseline and proposed models for evaluation.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "SegTag: our reimplementation of the joint segmentation and POS tagging model by Zhang and Clark (2010).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "We used the beam of 16, which they reported to achieve the best accuracies.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Dep : the state-of-the-art dependency parser by Huang and Sagae (2010).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "We used our reimplementation, which is used in Hatori et al.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "(2011).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Dep: Dep  without look-ahead features.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "TagDep: the joint POS tagging and dependency parsing model (Hatori et al., 2011), where the look-ahead features are omitted.5   SegTag+Dep/SegTag+Dep : a pipeline combination of SegTag and Dep or Dep .",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "SegTag+TagDep: a pipeline combination of Seg- Tag and TagDep, where only the segmentation output of SegTag is used as input to TagDep; the output tags of TagDep are used for evaluation.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "SegTagDep: the proposed full joint model.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "All of the models described above except Dep  are based on the same feature sets for segmentation and 3 http://www.keenage.com/html/e index.html 4 http://zh.wikipedia.org/wiki 5 We used the original implementation used in Hatori et al.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "(2011).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "In Hatori et al.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "tagging (Zhang and Clark, 2008; Zhang and Clark, 2010) and dependency parsing (Huang and Sagae, 2010).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Therefore, we can investigate the contribution of the joint approach through comparison with the pipeline and joint models.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "4.3 Development Results.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "We have some parameters to tune: parsing feature weight  p, beam size, and training epoch.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "All these parameters are set based on experiments on CTB5c.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "For experiments on CTB5j, CTB6, and CTB7, the training epoch is set using the development set.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "In this experiment, the external dictionaries are not used, and the beam size of 32 is used.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Interestingly, if we simply set  p to 1, the accuracies seem to converge at lower levels.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The  p = 0.2 setting seems to reach almost identical segmentation and tagging accuracies as the best setting  p = 0.5, but the convergence occurs more slowly.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Based on this experiment, we set  p to 0.5 throughout the experiments in this paper.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Although even the beam size of 32 results in competitive accuracies for word segmentation and POS tagging, the dependency accuracy is affected most by the increase of the beam size.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "of SegTagDep on CTB5c1 w.r.t.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "the beam size.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "iments in this paper, unless otherwise noted.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "97 4.4 Main Results 96.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "In this section, we present experimentally obtained 95results using the proposed and baseline models.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Irrespective of the existence of the dictionary features, the joint model SegTagDep largely increases the POS tagging and dependency parsing accuracies (by 0.56 0.63% and 2.34 2.44%); the improvements in parsing accuracies are still 94 SegTag (Seg).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "SegTagDep (Seg) SegTag (Tag) SegTag+TagDep (Tag) SegTagDep (Tag) 92 91 90 0.05 0.1 0.2 0.5 1 2 73 72 71 70 SegTag+Dep (Dep) SegTag+TagDep (Dep) SegTagDep (Dep).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "69 0.05 0.1 0.2 0.5 1 2 significant even compared with SegTag+Dep  (the pipeline model with the look-ahead features).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "However, when the external dictionaries are not used ( wo/dict ), no substantial improvements for segmentation accuracies were observed.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "In contrast, when the dictionaries are used ( w/dict ), the segmentation accuracies are now improved over the baseline model SegTag consistently (on every trial).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Although the overall improvement in segmentation is only around 0.1%, more than 1% improvement is observed if we specifically examine OOV6 words.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The difference between  wo/dict  and  w/dict  results suggests that the syntactic dependencies might work as a noise when the segmentation model is insufficiently stable, but the model does improve when it is stable, not receiving negative effects from the syntactic dependencies.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The partially joint model SegTag+TagDep is shown to perform reasonably well in dependency parsing: with dictionaries, it achieved the 2.02% improvement over SegTag+Dep, which is only 0.32% lower than SegTagDep.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "However, whereas Seg- Tag+TagDep showed no substantial improvement in tagging accuracies over SegTag (when the dictionaries are used), SegTagDep achieved consistent improvements of 0.46% and 0.58% (without/with dic 6 We define the OOV words as the words that have not seen in the training data, even when the external dictionaries are used.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "per sentence.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Each point corresponds to the beam size of 4, 8, 16, 32, (64).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The beam size of 16 is used for SegTag in SegTag+Dep and SegTag+TagDep.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "tionaries); these differences can be attributed to the combination of the relieved error propagation and the incorporation of the syntactic dependencies.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "In addition, SegTag+TagDep has OOV tagging accuracies consistently lower than SegTag, suggesting that the syntactic dependency has a negative effect on the POS tagging accuracy of OOV words7.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "In contrast, this negative effect is not observed for SegTagDep: both the overall tagging accuracy and the OOV accuracy are improved, demonstrating the effectiveness of the proposed model.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Although SegTagDep takes a few times longer to achieve accuracies comparable to those of SegTag+Dep/TagDep, it seems to present potential 7 This is consistent with Hatori et al.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "(2011) s observation that although the joint POS tagging and dependency parsing improves the accuracy of syntactically influential POS tags, it has a slight side effect of increasing the confusion between general and proper nouns (NN vs. NR).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Model Segmentation POS Tagging Dependency wo /di ct S e g T a g + D e p S e g T a g + D e p  S e g T a g + T a g D e p S e g T a g D e p 9 6 .",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "2 2 7 2 .",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "2 4 9 1 .",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "7 4 5 9 .",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "8 2 7 2 .",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "5 8 72.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "94 (+0 .36   ) 74.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "60 (+2 .02   ) 74.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "92 (+2 .34   ) 91.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "86 (+0 .12   ) 58.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "89 ( 0.9 3  ) 92.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "30 (+0 .56   ) 61.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "03 (+1 .21   ) 96.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "19 ( 0.0 3) 72.24 (+0.00) w/ dic t S e g T a g + D e p S e g T a g + D e p  S e g T a g + T a g D e p S e g T a g D e p 9 6 .",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "8 2 7 8 .",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "3 2 9 2 .",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "3 4 6 5 .",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "4 4 7 3 .",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "5 3 73.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "90 (+0 .37   ) 75.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "45 (+1 .92   ) 75.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "97 (+2 .44   ) 92.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "35 (+0 .01 ) 63.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "20 ( 2.2 4  ) 92.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "97 (+0 .63   ) 67.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "40 (+1 .96   ) 96.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "90 (+0 .08   ) 79.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "38 (+1 .06   )                                                                                                                        \n\t\t\tFigures in parentheses show the differences over SegTag+Dep (  : p < 0.01).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "for greater improvement, especially for tagging and Model CTB6 Test Se CTB7 Test Se parsing accuracies, when a larger beam can be used.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "4.5 Comparison with Other Systems.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Kruengkrai+  09  is a lattice-based model by Kruengkrai et al.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "(2009).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Zhang  10  is the incremental model by Zhang and Clark (2010).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "These two systems use no external resources other than the CTB corpora.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Sun+  11  is a CRF-based model (Sun, 2011) that uses a combination of several models, with a dictionary of idioms.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Wang+  11  is a semi-supervised model by Wang et al.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "(2011), which additionally uses the Chinese Gigaword Corpus.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Our models with dictionaries (those marked with  (d) ) have competitive accuracies to other state-of- the-art systems, and SegTagDep(d) achieved the best reported segmentation and POS tagging accuracies, using no additional corpora other than the dictionaries.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Particularly, the POS tagging accuracy is more than 0.4% higher than the previous best system thanks to the contribution of syntactic dependencies.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "These results also suggest that the use of readily available dictionaries can be more effective than semi-supervised approaches.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "5 Conclusion.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "In this paper, we proposed the first joint model for word segmentation, POS tagging, and dependency parsing in Chinese.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The model demonstrated substantial improvements on the three tasks over the pipeline combination of the state-of-the-art joint segmentation and POS tagging model, and dependency parser.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Particularly, results showed that the g Tag Dep g Tag Dep Kruengkrai  09 95.50 90.5095.40 89.86 Wang  11 95.79 91.1295.65 90.46SegTag+Dep 95.46 90.64 72.57 95.49 90.11 71.25 SegTagDep 95.45 91.27 74.88 95.42 90.62 73.58 (diff.)",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "-0.01 +0.63   +2.31  -0.07 +0.51   +2.33   SegTag+Dep(d) 96.13 91.38 73.62 95.98 90.68 72.06 SegTagDep(d) 96.18 91.95 75.76 96.07 91.28 74.58 (diff.)",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "+0.05 +0.57  +2.14  +0.09  +0.60  +2.52                                                                                                                                                                                                   \n\t\t\tFor word segmentation, although the overall improvement was only around 0.1%, greater than 1% improvements was observed for OOV words.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "We conducted some comparison experiments of the partially joint and full joint models.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Compared to SegTagDep, SegTag+TagDep performs reasonably well in terms of dependency parsing accuracy, whereas the POS tagging accuracies are more than 0.5% lower.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "In future work, probabilistic pruning techniques such as the one based on a maximum entropy model are expected to improve the efficiency of the joint model further because the accuracies are apparently still improved if a larger beam can be used.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "More efficient decoding would also allow the use of the look-ahead features (Hatori et al., 2011) and richer parsing features (Zhang and Nivre, 2011).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Acknowledgement We are grateful to the anonymous reviewers for their comments and suggestions, and to Xianchao Wu, Kun Yu, Pontus Stenetorp, and Shin- suke Mori for their helpful feedback.",
+        "Entity": "Normal"
+    }
+]

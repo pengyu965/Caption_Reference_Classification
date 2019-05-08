@@ -1,0 +1,156 @@
+[
+    {
+        "Code": "T1",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "53897",
+                "53993"
+            ]
+        ],
+        "Text": "Table 1 The cost as a novel given name (second position) for hanzi from various radical classes.",
+        "RefType": "Direct",
+        "Type": "Table",
+        "Num": "1"
+    },
+    {
+        "Code": "T2",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "55240",
+                "55433"
+            ]
+        ],
+        "Text": "This class-based model gives reasonable results: for six radical classes, Table 1 gives the estimated cost for an unseen hanzi in the class occurring as the second hanzi in a double GIVEN name.",
+        "RefType": "Direct",
+        "Type": "Table",
+        "Num": "1"
+    },
+    {
+        "Code": "T3",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "61768",
+                "61821"
+            ]
+        ],
+        "Text": "Table 2 Similarity matrix for segmentation judgments.",
+        "RefType": "Direct",
+        "Type": "Table",
+        "Num": "2"
+    },
+    {
+        "Code": "T4",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "77062",
+                "77067"
+            ]
+        ],
+        "Text": "table",
+        "RefType": "Indirect",
+        "Type": "Table",
+        "Num": "5"
+    },
+    {
+        "Code": "T5",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "76506",
+                "76735"
+            ]
+        ],
+        "Text": "In Table 5 we present results from small test cor pora for the productive affixes handled by the current version of the system; as with names, the segmentation of morphologically derived words is generally either right or wrong.",
+        "RefType": "Direct",
+        "Type": "Table",
+        "Num": "5"
+    },
+    {
+        "Code": "T6",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "74642",
+                "74688"
+            ]
+        ],
+        "Text": "Table 5 Performance on morphological analysis.",
+        "RefType": "Direct",
+        "Type": "Table",
+        "Num": "5"
+    },
+    {
+        "Code": "T7",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "73397",
+                "73482"
+            ]
+        ],
+        "Text": "Table 4 Differences in performance between our system and Wang, Li, and Chang (1992).",
+        "RefType": "Direct",
+        "Type": "Table",
+        "Num": "4"
+    },
+    {
+        "Code": "T8",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "70852",
+                "70882"
+            ]
+        ],
+        "Text": "Examples are given in Table 4.",
+        "RefType": "Direct",
+        "Type": "Table",
+        "Num": "4"
+    },
+    {
+        "Code": "T9",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "66451",
+                "66508"
+            ]
+        ],
+        "Text": "Table 3 Classes of words found by ST for the test corpus.",
+        "RefType": "Direct",
+        "Type": "Table",
+        "Num": "3"
+    },
+    {
+        "Code": "T10",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "64388",
+                "64485"
+            ]
+        ],
+        "Text": "The breakdown of the different types of words found by ST in the test corpus is given in Table 3.",
+        "RefType": "Direct",
+        "Type": "Table",
+        "Num": "3"
+    },
+    {
+        "Code": "T11",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "62372",
+                "62412"
+            ]
+        ],
+        "Text": "Table 2 shows these similarity measures.",
+        "RefType": "Direct",
+        "Type": "Table",
+        "Num": "2"
+    }
+]

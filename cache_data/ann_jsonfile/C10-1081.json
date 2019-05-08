@@ -1,0 +1,380 @@
+[
+    {
+        "Code": "T1",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "35806",
+                "35888"
+            ]
+        ],
+        "Text": "These semantic features Figure 8: Examples of the MT outputs with and without SRFs",
+        "RefType": "Direct",
+        "Type": "Figure",
+        "Num": "8"
+    },
+    {
+        "Code": "T2",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "35332",
+                "35456"
+            ]
+        ],
+        "Text": "To illustrate how SRF impacts the translation results, Figure 8 gives 3 examples of the MT outputs with and without the SRFs",
+        "RefType": "Direct",
+        "Type": "Figure",
+        "Num": "8"
+    },
+    {
+        "Code": "T3",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "35146",
+                "35298"
+            ]
+        ],
+        "Text": "Table 2 shows the manual evaluation results based on the entire test set, and the improvement from SRF is significant at p < 0.005 based on a t-test.",
+        "RefType": "Direct",
+        "Type": "Table",
+        "Num": "2"
+    },
+    {
+        "Code": "T4",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "31604",
+                "31657"
+            ]
+        ],
+        "Text": "The performance of these systems is shown in Table 1.",
+        "RefType": "Direct",
+        "Type": "Table",
+        "Num": "1"
+    },
+    {
+        "Code": "T5",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "30400",
+                "30547"
+            ]
+        ],
+        "Text": "The model 1 The total 74,597 sentence pairs used in experiments are those in the FBIS corpus whose English part can be parsed using Charniak (2000)",
+        "RefType": "Direct",
+        "Type": "Other",
+        "Num": "5"
+    },
+    {
+        "Code": "T6",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "23572",
+                "23679"
+            ]
+        ],
+        "Text": "Figure 6: EM Algorithm For Estimating TTS Templates and Semantic Features framework (May and Knight, 2007).",
+        "RefType": "Direct",
+        "Type": "Figure",
+        "Num": "6"
+    },
+    {
+        "Code": "T7",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "21185",
+                "21282"
+            ]
+        ],
+        "Text": "Figure 4 shows an example of calculating the target side SRS based on a complicated TTS template.",
+        "RefType": "Direct",
+        "Type": "Figure",
+        "Num": "4"
+    },
+    {
+        "Code": "T8",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "18906",
+                "18932"
+            ]
+        ],
+        "Text": "See Figure 3 for examples.",
+        "RefType": "Direct",
+        "Type": "Figure",
+        "Num": "3"
+    },
+    {
+        "Code": "T9",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "19202",
+                "19302"
+            ]
+        ],
+        "Text": "where N is role features when combining two children states, and ex amples can be found in Figure 3.",
+        "RefType": "Direct",
+        "Type": "Figure",
+        "Num": "3"
+    },
+    {
+        "Code": "T10",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "17574",
+                "17705"
+            ]
+        ],
+        "Text": "Figure 4: An example showing how to compute the target side position of a semantic role by using the median of its aligning points.",
+        "RefType": "Direct",
+        "Type": "Figure",
+        "Num": "4"
+    },
+    {
+        "Code": "T11",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "18021",
+                "18090"
+            ]
+        ],
+        "Text": "Figure 5 shows the decoding algorithm incorporating the SRR features.",
+        "RefType": "Direct",
+        "Type": "Figure",
+        "Num": "5"
+    },
+    {
+        "Code": "T12",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "15872",
+                "15962"
+            ]
+        ],
+        "Text": "Figure 3: An example showing the combination of the semantic role sequences of the states.",
+        "RefType": "Direct",
+        "Type": "Figure",
+        "Num": "3"
+    },
+    {
+        "Code": "T13",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "15332",
+                "15460"
+            ]
+        ],
+        "Text": "To simplify the description, we assume in Figure 2 that a bigram language model is used and all the TTS templates are binarized.",
+        "RefType": "Direct",
+        "Type": "Figure",
+        "Num": "2"
+    },
+    {
+        "Code": "T14",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "12042",
+                "12166"
+            ]
+        ],
+        "Text": "Figure 1: Examples of the semantic role features assuming that the semantic roles have been tagged for the source sentences.",
+        "RefType": "Direct",
+        "Type": "Figure",
+        "Num": "1"
+    },
+    {
+        "Code": "T15",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "11427",
+                "11486"
+            ]
+        ],
+        "Text": "Examples of the deletion features can be found in Figure 1.",
+        "RefType": "Direct",
+        "Type": "Figure",
+        "Num": "1"
+    },
+    {
+        "Code": "T16",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "10730",
+                "10773"
+            ]
+        ],
+        "Text": "Figure 1 shows examples of the feature SRR.",
+        "RefType": "Direct",
+        "Type": "Figure",
+        "Num": "1"
+    },
+    {
+        "Code": "T17",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "33284",
+                "33516"
+            ]
+        ],
+        "Text": "Table 2: Distribution of the sentences where the semantic role features give no/positive/negative impact to the sentence fluency in terms of the completeness and ordering of the semantic roles.classes in VerbNet (Dang et al., 1998).",
+        "RefType": "Direct",
+        "Type": "Table",
+        "Num": "2"
+    },
+    {
+        "Code": "T18",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "32963",
+                "33283"
+            ]
+        ],
+        "Text": "Table 1: BLEU4 scores of different systems Source Launching1 New2 Diplomatic3 Offensive4 SRF On 1 2 3 4 SRF Off 2 3 4 It1 is2 therefore3 necessary4 to5 speed6 up7 the8 equal better worse With SRF vs. W/O SRF 72% 20.2% 7.8% Source transformation9 of10 traditional11 industries12 with13 high14 technologies15",
+        "RefType": "Direct",
+        "Type": "Table",
+        "Num": "1"
+    },
+    {
+        "Code": "T19",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "14455",
+                "14527"
+            ]
+        ],
+        "Text": "Figure 2: Decoding algorithm for the standard Tree-to-String transducer.",
+        "RefType": "Direct",
+        "Type": "Figure",
+        "Num": "2"
+    },
+    {
+        "Code": "T20",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "14950",
+                "15030"
+            ]
+        ],
+        "Text": "The bottom-up decoding algorithm for the TTS transducer is sketched in Figure 2.",
+        "RefType": "Direct",
+        "Type": "Figure",
+        "Num": "2"
+    },
+    {
+        "Code": "T21",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "18966",
+                "19075"
+            ]
+        ],
+        "Text": "Thetheoretical upper bound of the decoding complex Figure 5: Decoding algorithm using semantic role features.",
+        "RefType": "Direct",
+        "Type": "Figure",
+        "Num": "5"
+    },
+    {
+        "Code": "T22",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "20217",
+                "20443"
+            ]
+        ],
+        "Text": "The reordering of the semantic roles from source to target is computed for each TTS template as part of the template extraction process, using the word-level alignments between the LHS/RHS of the TTS template (e.g., Figure 3).",
+        "RefType": "Direct",
+        "Type": "Figure",
+        "Num": "3"
+    },
+    {
+        "Code": "T23",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "20477",
+                "20681"
+            ]
+        ],
+        "Text": "This is usually straightforward, with the exception of the case where the words that are aligned to a particular role s span in the source side are not continuous in the target side, as shown in Figure 4.",
+        "RefType": "Direct",
+        "Type": "Figure",
+        "Num": "4"
+    },
+    {
+        "Code": "T24",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "23923",
+                "24007"
+            ]
+        ],
+        "Text": "Figure 7: Computing the partition function of the conditional probability P r(S|T ).",
+        "RefType": "Direct",
+        "Type": "Figure",
+        "Num": "7"
+    },
+    {
+        "Code": "T25",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "28436",
+                "28815"
+            ]
+        ],
+        "Text": "where ECD|S,T (fi), the expected count of a feature over all derivations given a pair of tree and string, can be computed using the modified inside- outside algorithm described in Section 3.2, and ECS |T (fi), the expected count of a feature over all possible target strings given the source tree, can be computed in a similar way to the partition function described in Figure 7.",
+        "RefType": "Direct",
+        "Type": "Figure",
+        "Num": "7"
+    },
+    {
+        "Code": "T26",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "26915",
+                "27198"
+            ]
+        ],
+        "Text": "Considering that the way the semantic where all(T ) denotes all the possible target strings which can be generated from the source tree T . Given a set of TTS templates, the new partition function can be efficiently computed using the dynamic programming algorithm shown in Figure 7.",
+        "RefType": "Direct",
+        "Type": "Figure",
+        "Num": "7"
+    },
+    {
+        "Code": "T27",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "24365",
+                "25010"
+            ]
+        ],
+        "Text": "If we directly translate the EM algorithm into the log- linear model, the problem becomes maximizing 0 X P r(S, T , D) = X @ Y P r(t) Y 1 P r(f )A the data likelihood represented by feature weights instead of feature probabilities: D D t D f F (S,T .role,D) Though the above formulation, which makes the P r(S, T ) = D exp i i fi (S, T , D) total probability of all the pairs of trees and strings P P exp P f (S , T , D ) St ,T t Dt i i i less than 1, is not a strict generative model, we can still use the EM algorithm (Dempster et al., 1977) to estimate the probability of the TTS templates and the semantic features, as shown in Figure 6.",
+        "RefType": "Direct",
+        "Type": "Figure",
+        "Num": "6"
+    }
+]

@@ -1,0 +1,58 @@
+[
+    {
+        "Code": "T1",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "2841",
+                "2917"
+            ]
+        ],
+        "Text": "Table 1 presents the wide range of cases that are used to create the morphs.",
+        "RefType": "Direct",
+        "Type": "Table",
+        "Num": "1"
+    },
+    {
+        "Code": "T2",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "4457",
+                "4579"
+            ]
+        ],
+        "Text": "Table 2 presents the distributions of some examples of morphs and their targets in English Twitter and Chinese Sina Weibo.",
+        "RefType": "Direct",
+        "Type": "Table",
+        "Num": "2"
+    },
+    {
+        "Code": "T3",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "4625",
+                "4680"
+            ]
+        ],
+        "Text": "the target Chen Guangcheng only appears once in Weibo",
+        "RefType": "Indirect",
+        "Type": "Table",
+        "Num": "2"
+    },
+    {
+        "Code": "T4",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "6290",
+                "6330"
+            ]
+        ],
+        "Text": "Table 2: Distributions of Morph Examples",
+        "RefType": "Spatial-Below",
+        "Type": "Table",
+        "Num": "2"
+    }
+]

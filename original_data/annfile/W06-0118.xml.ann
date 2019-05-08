@@ -1,0 +1,32 @@
+T1	Reference 12234 12266	Table 1: Scores for CityU corpus
+A1	RefType T1 Direct
+A2	Type T1 Table
+A3	Num T1 1
+T2	Reference 12267 12298	Table 2: Scores for MSRA corpus
+A4	RefType T2 Direct
+A5	Type T2 Table
+A6	Num T2 2
+T3	Reference 12299 12499	Table 3: Scores for UPUC corpusFrom those tables, we can see that a simple ma jority voting algorithm produces accuracy that is higher than each individual system and reasonably high F-scores overall.
+A7	RefType T3 Direct
+A8	Type T3 Table
+A9	Num T3 3
+T4	Reference 12093 12100	Table 1
+A10	RefType T4 Direct
+A11	Type T4 Table
+A12	Num T4 1
+T5	Reference 12101 12102	2
+A13	RefType T5 Direct
+A14	Type T5 Table
+A15	Num T5 2
+T6	Reference 12103 12104	3
+A16	RefType T6 Direct
+A17	Type T6 Table
+A18	Num T6 3
+T7	Reference 2228 2429	In our segmentation system, a hybrid strategy is applied (Figure 1): First, forward maximum matching (Chen and Liu, 1992), which is a dictionary-based method, is used to generate a segmentation result.
+A19	RefType T7 Direct
+A20	Type T7 Figure
+A21	Num T7 1
+T8	Reference 2461 2742	Also, the CRF model using maximum subword-based tagging (Zhang et al., 2006) and the CRF model using minimum subword-based tagging, both of which are statistical methods, are used individually to solve the Figure 1: Outline of the segmentation process 2.1 Forward Maximum Matching.
+A22	RefType T8 Direct
+A23	Type T8 Figure
+A24	Num T8 1

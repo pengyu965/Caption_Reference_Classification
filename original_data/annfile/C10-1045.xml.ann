@@ -1,0 +1,126 @@
+T1	Caption 5148 5274	Table 1: Diacritized particles and pseudo-verbs that, after orthographic normalization, have the equivalent surface form 0 an.
+A1	Type T1 Table
+A2	Num T1 1
+T2	Caption 5306 5387	The distinctions in the ATB are linguistically justified, but complicate parsing.
+A3	Type T2 Table
+A4	Num T2 1
+T3	Caption 5419 5485	Table 8a shows that the best model recovers SBAR at only 71.0% F1.
+A5	Type T3 Table
+A6	Num T3 1
+T4	Reference 5419 5485	Table 8a shows that the best model recovers SBAR at only 71.0% F1.
+A7	RefType T4 Direct
+A8	Type T4 Table
+A9	Num T4 8
+T5	Reference 6594 6721	This is especially true in the case of quotations—which are common in the ATB—where (1) will follow a verb like (2) (Figure 1).
+A10	RefType T5 Direct
+A11	Type T5 Table
+A12	Num T5 1
+T6	Caption 8324 8466	Figure 1: The Stanford parser (Klein and Manning, 2002) is unable to recover the verbal reading of the unvocalized surface form 0 an (Table 1)
+A13	Type T6 Figure
+A14	Num T6 1
+T7	Reference 8334 8467	The Stanford parser (Klein and Manning, 2002) is unable to recover the verbal reading of the unvocalized surface form 0 an (Table 1).
+A15	RefType T7 Direct
+A16	Type T7 Table
+A17	Num T7 1
+T8	Reference 9200 9291	Figure 4 shows a constituent headed by a process nominal with an embedded adjective phrase.
+A18	RefType T8 Direct
+A19	Type T8 Figure
+A20	Num T8 4
+T9	Reference 5986 6010	Table 1 shows four words
+A21	RefType T9 Direct
+A22	Type T9 Table
+A23	Num T9 1
+T10	Reference 6038 6097	whose unvocalized surface forms 0 an are indistinguishable.
+A24	RefType T10 Direct
+A25	Type T10 Table
+A26	Num T10 1
+T11	Caption 10185 10284	Table 2: Frequency distribution for sentence lengths in the WSJ (sections 2–23) and the ATB (p1–3).
+A27	Type T11 Table
+A28	Num T11 2
+T12	Caption 10910 10968	Table 4: Gross statistics for several different treebanks.
+A29	Type T12 Table
+A30	Num T12 4
+T13	Caption 11234 11364	Table 3: Dev set frequencies for the two most significant discourse markers in Arabic are skewed toward analysis as a conjunction.
+A31	Type T13 Table
+A32	Num T13 3
+T14	Reference 9998 10082	As a result, Arabic sentences are usually long relative to English, especially after
+A33	RefType T14 Direct
+A34	Type T14 Table
+A35	Num T14 2
+T15	Reference 11397 11420	segmentation (Table 2).
+A36	RefType T15 Direct
+A37	Type T15 Table
+A38	Num T15 2
+T16	Reference 11586 11716	But it conflates the coordinating and discourse separator functions of wa (&lt;..4.b � �) into one analysis: conjunction(Table 3).
+A39	RefType T16 Direct
+A40	Type T16 Table
+A41	Num T16 3
+T17	Reference 11932 12061	We show that noun-noun vs. discourse-level coordination ambiguity in Arabic is a significant source of parsing errors (Table 8c).
+A42	RefType T17 Direct
+A43	Type T17 Table
+A44	Num T17 8
+T18	Reference 12494 12593	We compared the ATB5 to tree- banks for Chinese (CTB6), German (Negra), and English (WSJ) (Table 4)
+A45	RefType T18 Direct
+A46	Type T18 Table
+A47	Num T18 4
+T19	Caption 15036 15103	Table 5: Evaluation of 100 randomly sampled variation nuclei types.
+A48	Type T19 Table
+A49	Num T19 5
+T20	Reference 16118 16182	Table 5 shows type- and token-level error rates for each corpus.
+A50	RefType T20 Direct
+A51	Type T20 Table
+A52	Num T20 5
+T21	Caption 17449 17503;17507 17632;17636 17770	Figure 2: An ATB sample from the human evaluation.</S> <S sid ="111" ssid = "39">The ATB annotation guidelines specify that proper nouns should be specified with a flat NP (a).</S> <S sid ="112" ssid = "40">But the city name Sharm Al- Sheikh is also iDafa, hence the possibility for the incorrect annotation in (b).
+A53	Type T21 Figure
+A54	Num T21 2
+T22	Reference 18197 18412	A simple lexicalized PCFG with second order Markovization gives relatively poor performance: 75.95% F1 on the test set.8 But this figure is surprisingly competitive with a recent state-of-the-art baseline (Table 7).
+A55	RefType T22 Direct
+A56	Type T22 Table
+A57	Num T22 7
+T23	Caption 20844 20943	Table 6: Incremental dev set results for the manually annotated grammar (sentences of length ≤ 70).
+A58	Type T23 Table
+A59	Num T23 6
+T24	Reference 24779 24943	To differentiate between the coordinating and discourse separator functions of conjunctions (Table 3), we mark each CC with the label of its right sister (splitCC).
+A60	RefType T24 Direct
+A61	Type T24 Table
+A62	Num T24 3
+T25	Reference 24205 24263	In Table 7 we give results for several evaluation metrics.
+A63	RefType T25 Direct
+A64	Type T25 Table
+A65	Num T25 7
+T26	Caption 28599 28629;28633 28678;28682 28855;28859 28995;28999 29081	Table 7: Test set results.</S> <S sid ="224" ssid = "17">Maamouri et al.</S> <S sid ="225" ssid = "18">(2009b) evaluated the Bikel parser using the same ATB split, but only reported dev set results with gold POS tags for sentences of length ≤ 40.</S> <S sid ="226" ssid = "19">The Bikel GoldPOS configuration only supplies the gold POS tags; it does not force the parser to use them.</S> <S sid ="227" ssid = "20">We are unaware of prior results for the Stanford parser.
+A66	Type T26 Table
+A67	Num T26 7
+T27	Caption 29217 29281;29285 29389	Figure 3: Dev set learning curves for sentence lengths ≤ 70.</S> <S sid ="230" ssid = "23">All three curves remain steep at the maximum training set size of 18818 trees.
+A68	Type T27 Figure
+A69	Num T27 3
+T28	Reference 33406 33491	Table 8b shows that verbal nouns are the hardest pre-terminal categories to identify.
+A70	RefType T28 Direct
+A71	Type T28 Table
+A72	Num T28 8
+T29	Reference 34189 34298	We include a list of per-category results for selected phrasal labels, POS tags, and dependencies in Table 8.
+A73	RefType T29 Direct
+A74	Type T29 Table
+A75	Num T29 8
+T30	Reference 33671 33850	However, the learning curves in Figure 3 show that the Berkeley parser does not exceed our manual grammar by as wide a margin as has been shown for other languages (Petrov, 2009).
+A76	RefType T30 Direct
+A77	Type T30 Figure
+A78	Num T30 3
+T31	Reference 34084 34155	In Figure 4 we show an example of variation between the parsing models.
+A79	RefType T31 Direct
+A80	Type T31 Figure
+A81	Num T31 4
+T32	Caption 37968 38083;38087 38202;38206 38325;38329 38453;38457 38653;38657 38778;38782 38866	Table 8: Per category performance of the Berkeley parser on sentence lengths ≤ 70 (dev set, gold segmentation).</S> <S sid ="290" ssid = "83">(a) Of the high frequency phrasal categories, ADJP and SBAR are the hardest to parse.</S> <S sid ="291" ssid = "84">We showed in §2 that lexical ambiguity explains the underperformance of these categories.</S> <S sid ="292" ssid = "85">(b) POS tagging accuracy is lowest for maSdar verbal nouns (VBG,VN) and adjectives (e.g., JJ).</S> <S sid ="293" ssid = "86">Richer tag sets have been suggested for modeling morphologically complex distinctions (Diab, 2007), but we find that linguistically rich tag sets do not help parsing.</S> <S sid ="294" ssid = "87">(c) Coordination ambiguity is shown in dependency scores by e.g., ∗SSS R) and ∗NP NP NP R).</S> <S sid ="295" ssid = "88">∗NP NP PP R) and ∗NP NP ADJP R) are both iDafa attachment.
+A82	Type T32 Table
+A83	Num T32 8
+T33	Reference 39739 39882	Table 9 shows that MADA produces a high quality segmentation, and that the effect of cascading segmentation errors on parsing is only 1.92% F1.
+A84	RefType T33 Direct
+A85	Type T33 Table
+A86	Num T33 9
+T34	Caption 40756 40810	Table 9: Dev set results for sentences of length ≤ 70.
+A87	Type T34 Table
+A88	Num T34 9
+T35	Reference 41086 41208	In these experiments, the input lacks segmentation markers, hence the slightly different dev set baseline than in Table 6.
+A89	RefType T35 Direct
+A90	Type T35 Table
+A91	Num T35 6

@@ -1,0 +1,650 @@
+[
+    {
+        "Text": "\n\t\n\t\tText prediction is a form of interactive machine translation that is well suited to skilled translators.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "In principle it can assist in the production of a target text with minimal disruption to a translator s normal routine.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "However, recent evaluations of a prototype prediction system showed that it significantly decreased the productivity of most translators who used it.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "In this paper, we analyze the reasons for this and propose a solution which consists in seeking predictions that maximize the expected benefit to the translator, rather than just trying to anticipate some amount of upcoming text.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Using a model of a  typical translator  constructed from data collected in the evaluations of the prediction prototype, we show that this approach has the potential to turn text prediction into a help rather than a hindrance to a translator.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The idea of using text prediction as a tool for translators was first introduced by Church and Hovy as one of many possible applications for  crummy  machine translation technology (Church and Hovy, 1993).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Text prediction can be seen as a form of interactive MT that is well suited to skilled translators.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Compared to the traditional form of IMT based on Kay s original work (Kay, 1973) in which the user s role is to help disambiguate the source text  prediction is less obtrusive and more natural, allowing the translator to focus on and directly control the contents of the target text.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Predictions can benefit a translator in several ways: by accelerating typing, by suggesting translations, and by serving as an implicit check against errors.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The first implementation of a predictive tool for translators was described in (Foster et al., 1997), in the form of a simple word-completion system based on statistical models.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Various enhancements to this were carried out as part of the TransType project (Langlais et al., 2000), including the addition of a realistic user interface, better models, and the capability of predicting multi-word lexical units.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "In the final TransType prototype for English to French translation, the translator is presented with a short pop- up menu of predictions after each character typed.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "These may be incorporated into the text with a special command or rejected by continuing to type normally.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Although TransType is capable of correctly anticipating over 70% of the characters in a freely-typed translation (within the domain of its training corpus), this does not mean that users can translate in 70% less time when using the tool.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "In fact, in a trial with skilled translators, the users  rate of text production declined by an average of 17% as a result of using TransType (Langlais et al., 2002).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "There are two main reasons for this.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "First, it takes time to read the system s proposals, so that in cases where they are wrong or too short, the net effect will be to slow the translator down.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Second, translators do not always act  rationally  when confronted with a proposal; that is, they do not always accept correct proposals and they occasionally accept incorrect ones.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Many of the former cases correspond to translators simply ignoring proposals altogether, which is understandable behaviour given the first point.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "This paper describes a new approach to text prediction intended to address these problems.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The main idea is to make predictions that maximize the expected benefit to the user in each context, rather than systematically proposing a fixed amount of text after each character typed.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The expected benefit is estimated from two components: a statistical translation model that gives the probability that a candidate prediction will be correct or incorrect, and a user model that determines the benefit to the translator in either case.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The user model takes into account the cost of reading a proposal, as well as the random nature of the decision to accept it or not.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "This approach can be characterized as making fewer but better predictions: in general, predictions will be longer in contexts where the translation model is confident, shorter where it is less so, and absent in contexts where it is very uncertain.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Other novel aspects of the work we describe here are the use of a more accurate statistical translation model than has previously been employed for text prediction, and the use of a decoder to generate predictions of arbitrary length, rather than just single words or lexicalized units as in the TransType prototype.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The translation model is based on the maximum entropy principle and is designed specifically for this application.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "To evaluate our approach to prediction, we simulated the actions of a translator over a large corpus of previously-translated text.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The result is an increase of over 10% in translator productivity when using the predictive tool.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "This is a considerable improvement over the -17% observed in the TransType trials.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "In the basic prediction task, the input to the predictor is a source sentence s and a prefix h of its translation (ie, the target text before the current cursor position); the output is a proposed extension x to h. F                         \n\t\t\tUnlike the TransType prototype, which proposes a set of single-word (or single-unit) suggestions, we assume that each prediction consists of only a single proposal, but one that may span an arbitrary number of words.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "As described above, the goal of the predictor is to find the prediction x  that maximizes the expected s: Let us return to serious matters.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "h x  t: O n v a r e venir aux ch o ses se rieuses.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "x: evenir a`                                                                     \n\t\t\ts is the source sentence, h is the part of its translation that has already been typed, x  is what the translator wants to type, and x is the prediction.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "benefit to the user: x  = argmax B(x, h, s), (1) x where B(x, h, s) measures typing time saved.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "This obviously depends on how much of x is correct, and how long it would take to edit it into the desired text.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "A major simplifying assumption we make is that the user edits only by erasing wrong characters from the end of a proposal.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Given a TransType-style interface where acceptance places the cursor at the end of a proposal, this is the most common editing method, and it gives a conservative estimate of the cost attainable by other methods.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "With this assumption, the key determinant of edit cost is the length of the correct prefix of x, so the expected benefit can be written as: l B(x, h, s) = ) p(k|x, h, s) B(x, h, s, k), (2) k=0 where p(k|x, h, s) is the probability that exactly k characters from the beginning of x will be correct, l is the length of x, and B(x, h, s, k) is the benefit to the user given that the first k characters of x are correct.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Equations (1) and (2) define three main problems: estimating the prefix probabilities p(k|x, h, s), estimating the user benefit function B(x, h, s, k), and searching for x .",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The following three sections describe our solutions to these.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The correct-prefix probabilities p(k|x, h, s) are derived from a word-based statistical translation model.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The first step in the derivation is to convert these into a form that deals explicitly with character strings.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "This is accomplished by noting that p(k|x, h, s) is the probability that the first k characters of x are correct and that the k + 1th character (if there is one) is incorrect.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "For k < l: p(k|x, h, s) = p(xk |h, s)   p(xk+1|h, s) likelihood that a word w will follow a previous sequence of words h in the translation of s.1 This is the family of distributions we have concentrated on modeling.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Our model for p(w|h, s) is a log-linear combination of a trigram language model for p(w|h) and a maximum-entropy translation model for p(w|s), de1 1 scribed in (Foster, 2000a; Foster, 2000b).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The trans lation component is an analog of the IBM model 2 where xk = x1 .",
+        "Entity": "Normal"
+    },
+    {
+        "Text": ".",
+        "Entity": "Normal"
+    },
+    {
+        "Text": ".",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "xk .",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "If k =.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "l, p(k|x, h, s) = (Brown et al., 1993), with parameters that are op p(x |h, s).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Also, p(x0)   1.\n\t\t\ttimiz ed for use with the trigr am.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The com bine d The next step is to convert string probabilities into word probabilities.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "To do this, we assume that strings map one-to-one into token sequences, so that: model is shown in (Foster, 2000a) to have significantly lower test corpus perplexity than the linear combination of a trigram and IBM 2 used in the TransType experiments (Langlais et al., 2002).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Both models support O(mJ V 3) Viterbi-style searches for p(xk |h, s)   p(v1, w2, .",
+        "Entity": "Normal"
+    },
+    {
+        "Text": ".",
+        "Entity": "Normal"
+    },
+    {
+        "Text": ".",
+        "Entity": "Normal"
+    },
+    {
+        "Text": ", wm  1, um |h, s), the most likely sequence of m words that follows h, where v1 is a possibly-empty word suffix, each wi is a complete word, and um is a possibly empty word prefix.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The one-to-one assumption is reasonable given that entries in our lexicon contain neither whitespace nor internal punctuation.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "To model word-sequence probabilities, we apply the chain rule: where J is the number of tokens in s and V is the size of the target-language vocabulary.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Compared to an equivalent noisy-channel combination of the form p(t)p(s|t), where t is the target sentence, our model is faster but less accurate.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "It is faster because the search problem for noisy- channel models is NP-complete (Knight, 1999), and even the fastest dynamic-programming heuristics used in statistical MT (Niessen et al., 1998; Till- mann and Ney, 2000), are polynomial in J  for in p(v1, w2, .",
+        "Entity": "Normal"
+    },
+    {
+        "Text": ".",
+        "Entity": "Normal"
+    },
+    {
+        "Text": ".",
+        "Entity": "Normal"
+    },
+    {
+        "Text": ", wm 1, um|h, s) = stance O(mJ 4V 3) in (Tillmann and Ney, 2000).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "It m 1 p(v1|h, s) n p(wi|h, v1, wi 1, s)   i=2 p(um|h, v1, wm 1, s).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "(3) The probabilities of v1 and um can be expressed in terms of word probabilities as follows.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Our model is therefore suitable for making predictions in real time, but not for establishing complete translations unassisted by a human.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "3.1 Implementation.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The most expensive part of the calculation in              is the sum in (4) over all words in the vo p(v1|h, s) = p(w1|ht, s)/ ) p(w|ht, s), cabulary, which according to (2) must be carried out w:w=u1 v where the sum is over all words that start with u1.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Similarly: p(um|ht, wm 1, s) = ) p(w|ht, wm 1, s).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "(4) 1 1 w:w=um v Thus all factors in (3) can be calculated from probabilities of the form p(w|h, s) which give the for every character position k in a given prediction x.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "We reduce the cost of this by performing sums only at the end of each sequence of complete tokens in x (eg, after revenir and revenir aux in the above example).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "At these points, probabilities for all possible prefixes of the next word are calculated in a 1 Here we ignore the distinction between previous words that have been sanctioned by the translator and those that are hypothesized as part of the current prediction.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "single recursive pass over the vocabulary and stored in a trie for later access.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "In addition to the exact calculation, we also experimented with establishing exact probabilities via p(w|h, s) only at the end of each token in x, and assuming that the probabilities of the intervening characters vary linearly between these points.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "As a result of this assumption, p(k|x, h, s) = p(xk |h, s)   1 0.9 0.8 0.7 0.6 0.5 0.4 raw smoothed model 1 |h, s) is constant for all k between the end of one word and the next, and therefore can be factored out of the sum in              between these points.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The purpose of the user model is to determine the expected benefit B(x, h, s, k) to the translator of a prediction x whose first k characters match the text that the translator wishes to type.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "This will depend on whether the translator decides to accept or reject the prediction, so the first step in our model is the following expansion: B(x, h, s, k) = ) p(a|x, h, s, k) B(x, h, s, k, a), a {0,1} where p(a|x, h, s, k) is the probability that the translator accepts or rejects x, B(x, h, s, k, a) is the benefit they derive from doing so, and a is a random variable that takes on the values 1 for acceptance and 0 for rejection.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The first two quantities are the main elements in the user model, and are described in following sections.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The parameters of both were estimated from data collected during the TransType trial described in (Langlais et al., 2002), which involved nine accomplished translators using a prototype prediction tool for approximately half an hour each.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "In all cases, estimates were made by pooling the data for all nine translators.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "4.1 Acceptance Probability.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Ideally, a model for p(a|x, h, s, k) would take into account whether the user actually reads the proposal before accepting or rejecting it, eg: p(a|x, h, s, k) = ) p(a|r, x, h, s, k)p(r|x, h, s, k) r {0,1} where r is a boolean  read  variable.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "factors which influence whether a user is likely to read a proposal such as a record of how many previous predictions have been accepted are not available to the predictor in our formulation.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "We thus model p(a|x, h, s, k) directly.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Our model is based on the assumption that the probability of accepting x depends only on what the user stands to gain from it, defined according to the editing scenario given in section 2 as the amount by which the length of the correct prefix of x exceeds the length of the incorrect suffix: p(a|x, h, s, k)   p(a|2k   l), where k   (l   k) = 2k   l is called the gain.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The strongest part of this assumption is dropping the dependence on h, because there is some evidence from the data that users are more likely to accept at the beginnings of words.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "However, this does not appear to have a severe effect on the quality of the model.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "There is a certain amount of noise intrinsic to the estimation procedure, since it is difficult to determine x , and there fore k, reliably from the data in some cases (when the user is editing the text heavily).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Nonetheless, it is apparent from the plot that gain is a useful abstrac 4000 3500 3000 raw least squ ares fit 4000 3500 3000 r a w l e a s t   s q u a r e s f i t 2500 2500 2000 2000 1500 1500 1000 1000 500 500 0 0                                                                                                                                                                                                         \n\t\t\tThis relatively clean separation supports the basic assumption in section 2 that benefit depends on k.                                                                                                                                                                                                                                           \n\t\t\tThe model probabilities are taken from the curve at integral values.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "4.2 Benefit.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "This is straightforward in the case of T (x, k) and E(x, k), which are estimated as k and l   k + 1 respectively for E(x, k), this corresponds to one keystroke for the command to accept a prediction, and one to erase each wrong character.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "This is likely to slightly underestimate the true benefit, because it is usually harder to type n characters than to erase them.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "As in the previous section, read costs are interpreted as expected values with respect to the probability that the user actually does read x, eg, assuming 0 cost for not reading, R0(x) = p(r = 1|x)Rt (x), where Rt (x ) is the unknown true cost of reading The benefit B(x, h, s, k, a) is defined as the typing time the translator saves by accepting or rejecting a prediction x whose first k characters are correct.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "To determine this, we assume that the translator first reads x, then, if he or she decides to accept, uses a special command to place the cursor at the end of x and erases its last l   k characters.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Assuming independence from h, s as before, our model is: r and rejecting x.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "To determine Ra(x), we measured the average elapsed time in the TransType data from the point at which a proposal was displayed to the point at which the next user action occurred either an acceptance or some other command signalling a rejection.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Times greater than 5 seconds were treated as indicating that the translator was distracted and were filtered out.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "2 Here the number of characters read was assumed to include.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "the whole contents of the TransType menu in the case of rejections, and only the proposal that was ultimately accepted in the case of acceptances.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "tionship between the number of characters read and the time taken to read them, so we used the least- squares lines shown as our models.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Both plots are noisy and would benefit from a more sophisticated psycholinguistic analysis, but they are plausible and empirically-grounded first approximations.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "To convert reading times to keystrokes for the benefit function we calculated an average time per keystroke (304 milliseconds) based on sections of the trial where translators were rapidly typing and when predictions were not displayed.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "This gives an upper bound for the per-keystroke cost of reading  compare to, for instance, simply dividing the total time required to produce a text by the number of characters in it and therefore results in a conservative estimate of benefit.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Combining these with the acceptance probability of .25 gives an overall expected benefit B(x, h, s, k = 7) for this proposal of 0.05 keystrokes.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Searching directly through all character strings x in order to find x  according to              would be very expensive.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The fact that B(x, h, s) is non- monotonic in the length of x makes it difficult to organize efficient dynamic-programming search techniques or use heuristics to prune partial hypotheses.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Because of this, we adopted a fairly radical search strategy that involves first finding the most likely sequence of words of each length, then calculating the benefit of each of these sequences to determine the best proposal.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The algorithm is: 1.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "For each length m = 1 .",
+        "Entity": "Normal"
+    },
+    {
+        "Text": ".",
+        "Entity": "Normal"
+    },
+    {
+        "Text": ".",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "M , find the best.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "word sequence: M average time maximum time 1 2 3 4 5 0.0012 0.0038 0.0097 0.0184 0.0285 0.01 0.23 0.51 0.55 0.57                                                                                                                                             \n\t\t\tIn all experiments reported below, M was set to a maximum of 5 to allow for convenient testing.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Step 1 is carried out using a Viterbi beam search.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "To speed this up, the search is limited to an active vocabulary of target words likely to appear in translations of s, defined as the set of all words connected by some word-pair feature in our translation model to some word in s. Step 2 is a trivial deterministic procedure that mainly involves deciding whether or not to introduce blanks between adjacent words (eg yes in the case of la + vie, no in the case of l  + an).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "This also removes the prefix u1 from the proposal.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Step 3 involves a straightforward evaluation of m strings according to             .",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Times for the linear model are similar.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Although the maximum times shown would cause perceptible delays for M > 1, these occur very rarely, and in practice typing is usually not noticeably impeded when using the TransType interface, even at M = 5.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "We evaluated the predictor for English to French translation on a section of the Canadian Hansard corpus, after training the model on a chronologi w  m = argmax w1 :(w1 =u1 v), wm p(wm|ht, s), cally earlier section.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The test corpus consisted of 5,020 sentence pairs and approximately 100k words where u1 and ht are as defined in section 3.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "2.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Convert each w  m to a corresponding character.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "string x m. in each language; details of the training corpus are given in (Foster, 2000b).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "To simulate a translator s responses to predictions, we relied on the user model, accepting prob 3.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Output x .",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "= argmaxm B(x m, h, s), or the abilistically according to p(a|x, h, s, k), determinempty string if all B(x m, h, s) are non positive.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "ing the associated benefit using B(x, h, s, k, a), and advancing the cursor k characters in the case of an config M 1 2 3 4 5 fixed linear exact corr best -8.50.43.6011.620.8 6.1 9.40 8.8 8.1 7.8 5.3 10.10 10.7 10.0 9.7 5.8 10.7 12.0 12.5 12.6 7.9 17.90 24.5 27.7 29.2 fixed exact best -11.59.315.122.028.2 3.0 4.3 5.0 5.2 5.2 6.2 12.1 15.4 16.7 17.3                                                         \n\t\t\tNumbers give % reductions in keystrokes.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "user M 1 2 3 4 5 superman rational real 48.6 53.5 51.8 51.1 50.9 11.7 17.8 17.2 16.4 16.1 5.3 10.10 10.7 10.0 9.7                                                 \n\t\t\tNumbers give % reductions in keystrokes.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "acceptance, 1 otherwise.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Here k was obtained by comparing x to the known x  from the test corpus.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "It may seem artificial to measure performance according to the objective function for the predictor, but this is biased only to the extent that it misrepresents an actual user s characteristics.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "There are two cases: either the user is a better candidate types more slowly, reacts more quickly and rationally  than assumed by the model, or a worse one.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The predictor will not be optimized in either case, but the simulation will only overestimate the benefit in the second case.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "By being conservative in estimating the parameters of the user model, we feel we have minimized the number of translators who would fall into this category, and thus can hope to obtain realistic lower bounds for the average benefit across all translators.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The top portion corresponds to the MEMD2B maximum entropy model described in (Foster, 2000a); the bottom portion corresponds to the linear combination of a trigram and IBM 2 used in the TransType experiments (Langlais et al., 2002).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Columns give the maximum permitted number of words in predictions.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Rows show different predic tor configurations: fixed ignores the user model and makes fixed M -word predictions; linear uses the linear character-probability estimates described in section 3.1; exact uses the exact character-probability calculation; corr is described below; and best gives an upper bound on performance by choosing m in step 3 of the search algorithm so as to maximize B(x, h, s, k) using the true value of k.                                                                                                                                                                                                                                                                                                               \n\t\t\tFor each simulation, the predictor optimized benefits for the corresponding user model.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Several conclusions can be drawn from these results.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "First, it is clear that estimating expected benefit is a much better strategy than making fixed-word- length proposals, since the latter causes an increase in time for all values of M .",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "In general, making  exact  estimates of string prefix probabilities works better than a linear approximation, but the difference is fairly small.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Second, the MEMD2B model significantly outperforms the trigram+IBM2 combination, producing better results for every predictor configuration tested.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The figure of -11.5% in bold corresponds to the TransType configuration, and corroborates the validity of the simulation.3 Third, there are large drops in benefit due to reading times and probabilistic acceptance.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The biggest cost is due to reading, which lowers the best possible keystroke reduction by almost 50% for M = 5.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Probabilistic acceptance causes a further drop of about 15% for M = 5.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The main disappointment in these results is that performance peaks at M = 3 rather than continuing to improve as the predictor is allowed to consider longer word sequences.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Since the predictor knows B(x, h, s, k), the most likely cause for this is that the estimates for p(w  m|h, s) become worse with increasing m. Significantly, performance lev 3 Although the drop observed with real users was greater at about 20% (= 17% reduction in speed), there are many differences between experimental setups that could account for the discrepancy.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "For instance, part of the corpus used for the TransType trials was drawn from a different domain, which would adversely affect predictor performance.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "els off at three words, just as the search loses direct contact with h through the trigram.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "To correct for this, we used modified probabilities of the form  m p(w  m|h, s), where  m is a length-specific correction factor, tuned so as to optimize benefit on a cross-validation corpus.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "In this case, performance improves with M , reaching a maximum keystroke reduction of 12.6% at M = 5.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "We have described an approach to text prediction for translators that is based on maximizing the benefit to the translator according to an explicit user model whose parameters were set from data collected in user evaluations of an existing text prediction prototype.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Using this approach, we demonstrate in simulated results that our current predictor can reduce the time required for an average user to type a text in the domain of our training corpus by over 10%.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "We look forward to corroborating this result in tests with real translators.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "There are many ways to build on the work described here.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The statistical models which are the backbone of the predictor could be improved by making them adaptive taking advantage of the user s input and by adding features to capture the alignment relation between h and s in such a way as to preserve the efficient search properties.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The user model could also be made adaptive, and it could be enriched in many other ways, for instance so as to capture the propensity of translators to accept at the beginnings of words.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "We feel that the idea of creating explicit user models to guide the behaviour of interactive systems is likely to have applications in areas of NLP apart from translators  tools.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "For one thing, most of the approach described here carries over more or less directly to monolingual text prediction, which is an important tool for the handicapped (Carlberger et al., 1997).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Other possibilities include virtually any application where a human and a machine communicate through a language-rich interface.",
+        "Entity": "Normal"
+    }
+]

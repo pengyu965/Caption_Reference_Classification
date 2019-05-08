@@ -1,0 +1,296 @@
+[
+    {
+        "Code": "T1",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "17201",
+                "17412"
+            ]
+        ],
+        "Text": "Another interesting example is shown in Figure 1(b), where the base-NP of the second entity town is a possessive NP and there is no relationship between the entities one and town defined in the ACE corpus.",
+        "RefType": "Direct",
+        "Type": "Figure",
+        "Num": "1"
+    },
+    {
+        "Code": "T2",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "16835",
+                "17025"
+            ]
+        ],
+        "Text": "For example, in the sentence bought one of town s two meat- packing plants as illustrated in Figure 1(a), the constituents before the headword plants can be removed from the parse tree.",
+        "RefType": "Direct",
+        "Type": "Figure",
+        "Num": "1"
+    },
+    {
+        "Code": "T3",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "18563",
+                "18719"
+            ]
+        ],
+        "Text": "In Figure 1(c) we show a sentence one of about 500 people nominated for , where there exists a DISC relationship between the entities one and people",
+        "RefType": "Direct",
+        "Type": "Figure",
+        "Num": "1"
+    },
+    {
+        "Code": "T4",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "19997",
+                "20049"
+            ]
+        ],
+        "Text": "Reduction of conjuncts for NP coordination Figure 1.",
+        "RefType": "Direct",
+        "Type": "Figure",
+        "Num": "1"
+    },
+    {
+        "Code": "T5",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "20798",
+                "20962"
+            ]
+        ],
+        "Text": "Figure 1(d) shows a sentence maintain rental property he owns in the state , where the ART.User-or-Owner relation holds between the entities property and he",
+        "RefType": "Direct",
+        "Type": "Figure",
+        "Num": "1"
+    },
+    {
+        "Code": "T6",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "21595",
+                "21665"
+            ]
+        ],
+        "Text": "As illus trated in Figure 1(e), the NP coordination in the Qian et al.",
+        "RefType": "Direct",
+        "Type": "Figure",
+        "Num": "1"
+    },
+    {
+        "Code": "T7",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "21994",
+                "22226"
+            ]
+        ],
+        "Text": "In order to effectively capture entity-related semantic features, and their combined features as well, especially bi-gram or tri-gram features, we build an Entity-related Semantic Tree (EST) in three ways as illustrated in Figure 2.",
+        "RefType": "Direct",
+        "Type": "Figure",
+        "Num": "2"
+    },
+    {
+        "Code": "T8",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "26519",
+                "26651"
+            ]
+        ],
+        "Text": "The entity features can be attached under the top node, the entity nodes, or directly combined with the entity nodes as in Figure 1.",
+        "RefType": "Direct",
+        "Type": "Figure",
+        "Num": "1"
+    },
+    {
+        "Code": "T9",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "27619",
+                "27778"
+            ]
+        ],
+        "Text": "Table 1 evaluates the contributions of different kinds of constituent dependencies to extraction performance on the 7 relation types of the ACE RDC 2004 corpus",
+        "RefType": "Direct",
+        "Type": "Table",
+        "Num": "1"
+    },
+    {
+        "Code": "T10",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "27779",
+                "27843"
+            ]
+        ],
+        "Text": "using the convolution parse tree kernel as depicted in Figure 1.",
+        "RefType": "Direct",
+        "Type": "Figure",
+        "Num": "1"
+    },
+    {
+        "Code": "T11",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "31845",
+                "32093"
+            ]
+        ],
+        "Text": "We compare in Table 2 the performance of Unified Parse and Semantic Trees with different kinds of Entity Semantic Tree setups using standard convolution tree kernel, while the SPT and DSPT with only entity-type information are listed for reference.",
+        "RefType": "Direct",
+        "Type": "Table",
+        "Num": "2"
+    },
+    {
+        "Code": "T12",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "32906",
+                "33055"
+            ]
+        ],
+        "Text": "Tree setups P(%) R(%) F SPT 76.3 59.8 67.1 DSPT 77.4 65.4 70.9 UPST (BOF) 80.4 69.7 74.7 UPST (FPT) 80.1 70.7 75.1 UPST (EPT) 79.9 70.2 74.8 Table 2.",
+        "RefType": "Direct",
+        "Type": "Table",
+        "Num": "2"
+    },
+    {
+        "Code": "T13",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "33681",
+                "33801"
+            ]
+        ],
+        "Text": "Tree setups P(%) R(%) F CS-SPT over SPT3 1.5 1.1 1.3 DSPT over SPT 1.1 5.6 3.8 UPST (FPT) over SPT 3.8 10.9 8.0 Table 3.",
+        "RefType": "Direct",
+        "Type": "Table",
+        "Num": "3"
+    },
+    {
+        "Code": "T14",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "33835",
+                "34046"
+            ]
+        ],
+        "Text": "Improvements of different tree setups over SPT on the ACE RDC 2004 corpus Finally, Table 4 compares our system with other state-of-the-art kernel-based systems on the 7 relation types of the ACE RDC 2004 corpus.",
+        "RefType": "Direct",
+        "Type": "Table",
+        "Num": "4"
+    },
+    {
+        "Code": "T15",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "34769",
+                "35130"
+            ]
+        ],
+        "Text": "composite kernel 83.0 72.0 77.1 Zhou et al., (2007): composite kernel 82.2 70.2 75.8 Zhang et al., (2006): composite kernel 76.1 68.4 72.1 Zhao and Grishman, (2005):4 composite kernel 69.2 70.5 70.4 Ours: CTK with UPST 80.1 70.7 75.1Zhou et al., (2007): context sensitive CTK with CS-SPT 81.1 66.7 73.2 Zhang et al., (2006): CTK with SPT 74.1 62.4 67.7 Table 4.",
+        "RefType": "Direct",
+        "Type": "Table",
+        "Num": "4"
+    },
+    {
+        "Code": "T16",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "35164",
+                "35298"
+            ]
+        ],
+        "Text": "Comparison of different systems on the ACE RDC 2004 corpus In Table 3 we summarize the improvements of different tree setups over SPT.",
+        "RefType": "Direct",
+        "Type": "Table",
+        "Num": "3"
+    },
+    {
+        "Code": "T17",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "35665",
+                "35818"
+            ]
+        ],
+        "Text": "Shortest-enclosed Path Tree from P/R/F (81.1/6.7/73.2) of Dynamic Context-Sensitive Shortest- enclosed Path Tree according to Table 2 (Zhou et al., 2007)",
+        "RefType": "Direct",
+        "Type": "Table",
+        "Num": "2"
+    },
+    {
+        "Code": "T18",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "24783",
+                "24823"
+            ]
+        ],
+        "Text": "PRO (c) Entity-Paired Tree(EPT)Figure 2.",
+        "RefType": "Direct",
+        "Type": "Figure",
+        "Num": "2"
+    },
+    {
+        "Code": "T19",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "30073",
+                "30181"
+            ]
+        ],
+        "Text": "n our experimentations, SVMlight (Joachims, 1998) with the tree kernel function (75.0) (53.7) (62.6) Table 1",
+        "RefType": "Direct",
+        "Type": "Table",
+        "Num": "1"
+    },
+    {
+        "Code": "T20",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "30215",
+                "30579"
+            ]
+        ],
+        "Text": "Contribution of constituent dependencies in respective mode (inside parentheses) and accumulative mode (outside parentheses) The table shows that the final DSPT achieves the best performance of 77.4%/65.4%/70.9 in precision/recall/F-measure respectively after applying all the dependencies, with the increase of F-measure by 8.2 units compared to the baseline MCT.",
+        "RefType": "Indirect",
+        "Type": "Table",
+        "Num": "1"
+    },
+    {
+        "Code": "T21",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "31032",
+                "31273"
+            ]
+        ],
+        "Text": "This table also shows that: (1) Both modification within base-NPs and modification to NPs contribute much to performance improvement, acquiring the increase of F- measure by 4.4/2.4 units in mode M1 and 4.4/2.3 units in mode M2 respectively.",
+        "RefType": "Indirect",
+        "Type": "Table",
+        "Num": "1"
+    }
+]

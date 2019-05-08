@@ -1,0 +1,282 @@
+[
+    {
+        "Code": "T1",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "5094",
+                "5444"
+            ]
+        ],
+        "Text": "Table 1; capital letters designate sets and small letters elements of sets).2 For a lemma l like lamb, we want to knowhow well a meta alternation (such as ANIMAL FOOD) explains a pair of its senses (such as the animal and food senses of lamb).3 This is formalized through the function score, which maps a meta alternation and two senses onto a score.",
+        "RefType": "Direct",
+        "Type": "Table",
+        "Num": "1"
+    },
+    {
+        "Code": "T2",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "6488",
+                "6959"
+            ]
+        ],
+        "Text": "L set of lemmas IL set of (lemma-wise) instances SL set of (lemma-wise) senses inst : L (IL ) mapping lemma instances sns : L (SL ) mapping lemma senses M set of meta senses meta : SL M mapping senses meta senses A M M set of meta alternations (MAs) A set of MA representations score : A S2 R scoring function for MAs repA : A A MA representation function comp : A S2 R compatibility function Table 1: Notation and signatures for our framework.",
+        "RefType": "Direct",
+        "Type": "Table",
+        "Num": "1"
+    },
+    {
+        "Code": "T3",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "9230",
+                "9651"
+            ]
+        ],
+        "Text": "vecI : IL Rk instance vector computation C : Rk m Rk centroid computation vecL : L Rk lemma (type) vector computation repM : M Rk meta sense representation Table 3: Additional notation and signatures for CAM explicit sense disambiguation, CAM represents lemmas by their type vectors, i.e., the centroid of their instances, and compares their vectors (attributes) to those of the meta alternation hence the name.",
+        "RefType": "Direct",
+        "Type": "Table",
+        "Num": "3"
+    },
+    {
+        "Code": "T4",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "10120",
+                "10249"
+            ]
+        ],
+        "Text": "CoreLex defines a layer of abstraction above WordNet consisting of 39 basic types, coarse- grained ontological classes (Table 2).",
+        "RefType": "Direct",
+        "Type": "Table",
+        "Num": "2"
+    },
+    {
+        "Code": "T5",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "11073",
+                "11160"
+            ]
+        ],
+        "Text": "Table 1), i.e., the degree to which a sense pair (s1, s2) matches a meta alternation a.",
+        "RefType": "Direct",
+        "Type": "Table",
+        "Num": "1"
+    },
+    {
+        "Code": "T6",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "12279",
+                "12363"
+            ]
+        ],
+        "Text": "Table 3 lists new conceptsthat CAM introduces to manipulate vector represen tations.",
+        "RefType": "Direct",
+        "Type": "Table",
+        "Num": "3"
+    },
+    {
+        "Code": "T7",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "14859",
+                "14931"
+            ]
+        ],
+        "Text": "Table 2: CoreLex s basic types with their corresponding WordNet anchors.",
+        "RefType": "Direct",
+        "Type": "Table",
+        "Num": "2"
+    },
+    {
+        "Code": "T8",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "15320",
+                "15337"
+            ]
+        ],
+        "Text": "Table (1) and Eq.",
+        "RefType": "Direct",
+        "Type": "Table",
+        "Num": "1"
+    },
+    {
+        "Code": "T9",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "15975",
+                "16034"
+            ]
+        ],
+        "Text": "This leaves us with 60 meta alternations, shown in Table 5.",
+        "RefType": "Direct",
+        "Type": "Table",
+        "Num": "5"
+    },
+    {
+        "Code": "T10",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "19992",
+                "20062"
+            ]
+        ],
+        "Text": "Table 4: Sample of experimental items for the meta alternation anmfod.",
+        "RefType": "Direct",
+        "Type": "Table",
+        "Num": "4"
+    },
+    {
+        "Code": "T11",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "20096",
+                "20134"
+            ]
+        ],
+        "Text": "(Abbreviations are listed in Table 2.)",
+        "RefType": "Direct",
+        "Type": "Table",
+        "Num": "2"
+    },
+    {
+        "Code": "T12",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "25617",
+                "25695"
+            ]
+        ],
+        "Text": "Table 5 breaks down the performance of the best CAM model by meta alternation.",
+        "RefType": "Direct",
+        "Type": "Table",
+        "Num": "5"
+    },
+    {
+        "Code": "T13",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "24235",
+                "24287"
+            ]
+        ],
+        "Text": "Figure 1 shows the influence of the four parameters.",
+        "RefType": "Direct",
+        "Type": "Figure",
+        "Num": "1"
+    },
+    {
+        "Code": "T14",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "26042",
+                "26094"
+            ]
+        ],
+        "Text": "Figure 1: Effect of model parameters on performance.",
+        "RefType": "Direct",
+        "Type": "Figure",
+        "Num": "1"
+    },
+    {
+        "Code": "T15",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "28999",
+                "29048"
+            ]
+        ],
+        "Text": "Figure 2 plots AP by for all meta alternations.",
+        "RefType": "Direct",
+        "Type": "Figure",
+        "Num": "2"
+    },
+    {
+        "Code": "T16",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "31536",
+                "31611"
+            ]
+        ],
+        "Text": "Table 5: Meta alternations and their average precision values for the task.",
+        "RefType": "Direct",
+        "Type": "Table",
+        "Num": "5"
+    },
+    {
+        "Code": "T17",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "32267",
+                "32351"
+            ]
+        ],
+        "Text": "Table 6: Sample targets for meta alternations with high AP and mid-coherence values.",
+        "RefType": "Direct",
+        "Type": "Table",
+        "Num": "6"
+    },
+    {
+        "Code": "T18",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "33180",
+                "33254"
+            ]
+        ],
+        "Text": "Table 6 lists a sample of targets for the five meta alternations involved.",
+        "RefType": "Direct",
+        "Type": "Table",
+        "Num": "6"
+    },
+    {
+        "Code": "T19",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "34293",
+                "34365"
+            ]
+        ],
+        "Text": "Figure 2: Average Precision and Coherence ( ) for each meta alternation.",
+        "RefType": "Direct",
+        "Type": "Figure",
+        "Num": "2"
+    },
+    {
+        "Code": "T20",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "24860",
+                "25025"
+            ]
+        ],
+        "Text": "Figure 1 suggests that the best setup is dependent on the specific meta sense or meta alternation being MACRO MICRO repM gram gramlex lex space type MACRO MICRO repA",
+        "RefType": "Direct",
+        "Type": "Figure",
+        "Num": "1"
+    }
+]

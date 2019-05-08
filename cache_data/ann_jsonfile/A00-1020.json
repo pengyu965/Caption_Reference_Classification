@@ -1,0 +1,310 @@
+[
+    {
+        "Code": "T1",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "8045",
+                "8053"
+            ]
+        ],
+        "Text": "Figure 1",
+        "RefType": "Direct",
+        "Type": "Figure",
+        "Num": "1"
+    },
+    {
+        "Code": "T2",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "7974",
+                "7982"
+            ]
+        ],
+        "Text": "Figure 1",
+        "RefType": "Direct",
+        "Type": "Figure",
+        "Num": "1"
+    },
+    {
+        "Code": "T3",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "8105",
+                "8113"
+            ]
+        ],
+        "Text": "Figure 1",
+        "RefType": "Direct",
+        "Type": "Figure",
+        "Num": "1"
+    },
+    {
+        "Code": "T4",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "19019",
+                "19027"
+            ]
+        ],
+        "Text": "Figure 2",
+        "RefType": "Direct",
+        "Type": "Figure",
+        "Num": "2"
+    },
+    {
+        "Code": "T5",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "19308",
+                "19316"
+            ]
+        ],
+        "Text": "Figure 2",
+        "RefType": "Direct",
+        "Type": "Figure",
+        "Num": "2"
+    },
+    {
+        "Code": "T6",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "20561",
+                "20600"
+            ]
+        ],
+        "Text": "Figure 2: Bootstrapping new heuristics.",
+        "RefType": "Direct",
+        "Type": "Figure",
+        "Num": "2"
+    },
+    {
+        "Code": "T7",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "33172",
+                "33180"
+            ]
+        ],
+        "Text": "Figure 3",
+        "RefType": "Direct",
+        "Type": "Figure",
+        "Num": "3"
+    },
+    {
+        "Code": "T8",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "34037",
+                "34045"
+            ]
+        ],
+        "Text": "Figure 4",
+        "RefType": "Direct",
+        "Type": "Figure",
+        "Num": "4"
+    },
+    {
+        "Code": "T9",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "34380",
+                "34388"
+            ]
+        ],
+        "Text": "Figure 4",
+        "RefType": "Direct",
+        "Type": "Figure",
+        "Num": "4"
+    },
+    {
+        "Code": "T10",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "12374",
+                "12381"
+            ]
+        ],
+        "Text": "Table 1",
+        "RefType": "Direct",
+        "Type": "Table",
+        "Num": "1"
+    },
+    {
+        "Code": "T11",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "16065",
+                "16072"
+            ]
+        ],
+        "Text": "Table 2",
+        "RefType": "Direct",
+        "Type": "Table",
+        "Num": "2"
+    },
+    {
+        "Code": "T12",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "16846",
+                "16853"
+            ]
+        ],
+        "Text": "Table 1",
+        "RefType": "Direct",
+        "Type": "Table",
+        "Num": "1"
+    },
+    {
+        "Code": "T13",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "17054",
+                "17062"
+            ]
+        ],
+        "Text": "Table 2.",
+        "RefType": "Direct",
+        "Type": "Table",
+        "Num": "2"
+    },
+    {
+        "Code": "T14",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "24181",
+                "24188"
+            ]
+        ],
+        "Text": "Table 3",
+        "RefType": "Direct",
+        "Type": "Table",
+        "Num": "3"
+    },
+    {
+        "Code": "T15",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "24366",
+                "24373"
+            ]
+        ],
+        "Text": "Table 3",
+        "RefType": "Direct",
+        "Type": "Table",
+        "Num": "3"
+    },
+    {
+        "Code": "T16",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "28204",
+                "28211"
+            ]
+        ],
+        "Text": "Table 3",
+        "RefType": "Direct",
+        "Type": "Table",
+        "Num": "3"
+    },
+    {
+        "Code": "T17",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "29829",
+                "29836"
+            ]
+        ],
+        "Text": "Table 3",
+        "RefType": "Direct",
+        "Type": "Table",
+        "Num": "3"
+    },
+    {
+        "Code": "T18",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "36878",
+                "36885"
+            ]
+        ],
+        "Text": "Table 4",
+        "RefType": "Direct",
+        "Type": "Table",
+        "Num": "4"
+    },
+    {
+        "Code": "T19",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "37699",
+                "37706"
+            ]
+        ],
+        "Text": "Table 4",
+        "RefType": "Direct",
+        "Type": "Table",
+        "Num": "4"
+    },
+    {
+        "Code": "T20",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "37912",
+                "37919"
+            ]
+        ],
+        "Text": "Table 5",
+        "RefType": "Direct",
+        "Type": "Table",
+        "Num": "5"
+    },
+    {
+        "Code": "T21",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "37940",
+                "37947"
+            ]
+        ],
+        "Text": "Table 5",
+        "RefType": "Direct",
+        "Type": "Table",
+        "Num": "5"
+    },
+    {
+        "Code": "T22",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "38683",
+                "38690"
+            ]
+        ],
+        "Text": "Table 5",
+        "RefType": "Direct",
+        "Type": "Table",
+        "Num": "5"
+    }
+]

@@ -1,0 +1,235 @@
+[
+    {
+        "Code": "T1",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "30409",
+                "30484"
+            ]
+        ],
+        "Text": "Table 1, Figure 1, and Figure 2 shows the AER results for different models.",
+        "RefType": "Direct",
+        "Type": "Table",
+        "Num": "1"
+    },
+    {
+        "Code": "T2",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "30409",
+                "30484"
+            ]
+        ],
+        "Text": "Table 1, Figure 1, and Figure 2 shows the AER results for different models.",
+        "RefType": "Direct",
+        "Type": "Figure",
+        "Num": "1"
+    },
+    {
+        "Code": "T3",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "30409",
+                "30484"
+            ]
+        ],
+        "Text": "Table 1, Figure 1, and Figure 2 shows the AER results for different models.",
+        "RefType": "Direct",
+        "Type": "Figure",
+        "Num": "2"
+    },
+    {
+        "Code": "T4",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "30809",
+                "30862"
+            ]
+        ],
+        "Text": "Figure 3 show the training time for different models.",
+        "RefType": "Direct",
+        "Type": "Figure",
+        "Num": "3"
+    },
+    {
+        "Code": "T5",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "31868",
+                "31975"
+            ]
+        ],
+        "Text": "Results are shown in Table 2; we see that better word alignment results do not lead to better translations.",
+        "RefType": "Direct",
+        "Type": "Table",
+        "Num": "2"
+    },
+    {
+        "Code": "T6",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "17717",
+                "17900"
+            ]
+        ],
+        "Text": "In the last two lines of Equation 3, \u03c6\u01eb and each P (f |e) = \"\u00a3s c (f |e; f (s), e(s)) (4) \u03c6i are not free variables, but are determined by f s c(f |e; f (s), e(s))the alignments.",
+        "RefType": "Direct",
+        "Type": "Equation",
+        "Num": "3"
+    },
+    {
+        "Code": "T7",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "21249",
+                "21369"
+            ]
+        ],
+        "Text": "We scan through the corpus many times until we are satisfied with the parameters we learned using Equations 4, 5, and 6.",
+        "RefType": "Direct",
+        "Type": "Equation",
+        "Num": "4"
+    },
+    {
+        "Code": "T8",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "21249",
+                "21369"
+            ]
+        ],
+        "Text": "We scan through the corpus many times until we are satisfied with the parameters we learned using Equations 4, 5, and 6.",
+        "RefType": "Direct",
+        "Type": "Equation",
+        "Num": "5"
+    },
+    {
+        "Code": "T9",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "21249",
+                "21369"
+            ]
+        ],
+        "Text": "We scan through the corpus many times until we are satisfied with the parameters we learned using Equations 4, 5, and 6.",
+        "RefType": "Direct",
+        "Type": "Equation",
+        "Num": "6"
+    },
+    {
+        "Code": "T10",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "23959",
+                "24221"
+            ]
+        ],
+        "Text": "On the contrary, in the above training stage, although the samples are not accurate enough to represent the distribution defined by Equation 7 for each alignment aj , it is accurate enough for computing the expected counts, which are defined at the corpus level.",
+        "RefType": "Direct",
+        "Type": "Equation",
+        "Num": "7"
+    },
+    {
+        "Code": "T14",
+        "Entity": "Caption",
+        "Span": [
+            [
+                "26311",
+                "26336"
+            ]
+        ],
+        "Text": "Training time comparison.",
+        "Type": "Figure",
+        "Num": "3"
+    },
+    {
+        "Code": "T16",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "25738",
+                "25809"
+            ]
+        ],
+        "Text": "IBM1F refers to the fertility IBM1 and HMMF refers to the fertility HMM",
+        "RefType": "Spatial-Below",
+        "Type": "Table",
+        "Num": "1"
+    },
+    {
+        "Code": "T17",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "25844",
+                "25892"
+            ]
+        ],
+        "Text": "We choose t = 1, 5, and 30 for the fertility HMM",
+        "RefType": "Spatial-Below",
+        "Type": "Table",
+        "Num": "1"
+    },
+    {
+        "Code": "T12",
+        "Entity": "Caption",
+        "Span": [
+            [
+                "26035",
+                "26067"
+            ]
+        ],
+        "Text": "Figure 1: AER comparison (en\u2192cn)",
+        "Type": "Figure",
+        "Num": "1"
+    },
+    {
+        "Code": "T13",
+        "Entity": "Caption",
+        "Span": [
+            [
+                "26176",
+                "26209"
+            ]
+        ],
+        "Text": "Figure 2: AER comparison (cn \u2192en)",
+        "Type": "Figure",
+        "Num": "2"
+    },
+    {
+        "Code": "T15",
+        "Entity": "Caption",
+        "Span": [
+            [
+                "32054",
+                "32075"
+            ]
+        ],
+        "Text": "Table 2: BLEU results",
+        "Type": "Table",
+        "Num": "2"
+    },
+    {
+        "Code": "T11",
+        "Entity": "Caption",
+        "Span": [
+            [
+                "25683",
+                "25703"
+            ]
+        ],
+        "Text": "Table 1: AER results",
+        "Type": "Table",
+        "Num": "1"
+    }
+]

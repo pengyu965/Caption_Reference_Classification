@@ -1,0 +1,156 @@
+[
+    {
+        "Code": "T1",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "5345",
+                "5396"
+            ]
+        ],
+        "Text": "Table 1: Snapshot of the supersense-annotated data.",
+        "RefType": "Direct",
+        "Type": "Table",
+        "Num": "1"
+    },
+    {
+        "Code": "T2",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "8701",
+                "8841"
+            ]
+        ],
+        "Text": "The dataset (table 1) consists of the main text of 28 articles selected from the topical domains of history, sports, science, and technology",
+        "RefType": "Direct",
+        "Type": "Table",
+        "Num": "1"
+    },
+    {
+        "Code": "T3",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "2577",
+                "2692"
+            ]
+        ],
+        "Text": "Figure 1: A sentence from the article Islamic GoldenAge, with the supersense tagging from one of two anno tators.",
+        "RefType": "Direct",
+        "Type": "Figure",
+        "Num": "1"
+    },
+    {
+        "Code": "T4",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "3182",
+                "3744"
+            ]
+        ],
+        "Text": "More re cently, the task of automatic supersense tagging has emerged for English (Ciaramita and Johnson, 2003; Curran, 2005; Ciaramita and Altun, 2006; Paa and Reichartz, 2009), as well as for Italian (Picca et al., 2008; Picca et al., 2009; Attardi et al., 2010) and Chinese (Qiu et al., 2011), languages with WordNetsmapped to English WordNet.3 In principle, we be lieve supersenses ought to apply to nouns and verbsin any language, and need not depend on the avail ability of a semantic lexicon.4 In this work we focuson the noun SSTs, summarized in figure 2",
+        "RefType": "Direct",
+        "Type": "Figure",
+        "Num": "2"
+    },
+    {
+        "Code": "T5",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "3745",
+                "3792"
+            ]
+        ],
+        "Text": "and ap plied to an Arabic sentence in figure 1.",
+        "RefType": "Direct",
+        "Type": "Figure",
+        "Num": "1"
+    },
+    {
+        "Code": "T6",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "7289",
+                "7372"
+            ]
+        ],
+        "Text": "Thus,we have crafted more specific explanations, sum marized for nouns in figure 2.",
+        "RefType": "Direct",
+        "Type": "Figure",
+        "Num": "2"
+    },
+    {
+        "Code": "T7",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "15457",
+                "15599"
+            ]
+        ],
+        "Text": "Figure 2: Above: The complete supersense tagset for nouns; each tag is briefly described by its symbol, NAME, short description, and examples.",
+        "RefType": "Direct",
+        "Type": "Figure",
+        "Num": "2"
+    },
+    {
+        "Code": "T8",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "15865",
+                "15982"
+            ]
+        ],
+        "Text": "Figure 3: Distribution of supersense mentions by domain (left), and counts for tags occurring over 800 times (below).",
+        "RefType": "Direct",
+        "Type": "Figure",
+        "Num": "3"
+    },
+    {
+        "Code": "T9",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "17154",
+                "17208"
+            ]
+        ],
+        "Text": "Figure 3 shows the distribution of SSTs in the corpus.",
+        "RefType": "Direct",
+        "Type": "Figure",
+        "Num": "3"
+    },
+    {
+        "Code": "T10",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "18728",
+                "18901"
+            ]
+        ],
+        "Text": "The last is exhibited for the first mention in figure 1, where one annotator chose ARTIFACT (referring tothe physical book) while the other chose COMMUNICATION (the content)",
+        "RefType": "Direct",
+        "Type": "Figure",
+        "Num": "1"
+    },
+    {
+        "Code": "T11",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "19522",
+                "19635"
+            ]
+        ],
+        "Text": "E.g., the city Fez, Mo rocco (figure 1) was tagged as a single LOCATION by one annotator and as two by the other.",
+        "RefType": "Direct",
+        "Type": "Figure",
+        "Num": "1"
+    }
+]

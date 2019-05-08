@@ -1,0 +1,632 @@
+[
+    {
+        "Code": "T3",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "8465",
+                "8758"
+            ]
+        ],
+        "Text": "The probabilities P( <U-t>lwi_I) can be esti mated from the relative frequencies in the training corpus whose infrequent words are replaced with their corresponding unknown word tags based on their part of speeches 2 Table 1 shows examples of word bigrams including unknown word tags.",
+        "RefType": "Direct",
+        "Type": "Table",
+        "Num": "1"
+    },
+    {
+        "Code": "T4",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "14559",
+                "14634"
+            ]
+        ],
+        "Text": "Table 2: Character type configuration of infrequent words in the EDR corpus",
+        "RefType": "Direct",
+        "Type": "Table",
+        "Num": "2"
+    },
+    {
+        "Code": "T5",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "14635",
+                "15042"
+            ]
+        ],
+        "Text": "Table 3: Examples of common character bigrams for each part of speech in the infrequent words pa rt of sp ee ch ch ar ac ter bi gr a m fre qu en cy no un nu m be r a dj e ct iv al v er b v er b ad je cti ve ad ve rb < e o w > <b o w > 1 S \" J < e o w > I t < e o w > L < e o w > < e o w > 13 43 4 8 4 3 2 7 2 1 3 69 63 resented all unknown words by one length model.",
+        "RefType": "Direct",
+        "Type": "Table",
+        "Num": "3"
+    },
+    {
+        "Code": "T6",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "16866",
+                "16980"
+            ]
+        ],
+        "Text": "Table 2 shows the distribution of character type sequences that constitute the infrequent words in the EDR corpus.",
+        "RefType": "Direct",
+        "Type": "Table",
+        "Num": "2"
+    },
+    {
+        "Code": "T7",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "15075",
+                "15209"
+            ]
+        ],
+        "Text": "Figure 2 shows the word length distribution of words consists of only kanji characters and words consists of only katakana characters.",
+        "RefType": "Direct",
+        "Type": "Figure",
+        "Num": "2"
+    },
+    {
+        "Code": "T8",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "15455",
+                "15519"
+            ]
+        ],
+        "Text": "Figure 1 is, in fact, a weighted sum of these two distributions.",
+        "RefType": "Direct",
+        "Type": "Figure",
+        "Num": "1"
+    },
+    {
+        "Code": "T9",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "18483",
+                "18604"
+            ]
+        ],
+        "Text": "Table 3 shows examples of common char acter bigrams for each part of speech in the infre quent words of the EDR corpus.",
+        "RefType": "Direct",
+        "Type": "Table",
+        "Num": "3"
+    },
+    {
+        "Code": "T10",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "18638",
+                "18732"
+            ]
+        ],
+        "Text": "The first example in Table 3 shows that words ending in ' -' are likely to be nouns.",
+        "RefType": "Direct",
+        "Type": "Table",
+        "Num": "3"
+    },
+    {
+        "Code": "T11",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "24605",
+                "24696"
+            ]
+        ],
+        "Text": "Table 4 shows the number of sentences, words, and characters of the training and test sets.",
+        "RefType": "Direct",
+        "Type": "Table",
+        "Num": "4"
+    },
+    {
+        "Code": "T12",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "26424",
+                "26520"
+            ]
+        ],
+        "Text": "Table 5 shows the cross entropy per word and char acter perplexity of three unknown word model.",
+        "RefType": "Direct",
+        "Type": "Table",
+        "Num": "5"
+    },
+    {
+        "Code": "T13",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "27403",
+                "27525"
+            ]
+        ],
+        "Text": "Table 5 shows that by changing the word spelling model from zerogram to bigram, character perplex ity is greatly reduced.",
+        "RefType": "Direct",
+        "Type": "Table",
+        "Num": "5"
+    },
+    {
+        "Code": "T14",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "27948",
+                "28046"
+            ]
+        ],
+        "Text": "Figure 3 shows the part of speech prediction accu racy of two unknown word model without context.",
+        "RefType": "Direct",
+        "Type": "Figure",
+        "Num": "3"
+    },
+    {
+        "Code": "T15",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "29261",
+                "29349"
+            ]
+        ],
+        "Text": "As Figure 3 shows, word type information improves the prediction accuracy significantly.",
+        "RefType": "Direct",
+        "Type": "Figure",
+        "Num": "3"
+    },
+    {
+        "Code": "T16",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "31032",
+                "31121"
+            ]
+        ],
+        "Text": "Table 6 shows the word segmentation accuracy of four unknown word models over test set-2.",
+        "RefType": "Direct",
+        "Type": "Table",
+        "Num": "6"
+    },
+    {
+        "Code": "T17",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "31697",
+                "31723"
+            ]
+        ],
+        "Text": "Table 7 shows the results.",
+        "RefType": "Direct",
+        "Type": "Table",
+        "Num": "7"
+    },
+    {
+        "Code": "T18",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "32405",
+                "32457"
+            ]
+        ],
+        "Text": "Table 8 shows the tagging accuracy of unknown words.",
+        "RefType": "Direct",
+        "Type": "Table",
+        "Num": "8"
+    },
+    {
+        "Code": "T19",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "32919",
+                "33074"
+            ]
+        ],
+        "Text": "Table 8 shows that by using word type and part of speech information, recall is improved from 28.1% to 40.6% and precision is improved from 57.3% to 64.1%.",
+        "RefType": "Direct",
+        "Type": "Table",
+        "Num": "8"
+    },
+    {
+        "Code": "T20",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "33483",
+                "33554"
+            ]
+        ],
+        "Text": "Table 8 shows that tagging precision is im proved from 88.2% to 96.6%.",
+        "RefType": "Direct",
+        "Type": "Table",
+        "Num": "8"
+    },
+    {
+        "Code": "T21",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "36281",
+                "36456"
+            ]
+        ],
+        "Text": "Table 8: Part of speech tagging accuracy of unknown words (the last column represents the percentage of correctly tagged unknown words in the correctly segmented unknown words",
+        "RefType": "Direct",
+        "Type": "Table",
+        "Num": "8"
+    },
+    {
+        "Code": "T22",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "13998",
+                "14217"
+            ]
+        ],
+        "Text": "Figure 1shows the word length distribution of in frequent words in the EDR corpus, and the estimate of word length distribution by Equation (6) whose parameter (.A = 4.8) is the average word length of infrequent words.",
+        "RefType": "Direct",
+        "Type": "Figure",
+        "Num": "1"
+    },
+    {
+        "Code": "T23",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "13780",
+                "13965"
+            ]
+        ],
+        "Text": "Figure 2: Word length distribution of kanji words and katakana words length model does not reflect the variation of the word length distribution resulting from the Japanese orthography.",
+        "RefType": "Direct",
+        "Type": "Figure",
+        "Num": "2"
+    },
+    {
+        "Code": "T24",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "11908",
+                "12000"
+            ]
+        ],
+        "Text": "Figure 1: Word length distribution of unknown words and its estimate by Poisson distribution",
+        "RefType": "Direct",
+        "Type": "Figure",
+        "Num": "1"
+    },
+    {
+        "Code": "T25",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "11146",
+                "11239"
+            ]
+        ],
+        "Text": "This is because the lefthand side of Equation (7) represents the probability of the string c1",
+        "RefType": "Direct",
+        "Type": "Equation",
+        "Num": "7"
+    },
+    {
+        "Code": "T26",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "11001",
+                "11113"
+            ]
+        ],
+        "Text": "Probabilities We find that Equation (7) assigns too little proba bilities to long words (5 or more characters).",
+        "RefType": "Direct",
+        "Type": "Equation",
+        "Num": "7"
+    },
+    {
+        "Code": "T1",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "4646",
+                "4717"
+            ]
+        ],
+        "Text": "Table 1: Examples of word bigrams including un known word tags example",
+        "RefType": "Direct",
+        "Type": "Table",
+        "Num": "1"
+    },
+    {
+        "Code": "T2",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "4929",
+                "4988"
+            ]
+        ],
+        "Text": "As Table 1 shows, word bigrams whose infrequent word bigram",
+        "RefType": "Direct",
+        "Type": "Table",
+        "Num": "1"
+    },
+    {
+        "Code": "T27",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "21074",
+                "21167"
+            ]
+        ],
+        "Text": "The second factor of Equation (13) is estimated from the Poisson distribution whose parameter",
+        "RefType": "Direct",
+        "Type": "Equation",
+        "Num": "13"
+    },
+    {
+        "Code": "T28",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "21648",
+                "21801"
+            ]
+        ],
+        "Text": "To compute the third factor of Equation (13), we have to estimate the character bigram probabilities that are classified by word type and part of speech.",
+        "RefType": "Direct",
+        "Type": "Equation",
+        "Num": "13"
+    },
+    {
+        "Code": "T29",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "26554",
+                "26661"
+            ]
+        ],
+        "Text": "The first model is Equation (5), which is the combina . tion of Poisson distribution and character zerogram",
+        "RefType": "Direct",
+        "Type": "Equation",
+        "Num": "5"
+    },
+    {
+        "Code": "T30",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "26883",
+                "26996"
+            ]
+        ],
+        "Text": "The third model is Equation (11), which is a set of word models trained for each word type (WT +Poisson+ bigram).",
+        "RefType": "Direct",
+        "Type": "Equation",
+        "Num": "11"
+    },
+    {
+        "Code": "T31",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "26717",
+                "26812"
+            ]
+        ],
+        "Text": "The second model is the combination of Poisson distribution (Equation (6)) and character bigram",
+        "RefType": "Direct",
+        "Type": "Equation",
+        "Num": "6"
+    },
+    {
+        "Code": "T32",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "26813",
+                "26849"
+            ]
+        ],
+        "Text": "(Equation (7)) (Poisson + hi gram).",
+        "RefType": "Direct",
+        "Type": "Equation",
+        "Num": "7"
+    },
+    {
+        "Code": "T33",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "28186",
+                "28288"
+            ]
+        ],
+        "Text": "Equation (12), which is a set of word models trained for each part of speech (POS + Poisson + bigram).",
+        "RefType": "Direct",
+        "Type": "Equation",
+        "Num": "12"
+    },
+    {
+        "Code": "T34",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "28323",
+                "28401"
+            ]
+        ],
+        "Text": "The second model is Equa tion (13), which is a set of word models trained for",
+        "RefType": "Direct",
+        "Type": "Equation",
+        "Num": "13"
+    },
+    {
+        "Code": "T35",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "35436",
+                "35569"
+            ]
+        ],
+        "Text": "However, the spelling model, especially the character bigrams in Equation (17) are hard to es timate because of the data sparseness.",
+        "RefType": "Direct",
+        "Type": "Equation",
+        "Num": "17"
+    },
+    {
+        "Code": "T36",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "33186",
+                "33204"
+            ]
+        ],
+        "Text": "(prec2 in Table 8)",
+        "RefType": "Direct",
+        "Type": "Table",
+        "Num": "8"
+    },
+    {
+        "Code": "T37",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "20227",
+                "20423"
+            ]
+        ],
+        "Text": "Table 4: The amount of training and test sets The first factor in the righthand side of Equa tion (13) is estimated from the relative frequency of the corresponding events in the training corpus.",
+        "RefType": "Direct",
+        "Type": "Table",
+        "Num": "4"
+    },
+    {
+        "Code": "T38",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "25261",
+                "25523"
+            ]
+        ],
+        "Text": "As for the unknown word model, word-based char acter bigrams are computed from the words with Table 5: Cross entropy (CE) per word and character perplexity (PP) of each unknown word model Part of Speech Estimation Accuracy 0.95 0.9 frequency one (49,653 words).",
+        "RefType": "Direct",
+        "Type": "Table",
+        "Num": "5"
+    },
+    {
+        "Code": "T39",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "30245",
+                "30499"
+            ]
+        ],
+        "Text": "We set Table 6: Word segmentation accuracy of all words r e c pr ec F Po iss on +b igr a m W T +P oi ss on +b igr a m P O S + Po iss on +b igr a m P O S + W T + Po iss on + bi gr a m 94 .5 94 .4 94 .4 94 .6 93 .1 93 .8 93 .6 93 .7 93 .8 94 .1 94 .0 94 .1",
+        "RefType": "Direct",
+        "Type": "Table",
+        "Num": "6"
+    },
+    {
+        "Code": "T40",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "30500",
+                "30716"
+            ]
+        ],
+        "Text": "Table 7: Word segmentation accuracy of unknown words r e c pr ec F Po iss on + bi gr a m W T + P oi ss o n + b i g r a m P O S + P o is s o n + b i g r a m P O S + W T + P o is s o n + bi g ra m 31 .8 45 .5 39 .7 42.",
+        "RefType": "Direct",
+        "Type": "Table",
+        "Num": "7"
+    },
+    {
+        "Code": "T41",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "28485",
+                "28597"
+            ]
+        ],
+        "Text": "Figure 3: Accuracy of part of speech estimation each part of speech and word type (POS + WT + Poisson + bigram).",
+        "RefType": "Direct",
+        "Type": "Figure",
+        "Num": "3"
+    },
+    {
+        "Code": "T42",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "13148",
+                "13238"
+            ]
+        ],
+        "Text": "Throughout in this paper, we used Equation (9) to compute the word spelling probabilities.",
+        "RefType": "Direct",
+        "Type": "Equation",
+        "Num": "9"
+    },
+    {
+        "Code": "T43",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "13337",
+                "13486"
+            ]
+        ],
+        "Text": "Length Distribution In word segmentation, one of the major problems of the word length model of Equation (6) is the decom position of unknown words.",
+        "RefType": "Direct",
+        "Type": "Equation",
+        "Num": "6"
+    },
+    {
+        "Code": "T44",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "19146",
+                "19488"
+            ]
+        ],
+        "Text": "By introducing the distinction of word type to the model of Equation(12),we can derive a more sophis ticated unknown word model that reflects both word 3 When a Chinese character is used to represent a seman tically equivalent Japanese verb, its root is written in the Chinese character and its inflectional suffix is written in hi ragana.",
+        "RefType": "Direct",
+        "Type": "Equation",
+        "Num": "12"
+    },
+    {
+        "Code": "T45",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "20321",
+                "20423"
+            ]
+        ],
+        "Text": "tion (13) is estimated from the relative frequency of the corresponding events in the training corpus.",
+        "RefType": "Direct",
+        "Type": "Equation",
+        "Num": "13"
+    }
+]

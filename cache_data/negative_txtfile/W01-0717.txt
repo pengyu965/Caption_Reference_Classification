@@ -1,0 +1,177 @@
+
+	
+		A new hybrid approach to the coreference resolution problem is presented.
+		The COR,UDISsystem (COreference R,Ules with Disambiguation Statistics) combines syntactico-semantic rules with statistics derived from an annotated corpus.
+		First, the rules and corpus annotationsare described and exemplified.
+		Then, the coreference resolution algorithm and the involved statistics are explained.
+		Finally, the proposed method is evaluated against a baseline modeland some directions for further research are indicated.
+	
+	
+			Coreference resolution is a central problem innatural language understanding since coreference links play an important role for text coher ence.&apos; In sentence (1) for instance, one wants to know what the German personal pronouns sic and ihr refer to.
+			Both can refer to Madchen or Zeitung because grammatical gender agreement in German can be overruled by natural gender agreement in certain cases.
+			(1) [Das Mddehenji hest [die The girl+NEUT reads the Zeitungli; danach geht newspaper+FEM; afterwards goes sie mit ihTi fins she+FEM with her+FEM in the Bitralk.
+			office.
+			&apos;The girl reads the newspaper; afterwards she goes to the office with it.&apos;11 would like to thank Hermann Helbig, Rainer Osswald, and the anonymous reviewers for their helpful com ments and suggestions.
+			The task in this paper is similar to theMUC coreference task (Hirschman and Chin chor, 1997)2:   only identity coreference is treated (and not part-whole or other complex semantic relationships);   only noun phrases (NPs) are considered asmarkables for coreference (and not situa tions expressed by clauses etc.).This kind of coreference is an equivalence rela tion so that coreference resolution comes down to finding the correct partition3 of markables.
+			If there exists a genuine ambiguity for humanreaders (and not just a spurious one for com puters), several partitions of markables wouldbe the correct answer to the coreference prob lem.
+			But since such ambiguities are rare the disambiguation method described in this paper always delivers only one partition.
+			In this paper, the full MUC coreference taskis tackled with a new hybrid approach combin ing syntactico-semantic rules with rule statisticsderived from an annotated corpus.
+			Two ques tion might arise.
+			Why not a purely statisticalapproach: first, because why throw away tradi tional linguistic knowledge, and second, becausestatistics on rules reduce the sparse data prob lem since the applicability of one rule classifies combinations of many relevant features into onefeature value.
+			Why not a purely rule-based approach: because it would leave too many alter natives and would not indicate which to choose.
+			2Some problems of this task definition are discussed by van Deemter and Kibble (2000).
+			3A partition of a set S is a set of pairwise disjoint subsets of S (the partition elements) that cover S.
+	
+	
+			Two kinds of data are required for the corefer ence resolution method described in section 3:handcrafted rules defining whether two mark ables can corefer or not and a corpus annotated with coreference information.
+			The rules licensepossible coreferences; the corpus is used for scoring alternative coreference partitions with esti mated probabilities.
+			2.1 Coreference rules.
+			The coreference rules are designed to licensepossible coreference relations among two mark ables.
+			Some rules are language-dependent, some are universal; in this paper, the rules (and the corpus) are for German, but the approach suits other languages as well.
+			Each rule consists of a unique name, a premise, and a conclusion.
+			For development and maintenance reasons, arule is accompanied by a description, some pos itive example texts, and some negative example texts.
+			A positive example shows that the rule premise is satisfied and the conclusion that the two markables at hand are coreferential would be correct, whereas a negative example shows that the rule premise is not satisfied and theconclusion would indeed be incorrect for the ex ample.
+			The rule premise is a conjunction of (possibly negated) constraints; these can be constituent constraints (c-constraints) referring to featurevalues of one markable and interconstituent con straints (ic-constraints) referring to feature values of both markables that are to be tested for coreference.
+			Both types of constraints can be attribute-value equations.
+			The features used in coreference rules are listed in        ; the feature values for markables stem from a parser using a semantically oriented lexicon currently containing 14000 German lexemes (HaGenLex).A feature value can be a single type or a disjunc tion of types.
+			Furthermore, one can constructconstraints with predicates.
+			The most important predicates are given in        : they realize concepts from Dependency Grammar (de pend/2) and Government and Binding Theory (c-command/2) or define simple relationshipsbetween constituents (e. g. compatible-gend-n gend/2).The conclusion of a rule expresses a corefer ence relation with a semantic network (basedon the MultiNet formalism defined by Hel big (2001) which has been applied in several other projects, see (Hartrumpf, 1999; Knoll etal., 1998)).
+			For identity coreference, a rela tion named EQU (equivalence) leading from the anaphor (called c2 in rules)4 to the antecedent (called c1 in rules) suffices.Seven rules from the eighteen rules cur rently used are given in         .
+			The rule ident.gend_conflict would license a link between das Mddchen and sic in sentence (1).
+			The premise and conclusion can also be viewed as one attribute value matrix employing structure sharing for expressing ic-constraints.
+			2.2 Annotated corpus.
+			A corpus (a collection of German newspaper articles from the Sitddeutsche Zeitung) is anno tated for coreference according to the guidelinesfor the MUC coreference task adapted from En glish to German.
+			The annotations are inserted as SGML tags into the corpus, which is already marked up according to the Corpus Encoding Standard (Ide et al., 1996).
+			The annotation for sentence (1) is given as (2): (2) (s) (coref id=&amp;quot; 125t129&amp;quot; Kw) Das ( / w) (w)Madchen( /w) ( /coref) Kw) liest (/w) (coref id=&amp;quot; 143t147&amp;quot; Kw) die ( /w) (w)Zeitung( /w) ( / coref) Kw); (/w) (w)danachK/w) (w)gehtK/w) (coref ref=&amp;quot; 125t129&amp;quot; type=&amp;quot; ident&amp;quot; Kw) sie( /w) ( /coref) (w)mit ( /w) (coref ref=&amp;quot; 143t147&amp;quot; type=&amp;quot; ident&amp;quot; Kw) ihr ( /w) ( /coref) (w)insK/w) (w)BilroK/w) (w).K/w)(/s)
+	
+	
+			3.1 Algorithm overview.
+			To resolve coreference ambiguities, one must find the partition of markables that corresponds to the correct coreference equivalence relation.
+			The search space is huge since the number of different partitions for n markables is equal to the Bell number B(n).
+			These numbers are also called Exponential numbers, see (Bell, 1934); some example values are: B(1) = 1, B(2) = 2, B(3) = 5, B(4) = 15, B(5) = 52, B(10) = 4R.ules for cataphora are also among the coreference rules.
+			In such rules, cl corresponds to the cataphor and c2 to the postcedent.
+			feature name use* descriptionCAT syntactic category en (noun), perspro (personal pronoun), possdet (pos sessive determiner), reflpro (reflexive pronoun), etc.) ENTITY ic semantic classification comprising the semantic sort (feature SORT) andsemantic Boolean features (currently 16, all defined for the MultiNet (mul tilayered extended semantic network) formalism by Helbig (2001)) ETYPE ic extension type (0 (an individual), 1 (a set), 2 (a set of sets), etc.), part of the complex feature LAY containing other extensional and intensional layer features like CARD (cardinality) GEND ic gender (syntactic; masculine, feminine, and neuter in German) NUM c, ic number (syntactic; singular and plural in German) PERS c, ic person (only tested jointly with the other agreement features GEND and NUM) PROPER proper noun (Boolean feature) REFER c, ic reference type (determinate, indeterminate; based on article choice) SENTENCE-ID ic sentence number in text SORT semantic sort (45 hierarchically ordered values, 15 of them for nominal concepts) *c means: feature is used in c-constraints; ic means: feature is used in ic-constraints.
+			       : Features in coreference rules predicate name/arity description =/2 c-command/2 compatible-gend-n-gend/2 The values are unifiable.
+			The first argument (a constituent) c-commands the second.The grammatical gender value at the first argument position is compatible with the natural gender value at the second argument posi tion.
+			The first argument (a possessive determiner) can refer to the second argument (a constituent).
+			The arguments (two constituents) are related by a copula.
+			The first argument (a constituent) depends on the second.
+			Numerical difference between two feature values is greater than a third value.
+			Two constituents containing (possibly complex) names match.
+			The argument (a feature value) is maximal, i. e., a leaf node in the type hierarchy.
+			One argument (a constituent) is a compound suffix of the other argument (a constituent) or both arguments have the same nominal head.
+			compatible-possdet/2 copula-related/2 depend/2 difference&gt;/3 matching-names/2 maximal/1 similar-nouns/2        : Predicates in coreference rules 115975, B(15) 1.38x 109, B(20) 5.17x 1013, B(25) 4.64 x 1018.The evaluated algorithm for coreference resolution is implemented as the COR,UDIS sys tem (COreference R,Ules with Disambiguation Statistics) and works as follows: 1.
+			The markables in a given text are iden-.
+			tified.
+			For this task and for gaining thesyntactico-semantic feature values to be ac cessed by rules in step 2, each sentence inthe text is parsed independently.
+			If a sentence parse fails, a chunk parse is gener desc.
+			exam.
+			id ident.n_perspro pre.
+			(el CAT) n (e2 cm) perspro (= (el Num) (e2 NUM)) (= (C1 PERS) (C2 PERS)) (= (C1 GEND) (C2 GEND)) (= (C1 ENTITY) (C2 ENTITY)) (not (c-command el e2)) (not (c-command (2 el)) desc.
+			same gender - anaphoric exam.
+			Per Mann liest [das Buch]i lir versteht [es] nicht.
+			id ident.perspro_n pre.
+			(Ci CAT) perspro (e2 eAT) n (= (el Num) (e2 NUM)) (= (C1 PERS) (C2 PERS)) (= (C1 GEND) (C2 GEND)) (= (C1 ENTITY) (C2 ENTITY)) (not (c-command cl c2)) (not (c-command c2 Ci)) (difference&gt; (C1 SENTENCETD) (C2 SENTENCE-ID) 0) desc.
+			personal pronoun - cataphoric exam.
+			[Sie]i will die Welt andern; und Mie Wissenschaftlerin]i macht sich frisch ans Werk.
+			id ident.perspro_perspro pre.
+			(Ci CAT) perspro (C2 CAT) perspro (= (el Num) (e2 NUM)) (= (Cl PERS) (C2 PERS)) (= (C1 GEND) (C2 GEND)) (= (C1 ENTITY) (C2 ENTITY)) (not (c-command cl c2)) (not (c-command c2 Ci)) desc.
+			same gender - anaphoric exam.
+			[Sie]i schreiben viel.
+			Und [sie] lesen viel.
+			id ident.gend_conflict pre.
+			(Ci CAT) n (c2 CAT) perspro (= (el Num) (e2 NUM)) (= (C1 PERS) (C2 PERS)) (not (= (C1 GEND) (C2 GEND))) (compatible-gencl-n-gencl (C2 GEND) (C1 N-GEND)) (not (c-command cl c2)) (not (c-command c2 Ci)) desc.
+			A personal pronoun refers to an NY with a nominal head and conflicting grammatical gender.
+			exam.
+			[Das Madchen]i lacht.
+			[Sie]i war stets so.
+			ident.nuna_conflict (el CAT) n (Cl PROPER) noproper (C2 CAT) n (e2 PROPER) noproper (not (= (el Nem) (e2 Nem))) (= (C1 =TYE) (C2 ETYPE)) (= (C1 ENTITY) (C2 ENTITY)) (not (c-command el e2)) (not (c-command C2 el))different number values (one aggregate and one nonaggre gate but equal etype values) Per Vorstand]i entschied riber die Entlassungen.
+			[these Manner ]i hatten keine Skrupel.
+			ident.sinailar_sem (Ci CAT) n (Ci soul]) co (c2 CAT) n (c2 Ithrhit) det (e2 PROPER) noproper (= (el Num) (e2 Nutt)) (similar-nouns cl c2) (difference&gt; (C1 SENTENCE-ID) (C2 SENTENCE-ID) 0)two semantically similar NPs.
+			Cases contained in similar nouns: compound and base noun; synonyms.
+			Mer Buchautor]i ...
+			[der Autor]i Mie Grol3stadte]i Mie Stadte]i [Krankenhaus]i [Klinik]i ident.compatible_sem (Ci CAT) n (Ci soul]) co (C1 PROPER) noproper (e2 CAT) n (e2 Ithrhit) det (e2 PROPER) noproper (= (el NUM) (C2 NUM)) (= (C1 =TYE) (C2 ETYPE)) (= (C1 ENTITY) (C2 ENTITY)) (not (similar-nouns cl c2)) (maximal (C1 ENTITY)) (maximal (c2 ENTITY)) (difference&gt; (C1 SENTENCE-ID) (C2 SENTENCE-ID) 0) two semantically compatible NPs.
+			Mie Tater] Mie Manner] i [einer hollandischen Fanailie]i [die entfiihrte Deutsche]j id pre.
+			desc.
+			exam.
+			id pre.
+			desc.
+			exam.
+			id pre.
+			        : Example coreference rules ated.
+			(In such cases, constraints in rule premises that involve predicates requiring full parses (e. g. c-command) are ignored instep 2.)
+			For details on the parser, see (Hel big and Hartrumpf, 1997).
+			2.
+			All possible coreference rule activations.
+			that link an anaphor to an antecedent candidate are collected.
+			This is done by test ing rule premises on all markable pairs (constituent c1 must precede constituent c2).
+			For two markables, one rule (at most) is activated since the rules have disjoint premises for real text purposes.
+			3.
+			For each anaphor, one antecedent candi-.
+			date is selected.
+			This decision is based on rule statistics gained from the annotatedtraining corpus.
+			The sparse data prob lem is alleviated by backed-off estimation (see for example (Katz, 1987; Collins and Brooks, 1995)).The algorithm deals with three sets of ob jects: first, the possible anaphors (all identified markables); second, the candidate antecedentsfor each possible anaphor (all preceding markables and the artificial nonreferable mark able explained below); third, the coreference rules.
+			The nonreferable markable is used asthe artificial anaphor of a nonreferring markable in order to represent all alternative references for a possible anaphor as a pair.
+			For first mentions, the disambiguation algorithm shouldselect a coreference with the nonreferable mark able as antecedent.
+			Currently, one rule licenses the nonreferable markable as antecedent.
+			But it might be useful to apply more finely grained rules and not just one rough licensing rule, asindicated by promising research results for definite descriptions referring to discourse-new en tities (see (Vieira and Poesio, 2000)).
+			3.2 Disambiguating between.
+			antecedent candidates Step 3 of the algorithm given in section 3.1 isthe most interesting one and needs some expla nation.
+			Leaving the issue of search algorithms aside for a moment, all possible and licensed partitions of identified markables are generated,filtered, and finally scored using estimated prob abilities.
+			The partitions are generated incrementallystarting with the first possible anaphor in a sin gleton partition element.
+			For each antecedent candidate licensed by a coreference rule instep 2, an extended partition with this an tecedent in the same partition element as the anaphor in question is introduced.
+			This process is iterated until all possible anaphors have been investigated.
+			Partitions are filtered out if they violate one of the following distance and compatibility constraints: sentence distance The distance between the anaphor and the antecedent measured in sentences must be below the limit for the linking coreference rule.
+			These limits have been learned from the training corpus.
+			paragraph distance The distance betweenthe linked markables measured in para graphs must be below the limit learned for the licensing coreference rule.
+			Typically, pronominal anaphoras can span only two paragraphs, while for example coreferences between named entities can span arbitrary distances.
+			semantic compatibility All markables in apartition element must bear compatible se mantics (unifiable ENTITY and LAY feature values, see        ).Because of the huge search space (see sec tion 3.1), the generation of partitions and thefiltering is intertwined in a heuristic search al gorithm so that impossible alternatives in thesearch tree are pruned early.
+			Also the scor ing described below is done during the search so that alternatives with low (bad) scores can be delayed and possibly discarded early by the search algorithm.
+			The score for a partition is constructed as the sum of estimated probabilities for addingthe possible anaphor in currently under inves tigation to one of the antecedent candidates C = Kei, e2, , ek).
+			The candidates are orderedby distance; each ci is a feature structure rep resenting the parse result from algorithm step 1for the corresponding markable.
+			Each coreference between in and ci is licensed by a coreference rule ri so that this coreference alterna tive can be represented as the triple (m, In order to generalize from the token-based representation (rn, ci,ri) and to make usefulstatistics from an annotated corpus, an ab straction function a is applied that abstracts from the given anaphor, antecedent candidate, and linking coreference rule to a type-based representation.
+			The abstraction function inequation (3) turned out to be a good compro mise between limited sparseness of statistical matrices and distinctiveness for disambiguation purposes: It reduces a coreference alternative (m, ci,ri) to the candidate antecedent position i and the licensing coreference rule a(m, ci, ri) := (i,ri) (3) Let ai be the abstracted coreference alternative a(m, c, ri) and A be the list(al, a2, , ak) of abstracted coreference alter natives for the possible anaphor in. Then, the probability that ai corresponds to the closestcorrect antecedent for in is estimated as the rel ative frequency rf (i, A): rf (i, A) := kf (i, A) (4) f (1, A) 1=1 The          uses the statistical values f (i, A), which count how many times in the annotatedtraining corpus the abstracted coreference alter native ai wins as the one with the closest correctantecedent in the context of abstracted corefer ence alternatives A. Further experiments have shown that looking at more than 5 antecedent candidates does not improve disambiguation results.
+			Therefore, k is reduced to 5 if necessary.
+			Backed-off estimation can alleviate sparse data problems.
+			The basic idea is that if for a context A no statistical values are known, they are estimated by looking at increasingly smaller parts of A until statistical values are found.
+			Onemight call such a backed-off estimation backed off estimation over alternatives.
+			Backed-off estimation as defined by equations (5) to (7) is applied in the coreference resolution method when all counts f (i, A) are zero and f3 (i, A) is calculated for j = 1.
+			The parameter j is increased by one until one of the f3 (i, A) becomes positive (then, the rP (i, A) are used as scores for the antecedent candidates) or j reaches k   1 (in this case, allcandidates receive equal scores).
+			If the backoff process stops at j = b, the relative frequencies rfb(i, A) are used as estimates for the con ditional probabilities P(i1C) that ci is the closest correct antecedent given antecedent candidates C: P(ir) rfb (i, A) (8) One could add other scores to those based on estimated probabilities.
+			In the literature,syntactic parallelism between anaphor and an tecedent (based on syntactic case), semanticparallelism (based on semantic roles), and max imality of antecedent NPs are proposed among others.
+			In several experiments, such additional scores have been applied for certain rules (e. g. rules involving pronouns).
+			Small improvements have been achieved, but this topic has not been investigated completely yet.
+	
+	
+			Evaluation results from 12-fold cross-validation for 502 anaphors5 are listed in        .
+			The standard definitions for recall and precision used in information retrieval are as follows: #true positives true positives   #false negatives #true positives (10) true positives   #false positives For coreference resolution, true positives are correct coreference links found, false negatives are correct coreference links not reported, andfalse positives are incorrect coreference links re ported.
+			Vilain et al.
+			(1995) illustrate that thesedefinitions sometimes yield counter-intuitive re sults for coreference evaluations and proposemodel-theoretic definitions of recall and preci sion.
+			The values in         are calculated with these modified definitions.
+			There are three different evaluation results.
+			The first is the full coreference task.
+			The secondone could be called markable-relative evalu ation since the numbers are calculated only forthe markables that have been successfully iden tified (in some sense, this concentrates on the coreference relation aspect of the coreference task).
+			And the final evaluation result comesfrom a baseline model: &amp;quot;always select the clos est antecedent candidate that is licensed by a rule and fulfills the distance and compatibility constraints from section 3.2&amp;quot;.
+	
+	
+			There are many recent approaches to this prob lem, e. g. syntax-based approaches (Lappin and Leass, 1994), cooccurrence-based approaches(Dagan and Itai, 1990), machine-learning approaches (Connolly et al., 1994; Aone and Ben nett, 1996; Soon et al., 1999), uncertainty reasoning approaches (Mitkov, 1995; Mitkov, 1997), and robust knowledge-poor approaches (Kennedy and Boguarev, 1996; Baldwin, 1997; 5The number of markables that are coreferential with some other markable ranges from 28 to 63 for the foldsbecause the texts in the evaluation corpus were not bro ken up for cross-validation in order to yield statistical data about whole texts.
+			Therefore the training corpussize varied between 439 and 474 and the test corpus be tween 28 and 63 during the cross-validation.
+			fo(i, A) f (i, A) f3(i, A) := fi-&apos; ajeA/CA,011=k j for 1 &lt; j &lt; k   1 rf (i, A) := P (i, A) 1=i for 0 &lt;j&lt;k-1 := P := (9) method evaluation results in percentage coreference (incl.
+			markable identification) markable-relative coreference evaluation baseline: always closest candidate recall precision F-measure 55 82 66 76 82 79 46 42 44 F-measure is calculated with equal weight to recall r and precision p as 2r         : Coreference resolution results r p   Mitkov, 1998b; Mitkov, 1999).6 The following two systems tackle the MUC coreference task and bear some similarities to COR,UDIS.
+			The system described by Cardie and Wagstaff (1999) resembles the presented system in that it views coreference resolution in a text as partitioning (or clustering).
+			The difference in terms of clustering is that the first system usesgreedy clustering while COR,UDIS optimizes us ing global scores.
+			The fundamental difference isthat the first system partitions based on a simi larity function over markable representations as attribute value pairs, while COR,UDIS applies linguistic rules to license possible coreference links and applies corpus statistics to choose one link because typically alternatives exist.The SWIZZLE system (Harabagiu and Maiorano, 2000) applies heuristics and heuristic or dering by bootstrapping to pick one antecedent per anaphor; in the COR,UDIS system, rules license alternatives and one is selected based on a learned statistical model.
+			COR,UDIS usessentence parsing, SWIZZLE as an intention ally knowledge-poor approach only approximate phrasal parsing.
+	
+	
+			I have presented a disambiguation methodwhich combines traditional linguistically moti vated rules and a backed-off statistical model derived form an annotated corpus in a powerfulway.
+			Comparison to other approaches is diffi cult since evaluation results for German are not available for the MUC coreference task.
+			But theresults presented seem to be competitive corn 6 The cited works deal only with pronominal.
+			anaphors, except the approaches by Aone and Bennett (1996), Baldwin (1997), Connolly et al.
+			(1994), and Soon et al.
+			(1999).
+			pared to the 60% F-measure results for English in MUC7.
+			Additional filtering conditions, additionalscores (preferences), and features from Center ing Theory (Grosz et al., 1995) might improve the results reported in this paper significantly.
+			The use of a large lexical-semantic network likeGermaNet would solve some problematic coref erence cases.
+			More sophisticated evaluationscentered around different error types as recom mended by Mitkov (1998a) and larger data sets are planned for the future.
+	

@@ -1,0 +1,282 @@
+[
+    {
+        "Code": "T1",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "2090",
+                "2177"
+            ]
+        ],
+        "Text": "Figure 1: Statistics from 1993 Japanese newswire (NIKKEI), 79,326,406 characters total.",
+        "RefType": "Direct",
+        "Type": "Figure",
+        "Num": "1"
+    },
+    {
+        "Code": "T2",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "3319",
+                "3451"
+            ]
+        ],
+        "Text": "Although kanji sequences are difficult to seg ment, they can comprise a significant portion of Japanese text, as shown in Figure 1.",
+        "RefType": "Direct",
+        "Type": "Figure",
+        "Num": "1"
+    },
+    {
+        "Code": "T3",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "4883",
+                "5035"
+            ]
+        ],
+        "Text": "Figure 2: Collecting evidence for a word boundary - are the non-straddling n-grams 8 1 and 82 more frequent than the straddling n-grams t 1, t2, and t3?",
+        "RefType": "Direct",
+        "Type": "Figure",
+        "Num": "2"
+    },
+    {
+        "Code": "T4",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "5610",
+                "5720"
+            ]
+        ],
+        "Text": "We illustrate its use with an example (see Then, we average the contributions of each n-gram order: Figure 2).",
+        "RefType": "Direct",
+        "Type": "Figure",
+        "Num": "2"
+    },
+    {
+        "Code": "T5",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "7356",
+                "7441"
+            ]
+        ],
+        "Text": "The second condition is necessary to allow for single-character words (see Figure 3).",
+        "RefType": "Direct",
+        "Type": "Figure",
+        "Num": "3"
+    },
+    {
+        "Code": "T6",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "8408",
+                "8684"
+            ]
+        ],
+        "Text": "At the morp heme level, stems are divid ed from their affixe s. For exam ple, altho ugh both naga no (Naga no) and shi (city) can appea r as indivi dual words , nagano shi (Nag ano city) is brack eted as [[naga no][s hi]], since here shi Figure 3: Determining word boundaries.",
+        "RefType": "Direct",
+        "Type": "Figure",
+        "Num": "3"
+    },
+    {
+        "Code": "T7",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "9530",
+                "9620"
+            ]
+        ],
+        "Text": "Our experimental data was drawn from 150 megabytes of 1993 Nikkei newswire (see Figure I).",
+        "RefType": "Direct",
+        "Type": "Figure",
+        "Num": "1"
+    },
+    {
+        "Code": "T8",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "13564",
+                "13759"
+            ]
+        ],
+        "Text": "5http://cactus.aistnara.ac.jp/lab/nltlchasen.html 6http://pine.kuee.kyoto-u.ac.jp/nl-resource/juman-e.html Word accuracy 90 CHASEN JUMAN opllnizt oplnuo recall opiJTozt F Figure 4: Word accuracy.",
+        "RefType": "Direct",
+        "Type": "Figure",
+        "Num": "4"
+    },
+    {
+        "Code": "T9",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "17763",
+                "17808"
+            ]
+        ],
+        "Text": "Figure 5 shows our morpheme accuracy results.",
+        "RefType": "Direct",
+        "Type": "Figure",
+        "Num": "5"
+    },
+    {
+        "Code": "T10",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "19106",
+                "19174"
+            ]
+        ],
+        "Text": "Figure 6: Examples of word, morpheme, and compatible-bracket errors.",
+        "RefType": "Direct",
+        "Type": "Figure",
+        "Num": "6"
+    },
+    {
+        "Code": "T11",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "22500",
+                "22595"
+            ]
+        ],
+        "Text": "Figure 7: Compatible brackets and all-compatible bracket rates when word accuracy is optimized.",
+        "RefType": "Direct",
+        "Type": "Figure",
+        "Num": "7"
+    },
+    {
+        "Code": "T12",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "22787",
+                "22855"
+            ]
+        ],
+        "Text": "Figure 8: Relative word accuracy as a function of training set size.",
+        "RefType": "Direct",
+        "Type": "Figure",
+        "Num": "8"
+    },
+    {
+        "Code": "T13",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "24551",
+                "24651"
+            ]
+        ],
+        "Text": "As shown in Figure 8, relative word performance was not degraded and sometimes even slightly better.",
+        "RefType": "Direct",
+        "Type": "Figure",
+        "Num": "8"
+    },
+    {
+        "Code": "T14",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "24685",
+                "24906"
+            ]
+        ],
+        "Text": "In fact, from the last column of Figure 8 we see that even if our algorithm has access to only five anno tated sequences when Juman has access to ten times as many, we still achieve better precision and better F measure.",
+        "RefType": "Direct",
+        "Type": "Figure",
+        "Num": "8"
+    },
+    {
+        "Code": "T15",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "25443",
+                "25519"
+            ]
+        ],
+        "Text": "Figure 9 shows that in fact both contribute to producing good segmentations.",
+        "RefType": "Direct",
+        "Type": "Figure",
+        "Num": "9"
+    },
+    {
+        "Code": "T16",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "25928",
+                "26068"
+            ]
+        ],
+        "Text": "Figure 9: Entries indicate whether best performance is achieved using the local maximum condition (M), the threshold condition (T), or both.",
+        "RefType": "Direct",
+        "Type": "Figure",
+        "Num": "9"
+    },
+    {
+        "Code": "T17",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "21015",
+                "21048"
+            ]
+        ],
+        "Text": "See Fig ure 6 for some examples.",
+        "RefType": "Direct",
+        "Type": "Figure",
+        "Num": "6"
+    },
+    {
+        "Code": "T18",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "20064",
+                "20146"
+            ]
+        ],
+        "Text": "Fi gure 7 depic ts the comp atible brack ets and all comp atible brack ets rates.",
+        "RefType": "Direct",
+        "Type": "Figure",
+        "Num": "7"
+    },
+    {
+        "Code": "T19",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "16982",
+                "16991"
+            ]
+        ],
+        "Text": "Figures 4",
+        "RefType": "Direct",
+        "Type": "Figure",
+        "Num": "4"
+    },
+    {
+        "Code": "T20",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "16992",
+                "17132"
+            ]
+        ],
+        "Text": "and 8 show word accuracy for Chasen, Juman, and our algorithm for parameter settings optimizing word precision, recall, and F-measure rates.",
+        "RefType": "Direct",
+        "Type": "Figure",
+        "Num": "8"
+    }
+]

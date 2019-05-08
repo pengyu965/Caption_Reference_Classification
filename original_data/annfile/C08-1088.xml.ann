@@ -1,0 +1,84 @@
+T1	Reference 17201 17412	Another interesting example is shown in Figure 1(b), where the base-NP of the second entity  town  is a possessive NP and there is no relationship between the entities  one  and  town  defined in the ACE corpus.
+A1	RefType T1 Direct
+A2	Type T1 Figure
+A3	Num T1 1
+T2	Reference 16835 17025	For example, in the sentence   bought one of town s two meat- packing plants  as illustrated in Figure 1(a), the constituents before the headword  plants  can be removed from the parse tree.
+A4	RefType T2 Direct
+A5	Type T2 Figure
+A6	Num T2 1
+T3	Reference 18563 18719	In Figure 1(c) we show a sentence  one of about 500 people nominated for   , where there exists a  DISC  relationship between the entities  one  and  people
+A7	RefType T3 Direct
+A8	Type T3 Figure
+A9	Num T3 1
+T4	Reference 19997 20049	Reduction of conjuncts for NP coordination Figure 1.
+A10	RefType T4 Direct
+A11	Type T4 Figure
+A12	Num T4 1
+T5	Reference 20798 20962	Figure 1(d) shows a sentence    maintain rental property he owns in the state , where the  ART.User-or-Owner  relation holds between the entities  property  and  he
+A13	RefType T5 Direct
+A14	Type T5 Figure
+A15	Num T5 1
+T6	Reference 21595 21665	As illus trated in Figure 1(e), the NP coordination in the Qian et al.
+A16	RefType T6 Direct
+A17	Type T6 Figure
+A18	Num T6 1
+T7	Reference 21994 22226	In order to effectively capture entity-related semantic features, and their combined features as well, especially bi-gram or tri-gram features, we build an Entity-related Semantic Tree (EST) in three ways as illustrated in Figure 2.
+A19	RefType T7 Direct
+A20	Type T7 Figure
+A21	Num T7 2
+T8	Reference 26519 26651	The entity features can be attached under the top node, the entity nodes, or directly combined with the entity nodes as in Figure 1.
+A22	RefType T8 Direct
+A23	Type T8 Figure
+A24	Num T8 1
+T9	Reference 27619 27778	Table 1 evaluates the contributions of different kinds of constituent dependencies to extraction performance on the 7 relation types of the ACE RDC 2004 corpus
+A25	RefType T9 Direct
+A26	Type T9 Table
+A27	Num T9 1
+T10	Reference 27779 27843	using the convolution parse tree kernel as depicted in Figure 1.
+A28	RefType T10 Direct
+A29	Type T10 Figure
+A30	Num T10 1
+T11	Reference 31845 32093	We compare in Table 2 the performance of Unified Parse and Semantic Trees with different kinds of Entity Semantic Tree setups using standard convolution tree kernel, while the SPT and DSPT with only entity-type information are listed for reference.
+A31	RefType T11 Direct
+A32	Type T11 Table
+A33	Num T11 2
+T12	Reference 32906 33055	Tree setups P(%) R(%) F SPT 76.3 59.8 67.1 DSPT 77.4 65.4 70.9 UPST (BOF) 80.4 69.7 74.7 UPST (FPT) 80.1 70.7 75.1 UPST (EPT) 79.9 70.2 74.8 Table 2.
+A34	RefType T12 Direct
+A35	Type T12 Table
+A36	Num T12 2
+T13	Reference 33681 33801	Tree setups P(%) R(%) F CS-SPT over SPT3 1.5 1.1 1.3 DSPT over SPT 1.1 5.6 3.8 UPST (FPT) over SPT 3.8 10.9 8.0 Table 3.
+A37	RefType T13 Direct
+A38	Type T13 Table
+A39	Num T13 3
+T14	Reference 33835 34046	Improvements of different tree setups over SPT on the ACE RDC 2004 corpus Finally, Table 4 compares our system with other state-of-the-art kernel-based systems on the 7 relation types of the ACE RDC 2004 corpus.
+A40	RefType T14 Direct
+A41	Type T14 Table
+A42	Num T14 4
+T15	Reference 34769 35130	composite kernel 83.0 72.0 77.1 Zhou et al., (2007): composite kernel 82.2 70.2 75.8 Zhang et al., (2006): composite kernel 76.1 68.4 72.1 Zhao and Grishman, (2005):4 composite kernel 69.2 70.5 70.4 Ours: CTK with UPST 80.1 70.7 75.1Zhou et al., (2007): context sensitive CTK with CS-SPT 81.1 66.7 73.2 Zhang et al., (2006): CTK with SPT 74.1 62.4 67.7 Table 4.
+A43	RefType T15 Direct
+A44	Type T15 Table
+A45	Num T15 4
+T16	Reference 35164 35298	Comparison of different systems on the ACE RDC 2004 corpus In Table 3 we summarize the improvements of different tree setups over SPT.
+A46	RefType T16 Direct
+A47	Type T16 Table
+A48	Num T16 3
+T17	Reference 35665 35818	Shortest-enclosed Path Tree from P/R/F (81.1/6.7/73.2) of Dynamic Context-Sensitive Shortest- enclosed Path Tree according to Table 2 (Zhou et al., 2007)
+A49	RefType T17 Direct
+A50	Type T17 Table
+A51	Num T17 2
+T18	Reference 24783 24823	PRO (c) Entity-Paired Tree(EPT)Figure 2.
+A52	RefType T18 Direct
+A53	Type T18 Figure
+A54	Num T18 2
+T19	Reference 30073 30181	n our experimentations, SVMlight (Joachims, 1998) with the tree kernel function (75.0) (53.7) (62.6) Table 1
+A55	RefType T19 Direct
+A56	Type T19 Table
+A57	Num T19 1
+T20	Reference 30215 30579	Contribution of constituent dependencies in respective mode (inside parentheses) and accumulative mode (outside parentheses) The table shows that the final DSPT achieves the best performance of 77.4%/65.4%/70.9 in precision/recall/F-measure respectively after applying all the dependencies, with the increase of F-measure by 8.2 units compared to the baseline MCT.
+A58	RefType T20 Indirect
+A59	Type T20 Table
+A60	Num T20 1
+T21	Reference 31032 31273	This table also shows that: (1) Both modification within base-NPs and modification to NPs contribute much to performance improvement, acquiring the increase of F- measure by 4.4/2.4 units in mode M1 and 4.4/2.3 units in mode M2 respectively.
+A61	RefType T21 Indirect
+A62	Type T21 Table
+A63	Num T21 1

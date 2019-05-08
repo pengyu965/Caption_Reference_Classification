@@ -1,0 +1,184 @@
+[
+    {
+        "Code": "T1",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "4658",
+                "4666"
+            ]
+        ],
+        "Text": "Figure 1",
+        "RefType": "Direct",
+        "Type": "Figure",
+        "Num": "1"
+    },
+    {
+        "Code": "T2",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "5200",
+                "5208"
+            ]
+        ],
+        "Text": "Figure 2",
+        "RefType": "Direct",
+        "Type": "Figure",
+        "Num": "2"
+    },
+    {
+        "Code": "T3",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "5563",
+                "5571"
+            ]
+        ],
+        "Text": "Figure 1",
+        "RefType": "Direct",
+        "Type": "Figure",
+        "Num": "1"
+    },
+    {
+        "Code": "T4",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "6116",
+                "6124"
+            ]
+        ],
+        "Text": "Figure 2",
+        "RefType": "Direct",
+        "Type": "Figure",
+        "Num": "2"
+    },
+    {
+        "Code": "T5",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "7512",
+                "7520"
+            ]
+        ],
+        "Text": "Figure 3",
+        "RefType": "Direct",
+        "Type": "Figure",
+        "Num": "3"
+    },
+    {
+        "Code": "T6",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "9047",
+                "9056"
+            ]
+        ],
+        "Text": "Figure 3:",
+        "RefType": "Direct",
+        "Type": "Figure",
+        "Num": "3"
+    },
+    {
+        "Code": "T7",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "13781",
+                "13789"
+            ]
+        ],
+        "Text": "Figure 4",
+        "RefType": "Direct",
+        "Type": "Figure",
+        "Num": "4"
+    },
+    {
+        "Code": "T8",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "14257",
+                "14265"
+            ]
+        ],
+        "Text": "Figure 4",
+        "RefType": "Direct",
+        "Type": "Figure",
+        "Num": "4"
+    },
+    {
+        "Code": "T9",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "15372",
+                "15380"
+            ]
+        ],
+        "Text": "Figure 5",
+        "RefType": "Direct",
+        "Type": "Figure",
+        "Num": "5"
+    },
+    {
+        "Code": "T10",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "16014",
+                "16022"
+            ]
+        ],
+        "Text": "Figure 5",
+        "RefType": "Direct",
+        "Type": "Figure",
+        "Num": "5"
+    },
+    {
+        "Code": "T11",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "16538",
+                "16546"
+            ]
+        ],
+        "Text": "Figure 6",
+        "RefType": "Direct",
+        "Type": "Figure",
+        "Num": "6"
+    },
+    {
+        "Code": "T12",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "20091",
+                "20099"
+            ]
+        ],
+        "Text": "Figure 7",
+        "RefType": "Direct",
+        "Type": "Figure",
+        "Num": "7"
+    },
+    {
+        "Code": "T13",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "20445",
+                "20453"
+            ]
+        ],
+        "Text": "Figure 7",
+        "RefType": "Direct",
+        "Type": "Figure",
+        "Num": "7"
+    }
+]

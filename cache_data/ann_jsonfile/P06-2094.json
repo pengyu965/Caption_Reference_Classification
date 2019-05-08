@@ -1,0 +1,156 @@
+[
+    {
+        "Code": "T1",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "3811",
+                "3871"
+            ]
+        ],
+        "Text": "Figure 1 describes the components and how this system works.",
+        "RefType": "Direct",
+        "Type": "Figure",
+        "Num": "1"
+    },
+    {
+        "Code": "T2",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "4591",
+                "4600"
+            ]
+        ],
+        "Text": "Figure 1.",
+        "RefType": "Direct",
+        "Type": "Figure",
+        "Num": "1"
+    },
+    {
+        "Code": "T3",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "9944",
+                "9953"
+            ]
+        ],
+        "Text": "Figure 2.",
+        "RefType": "Direct",
+        "Type": "Figure",
+        "Num": "2"
+    },
+    {
+        "Code": "T4",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "11799",
+                "11889"
+            ]
+        ],
+        "Text": "Figure 2 shows examples of the discovered patterns for the merger and acquisition topic.",
+        "RefType": "Direct",
+        "Type": "Figure",
+        "Num": "2"
+    },
+    {
+        "Code": "T5",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "12162",
+                "12312"
+            ]
+        ],
+        "Text": "For example, the expressions in Figure 2 are identified as paraphrases by this method; so these three patterns will be placed in the same pattern set.",
+        "RefType": "Direct",
+        "Type": "Figure",
+        "Num": "2"
+    },
+    {
+        "Code": "T6",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "12638",
+                "12751"
+            ]
+        ],
+        "Text": "For example, no synset covers any combinations of the main words in Figure 2, namely buy , acquire and merger",
+        "RefType": "Direct",
+        "Type": "Figure",
+        "Num": "2"
+    },
+    {
+        "Code": "T7",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "16296",
+                "16305"
+            ]
+        ],
+        "Text": "Figure 3.",
+        "RefType": "Direct",
+        "Type": "Figure",
+        "Num": "3"
+    },
+    {
+        "Code": "T8",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "20277",
+                "20324"
+            ]
+        ],
+        "Text": "Table 1 shows the usefulness evaluation result.",
+        "RefType": "Direct",
+        "Type": "Table",
+        "Num": "1"
+    },
+    {
+        "Code": "T9",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "21802",
+                "21810"
+            ]
+        ],
+        "Text": "Table 1.",
+        "RefType": "Direct",
+        "Type": "Table",
+        "Num": "1"
+    },
+    {
+        "Code": "T10",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "22955",
+                "23004"
+            ]
+        ],
+        "Text": "Table 2 shows the correctness evaluation results.",
+        "RefType": "Direct",
+        "Type": "Table",
+        "Num": "2"
+    },
+    {
+        "Code": "T11",
+        "Entity": "Reference",
+        "Span": [
+            [
+                "26045",
+                "26053"
+            ]
+        ],
+        "Text": "Table 2.",
+        "RefType": "Direct",
+        "Type": "Table",
+        "Num": "2"
+    }
+]

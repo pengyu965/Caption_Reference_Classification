@@ -1,0 +1,522 @@
+[
+    {
+        "Text": "\nText Segmentation Using Reiteration and Collocation\n\t\n\t\tA method is presented for segmenting text into subtopic areas.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The proportion of related pairwise words is calculated between adjacent windows of text to determine their lexical similarity.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The lexical cohesion relations of reiteration and collocation are used to identify related words.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "These relations are automatically located using a combination of three linguistic features: word repetition, collocation and relation weights.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "This method is shown to successfully detect known subject changes in text and corresponds well to the segmentations placed by test subjects.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Many examples of heterogeneous data can be found in daily life.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The Wall Street Journal archives, for example, consist of a series of articles about different subject areas.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Segmenting such data into distinct topics is useful for information retrieval, where only those segments relevant to a user's query can be retrieved.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Text segmentation could also be used as a pre-processing step in automatic summarisation.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Each segment could be summarised individually and then combined to provide an abstract for a document.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Previous work on text segmentation has used term matching to identify clusters of related text.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Salton and Buckley (1992) and later, Hearst (1994) extracted related text pmtions by matching high frequency terms.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Yaari ( 1997) segmented text into a hierarchical structure, identifying sub-segments of larger segments.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Ponte and Croft ( 1997) used word co-occurrences to expand the number of terms for matching.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Reynar ( 1994) compared all Lindsay J. Evett Department of Computing Nottingham Trent University Nottingham NGI 4BU, UK lje@doc.ntu.ac.uk words across a text rather than the more usual nearest neighbours.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "A problem with using word repetition is that inappropriate matches can be made because of the lack of contextual information (Salton et al., 1994).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Another approach to text segmentation is the detection of semantically related words.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Hearst (1993) incorporated semantic information derived from WordNet but in later work reported that this information actually degraded word repetition results (Hearst, 1994).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Related words have been located using spreading activation on a semantic network (Kozima, 1993), although only one text was segmented.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Another approach extracted semantic information from Roget's Thesaurus (RT).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Lexical cohesion relations (Halliday and Hasan, 1976) between words were identified in RT and used to construct lexical chains of related words in five texts (Morris and Hirst, 1991 ).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "It was reported that the lexical chains closely correlated to the intentional structure (Grosz and Sidner, 1986) of the texts, where the start and end of chains coincided with the intention ranges.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "However, RT does not capture all types of lexical cohesion relations.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "In previous work, it was found that collocation (a lexical cohesion relation) was under-represented in the thesaurus.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Furthermore, this process was not automated and relied on subjective decision making.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Following Morris and Hirst's work, a segmentation algorithm was developed based on identifying lexical cohesion relations across a text.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The proposed algorithm is fully automated, and a quantitative measure of the association between words is calculated.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "This algorithm utilises linguistic features additional to those captured in the thesaurus to identify the other types of lexical cohesion relations that can exist in text.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "1 Background Theory: Lexical Cohesion.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Cohesion concerns how words in a text are related.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The major work on cohesion in English was conducted by Halliday and Hasan (1976).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "An instance of cohesion between a pair of elements is referred to as a tie.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Ties can be anaphoric or cataphoric, and located at both the sentential and suprasentential level.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Halliday and Hasan classified cohesion under two types: grammatical and lexical.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Grammatical cohesion is expressed through the grammatical relations in text such as ellipsis and conjunction.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Lexical cohesion is expressed through the vocabulary used in text and the semantic relations between those words.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Identifying semantic relations in a text can be a useful indicator of its conceptual structure.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Lexical cohesion is divided into three classes: general noun, reiteration and collocation.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "General noun's cohesive function is both grammatical and lexical, although Halliday and Hasan's analysis showed that this class plays a minor cohesive role.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Consequently, it was not further considered.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Reiteration is subdivided into four cohesive effects: word repetition (e.g.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "ascent and ascent), synonym (e.g.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "ascent and climb) which includes near-synonym and hyponym, superordinate (e.g.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "ascent and task) and general word (e.g.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "ascent and thing).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The effect of general word is difficult to automatically identify because no common referent exists between the general word and the word to which it refers.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "A collocation is a predisposed combination of words, typically pairwise words, that tend to regularly co-occur (e.g.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "orange and peel).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "All semantic relations not classified under the class of reiteration are attributed to the class of collocation.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "To automatically detect lexical cohesion tics between pairwise words, three linguistic features were considered: word repetition, collocation and relation weights.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The first two methods represent lexical cohesion relations.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Word repetition is a component of the lexical cohesion class of reiteration, and collocation is a lexical cohesion class in its entirety.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The remaining types of lexical cohesion considered, include synonym and superordinate (the cohesive effect of general word was not included).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "These types can be identified using relation weights (Jobbins and Evett, 1998).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Word repetition: Word repetition ties in lexical cohesion are identified by same word matches and matches on inflections derived from the same stem.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "An inflected word was reduced to its stem by look\u00ad up in a lexicon (Keenan and Evett, 1989) comprising inflection and stem word pair records (e.g.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "\"orange oranges\").",
+        "Entity": "Normal"
+    },
+    {
+        "Text": ".",
+        "Entity": "Normal"
+    },
+    {
+        "Text": ".",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "o                                                      \n\t\t\t                                    .",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Relation Weights: Relation weights quantify the amount of semantic relation between words based on the lexical organisation of RT (Jobbins and Evett, 1995).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "A thesaurus is a collection of synonym groups, indicating that synonym relations are captured, and the hierarchical structure of RT implies that superordinate relations are also captured.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "An alphabetically-ordered index of RT was generated, referred to as the Thesaurus Lexicon (TLex).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Relation weights for pairwise words are calculated based on the satisfaction of one or more of four possible connections in TLex.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The proposed segmentation algorithm compares adjacent windows of sentences and determines their lexical similarity.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "A window size of three sentences was found to produce the best results.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Multiple sentences were compared because calculating lexical similarity between words is too fine (Rotondo, 1984) and between individual sentences is unreliable (Salton and Buckley, 1991).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Lexical similarity is calculated for each window comparison based on the proportion of related words, and is given as a normalised score.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Word repetitions are identified between identical words and words derived from the same stem.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "troughs placed subject change linguistic feature points located average std.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "dev.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "(out of 42 poss.)",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "word repetition 7.1 3.16 41 collocation (97.6%) word repetition 7.3 5.22 41 relation weights (97.6%) 41 Collocations are located by looking up word pairs in the collocation lexicon.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Relation weights are word repetition 8.5 3.62 (97.6%) calculated between pairwise words according to their location in RT.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The lexical similarity score indicates the amount of lexical cohesion demonstrated by two windows.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Scores plotted on a graph show a series of peaks (high scores) and troughs (low scores).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Low scores indicate a weak collocation 5.8 3.70 40 relation weights (95.2%) word repetition 40 collocation 6.4 4.72 (95.2%) relation weights 39 level of cohesion.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Hence, a trough signals a potential subject change and texts can be relation weights 7 4.23 (92.9%) segmented at these points.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "An investigation was conducted to determine whether the segmentation algorithm could reliably locate subject change in text.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Method: Seven topical articles of between 250 to 450 words in length were extracted from the World Wide Web.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "A total of 42 texts for test data were generated by concatenating pairs of these articles.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Hence, each generated text consisted of two articles.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The transition from the first article to the second represented a known subject change point.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Previous work has identified the breaks between concatenated texts to evaluate the performance of text segmentation algorithms (Reynar, 1994; Stairmand, 1997).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "For each text, the troughs placed by the segmentation algorithm were compared to the location of the known subject change point in that text.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "An error margin of one sentence either side of this point, determined by empirical analysis, was allowed.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "collocation 6.3 3.83 35 (83.3%)          /S>\n\t\t\t                                                                         \n\t\t\tDiscussion: The segmentation algorithm using the linguistic features word repetition and collocation in combination achieved the best result.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "A total of 41 out of a possible 42 known subject change points were identified from the least number of troughs placed per text (7.I).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "For the text where the known subject change point went undetected, a total of three troughs were placed at sentences 6, 11 and 18.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The subject change point occurred at sentence 13, just two sentences after a predicted subject change at sentence 11.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "In this investigation, word repetition alone achieved better results than using either collocation or relation weights individually.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The combination of word repetition with another linguistic feature improved on its individual result, where less troughs were placed per text.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "ECTION>\n\t\n\t\t\tThe objective of the current investigation was to determine whether all troughs coincide with a subject change.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The troughs placed by the algorithm were compared to the segmentations identified by test subjects for the same texts.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Method: Twenty texts were randomly selected for test data each consisting of approximately 500 words.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "These texts were presented to seven test subjects who were instructed to identify the sentences at which a new subject area commenced.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "No restriction was placed on the number of subject changes that could be identified.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Segmentation points, indicating a change of subject, were determined by the agreement of three or more test subjects (Litman ami Passonneau, 1996).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Adjacent segmentation points were treated as one point because it is likely that they refer to the same subject change.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The troughs placed by the segmentation algorithm were compared to the segmentation points identified by the test subjects.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "In Experiment 1, the top five approaches investigated identified at least 40 out of 42 known subject change points.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Due to that success, these five approaches were applied in this experiment.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "To evaluate the results, the information retrieval metrics precision and recall were used.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "These metrics have tended to be adopted for the assessment of text segmentation algorithms, but they do not provide a scale of correctness (Beeferman et al., 1997).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The degree to which a segmentation point was missed by a trough, for instance, is not considered.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Allowing an error margin provides some degree of flexibility.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "An error margin of two sentences either side of a segmentation point was used by Hearst (1993) and Reynar ( 1994) allowed three sentences.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "In this investigation, an error margin of two sentences was considered.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Results:                                                                                                                                                                              .",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Discussion: The segmentation algorithm usmg word repetition and relation weights in combination achieved mean precision and recall rates of 0.80 and 0.69, respectively.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "For 9 out of the 20 texts segmented, all troughs were relevant.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Therefore, many of the troughs placed by the segmentation algorithm represented valid subject Table 2.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Comparison of troughs to segmentation points placed by the test subjects.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "changes.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Both word repetition in combination with collocation and all three features in combination also achieved a precision rate of 0.80 but attained a lower recall rate of 0.62.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "These results demonstrate that supplementing word repetition with other linguistic features can improve text segmentation.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "As an example, a text segmentation algorithm developed by Hearst ( 1994) based on word repetition alone attained inferior precision and recall rates of 0.66 and 0.61.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "In this investigation, recall rates tended to be lower than precision rates because the algorithm identified fewer segments (4.1 per text) than the test subjects (4.5).",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Each text was only 500 words in length and was related to a specific subject area.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "These factors limited the degree of subject change that occurred.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Consequently, the test subjects tended to identify subject changes that were more subtle than the algorithm could detect.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Conclusion The text segmentation algorithm developed used three linguistic features to automatically detect lexical cohesion relations across windows.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "The combination of features word repetition and relation weights produced the best precision and recall rates of 0.80 and 0.69.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "When used in isolation, the performance of each feature was inferior to a combined approach.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "This fact provides evidence that different lexical relations are detected by each linguistic feature considered.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Areas for improving the segmentation algorithm include incorporation of a threshold for troughs.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Currently, all troughs indicate a subject change, however, minor fluctuations in scores may be discounted.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Future work with this algorithm should include application to longer documents.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "With trough thresholding the segments identified in longer documents could detect significant subject changes.",
+        "Entity": "Normal"
+    },
+    {
+        "Text": "Having located the related segments in text, a method of determining the subject of each segment could be developed, for example, for information retrieval purposes.",
+        "Entity": "Normal"
+    }
+]

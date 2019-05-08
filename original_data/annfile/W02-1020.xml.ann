@@ -1,0 +1,96 @@
+T1	Reference 6157 6182	igure 1 gives an example.
+A1	RefType T1 Direct
+A2	Type T1 Figure
+A3	Num T1 1
+T2	Reference 6728 6796	Figure 1: Example of a prediction for English to French translation.
+A4	RefType T2 Direct
+A5	Type T2 Figure
+A6	Num T2 1
+T3	Reference 10601 10713	For example, if x in figure 1 were evenir aux choses, then x14 would map to v1 = evenir, w2 = aux, and u3 = cho.
+A7	RefType T3 Direct
+A8	Type T3 Figure
+A9	Num T3 1
+T4	Reference 11893 12128	Letting u1 be the prefix of the word that ends in v1 (eg, r in figure 1), w1 = u1v1, and h = htu1:is less accurate because it ignores the alignment rela tion between s and h, which is captured by even the simplest noisy-channel models.
+A10	RefType T4 Direct
+A11	Type T4 Figure
+A12	Num T4 1
+T5	Reference 15702 16014	However, this information is hard to extract reliably from the available data; and even if were obtainable, many of the 0.3 0.2 0.1 0  60  50  40  30  20  10 0 10 20 30 40 50 60 gain (length of correct prefix   length of incorrect suffix) Figure 2: Probability that a prediction will be accepted versus its gain.
+A13	RefType T5 Direct
+A14	Type T5 Figure
+A15	Num T5 2
+T6	Reference 16745 16822	For instance, the gain for the prediction in figure 1 would be 2   7   8 = 6.
+A16	RefType T6 Direct
+A17	Type T6 Figure
+A18	Num T6 1
+T7	Reference 17183 17261	Figure 2 shows empirical estimates of p(a = 1|2k   l) from the TransType data.
+A19	RefType T7 Direct
+A20	Type T7 Figure
+A21	Num T7 2
+T8	Reference 17754 17954	Figure 3: Time to read and accept or reject proposals versus their length tion, because the empirical probability of acceptance is very low when it is less than zero and rises rapidly as it increases.
+A22	RefType T8 Direct
+A23	Type T8 Figure
+A24	Num T8 3
+T9	Reference 18090 18324	The points labelled smoothed in figure 2 were obtained using a sliding-average smoother, and the model curve was obtained using two-component Gaussian mixtures to fit the smoothed empirical likelihoods p(gain|a = 0) and p(gain|a = 1).
+A25	RefType T9 Direct
+A26	Type T9 Figure
+A27	Num T9 2
+T10	Reference 18458 18542	As an example, the probability of accepting the prediction in figure 1 is about .25.
+A28	RefType T10 Direct
+A29	Type T10 Figure
+A30	Num T10 1
+T11	Reference 20400 20947	As shown in figure 3, read times are much higher for predictions that get accepted, re B(x, k, a) =  R1(x) + T (x, k)   E(x, k), a = 1  R0(x), a = 0 flecting both a more careful perusal by the translator and the fact the rejected predictions are often simplywhere Ra(x) is the cost of reading x when it ulignored.2 In both cases there is a weak linear rela timately gets accepted (a = 1) or rejected (a = 0), T (x, k) is the cost of manually typing xk , and E(x, k) is the edit cost of accepting x and erasing to the end of its first k characters.
+A31	RefType T11 Direct
+A32	Type T11 Figure
+A33	Num T11 3
+T12	Reference 22167 22345	To illustrate the complete user model, in the figure 1 example the benefit of accepting would be7   2   4.2 = .8 keystrokes and the benefit of reject ing would be  .2 keystrokes.
+A34	RefType T12 Direct
+A35	Type T12 Figure
+A36	Num T12 1
+T13	Reference 23519 23659	Table 1: Approximate times in seconds to generate predictions of maximum word sequence length M , on a 1.2GHz processor, for the MEMD model.
+A37	RefType T13 Direct
+A38	Type T13 Table
+A39	Num T13 1
+T14	Reference 24563 24677	Table 1 shows empirical search timings for various values of M , for the MEMD model described in the next section.
+A40	RefType T14 Direct
+A41	Type T14 Table
+A42	Num T14 1
+T15	Reference 26386 26442	Table 2: Results for different predictor configurations.
+A43	RefType T15 Direct
+A44	Type T15 Table
+A45	Num T15 2
+T16	Reference 26663 26711	Table 3: Results for different user simulations.
+A46	RefType T16 Direct
+A47	Type T16 Table
+A48	Num T16 3
+T17	Reference 27849 27911	Table 2 contains results for two different translation models.
+A49	RefType T17 Direct
+A50	Type T17 Table
+A51	Num T17 2
+T18	Reference 28738 29040	Table 3 illustrates the effects of different components of the user model by showing results for simulated users who read infinitely fast and accept only predictions having positive benefit (superman); who read normally but accept like superman (rational); and who match the standard user model (real).
+A52	RefType T18 Direct
+A53	Type T18 Table
+A54	Num T18 3
+T19	Reference 31462 31554	The results are shown in the corr row of table 2, for exact character-probability estimates.
+A55	RefType T19 Direct
+A56	Type T19 Table
+A57	Num T19 2
+T20	Reference 18620 18753	A natural unit for B(x, k, a) is the number of keystrokes saved, so all elements of the above equation are converted to this measure.
+A58	RefType T20 Spatial-Above
+A59	Type T20 Equation
+A60	Num T20 1
+T21	Reference 12430 12442	equation (3)
+A61	RefType T21 Direct
+A62	Type T21 Equation
+A63	Num T21 3
+T22	Reference 14033 14045	equation (2)
+A64	RefType T22 Direct
+A65	Type T22 Equation
+A66	Num T22 2
+T23	Reference 22693 22705	equation (1)
+A67	RefType T23 Direct
+A68	Type T23 Equation
+A69	Num T23 1
+T24	Reference 24516 24528	equation (2)
+A70	RefType T24 Direct
+A71	Type T24 Equation
+A72	Num T24 2
