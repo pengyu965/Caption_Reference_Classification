@@ -1,4 +1,5 @@
 weight
+**/__pycache__
 **/SCISUMM-DATA
 **/.DS_Store
 **/fastText
