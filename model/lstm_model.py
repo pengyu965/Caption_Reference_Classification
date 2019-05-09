@@ -9,6 +9,7 @@ import json
 import random
 import nltk
 import word2vec
+import fastText
 
 
 class Model():
@@ -25,11 +26,6 @@ class Model():
 
     def lstm_layer(self):
         with tf.name_scope("stacked_LSTMCell"):
-            # lstm = tf.keras.layers.LSTMCell(128)
-            # # stacked_lstm = tf.keras.layers.LSTM(lstm for i in range(3))
-            # self.layer["lstm_state"] = lstm.get_initial_state(inputs = self.input)
-            # self.layer["lstm_output"], self.layer["lstm_state"] = lstm(self.input, self.layer["lstm_state"], training = True)
-            # self.layer["lstm_output"] = lstm(self.input)
             cells = [
                 tf.keras.layers.LSTMCell(128),
                 tf.keras.layers.LSTMCell(128),
@@ -41,12 +37,6 @@ class Model():
     def fc(self):
         with tf.variable_scope('fc1',reuse=tf.AUTO_REUSE):
             self.layer['fc1_layer'] = tf.keras.layers.Dense(units=32, activation=tf.keras.activations.relu)(self.layer['lstm_output'])
-        
-        # with tf.variable_scope('drop_out', reuse=tf.AUTO_REUSE):
-        #     self.layer['dropout_1'] = tf.layers.dropout(inputs = self.layer['fc1_layer'], rate = self.keep_prob)
-        
-        # with tf.variable_scope('fc2', reuse=tf.AUTO_REUSE):
-        #     self.layer['fc2_layer'] = tf.layers.dense(self.layer['dropout_1'], units = 64, activation = tf.nn.relu, reuse=tf.AUTO_REUSE)
         
         with tf.variable_scope('fc_output', reuse=tf.AUTO_REUSE):
             self.layer['logits'] = tf.keras.layers.Dense(units = self.class_num)(self.layer['fc1_layer'])
@@ -103,7 +93,8 @@ class Trainer:
         self.negative_train = json.load(open(self.input_dir+"train_negative_json.json", 'r'))[:-300]
         self.negative_val = json.load(open(self.input_dir+"train_negative_json.json", 'r'))[-300:]
 
-        self.word2vec_model = word2vec.load('./embedding/word2vec.bin')
+        # self.word2vec_model = word2vec.load('./embedding/word2vec.bin')
+        self.word2vec_model = fastText.FastText.load_model('./embedding/fil9.bin')
         
 
     def train(self, sess, writer):
@@ -220,7 +211,8 @@ def sentence_embedding(dic_list, word2vec_model, category):
         sent_matrix = []
 
         for token in token_list:
-            word_vec = word2vec_model[token].tolist()
+            # word_vec = word2vec_model[token].tolist()
+            word_vec = word2vec_model.get_word_vector(token).tolist()
             
             sent_matrix.append(word_vec)
         

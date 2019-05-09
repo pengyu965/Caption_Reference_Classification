@@ -1,4 +1,6 @@
 weight/
+weight_word2vec/
+**/fil9.bin
 **/__pycache__/
 **/SCISUMM-DATA
 **/.DS_Store

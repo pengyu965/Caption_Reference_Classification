@@ -9,6 +9,7 @@ import json
 import random
 import nltk
 import word2vec
+import fastText
 
 class Model:
     def __init__(self, batch_size=50, lr = 0.001, keep_prob=0.4, class_num=3, is_training = True):
@@ -122,7 +123,8 @@ class Trainer:
         self.negative_train = json.load(open(self.input_dir+"train_negative_json.json", 'r'))[:-300]
         self.negative_val = json.load(open(self.input_dir+"train_negative_json.json", 'r'))[-300:]
 
-        self.word2vec_model = word2vec.load('./embedding/word2vec.bin')
+        # self.word2vec_model = word2vec.load('./embedding/word2vec.bin')
+        self.word2vec_model = fastText.FastText.load_model('./embedding/fil9.bin')
         
 
     def train(self, sess, writer):
@@ -238,9 +240,9 @@ def sentence_embedding(dic_list, word2vec_model, category):
         pos_matrix = []
 
         
-        position = 0
         for token in token_list:
-            word_vec = word2vec_model[token].tolist()
+            # word_vec = word2vec_model[token].tolist()
+            word_vec = word2vec_model.get_word_vector(token).tolist()
             
             sent_matrix.append(word_vec)
             
@@ -249,7 +251,8 @@ def sentence_embedding(dic_list, word2vec_model, category):
             elif token == ".":
                 pos_matrix.append([0]*50+[1]*50)
             else:
-                pos_matrix.append(word2vec_model[str(position)])
+                # pos_matrix.append(word2vec_model[str(position)])
+                pos_matrix.append(word2vec_model.get_word_vector(token))
         
         sent_matrix += [[0]*100]*(200-len(sent_matrix))
         pos_matrix += [[0]*100]*(200-len(pos_matrix))
