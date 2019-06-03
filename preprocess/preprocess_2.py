@@ -30,7 +30,8 @@ def train_caption_gen(ann_json_path, train_data_path):
             dic["Entity"] = "Caption"
             train_json.append(dic)
 
-    shuffle_train_json = random.sample(train_json, len(train_json))
+    shuffle_train_json = train_json
+    # shuffle_train_json = random.sample(train_json, len(train_json))
     print("Caption sample number:", len(shuffle_train_json))
     with open(train_data_path+"/train_caption_json.json", 'w') as f:
         f.write(json.dumps(shuffle_train_json, indent=4))
@@ -50,7 +51,9 @@ def train_reference_gen(ann_json_path, train_data_path):
                 train_json.append(dic)
                 train_json.append(dic)
 
-    shuffle_train_json = random.sample(train_json, len(train_json))
+    shuffle_train_json = train_json
+    # shuffle_train_json = random.sample(train_json, len(train_json))
+
 
     print("Reference sample number:", len(shuffle_train_json))
     with open(train_data_path+"/train_reference_json.json", 'w') as f:

@@ -81,15 +81,17 @@ class Trainer:
         global_step = 0
         start_time = time.time()
         for ep in range(self.epoch):
+            self.model.train()
 
-            # if ep == int(self.epoch //3):
-            #     self.lr = self.lr/10
-            #     self.optimizer = optim.Adam(self.model.parameters(), lr = self.lr)
-            # if ep == int(self.epoch*2//3):
-            #     self.lr = self.lr/10
-            #     self.optimizer = optim.Adam(self.model.parameters(), lr = self.lr)
+            if ep == int(self.epoch //3):
+                self.lr = self.lr/10
+                self.optimizer = optim.Adam(self.model.parameters(), lr = self.lr)
+            if ep == int(self.epoch*2//3):
+                self.lr = self.lr/10
+                self.optimizer = optim.Adam(self.model.parameters(), lr = self.lr)
 
             for idi in range(idx):
+
                 batch_negative_list = random.sample(self.negative_train, category_batch_num)
                 batch_negative = sentence_embedding(batch_negative_list, self.word2vec_model, 0)
 
@@ -137,6 +139,8 @@ class Trainer:
         val_loss_sum = 0
         val_acc_sum = 0
 
+        self.model.eval()
+
         for val_idi in range(val_idx):
             val_batch_negative_list = random.sample(self.negative_train, val_catagory_batch)
             val_batch_negative = sentence_embedding(val_batch_negative_list, self.word2vec_model, 0)
@@ -174,11 +178,6 @@ class Trainer:
         print("\n===\nValidation Loss: {:.4f}, Validation Acc: {:.4f}\n===\n".format(val_loss_sum/val_idx, val_acc_sum/val_idx))
 
     
-
-
-
-
-
 def sentence_embedding(dic_list, word2vec_model, category):
     batch_list = []
     for dic in dic_list:
