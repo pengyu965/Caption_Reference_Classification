@@ -90,11 +90,11 @@ python3 ./embedding/word2vec_train.py
 ### CNN model training
 
 ```python
-python3 main.py --model=CNN --train --data=./traindata/ -lr=0.001 --epoch=30 --bsize=60 
+python3 main.py --model=CNN --train --data=./traindata/ --lr=0.001 --epoch=30 --bsize=60 
 ```
 
 ### LSTM model training
 
 ```python
-python3 main.py --model=LSTM --train --data=./traindata/ -lr=0.001 --epoch=60 --bsize=60 
+python3 main.py --model=LSTM --train --data=./traindata/ --lr=0.001 --epoch=60 --bsize=60 
 ```
