@@ -190,8 +190,13 @@ class Predictor:
         embedded_input = torch.FloatTensor(embedded_input).to(self.device)
         logits = self.model(embedded_input)
         results = F.softmax(logits, dim=1)
-        clss = torch.argmax(results)
-        print(clss)
+        clss = torch.argmax(results, dim=1)
+        if clss == 0:
+            print("Normal Text")
+        elif clss == 1:
+            print("Reference")
+        else:
+            print("Caption")
 
 
 def sentence_embedding(dic_list, word2vec_model, category):
