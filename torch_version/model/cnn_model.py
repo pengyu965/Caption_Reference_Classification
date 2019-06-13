@@ -289,8 +289,8 @@ def prediction_embedding(p_input, word2vec_model):
             batch_list.append(concated_matrix)
 
     else:
-        raise TypeError
         print("Input should be a sentence string or a list of sentence string")
+        raise TypeError
             
     return batch_list
 
