@@ -187,7 +187,7 @@ class Predictor:
     def predict(self):
         embedded_input = prediction_embedding(self.p_input, self.word2vec_model)
         print(np.array(embedded_input).shape)
-        embedded_input = torch.FloatTensor(embedded_input)
+        embedded_input = torch.FloatTensor(embedded_input).to(self.device)
         logits = self.model(embedded_input)
         results = F.softmax(logits, dim=1)
         print(results)

@@ -22,7 +22,7 @@ def get_args():
                         help='Fine tuning the model')
     # parser.add_argument('--load', type=int, default=99,
                         # help='Epoch id of pre-trained model')
-    parser.add_argument("--data", type= str, help='training_data')
+    parser.add_argument("--data", type= str, help='input_data')
 
     parser.add_argument('--lr', type=float, default=1e-4,
                         help='Initial learning rate')
