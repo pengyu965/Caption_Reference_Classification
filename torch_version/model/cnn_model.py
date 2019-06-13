@@ -130,7 +130,6 @@ class Trainer:
 
             self.validation(global_step)
 
-
     def validation(self, global_step):
         min_len_val = np.min(np.array([len(self.caption_val), len(self.reference_val), len(self.negative_val)]))
         val_catagory_batch = int(self.batch_size/self.class_num)
@@ -177,7 +176,23 @@ class Trainer:
 
         print("\n===\nValidation Loss: {:.4f}, Validation Acc: {:.4f}\n===\n".format(val_loss_sum/val_idx, val_acc_sum/val_idx))
 
-    
+class Predictor:
+    def __init__(self, p_input, model):
+        self.device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
+
+        self.p_input = p_input 
+        self.model = model.to(self.device)
+        self.model.eval()
+        self.word2vec_model = fastText.FastText.load_model('./embedding/fil9.bin')
+    def predict(self):
+        embedded_input = prediction_embedding(self.p_input, self.word2vec_model)
+        print(np.array(embedded_input).shape)
+        embedded_input = torch.FloatTensor(embedded_input)
+        logits = self.model(embedded_input)
+        results = F.softmax(logits, dim=1)
+        print(results)
+
+
 def sentence_embedding(dic_list, word2vec_model, category):
     batch_list = []
     for dic in dic_list:
@@ -214,3 +229,69 @@ def sentence_embedding(dic_list, word2vec_model, category):
         batch_list.append(sample)
     
     return batch_list
+
+def prediction_embedding(p_input, word2vec_model):
+
+    batch_list = []
+    if isinstance(p_input, str):
+        token_list = nltk.word_tokenize(p_input)
+
+        sent_matrix = []
+        pos_matrix = []
+        for token in token_list:
+            # word_vec = word2vec_model[token].tolist()
+            word_vec = word2vec_model.get_word_vector(token).tolist()
+            
+            sent_matrix.append(word_vec)
+            
+            if token == ",":
+                pos_matrix.append([1]*50+[0]*50)
+            elif token == ".":
+                pos_matrix.append([0]*50+[1]*50)
+            else:
+                # pos_matrix.append(word2vec_model[str(position)])
+                pos_matrix.append(word2vec_model.get_word_vector(token))
+        
+        sent_matrix += [[0]*100]*(200-len(sent_matrix))
+        pos_matrix += [[0]*100]*(200-len(pos_matrix))
+        sent_matrix = np.expand_dims(np.array(sent_matrix), axis = 0)
+        pos_matrix = np.expand_dims(np.array(pos_matrix), axis = 0)
+        concated_matrix = np.concatenate((sent_matrix, pos_matrix), axis = 0).tolist()
+
+        batch_list.append(concated_matrix)
+
+    elif isinstance(p_input, list):
+        for sentence in p_input:
+            token_list = nltk.word_tokenize(sentence)
+
+            sent_matrix = []
+            pos_matrix = []
+            for token in token_list:
+                # word_vec = word2vec_model[token].tolist()
+                word_vec = word2vec_model.get_word_vector(token).tolist()
+                
+                sent_matrix.append(word_vec)
+                
+                if token == ",":
+                    pos_matrix.append([1]*50+[0]*50)
+                elif token == ".":
+                    pos_matrix.append([0]*50+[1]*50)
+                else:
+                    # pos_matrix.append(word2vec_model[str(position)])
+                    pos_matrix.append(word2vec_model.get_word_vector(token))
+            
+            sent_matrix += [[0]*100]*(200-len(sent_matrix))
+            pos_matrix += [[0]*100]*(200-len(pos_matrix))
+            sent_matrix = np.expand_dims(np.array(sent_matrix), axis = 0)
+            pos_matrix = np.expand_dims(np.array(pos_matrix), axis = 0)
+            concated_matrix = np.concatenate((sent_matrix, pos_matrix), axis = 0).tolist()
+
+            batch_list.append(concated_matrix)
+
+    else:
+        raise TypeError
+        print("Input should be a sentence string or a list of sentence string")
+            
+    return batch_list
+
+

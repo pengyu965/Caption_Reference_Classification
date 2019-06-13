@@ -5,6 +5,7 @@ import model.cnn_model as cnn_model
 import os 
 import json
 import argparse 
+import sys
 
 def get_args():
     parser = argparse.ArgumentParser()
@@ -67,3 +68,17 @@ if __name__ == "__main__":
             trainer.train()
 
             torch.save(model.state_dict(), "./weight/CNN/weight.pt")
+
+        if FLAGS.predict:
+            model = cnn_model.Model(FLAGS.keep_prob, FLAGS.class_num)
+            print(model)
+
+            try:
+                model.load_state_dict(torch.load("./weight/CNN/weight.pt"))
+                print("\n***\nCheckpoint found\nModel Restored\n***\n")
+            except:
+                print("\n***\nNo Checkpoint found\nPrediction Abort, train the model first.\n***\n")
+                sys.exit()
+            
+            predictor = cnn_model.Predictor(FLAGS.data, model)
+            predictor.predict()
