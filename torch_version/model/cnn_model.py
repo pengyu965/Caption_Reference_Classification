@@ -190,7 +190,8 @@ class Predictor:
         embedded_input = torch.FloatTensor(embedded_input).to(self.device)
         logits = self.model(embedded_input)
         results = F.softmax(logits, dim=1)
-        print(results)
+        clss = torch.argmax(results)
+        print(clss)
 
 
 def sentence_embedding(dic_list, word2vec_model, category):
