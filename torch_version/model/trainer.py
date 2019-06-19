@@ -151,7 +151,6 @@ class Trainer:
 
             acc = torch.sum(preds == val_batch_label).float()/self.batch_size
 
-            print(loss.item())
 
             val_loss_sum += loss.item()
             val_acc_sum += acc
