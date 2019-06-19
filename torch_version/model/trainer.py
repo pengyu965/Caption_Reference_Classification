@@ -139,9 +139,14 @@ class Trainer:
             val_batch_label = torch.LongTensor(val_batch_label).to(self.device)
 
             output_logits = self.model(val_batch_data)
-            loss = self.loss_op(output_logits, val_batch_label)
 
-            preds = torch.argmax(output_logits, dim = -1)
+            try:
+                if self.model.aux_logits:
+                    loss = self.criterion(output_logits[0], val_batch_label)
+                    preds = torch.argmax(output_logits[0], dim = -1)
+            except:
+                loss = self.criterion(output_logits, val_batch_label)
+                preds = torch.argmax(output_logits, dim = -1)
 
             acc = torch.sum(preds == val_batch_label).float()/self.batch_size
 

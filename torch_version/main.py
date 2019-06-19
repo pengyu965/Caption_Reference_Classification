@@ -93,3 +93,15 @@ if __name__ == "__main__":
         
         if FLAGS.train: 
             model = googlenet_model.GoogLeNet(num_classes=3)
+            print(model)
+
+            try:
+                model.load_state_dict(torch.load("./weight/GoogLeNet/weight.pt"))
+                print("\n***\nCheckpoint found\nModel Restored\n***\n")
+            except:
+                print("\n***\nNo Checkpoint found\nTraining from begining\n***\n")
+            
+            trainer = trainer.Trainer(FLAGS.data, model, FLAGS.bsize, FLAGS.lr, FLAGS.epoch)
+            trainer.train()
+
+            torch.save(model.state_dict(), "./weight/GoogLeNet/weight.pt")
