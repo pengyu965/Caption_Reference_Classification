@@ -101,7 +101,7 @@ class Trainer:
 
                 loss.backward()
                 self.optimizer.step()
-                print("Epoch:[{}]===Step:[{}/{}]===Time:[{:.2f}]===Learning Rate:{}\nTrain_loss:[{:.4f}], Train_acc[{:.4f}]".format(ep, idi, idx, time.time()-start_time, self.lr, loss, acc))
+                print("Epoch:[{}]===Step:[{}/{}]===Time:[{:.2f}]===Learning Rate:{}\nTrain_loss:[{:.4f}], Train_acc[{:.4f}]".format(ep, idi, idx, time.time()-start_time, self.lr, loss.data[0], acc))
                 
                 global_step += 1
 
@@ -118,7 +118,6 @@ class Trainer:
         self.model.eval()
 
         for val_idi in range(val_idx):
-            print(val_idi)
             val_batch_negative_list = random.sample(self.negative_train, val_catagory_batch)
             val_batch_negative = sentence_embedding(val_batch_negative_list, self.word2vec_model, 0)
 
@@ -152,9 +151,9 @@ class Trainer:
 
             acc = torch.sum(preds == val_batch_label).float()/self.batch_size
 
-            print(loss)
+            print(loss.item())
 
-            val_loss_sum += loss
+            val_loss_sum += loss.data[0]
             val_acc_sum += acc
 
         print("\n===\nValidation Loss: {:.4f}, Validation Acc: {:.4f}\n===\n".format(val_loss_sum/val_idx, val_acc_sum/val_idx))
