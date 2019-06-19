@@ -108,6 +108,7 @@ if __name__ == "__main__":
 
         if FLAGS.predict:
             model = googlenet_model.GoogLeNet(num_classes=3, aux_logits=False, init_weights=False)
+            model.load_state_dict(torch.load("./weight/GoogLeNet/weight.pt"))
             try:
                 model.load_state_dict(torch.load("./weight/GoogLeNet/weight.pt"))
                 print("\n***\nCheckpoint found\nModel Restored\n***\n")
