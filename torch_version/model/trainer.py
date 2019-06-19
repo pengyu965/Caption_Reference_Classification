@@ -83,12 +83,13 @@ class Trainer:
                 self.optimizer.zero_grad()
 
                 output_logits = self.model(batch_data)
-                if self.model.aux_logits:
-                    _loss = [] 
-                    for i in range(len(output_logits)):
-                        _loss.append(self.criterion(output_logits[i], batch_label))
-                    loss = sum(_loss)
-                else:
+                try:
+                    if self.model.aux_logits:
+                        _loss = [] 
+                        for i in range(len(output_logits)):
+                            _loss.append(self.criterion(output_logits[i], batch_label))
+                        loss = sum(_loss)
+                except:
                     loss = self.criterion(output_logits, batch_label)
                     
 
