@@ -89,12 +89,13 @@ class Trainer:
                         for i in range(len(output_logits)):
                             _loss.append(self.criterion(output_logits[i], batch_label))
                         loss = sum(_loss)
+                        preds = torch.argmax(output_logits[0], dim = -1)
                 except:
                     loss = self.criterion(output_logits, batch_label)
-                    
+                    preds = torch.argmax(output_logits, dim = -1)
 
                 # preds_matrix = nn.Softmax()(output_logits)
-                preds = torch.argmax(output_logits, dim = -1)
+                # preds = torch.argmax(output_logits, dim = -1)
 
                 acc = torch.sum(preds == batch_label).float()/self.batch_size
 
