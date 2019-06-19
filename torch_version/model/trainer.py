@@ -152,6 +152,7 @@ class Trainer:
 
             acc = torch.sum(preds == val_batch_label).float()/self.batch_size
 
+            self.optimizer.zero_grad()
             
 
             val_loss_sum += loss
