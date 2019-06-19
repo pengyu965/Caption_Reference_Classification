@@ -118,6 +118,7 @@ class Trainer:
         self.model.eval()
 
         for val_idi in range(val_idx):
+            print(val_idi)
             val_batch_negative_list = random.sample(self.negative_train, val_catagory_batch)
             val_batch_negative = sentence_embedding(val_batch_negative_list, self.word2vec_model, 0)
 
