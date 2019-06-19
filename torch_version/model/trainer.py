@@ -152,10 +152,10 @@ class Trainer:
 
             acc = torch.sum(preds == val_batch_label).float()/self.batch_size
 
-            
+            print(loss)
 
-            val_loss_sum = loss
-            val_acc_sum = acc
+            val_loss_sum += loss
+            val_acc_sum += acc
 
         print("\n===\nValidation Loss: {:.4f}, Validation Acc: {:.4f}\n===\n".format(val_loss_sum/val_idx, val_acc_sum/val_idx))
 
