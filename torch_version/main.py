@@ -1,11 +1,10 @@
 import torch 
 
-import model.cnn_model as cnn_model
-
 import os 
 import json
 import argparse 
 import sys
+from model import trainer
 
 def get_args():
     parser = argparse.ArgumentParser()
@@ -51,6 +50,9 @@ if __name__ == "__main__":
         os.mkdir("./weight/")
 
     if FLAGS.model == "CNN":
+
+        import model.cnn_model as cnn_model
+
         if os.path.exists("./weight/CNN/") == False:
             os.mkdir("./weight/CNN/")
 
@@ -64,7 +66,7 @@ if __name__ == "__main__":
             except:
                 print("\n***\nNo Checkpoint found\nTraining from begining\n***\n")
 
-            trainer = cnn_model.Trainer(FLAGS.data, model, FLAGS.bsize, FLAGS.lr, FLAGS.epoch)
+            trainer = trainer.Trainer(FLAGS.data, model, FLAGS.bsize, FLAGS.lr, FLAGS.epoch)
             trainer.train()
 
             torch.save(model.state_dict(), "./weight/CNN/weight.pt")
@@ -80,5 +82,14 @@ if __name__ == "__main__":
                 print("\n***\nNo Checkpoint found\nPrediction Abort, train the model first.\n***\n")
                 sys.exit()
             
-            predictor = cnn_model.Predictor(FLAGS.data, model)
+            predictor = trainer.Predictor(FLAGS.data, model)
             predictor.predict()
+    
+    if FLAGS.model == "googlenet":
+        import model.googlenet_model as googlenet_model
+
+        if os.path.exists("./weight/GoogLeNet/") == False:
+            os.mkdir("./weight/GoogLeNet/")
+        
+        if FLAGS.train: 
+            model = googlenet_model.GoogLeNet(num_classes=3)
