@@ -33,5 +33,5 @@ if __name__ == "__main__":
     if os.path.exists(xml_path) == False:
         os.mkdir(xml_path)
     if os.path.exists(ann_json_path ) == False:
-        os.mkdir(ann_json_path )
+        os.mkdir(ann_json_path)
     preprocess_1(root_path, ann_path, xml_path, ann_json_path)
